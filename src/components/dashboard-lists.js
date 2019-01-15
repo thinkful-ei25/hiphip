@@ -7,10 +7,10 @@ export class Lists extends Component {
     if (!this.props.username) {
       return <Redirect to="/" />;
     }
-    const lists = this.props.lists.map((list, idx) => {
-      console.log(list);
+    const lists = this.props.listsNames.map((list, idx) => {
       return (
-        <li key={idx}>
+        // FIX -> update key with mongoId
+        <li>
           <a href={`#${list}`}>{list}</a>
         </li>
       );
@@ -21,10 +21,10 @@ export class Lists extends Component {
 }
 
 const mapStateToProps = state => {
-  const shoppingLists = ['cakes', 'stew', 'tamales']; //dummy data
+  console.log(state);
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
-    lists: shoppingLists,
+    listsNames: state.lists ? state.lists.lists : null,
   };
 };
 

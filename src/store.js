@@ -5,10 +5,12 @@ import { loadAuthToken } from './local-storage';
 import { setAuthToken, refreshAuthToken } from './actions/auth';
 import thunk from 'redux-thunk';
 
+import shoppingListReducer from './reducers/shoppingLists';
 const store = createStore(
   combineReducers({
     form: formReducer,
     auth: authReducer,
+    lists: shoppingListReducer,
   }),
   applyMiddleware(thunk)
 );
