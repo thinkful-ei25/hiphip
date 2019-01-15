@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Lists from './dashboard-lists';
+import Lists from './lists';
 export class Dashboard extends Component {
   render() {
     if (!this.props.username) {
