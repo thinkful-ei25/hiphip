@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Lists from './lists';
+import Logout from './auth-components/logout';
+import Lists from './shoppingLists';
 export class Dashboard extends Component {
   render() {
     if (!this.props.username) {
@@ -11,6 +12,7 @@ export class Dashboard extends Component {
       <Fragment>
         <h2>Welcome {this.props.username}</h2>
         <Lists />
+        <Logout />
       </Fragment>
     );
   }
