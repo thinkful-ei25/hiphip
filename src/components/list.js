@@ -1,47 +1,54 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
+import { getItems, toggleChecked } from '../actions/items';
 
-function handleClick(event) {
-  return {};
-}
-const strikeThrough = { textDecoration: 'line-through' };
-export function List(props) {
-  if (props.authLoading) {
-    return <div>Logging In...</div>;
+export class List extends Component {
+  onClickHandler(itemId) {
+    this.props.dispatch(toggleChecked(itemId));
   }
-  if (!props.username) {
-    return <Redirect to="/" />;
+  componentDidMount() {
+    this.props.dispatch(getItems(this.props.listId));
   }
-  const items = props.list.items.map(item => {
+  render() {
+    if (this.props.authLoading || this.props.list.loading) {
+      return <div>Loading...</div>;
+    }
+    if (!this.props.username) {
+      return <Redirect to="/" />;
+    }
+    const items = this.props.list.items.map(item => {
+      return (
+        <li
+          key={item.id}
+          style={item.checked ? { textDecoration: 'line-through' } : null}
+          onClick={() => this.onClickHandler(item.id)}
+        >
+          item: {item.name} aisle: {item.aisle}
+        </li>
+      );
+    });
+
     return (
-      <li
-        key={item.id}
-        onClick={e => handleClick(e)}
-        style={item.checked ? strikeThrough : null}
-      >
-        item: {item.name} aisle: {item.aisle}
-      </li>
+      <Fragment>
+        <ul>
+          <h2>{this.props.list.name} List</h2>
+          <h3>{this.props.list.storeAddress}</h3>
+          {items}
+        </ul>
+        <Link to="/lists">Lists</Link>
+      </Fragment>
     );
-  });
-
-  return (
-    <Fragment>
-      <ul>
-        <h2>{props.list.name} List</h2>
-        <h3>{props.list.storeAddress}</h3>
-        {items}
-      </ul>
-      <Link to="/lists">Lists</Link>
-    </Fragment>
-  );
+  }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const { listId } = ownProps.match.params;
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     authLoading: state.auth.loading,
     list: state.list,
+    listId,
   };
 };
 

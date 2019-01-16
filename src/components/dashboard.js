@@ -2,8 +2,12 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Logout from './auth-components/logout';
-import Lists from './shoppingLists';
+import ShoppingLists from './shoppingLists';
+import { getLists } from '../actions/shoppingLists';
 export class Dashboard extends Component {
+  componentDidMount() {
+    this.props.dispatch(getLists());
+  }
   render() {
     if (!this.props.username) {
       return <Redirect to="/" />;
@@ -11,7 +15,7 @@ export class Dashboard extends Component {
     return (
       <Fragment>
         <h2>Welcome {this.props.username}</h2>
-        <Lists />
+        <ShoppingLists />
         <Logout />
       </Fragment>
     );
