@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { getItems, toggleChecked } from '../actions/items';
 
+const strikeThrough = { textDecoration: 'line-through' };
 export class List extends Component {
   onClickHandler(itemId) {
     this.props.dispatch(toggleChecked(itemId));
@@ -21,7 +22,7 @@ export class List extends Component {
       return (
         <li
           key={item.id}
-          style={item.checked ? { textDecoration: 'line-through' } : null}
+          style={item.checked ? strikeThrough : null}
           onClick={() => this.onClickHandler(item.id)}
         >
           item: {item.name} aisle: {item.aisle}
