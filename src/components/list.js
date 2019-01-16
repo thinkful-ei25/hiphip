@@ -34,7 +34,6 @@ export function List(props) {
         <h3>{props.list.storeAddress}</h3>
         {items}
       </ul>
-      <Link to="/lists">Lists</Link>
     </Fragment>
   );
 }

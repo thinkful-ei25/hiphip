@@ -1,29 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { clearAuthToken } from '../local-storage';
-import { clearAuth } from '../actions/auth';
+import LogOut from './auth-components/logout';
 
 export class NavBar extends React.Component {
-  logOut() {
-    console.log('Logging out');
-
-    this.props.dispatch(clearAuth());
-    clearAuthToken();
-  }
-
   render() {
     let logOutButton;
     if (this.props.loggedIn) {
-      logOutButton = (
-        <button
-          onClick={() => {
-            this.logOut();
-          }}
-        >
-          Log out
-        </button>
-      );
+      logOutButton = <LogOut />;
     }
 
     const NavBar = (

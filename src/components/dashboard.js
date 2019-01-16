@@ -14,7 +14,6 @@ export class Dashboard extends Component {
         <NavBar />
         <h2>Welcome {this.props.username}</h2>
         <Lists />
-        <Logout />
       </Fragment>
     );
   }
