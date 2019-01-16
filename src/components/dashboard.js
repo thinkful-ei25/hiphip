@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Logout from './auth-components/logout';
 import Lists from './shoppingLists';
+import NavBar from './nav-bar';
 export class Dashboard extends Component {
   render() {
     if (!this.props.username) {
@@ -10,6 +11,7 @@ export class Dashboard extends Component {
     }
     return (
       <Fragment>
+        <NavBar />
         <h2>Welcome {this.props.username}</h2>
         <Lists />
         <Logout />

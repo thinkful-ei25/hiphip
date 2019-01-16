@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
+import NavBar from './nav-bar';
 
 function handleClick(event) {
   return {};
@@ -27,6 +28,7 @@ export function List(props) {
 
   return (
     <Fragment>
+      <NavBar />
       <ul>
         <h2>{props.list.name} List</h2>
         <h3>{props.list.storeAddress}</h3>
