@@ -112,3 +112,7 @@ export const refreshAuthToken = () => (dispatch, getState) => {
     });
 };
 //change
+export const logout = () => dispatch => {
+  clearAuthToken();
+  dispatch(clearAuth());
+};
