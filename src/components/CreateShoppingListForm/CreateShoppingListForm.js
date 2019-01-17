@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import './CreateShoppingListForm.css';
 import { createList } from '../../actions/shoppingLists';
@@ -55,4 +56,10 @@ export class CreateShoppingListForm extends React.Component {
   }
 }
 
-export default connect()(CreateShoppingListForm);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    history: ownProps.history,
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(CreateShoppingListForm));
