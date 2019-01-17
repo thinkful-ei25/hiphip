@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import AddItem from './addItem';
-import { getItems, toggleChecked } from '../actions/items';
+import { getItems, toggleChecked, getListName } from '../actions/items';
 import NavBar from './nav-bar';
 
 const strikeThrough = { textDecoration: 'line-through' };
@@ -12,6 +12,7 @@ export class List extends Component {
   }
   componentDidMount() {
     this.props.dispatch(getItems(this.props.listId));
+    this.props.dispatch(getListName(this.props.listId));
   }
   render() {
     if (this.props.authLoading || this.props.list.loading) {
@@ -34,10 +35,10 @@ export class List extends Component {
 
     return (
       <Fragment>
+        <NavBar />
+        <h2>{this.props.listName}</h2>
+        <h3>{this.props.list.storeAddress}</h3>
         <ul>
-          <NavBar />
-          <h2>{this.props.list.name} List</h2>
-          <h3>{this.props.list.storeAddress}</h3>
           {items}
           <AddItem />
         </ul>
@@ -49,7 +50,9 @@ export class List extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { listId } = ownProps.match.params;
+  console.log(state);
   return {
+    listName: state.list.name,
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     authLoading: state.auth.loading,
     list: state.list,

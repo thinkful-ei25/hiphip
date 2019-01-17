@@ -1,16 +1,16 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from '../components/auth-components/input';
-export class addItem extends React.Component {
-  submitItem(addedItem) {
-    this.props.dispatch(addItem(addedItem));
+import { addItemToList } from '../actions/items';
+
+export class AddItem extends React.Component {
+  onSubmit(values) {
+    this.props.dispatch(addItemToList(values));
   }
 
   render() {
-    // console.log(this.props);
     let error;
     if (this.props.error) {
-      //   console.log('error:',this.props.error);
       error = (
         <div className="form-error" aria-live="polite">
           {this.props.error}
@@ -20,9 +20,7 @@ export class addItem extends React.Component {
     return (
       <form
         className="add-item-form"
-        onSubmit={this.props.handleSubmit(addedItem =>
-          this.submitItem(addedItem)
-        )}
+        onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
         <Field
           name="name"
@@ -51,4 +49,4 @@ export class addItem extends React.Component {
 export default reduxForm({
   form: 'login',
   onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'username')),
-})(addItem);
+})(AddItem);

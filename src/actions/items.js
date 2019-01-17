@@ -7,25 +7,87 @@ export const toggleChecked = itemId => ({
   itemId,
 });
 
-export const ITEMS_REQUEST = 'ITEMS_REQUEST';
-export const itemsRequests = () => ({
-  type: ITEMS_REQUEST,
+export const GET_ITEMS_REQUEST = 'GET_ITEMS_REQUEST';
+export const getItemsRequests = () => ({
+  type: GET_ITEMS_REQUEST,
 });
 
-export const ITEMS_SUCCESS = 'ITEMS_SUCCESS';
-export const itemsSuccess = items => ({
-  type: ITEMS_SUCCESS,
+export const GET_ITEMS_SUCCESS = 'GET_ITEMS_SUCCESS';
+export const getItemsSuccess = items => ({
+  type: GET_ITEMS_SUCCESS,
   items,
 });
 
-export const ITEMS_ERROR = 'ITEMS_ERROR';
-export const itemsError = error => ({
-  type: ITEMS_ERROR,
+export const GET_ITEMS_ERROR = 'GET_ITEMS_ERROR';
+export const getItemsError = error => ({
+  type: GET_ITEMS_ERROR,
   error,
 });
 
+export const ADD_ITEMS_REQUEST = 'ADD_ITEMS_REQUEST';
+export const addItemsRequest = () => ({
+  type: ADD_ITEMS_REQUEST,
+});
+
+export const ADD_ITEMS_ERROR = 'ADD_ITEMS_ERROR';
+export const addItemsError = error => ({
+  type: ADD_ITEMS_ERROR,
+  error,
+});
+
+export const ADD_ITEMS_SUCCESS = 'ADD_ITEMS_SUCCESS';
+export const addItemsSuccess = item => ({
+  type: ADD_ITEMS_SUCCESS,
+  item,
+});
+
+export const SET_LIST_NAME = 'SET_LIST_NAME';
+export const setListName = name => ({
+  type: SET_LIST_NAME,
+  name,
+});
+
+export const GET_LIST_META_REQUEST = 'GET_LIST_META_REQUEST';
+export const getListMetaRequest = () => ({
+  type: GET_LIST_META_REQUEST,
+});
+
+export const GET_LIST_META_ERROR = 'GET_LIST_META_ERROR';
+export const getListMetaError = error => ({
+  type: GET_LIST_META_ERROR,
+  error,
+});
+
+export const GET_LIST_META_SUCCESS = 'GET_LIST_META_SUCCESS';
+export const getListMetaSuccess = name => ({
+  type: GET_LIST_META_SUCCESS,
+  name,
+});
+
+export const addItemToList = addedItem => (dispatch, getState) => {
+  dispatch(getItemsRequests());
+  const authToken = getState().auth.authToken;
+  // return fetch(`${API_BASE_URL}/api/items/${listId}`);
+};
+
+export const getListName = listId => (dispatch, getState) => {
+  dispatch(getListMetaRequest());
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/api/lists/${listId}`, {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${authToken}` },
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(res => {
+      console.log(res.list.name);
+      dispatch(getListMetaSuccess(res.list.name));
+    })
+    .catch(err => dispatch(getListMetaError(err)));
+};
+
 export const getItems = listId => (dispatch, getState) => {
-  dispatch(itemsRequests());
+  dispatch(getItemsRequests());
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/items/${listId}`, {
     method: 'GET',
@@ -34,7 +96,7 @@ export const getItems = listId => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(res => {
-      dispatch(itemsSuccess(res));
+      dispatch(getItemsSuccess(res.items));
     })
-    .catch(err => dispatch(itemsError(err)));
+    .catch(err => dispatch(getItemsError(err)));
 };
