@@ -1,29 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
+import { getLists } from '../actions/shoppingLists';
 
-export function shoppingLists(props) {
-  if (!props.username) {
-    return <Redirect to="/" />;
+export class ShoppingLists extends Component {
+  componentDidMount() {
+    this.props.dispatch(getLists());
   }
-  const lists = props.listsNames.map(list => {
-    return (
-      <li key={list.id}>
-        <Link to={`/lists/${list.id}`}>
-          Name: {list.name} Address: {list.address}
-        </Link>
-      </li>
-    );
-  });
+  render() {
+    console.log(this.props);
+    if (this.props.dashboard.loading || this.props.username.loading) {
+      return <div>loading...</div>;
+    }
+    if (!this.props.username) {
+      return <Redirect to="/" />;
+    }
 
-  return <ul>{lists}</ul>;
+    const lists = this.props.dashboard.lists.map(list => {
+      return (
+        <li key={list.id}>
+          <Link to={`/lists/${list.id}`}>
+            Name: {list.name} Address: {list.address}
+          </Link>
+        </li>
+      );
+    });
+
+    return <ul>{lists}</ul>;
+  }
 }
 
 const mapStateToProps = state => {
   return {
-    username: state.auth.currentUser ? state.auth.currentUser.username : null,
-    listsNames: state.dashboard ? state.dashboard.lists : null,
+    username: state.auth.currentUser,
+    dashboard: state.dashboard,
   };
 };
 
-export default connect(mapStateToProps)(shoppingLists);
+export default connect(mapStateToProps)(ShoppingLists);

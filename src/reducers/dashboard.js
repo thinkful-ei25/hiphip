@@ -5,11 +5,7 @@ import {
 } from '../actions/shoppingLists';
 
 const initialState = {
-  lists: [
-    { name: 'Fiesta', address: '2234 42nd St', id: 1 },
-    { name: 'Costco', address: '223 82nd St', id: 2 },
-    { name: 'C-Town', address: '2 1st Ave', id: 3 },
-  ],
+  lists: [],
   loading: false,
   err: null,
 };
@@ -19,7 +15,7 @@ export default function reducer(state = initialState, action) {
     case LISTS_REQUEST:
       return { ...state, loading: true };
     case LISTS_SUCCESS:
-      return { ...state, loading: false, lists: action.lists.shoppingLists };
+      return { ...state, loading: false, lists: action.userLists.lists };
     case LISTS_ERROR:
       return { ...state, loading: false, err: action.error };
     default:
