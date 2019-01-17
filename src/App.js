@@ -12,7 +12,7 @@ class App extends Component {
         <Route exact path="/" component={LoginPage} />
         <Route exact path="/register" component={RegistrationPage} />
         <Route exact path="/lists" component={Dashboard} />
-        <Route exact path="/lists/:id" component={List} />
+        <Route exact path="/lists/:listId" component={List} />
       </Switch>
     );
   }
