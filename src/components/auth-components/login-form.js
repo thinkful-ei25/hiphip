@@ -20,13 +20,16 @@ export class LoginForm extends React.Component {
         </div>
       );
     }
+    const logo = <div className="welcome">Grocery Course</div>;
     return (
       <form
         className="login-form"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
+        {logo}
         {error}
         <Field
+          className="login-field"
           label="Username"
           component={Input}
           // component='input'

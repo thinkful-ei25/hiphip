@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { getItems, toggleChecked } from '../actions/items';
+import NavBar from './nav-bar';
 
 const strikeThrough = { textDecoration: 'line-through' };
 export class List extends Component {
@@ -33,6 +34,7 @@ export class List extends Component {
     return (
       <Fragment>
         <ul>
+          <NavBar />
           <h2>{this.props.list.name} List</h2>
           <h3>{this.props.list.storeAddress}</h3>
           {items}

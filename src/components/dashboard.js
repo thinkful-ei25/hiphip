@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Logout from './auth-components/logout';
 import ShoppingLists from './shoppingLists';
 import { getLists } from '../actions/shoppingLists';
+import NavBar from './nav-bar';
 export class Dashboard extends Component {
   componentDidMount() {
     this.props.dispatch(getLists());
@@ -14,9 +14,9 @@ export class Dashboard extends Component {
     }
     return (
       <Fragment>
+        <NavBar />
         <h2>Welcome {this.props.username}</h2>
         <ShoppingLists />
-        <Logout />
       </Fragment>
     );
   }
