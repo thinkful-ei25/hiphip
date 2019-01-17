@@ -4,7 +4,7 @@ import RegistrationPage from './components/auth-components/registration-page';
 import LoginPage from './components/auth-components/login-page';
 import Dashboard from './components/dashboard';
 import List from './components/list';
-import CreateShoppingList from './components/create-shopping-list';
+import CreateShoppingList from './components/CreateShoppingList';
 
 class App extends Component {
   render() {
