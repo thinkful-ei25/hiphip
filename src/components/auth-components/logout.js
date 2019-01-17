@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { logout } from '../../actions/auth';
+import { clearAuth } from '../../actions/auth';
 import { connect } from 'react-redux';
 import './logout.css';
 export class Logout extends Component {
   clickHandler() {
-    this.props.dispatch(logout());
+    this.props.dispatch(clearAuth());
   }
   render() {
     return (

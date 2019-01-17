@@ -112,21 +112,3 @@ export const refreshAuthToken = () => (dispatch, getState) => {
     });
 };
 //change
-export const logout = (tabClosed = false) => (dispatch, getState) => {
-  const authToken = getState().auth.authToken;
-  return fetch(`${API_BASE_URL}/auth/logout`, {
-    method: 'GET',
-    headers: {
-      // Send authToken to logout with
-
-      Authorization: `Bearer ${authToken}`,
-    },
-  })
-    .then(response => {
-      if (response.ok && !tabClosed) {
-        clearAuthToken();
-        dispatch(clearAuth());
-      }
-    })
-    .catch(err => dispatch(authError(err)));
-};

@@ -6,9 +6,9 @@ export const listsRequests = () => ({
 });
 
 export const LISTS_SUCCESS = 'LISTS_SUCCESS';
-export const listsSuccess = lists => ({
+export const listsSuccess = userLists => ({
   type: LISTS_SUCCESS,
-  lists,
+  userLists,
 });
 
 export const LISTS_ERROR = 'LISTS_ERROR';
@@ -27,6 +27,7 @@ export const getLists = () => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(res => {
+      console.log(res);
       dispatch(listsSuccess(res));
     })
     .catch(err => dispatch(listsError(err)));
