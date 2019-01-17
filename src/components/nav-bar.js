@@ -11,12 +11,10 @@ export class NavBar extends React.Component {
     }
 
     const NavBar = (
-      <div className="nav-container">
-        <nav>
-          <Link to="/lists">My Lists</Link>
-          {logOutButton}
-        </nav>
-      </div>
+      <nav className="nav-container">
+        <Link to="/lists">My Lists</Link>
+        {logOutButton}
+      </nav>
     );
 
     return <main>{NavBar}</main>;
