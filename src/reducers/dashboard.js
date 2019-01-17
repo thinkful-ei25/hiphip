@@ -2,6 +2,9 @@ import {
   LISTS_REQUEST,
   LISTS_SUCCESS,
   LISTS_ERROR,
+  CREATE_LIST_REQUEST,
+  CREATE_LIST_SUCCESS,
+  CREATE_LIST_ERROR,
 } from '../actions/shoppingLists';
 
 const initialState = {
@@ -22,6 +25,27 @@ export default function reducer(state = initialState, action) {
       return { ...state, loading: false, lists: action.lists.shoppingLists };
     case LISTS_ERROR:
       return { ...state, loading: false, err: action.error };
+    case CREATE_LIST_REQUEST:
+      return {
+        loading: true,
+        error: null,
+        ...state,
+      };
+    case CREATE_LIST_SUCCESS: {
+      const { list } = action;
+      return {
+        loading: false,
+        error: null,
+        lists: [...state.lists, list],
+        ...state,
+      };
+    }
+    case CREATE_LIST_ERROR:
+      return {
+        loading: false,
+        error: action.error,
+        ...state,
+      };
     default:
       return state;
   }

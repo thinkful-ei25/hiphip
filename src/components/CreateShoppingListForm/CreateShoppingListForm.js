@@ -1,14 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './CreateShoppingListForm.css';
+import { createList } from '../../actions/shoppingLists';
 
-export default class CreateShoppingListForm extends React.Component {
+export class CreateShoppingListForm extends React.Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   onSubmit(event) {
+    const { dispatch } = this.props;
+
     event.preventDefault();
     const name = event.target.name.value;
     const store = {
@@ -16,6 +20,8 @@ export default class CreateShoppingListForm extends React.Component {
       address: event.target['store-address'].value,
       googleId: event.target['store-googleId'].value,
     };
+
+    dispatch(createList(name, store));
   }
 
   render() {
@@ -48,3 +54,5 @@ export default class CreateShoppingListForm extends React.Component {
     );
   }
 }
+
+export default connect()(CreateShoppingListForm);
