@@ -1,7 +1,7 @@
 import React from 'react';
 
 import NavBar from '../nav-bar';
-import { CreateShoppingListForm } from '../create-shopping-list-form/create-create-shopping-list-form';
+import CreateShoppingListForm from '../CreateShoppingListForm';
 
 function CreateShoppingList() {
   return (
