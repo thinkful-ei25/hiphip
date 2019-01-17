@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
+import AddItem from './addItem';
 import { getItems, toggleChecked } from '../actions/items';
 import NavBar from './nav-bar';
 
@@ -38,6 +39,7 @@ export class List extends Component {
           <h2>{this.props.list.name} List</h2>
           <h3>{this.props.list.storeAddress}</h3>
           {items}
+          <AddItem />
         </ul>
         <Link to="/lists">Lists</Link>
       </Fragment>

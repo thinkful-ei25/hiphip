@@ -8,14 +8,16 @@ export class ShoppingLists extends Component {
     this.props.dispatch(getLists());
   }
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     if (this.props.dashboard.loading || this.props.username.loading) {
+      // console.log('inside this props loading');
+      // console.log(this.props);
       return <div>loading...</div>;
     }
     if (!this.props.username) {
       return <Redirect to="/" />;
     }
-
+    console.log(this.props.dashboard);
     const lists = this.props.dashboard.lists.map(list => {
       return (
         <li key={list.id}>
@@ -32,7 +34,7 @@ export class ShoppingLists extends Component {
 
 const mapStateToProps = state => {
   return {
-    username: state.auth.currentUser,
+    username: state.auth,
     dashboard: state.dashboard,
   };
 };
