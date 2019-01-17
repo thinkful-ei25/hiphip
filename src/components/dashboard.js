@@ -1,19 +1,26 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Redirect } from 'react-router-dom';
-
+import { Redirect } from 'react-router-dom';
+import Logout from './auth-components/logout';
+import Lists from './shoppingLists';
+import NavBar from './nav-bar';
 export class Dashboard extends Component {
   render() {
-    if (!this.props.loggedIn) {
+    if (!this.props.username) {
       return <Redirect to="/" />;
     }
-    return <h2>Welcome {this.props.username}</h2>;
+    return (
+      <Fragment>
+        <NavBar />
+        <h2>Welcome {this.props.username}</h2>
+        <Lists />
+      </Fragment>
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.auth.currentUser !== null,
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
   };
 };

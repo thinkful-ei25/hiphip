@@ -3,13 +3,16 @@ import { Route, withRouter, Switch } from 'react-router-dom';
 import RegistrationPage from './components/auth-components/registration-page';
 import LoginPage from './components/auth-components/login-page';
 import Dashboard from './components/dashboard';
+import List from './components/list';
+
 class App extends Component {
   render() {
     return (
       <Switch>
         <Route exact path="/" component={LoginPage} />
         <Route exact path="/register" component={RegistrationPage} />
-        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/lists" component={Dashboard} />
+        <Route exact path="/lists/:id" component={List} />
       </Switch>
     );
   }
