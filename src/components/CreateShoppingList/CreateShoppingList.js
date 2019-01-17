@@ -3,7 +3,7 @@ import React from 'react';
 import NavBar from '../nav-bar';
 import CreateShoppingListForm from '../CreateShoppingListForm';
 
-function CreateShoppingList() {
+function CreateShoppingList(props) {
   return (
     <div className="CreateShoppingList">
       <NavBar />
@@ -11,7 +11,7 @@ function CreateShoppingList() {
         <header>
           <h1 className="CreateShoppingList-pageTitle">New shopping list</h1>
         </header>
-        <CreateShoppingListForm />
+        <CreateShoppingListForm history={props.history} />
       </main>
     </div>
   );

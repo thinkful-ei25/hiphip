@@ -49,7 +49,7 @@ export const createListSuccess = list => ({
   list,
 });
 
-export const createList = (name, store) => (dispatch, getState) => {
+export const createList = (name, store, history) => (dispatch, getState) => {
   dispatch(createListRequest());
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/lists`, {
@@ -63,8 +63,8 @@ export const createList = (name, store) => (dispatch, getState) => {
     .then(normalizeResponseErrors)
     .then(res => res.json())
     .then(res => {
-      console.log(res);
       dispatch(createListSuccess(res.list));
+      history.push('/lists');
     })
     .catch(error => dispatch(createListError(error)));
 };

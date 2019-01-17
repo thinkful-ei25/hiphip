@@ -25,27 +25,25 @@ export default function reducer(state = initialState, action) {
       return { ...state, loading: false, lists: action.lists.shoppingLists };
     case LISTS_ERROR:
       return { ...state, loading: false, err: action.error };
-    case CREATE_LIST_REQUEST:
+    case CREATE_LIST_REQUEST: {
+      console.log('request');
       return {
+        ...state,
         loading: true,
         error: null,
-        ...state,
       };
+    }
     case CREATE_LIST_SUCCESS: {
       const { list } = action;
       return {
+        ...state,
         loading: false,
         error: null,
         lists: [...state.lists, list],
-        ...state,
       };
     }
     case CREATE_LIST_ERROR:
-      return {
-        loading: false,
-        error: action.error,
-        ...state,
-      };
+      return { ...state, loading: false, error: action.error };
     default:
       return state;
   }

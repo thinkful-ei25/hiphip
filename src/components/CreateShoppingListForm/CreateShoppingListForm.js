@@ -11,7 +11,7 @@ export class CreateShoppingListForm extends React.Component {
   }
 
   onSubmit(event) {
-    const { dispatch } = this.props;
+    const { dispatch, history } = this.props;
 
     event.preventDefault();
     const name = event.target.name.value;
@@ -21,7 +21,7 @@ export class CreateShoppingListForm extends React.Component {
       googleId: event.target['store-googleId'].value,
     };
 
-    dispatch(createList(name, store));
+    dispatch(createList(name, store, history));
   }
 
   render() {
