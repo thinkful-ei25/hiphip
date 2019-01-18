@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
+
+import Input from './Input';
 import { addItemToList } from '../actions/items';
 
 export class AddItem extends React.Component {
@@ -22,18 +24,20 @@ export class AddItem extends React.Component {
         className="add-item-form"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
+        <legend>Add new item</legend>
         {error}
         <Field
           name="name"
           className="add-item-field"
           label="Item"
-          component="input"
+          type="text"
+          component={Input}
         />
 
         <Field
           name="aisleLocation"
           label="Aisle"
-          component="input"
+          component={Input}
           type="text"
         />
         <button
