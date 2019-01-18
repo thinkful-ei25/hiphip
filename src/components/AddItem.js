@@ -1,6 +1,5 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import Input from './auth-components/input';
 import { addItemToList } from '../actions/items';
 
 export class AddItem extends React.Component {
@@ -23,6 +22,7 @@ export class AddItem extends React.Component {
         className="add-item-form"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
+        {error}
         <Field
           name="name"
           className="add-item-field"
