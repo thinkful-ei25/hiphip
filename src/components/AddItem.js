@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import Input from '../components/auth-components/input';
+import Input from './auth-components/input';
 import { addItemToList } from '../actions/items';
 
 export class AddItem extends React.Component {

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import AddItem from './addItem';
+import AddItem from './AddItem';
 import { getItems, toggleChecked, getListName } from '../actions/items';
 import NavBar from './nav-bar';
 
