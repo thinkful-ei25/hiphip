@@ -13,9 +13,9 @@ export const getItemsRequests = () => ({
 });
 
 export const GET_ITEMS_SUCCESS = 'GET_ITEMS_SUCCESS';
-export const getItemsSuccess = items => ({
+export const getItemsSuccess = shoppingList => ({
   type: GET_ITEMS_SUCCESS,
-  items,
+  shoppingList,
 });
 
 export const GET_ITEMS_ERROR = 'GET_ITEMS_ERROR';
@@ -47,31 +47,14 @@ export const setListName = name => ({
   name,
 });
 
-export const GET_LIST_META_REQUEST = 'GET_LIST_META_REQUEST';
-export const getListMetaRequest = () => ({
-  type: GET_LIST_META_REQUEST,
-});
-
-export const GET_LIST_META_ERROR = 'GET_LIST_META_ERROR';
-export const getListMetaError = error => ({
-  type: GET_LIST_META_ERROR,
-  error,
-});
-
-export const GET_LIST_META_SUCCESS = 'GET_LIST_META_SUCCESS';
-export const getListMetaSuccess = name => ({
-  type: GET_LIST_META_SUCCESS,
-  name,
-});
-
 export const addItemToList = addedItem => (dispatch, getState) => {
   dispatch(getItemsRequests());
   const authToken = getState().auth.authToken;
   // return fetch(`${API_BASE_URL}/api/items/${listId}`);
 };
 
-export const getListName = listId => (dispatch, getState) => {
-  dispatch(getListMetaRequest());
+export const getItems = listId => (dispatch, getState) => {
+  dispatch(getItemsRequests());
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/lists/${listId}`, {
     method: 'GET',
@@ -79,24 +62,8 @@ export const getListName = listId => (dispatch, getState) => {
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(res => {
-      console.log(res.list.name);
-      dispatch(getListMetaSuccess(res.list.name));
-    })
-    .catch(err => dispatch(getListMetaError(err)));
-};
-
-export const getItems = listId => (dispatch, getState) => {
-  dispatch(getItemsRequests());
-  const authToken = getState().auth.authToken;
-  return fetch(`${API_BASE_URL}/api/items/${listId}`, {
-    method: 'GET',
-    headers: { Authorization: `Bearer ${authToken}` },
-  })
-    .then(res => normalizeResponseErrors(res))
-    .then(res => res.json())
-    .then(res => {
-      dispatch(getItemsSuccess(res.items));
+    .then(({ list }) => {
+      dispatch(getItemsSuccess(list));
     })
     .catch(err => dispatch(getItemsError(err)));
 };

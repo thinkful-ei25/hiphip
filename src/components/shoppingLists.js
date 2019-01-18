@@ -12,13 +12,13 @@ export class ShoppingLists extends Component {
     this.props.dispatch(setListName(name));
   }
   render() {
-    if (this.props.dashboard.loading || this.props.username.loading) {
+    if (this.props.lists.loading || this.props.username.loading) {
       return <div>loading...</div>;
     }
     if (!this.props.username) {
       return <Redirect to="/" />;
     }
-    const lists = this.props.dashboard.lists.map(list => {
+    const lists = this.props.lists.lists.map(list => {
       return (
         <li key={list.id}>
           <Link
@@ -37,9 +37,9 @@ export class ShoppingLists extends Component {
 
 const mapStateToProps = state => {
   return {
-    listName: state.list.name,
+    listName: state.items.name,
     username: state.auth,
-    dashboard: state.dashboard,
+    lists: state.lists,
   };
 };
 
