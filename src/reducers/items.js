@@ -6,7 +6,9 @@ import {
   GET_ITEMS_ERROR,
   GET_ITEMS_SUCCESS,
   SET_LIST_NAME,
-  PATCH_ITEM,
+  PATCH_ITEM_REQUEST,
+  PATCH_ITEM_ERROR,
+  PATCH_ITEM_SUCCESS,
 } from '../actions/items';
 const initialState = {
   id: null,
@@ -49,7 +51,38 @@ export default function reducer(state = initialState, action) {
     case SET_LIST_NAME:
       return { ...state, name: action.name };
 
-    case PATCH_ITEM: {
+    case PATCH_ITEM_REQUEST: {
+      const { itemId } = action;
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item.id !== itemId) {
+            return item;
+          }
+
+          return { ...item, loading: true };
+        }),
+      };
+    }
+
+    case PATCH_ITEM_ERROR: {
+      const { itemId, error } = action;
+      return {
+        ...state,
+        error,
+        items: state.items.map(item => {
+          if (item.id !== itemId) {
+            return item;
+          }
+
+          // If there is a loading property, remove it
+          const { loading, ...newItem } = item;
+          return newItem;
+        }),
+      };
+    }
+
+    case PATCH_ITEM_SUCCESS: {
       const { item: newItem } = action;
       return {
         ...state,
@@ -58,8 +91,9 @@ export default function reducer(state = initialState, action) {
             return item;
           }
 
-          // Update fields
-          return { ...item, ...newItem };
+          // Remove the loading property from the item, in case it exists
+          const { loading, ...itemWithoutLoading } = item;
+          return { ...itemWithoutLoading, ...newItem };
         }),
       };
     }

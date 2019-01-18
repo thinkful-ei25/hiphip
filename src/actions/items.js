@@ -1,10 +1,23 @@
 import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
 
-export const PATCH_ITEM = 'PATCH_ITEM';
-export const patchItem = item => ({
-  type: PATCH_ITEM,
+export const PATCH_ITEM_REQUEST = 'PATCH_ITEM_REQUEST';
+export const patchItemRequest = itemId => ({
+  type: PATCH_ITEM_REQUEST,
+  itemId,
+});
+
+export const PATCH_ITEM_SUCCESS = 'PATCH_ITEM_SUCCESS';
+export const patchItemSuccess = item => ({
+  type: PATCH_ITEM_SUCCESS,
   item,
+});
+
+export const PATCH_ITEM_ERROR = 'PATCH_ITEM_ERROR';
+export const patchItemError = (itemId, error) => ({
+  type: PATCH_ITEM_ERROR,
+  itemId,
+  error,
 });
 
 export const GET_ITEMS_REQUEST = 'GET_ITEMS_REQUEST';
@@ -82,7 +95,22 @@ export const getItems = listId => (dispatch, getState) => {
     .catch(err => dispatch(getItemsError(err)));
 };
 
-export const toggleChecked = itemId => (dispatch, getState) => {
+export const toggleChecked = (itemId, listId) => (dispatch, getState) => {
+  dispatch(patchItemRequest(itemId));
+
   const item = getState().items.items.find(i => i.id === itemId);
-  dispatch(patchItem({ id: itemId, checked: !item.checked }));
+
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/api/lists/${listId}/items/${itemId}`, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+    },
+    method: 'PATCH',
+    body: JSON.stringify({ id: itemId, isChecked: !item.isChecked }),
+  })
+    .then(normalizeResponseErrors)
+    .then(res => res.json())
+    .then(({ item }) => dispatch(patchItemSuccess(item)))
+    .catch(err => dispatch(patchItemError(itemId, err)));
 };

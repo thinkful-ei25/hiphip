@@ -8,7 +8,7 @@ import NavBar from './nav-bar';
 const strikeThrough = { textDecoration: 'line-through' };
 export class Items extends Component {
   onClickHandler(itemId) {
-    this.props.dispatch(toggleChecked(itemId));
+    this.props.dispatch(toggleChecked(itemId, this.props.listId));
   }
   componentDidMount() {
     this.props.dispatch(getItems(this.props.listId));
@@ -25,7 +25,7 @@ export class Items extends Component {
       return (
         <li
           key={item.id}
-          style={item.checked ? strikeThrough : null}
+          style={item.isChecked ? strikeThrough : null}
           onClick={() => this.onClickHandler(item.id)}
         >
           item: {item.name} aisle: {item.aisleLocation}
