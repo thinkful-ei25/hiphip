@@ -57,7 +57,6 @@ export class Items extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { listId } = ownProps.match.params;
-  console.log(state);
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     authLoading: state.auth.loading,

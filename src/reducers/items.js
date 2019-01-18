@@ -1,8 +1,8 @@
 import {
   TOGGLE_CHECKED,
-  ADD_ITEMS_REQUEST,
-  ADD_ITEMS_ERROR,
-  ADD_ITEMS_SUCCESS,
+  ADD_ITEM_REQUEST,
+  ADD_ITEM_ERROR,
+  ADD_ITEM_SUCCESS,
   GET_ITEMS_REQUEST,
   GET_ITEMS_ERROR,
   GET_ITEMS_SUCCESS,
@@ -45,13 +45,13 @@ export default function reducer(state = initialState, action) {
         error: false,
       };
 
-    case ADD_ITEMS_REQUEST:
+    case ADD_ITEM_REQUEST:
       return { ...state, loading: true };
 
-    case ADD_ITEMS_ERROR:
+    case ADD_ITEM_ERROR:
       return { ...state, error: action.error };
 
-    case ADD_ITEMS_SUCCESS:
+    case ADD_ITEM_SUCCESS:
       for (let i = 0; i < state.items.length; i++) {
         newItems.push(state.items[i]);
       }

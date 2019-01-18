@@ -24,20 +24,20 @@ export const getItemsError = error => ({
   error,
 });
 
-export const ADD_ITEMS_REQUEST = 'ADD_ITEMS_REQUEST';
-export const addItemsRequest = () => ({
-  type: ADD_ITEMS_REQUEST,
+export const ADD_ITEM_REQUEST = 'ADD_ITEM_REQUEST';
+export const addItemRequest = () => ({
+  type: ADD_ITEM_REQUEST,
 });
 
-export const ADD_ITEMS_ERROR = 'ADD_ITEMS_ERROR';
-export const addItemsError = error => ({
-  type: ADD_ITEMS_ERROR,
+export const ADD_ITEM_ERROR = 'ADD_ITEM_ERROR';
+export const addItemError = error => ({
+  type: ADD_ITEM_ERROR,
   error,
 });
 
-export const ADD_ITEMS_SUCCESS = 'ADD_ITEMS_SUCCESS';
-export const addItemsSuccess = item => ({
-  type: ADD_ITEMS_SUCCESS,
+export const ADD_ITEM_SUCCESS = 'ADD_ITEM_SUCCESS';
+export const addItemSuccess = item => ({
+  type: ADD_ITEM_SUCCESS,
   item,
 });
 
@@ -48,7 +48,6 @@ export const setListName = name => ({
 });
 
 export const addItemToList = addedItem => (dispatch, getState) => {
-  dispatch(getItemsRequests());
   const authToken = getState().auth.authToken;
   // return fetch(`${API_BASE_URL}/api/items/${listId}`);
 };
