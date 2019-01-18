@@ -1,4 +1,4 @@
-import { STORE_API_BASE_URL, API_authToken } from '../config';
+import { API_BASE_URL } from '../config';
 
 export const SEARCH_STORES_REQUEST = 'SEARCH_STORES_REQUEST';
 export const searchStoresRequest = () => ({
@@ -17,14 +17,14 @@ export const searchStoresError = error => ({
   error,
 });
 
-export const searchStores = searchterm => dispatch => {
+export const searchStores = searchterm => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
   dispatch(searchStoresRequest());
   return fetch(
-    `${STORE_API_BASE_URL}?term=${searchterm}&category=grocery&latitude=37.786882&longitude=-122.399972`,
+    `${API_BASE_URL}/api/yelp?term=${searchterm}&category=grocery&latitude=37.786882&longitude=-122.399972`,
     {
       method: 'GET',
-      headers: { Authorization: `Bearer ${API_authToken}` },
-      mode: 'no-cors',
+      headers: { Authorization: `Bearer ${authToken}` },
     }
   ).then(res => {
     console.log(res);
