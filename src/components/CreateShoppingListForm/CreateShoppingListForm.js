@@ -6,11 +6,6 @@ import './CreateShoppingListForm.css';
 import { createList } from '../../actions/shoppingLists';
 
 export class CreateShoppingListForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
   onSubmit(event) {
     const { dispatch, history } = this.props;
 
@@ -27,7 +22,10 @@ export class CreateShoppingListForm extends React.Component {
 
   render() {
     return (
-      <form className="CreateShoppingListForm" onSubmit={this.onSubmit}>
+      <form
+        className="CreateShoppingListForm"
+        onSubmit={event => this.onSubmit(event)}
+      >
         <fieldset>
           <legend>List</legend>
           <label htmlFor="name">
