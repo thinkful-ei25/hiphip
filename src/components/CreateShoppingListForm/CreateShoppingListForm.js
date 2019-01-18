@@ -1,0 +1,63 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import './CreateShoppingListForm.css';
+import { createList } from '../../actions/shoppingLists';
+
+export class CreateShoppingListForm extends React.Component {
+  onSubmit(event) {
+    const { dispatch, history } = this.props;
+
+    event.preventDefault();
+    const name = event.target.name.value;
+    const store = {
+      name: event.target['store-name'].value,
+      address: event.target['store-address'].value,
+      googleId: event.target['store-googleId'].value,
+    };
+
+    dispatch(createList(name, store, history));
+  }
+
+  render() {
+    return (
+      <form
+        className="CreateShoppingListForm"
+        onSubmit={event => this.onSubmit(event)}
+      >
+        <fieldset>
+          <legend>List</legend>
+          <label htmlFor="name">
+            List name
+            <input id="name" name="name" />
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Store</legend>
+          <label htmlFor="store-name">
+            Store name
+            <input id="store-name" name="store-name" />
+          </label>
+          <label htmlFor="store-address">
+            Store address
+            <input id="store-address" name="store-address" />
+          </label>
+          <label htmlFor="store-googleId">
+            Google Place Id
+            <input id="store-googleId" name="store-googleId" />
+          </label>
+        </fieldset>
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+}
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    history: ownProps.history,
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(CreateShoppingListForm));
