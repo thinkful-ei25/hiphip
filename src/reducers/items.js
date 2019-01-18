@@ -1,5 +1,4 @@
 import {
-  TOGGLE_CHECKED,
   ADD_ITEM_REQUEST,
   ADD_ITEM_ERROR,
   ADD_ITEM_SUCCESS,
@@ -7,6 +6,7 @@ import {
   GET_ITEMS_ERROR,
   GET_ITEMS_SUCCESS,
   SET_LIST_NAME,
+  PATCH_ITEM,
 } from '../actions/items';
 const initialState = {
   id: null,
@@ -19,15 +19,6 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case TOGGLE_CHECKED:
-      const toggledItems = state.items.map(item => {
-        if (item.id === action.itemId) {
-          item.checked = !item.checked;
-        }
-        return item;
-      });
-      return { ...state, toggledItems };
-
     case GET_ITEMS_REQUEST:
       return { ...state, loading: true };
 
@@ -57,6 +48,21 @@ export default function reducer(state = initialState, action) {
 
     case SET_LIST_NAME:
       return { ...state, name: action.name };
+
+    case PATCH_ITEM: {
+      const { item: newItem } = action;
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item.id !== newItem.id) {
+            return item;
+          }
+
+          // Update fields
+          return { ...item, ...newItem };
+        }),
+      };
+    }
 
     default:
       return state;

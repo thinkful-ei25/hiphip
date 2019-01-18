@@ -1,10 +1,10 @@
 import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
 
-export const TOGGLE_CHECKED = 'TOGGLE_CHECKED';
-export const toggleChecked = itemId => ({
-  type: TOGGLE_CHECKED,
-  itemId,
+export const PATCH_ITEM = 'PATCH_ITEM';
+export const patchItem = item => ({
+  type: PATCH_ITEM,
+  item,
 });
 
 export const GET_ITEMS_REQUEST = 'GET_ITEMS_REQUEST';
@@ -80,4 +80,9 @@ export const getItems = listId => (dispatch, getState) => {
       dispatch(getItemsSuccess(list));
     })
     .catch(err => dispatch(getItemsError(err)));
+};
+
+export const toggleChecked = itemId => (dispatch, getState) => {
+  const item = getState().items.items.find(i => i.id === itemId);
+  dispatch(patchItem({ id: itemId, checked: !item.checked }));
 };
