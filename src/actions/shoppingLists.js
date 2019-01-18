@@ -27,7 +27,6 @@ export const getLists = () => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(res => {
-      console.log(res);
       dispatch(listsSuccess(res));
     })
     .catch(err => dispatch(listsError(err)));

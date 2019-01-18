@@ -7,34 +7,77 @@ export const toggleChecked = itemId => ({
   itemId,
 });
 
-export const ITEMS_REQUEST = 'ITEMS_REQUEST';
-export const itemsRequests = () => ({
-  type: ITEMS_REQUEST,
+export const GET_ITEMS_REQUEST = 'GET_ITEMS_REQUEST';
+export const getItemsRequests = () => ({
+  type: GET_ITEMS_REQUEST,
 });
 
-export const ITEMS_SUCCESS = 'ITEMS_SUCCESS';
-export const itemsSuccess = items => ({
-  type: ITEMS_SUCCESS,
-  items,
+export const GET_ITEMS_SUCCESS = 'GET_ITEMS_SUCCESS';
+export const getItemsSuccess = shoppingList => ({
+  type: GET_ITEMS_SUCCESS,
+  shoppingList,
 });
 
-export const ITEMS_ERROR = 'ITEMS_ERROR';
-export const itemsError = error => ({
-  type: ITEMS_ERROR,
+export const GET_ITEMS_ERROR = 'GET_ITEMS_ERROR';
+export const getItemsError = error => ({
+  type: GET_ITEMS_ERROR,
   error,
 });
 
-export const getItems = listId => (dispatch, getState) => {
-  dispatch(itemsRequests());
+export const ADD_ITEM_REQUEST = 'ADD_ITEM_REQUEST';
+export const addItemRequest = () => ({
+  type: ADD_ITEM_REQUEST,
+});
+
+export const ADD_ITEM_ERROR = 'ADD_ITEM_ERROR';
+export const addItemError = error => ({
+  type: ADD_ITEM_ERROR,
+  error,
+});
+
+export const ADD_ITEM_SUCCESS = 'ADD_ITEM_SUCCESS';
+export const addItemSuccess = item => ({
+  type: ADD_ITEM_SUCCESS,
+  item,
+});
+
+export const SET_LIST_NAME = 'SET_LIST_NAME';
+export const setListName = name => ({
+  type: SET_LIST_NAME,
+  name,
+});
+
+export const addItemToList = (item, listId) => (dispatch, getState) => {
+  dispatch(addItemRequest());
+
   const authToken = getState().auth.authToken;
-  return fetch(`${API_BASE_URL}/api/items/${listId}`, {
+  return fetch(`${API_BASE_URL}/api/lists/${listId}/items/`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(item),
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(({ item }) => {
+      dispatch(addItemSuccess(item));
+    })
+    .catch(error => dispatch(addItemError(error)));
+};
+
+export const getItems = listId => (dispatch, getState) => {
+  dispatch(getItemsRequests());
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/api/lists/${listId}`, {
     method: 'GET',
     headers: { Authorization: `Bearer ${authToken}` },
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(res => {
-      dispatch(itemsSuccess(res));
+    .then(({ list }) => {
+      dispatch(getItemsSuccess(list));
     })
-    .catch(err => dispatch(itemsError(err)));
+    .catch(err => dispatch(getItemsError(err)));
 };

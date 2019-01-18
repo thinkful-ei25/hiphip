@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import ShoppingLists from './shoppingLists';
 
 import NavBar from './nav-bar';
-export class Dashboard extends Component {
+export class Lists extends Component {
   render() {
     if (!this.props.username) {
       return <Redirect to="/" />;
@@ -26,4 +26,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(Lists);
