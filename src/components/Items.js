@@ -31,15 +31,20 @@ export class Items extends Component {
         </li>
       );
     });
-
-    return (
-      <Fragment>
-        <NavBar />
-        <h2>{this.props.items.name}</h2>
+    let storeBlock;
+    if (this.props.items.store) {
+      storeBlock = (
         <h3>
           {this.props.items.store.name}
           {this.props.items.store.address}
         </h3>
+      );
+    }
+    return (
+      <Fragment>
+        <NavBar />
+        <h2>{this.props.items.name}</h2>
+        {storeBlock}
         <ul>
           {items}
           <AddItem />
