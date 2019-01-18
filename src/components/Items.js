@@ -6,22 +6,38 @@ import { getItems, toggleChecked } from '../actions/items';
 import NavBar from './nav-bar';
 
 const strikeThrough = { textDecoration: 'line-through' };
+
 export class Items extends Component {
   onClickHandler(itemId) {
-    this.props.dispatch(toggleChecked(itemId, this.props.listId));
+    const { dispatch, listId } = this.props;
+    dispatch(toggleChecked(itemId, listId));
   }
+
   componentDidMount() {
-    this.props.dispatch(getItems(this.props.listId));
+    const { dispatch, listId } = this.props;
+    dispatch(getItems(listId));
   }
+
   render() {
-    const { listId } = this.props;
-    if (this.props.authLoading || this.props.items.loading) {
+    const {
+      authLoading,
+      items,
+      listId,
+      loading,
+      name,
+      store,
+      username,
+    } = this.props;
+
+    if (authLoading || loading) {
       return <div>Loading...</div>;
     }
-    if (!this.props.username) {
+
+    if (!username) {
       return <Redirect to="/" />;
     }
-    const items = this.props.items.items.map(item => {
+
+    const itemElements = items.map(item => {
       return (
         <li
           key={item.id}
@@ -32,22 +48,23 @@ export class Items extends Component {
         </li>
       );
     });
+
     let storeBlock;
-    if (this.props.items.store) {
+    if (store) {
       storeBlock = (
         <h3>
-          {this.props.items.store.name}
-          {this.props.items.store.address}
+          {name}
+          {store.address}
         </h3>
       );
     }
     return (
       <Fragment>
         <NavBar />
-        <h2>{this.props.items.name}</h2>
+        <h2>{name}</h2>
         {storeBlock}
         <ul>
-          {items}
+          {itemElements}
           <AddItem listId={listId} />
         </ul>
         <Link to="/lists">Lists</Link>
@@ -58,10 +75,14 @@ export class Items extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { listId } = ownProps.match.params;
+  const { items, loading, store, name } = state.items;
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     authLoading: state.auth.loading,
-    items: state.items,
+    items,
+    loading,
+    store,
+    name,
     listId,
   };
 };
