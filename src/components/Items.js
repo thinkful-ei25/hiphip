@@ -14,6 +14,7 @@ export class Items extends Component {
     this.props.dispatch(getItems(this.props.listId));
   }
   render() {
+    const { listId } = this.props;
     if (this.props.authLoading || this.props.items.loading) {
       return <div>Loading...</div>;
     }
@@ -27,7 +28,7 @@ export class Items extends Component {
           style={item.checked ? strikeThrough : null}
           onClick={() => this.onClickHandler(item.id)}
         >
-          item: {item.name} aisle: {item.aisle}
+          item: {item.name} aisle: {item.aisleLocation}
         </li>
       );
     });
@@ -47,7 +48,7 @@ export class Items extends Component {
         {storeBlock}
         <ul>
           {items}
-          <AddItem />
+          <AddItem listId={listId} />
         </ul>
         <Link to="/lists">Lists</Link>
       </Fragment>

@@ -18,7 +18,6 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  let newItems = [];
   switch (action.type) {
     case TOGGLE_CHECKED:
       const toggledItems = state.items.map(item => {
@@ -46,17 +45,15 @@ export default function reducer(state = initialState, action) {
       };
 
     case ADD_ITEM_REQUEST:
-      return { ...state, loading: true };
+      return { ...state, loading: true, error: null };
 
     case ADD_ITEM_ERROR:
-      return { ...state, error: action.error };
+      return { ...state, error: action.error, loading: false };
 
-    case ADD_ITEM_SUCCESS:
-      for (let i = 0; i < state.items.length; i++) {
-        newItems.push(state.items[i]);
-      }
-      newItems.push(action.item);
+    case ADD_ITEM_SUCCESS: {
+      const newItems = [...state.items, action.item];
       return { ...state, loading: false, items: newItems };
+    }
 
     case SET_LIST_NAME:
       return { ...state, name: action.name };

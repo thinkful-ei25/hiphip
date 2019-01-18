@@ -5,7 +5,8 @@ import { addItemToList } from '../actions/items';
 
 export class AddItem extends React.Component {
   onSubmit(values) {
-    this.props.dispatch(addItemToList(values));
+    const { listId } = this.props;
+    this.props.dispatch(addItemToList(values, listId));
   }
 
   render() {

@@ -47,9 +47,24 @@ export const setListName = name => ({
   name,
 });
 
-export const addItemToList = addedItem => (dispatch, getState) => {
+export const addItemToList = (item, listId) => (dispatch, getState) => {
+  dispatch(addItemRequest());
+
   const authToken = getState().auth.authToken;
-  // return fetch(`${API_BASE_URL}/api/items/${listId}`);
+  return fetch(`${API_BASE_URL}/api/lists/${listId}/items/`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(item),
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(({ item }) => {
+      dispatch(addItemSuccess(item));
+    })
+    .catch(error => dispatch(addItemError(error)));
 };
 
 export const getItems = listId => (dispatch, getState) => {
