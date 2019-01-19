@@ -14,9 +14,14 @@ export class NavBar extends React.Component {
         <h1>My Lists</h1>
       </Link>
     );
-    const NavBar = <nav className="navigation">{listLink}</nav>;
+    const NavBar = (
+      <div className="navigation">
+        {logOutButton}
+        {listLink}
+      </div>
+    );
 
-    return <main className="nav-container">{NavBar}</main>;
+    return <nav className="nav-container">{NavBar}</nav>;
   }
 }
 

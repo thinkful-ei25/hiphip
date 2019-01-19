@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import ShoppingLists from './shoppingLists';
+
 import './component.css';
 import NavBar from './nav-bar';
 
