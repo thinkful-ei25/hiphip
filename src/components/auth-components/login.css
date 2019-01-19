@@ -1,0 +1,44 @@
+.splash {
+  display: inline-block;
+  min-width: 100%;
+  background: url('/bg.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+}
+
+.login-form {
+  display: block;
+  width: 66%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  box-shadow: inset 0 0 0 200px rgba(28, 31, 37, 0.5);
+  text-align: center;
+}
+
+.logo {
+  color: #56e722;
+  text-align: center;
+  padding-top: 5%;
+}
+
+.form-itself div {
+  margin-bottom: 5%;
+}
+
+.login-btn {
+  margin-bottom: 5%;
+  margin-left: 5%;
+}
+.registerLink {
+  text-decoration: none;
+  color: black;
+}
+
+.form-input {
+  background-color: black;
+  text-align: center;
+}
