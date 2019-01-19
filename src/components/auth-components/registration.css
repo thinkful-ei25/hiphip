@@ -1,0 +1,26 @@
+.registration-form {
+  width: 75%;
+  margin: auto;
+}
+
+label {
+  display: block;
+  text-align: center;
+  margin-top: 3%;
+}
+
+.registration-form {
+  text-align: center;
+}
+
+input {
+  color: white;
+}
+
+.title {
+  text-align: center;
+}
+
+.register-btn {
+  margin-top: 3%;
+}

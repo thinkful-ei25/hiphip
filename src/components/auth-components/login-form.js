@@ -37,7 +37,6 @@ export class LoginForm extends React.Component {
           className="login-field"
           label=""
           component={Input}
-          // component='input'
           type="text"
           name="username"
           validate={[required, nonEmpty]}
@@ -47,7 +46,6 @@ export class LoginForm extends React.Component {
           label=""
           className="login-field"
           component={Input}
-          // component='input'
           type="password"
           name="password"
           id="password"

@@ -10,6 +10,7 @@ import {
   length,
   isTrimmed,
 } from '../../validators';
+import './registration.css';
 const passwordLength = length({ min: 8, max: 72 });
 const matchesPassword = matches('password');
 
@@ -25,7 +26,7 @@ export class RegistrationForm extends Component {
   render() {
     return (
       <form
-        className="login-form input-form"
+        className="registration-form"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
         <Field
