@@ -44,12 +44,14 @@ export class Items extends Component {
     return (
       <Fragment>
         <NavBar />
-        <h2>{this.props.items.name}</h2>
-        {storeBlock}
-        <ul>
-          {items}
-          <AddItem listId={listId} />
-        </ul>
+        <main>
+          <h1>{this.props.items.name}</h1>
+          {storeBlock}
+          <ul>
+            {items}
+            <AddItem listId={listId} />
+          </ul>
+        </main>
         <Link to="/lists">Lists</Link>
       </Fragment>
     );
