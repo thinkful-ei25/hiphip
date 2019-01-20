@@ -3,6 +3,7 @@ import { Field, reduxForm, focus } from 'redux-form';
 import { registerUser } from '../../actions/users';
 import { login } from '../../actions/auth';
 import Input from '../Input';
+import { Link } from 'react-router-dom';
 import {
   required,
   nonEmpty,
@@ -24,7 +25,12 @@ export class RegistrationForm extends Component {
   }
 
   render() {
-    return (
+    const returnToLogin = (
+      <Link to="/">
+        <button className="returnButton">Return to Log In</button>
+      </Link>
+    );
+    const form = (
       <form
         className="registration-form"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
@@ -76,6 +82,12 @@ export class RegistrationForm extends Component {
           Register
         </button>
       </form>
+    );
+    return (
+      <main claName="formWrap">
+        {form}
+        {returnToLogin}
+      </main>
     );
   }
 }

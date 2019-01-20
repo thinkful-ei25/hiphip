@@ -24,3 +24,13 @@ input {
 .register-btn {
   margin-top: 3%;
 }
+
+.returnButton {
+  margin: auto;
+  margin-top: 3%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
