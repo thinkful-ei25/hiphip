@@ -3,18 +3,21 @@ nav {
   text-align: right;
   min-height: 4vh;
 }
-.nav-container button {
-  float: left;
-  margin-right: 1%;
-  margin-left: 2%;
-}
 
 nav a {
   text-decoration: none;
   color: black;
 }
 
+nav h2 {
+  float: left;
+  font-size: 15px;
+  display: inline;
+  margin-left: 3%;
+}
+
 nav h1 {
+  display: inline;
   margin-top: 0;
   font-size: 15px;
   margin-right: 3%;
@@ -104,5 +107,24 @@ nav h1 {
     -o-background-size: cover;
     background-size: cover;
     height: 100vh;
+  }
+
+  nav h2 {
+    float: left;
+    font-size: 25px;
+    display: inline;
+    margin-left: 3%;
+  }
+
+  nav h1 {
+    display: inline;
+    margin-top: 0;
+    font-size: 25px;
+    margin-right: 3%;
+  }
+  nav {
+    background-color: #ff6a00;
+    text-align: right;
+    min-height: 6vh;
   }
 }

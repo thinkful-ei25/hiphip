@@ -8,9 +8,9 @@ export class Logout extends Component {
   }
   render() {
     return (
-      <button className="button logout" onClick={() => this.logout()}>
+      <h2 className="button logout" onClick={() => this.logout()}>
         Logout
-      </button>
+      </h2>
     );
   }
 }
