@@ -7,7 +7,9 @@ export class AddAisle extends Component {
     const { dispatch, listId, item } = this.props;
     item.aisleLocation = this.input.value;
     this.input.value = '';
-    dispatch(patchItem(item, listId));
+    if (item.aisleLocation) {
+      dispatch(patchItem(item, listId));
+    }
     dispatch(removeAislePrompt());
   }
   render() {
