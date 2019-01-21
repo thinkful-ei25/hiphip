@@ -1,15 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { searchStores } from '../../actions/storesAPI';
+import { searchStores } from '../../actions/yelpAPI';
 
 export class StoreSearch extends React.Component {
+  convertDistance(meters) {
+    console.log(meters);
+    let answer = meters / 1609.344;
+    answer = Math.floor(answer * 100) / 100;
+    return answer + ' miles away';
+  }
+
   renderResults() {
     if (this.props.error) {
       return <strong>{this.props.error}</strong>;
     }
 
     const stores = this.props.stores.map((store, index) => (
-      <li key={index}>{store}</li>
+      <li key={index}>
+        <strong>{store.name}</strong>
+        <address>
+          {store.location.address1}
+          <br />
+          {store.location.city}, {store.location.state}{' '}
+          {store.location.zip_code}
+        </address>
+        <p>{this.convertDistance(store.distance)}</p>
+      </li>
     ));
 
     return stores;
@@ -37,9 +53,9 @@ export class StoreSearch extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  stores: state.storesAPI.stores,
-  loading: state.storesAPI.loading,
-  error: state.storesAPI.error,
+  stores: state.yelpAPI.stores,
+  loading: state.yelpAPI.loading,
+  error: state.yelpAPI.error,
 });
 
 export default connect(mapStateToProps)(StoreSearch);

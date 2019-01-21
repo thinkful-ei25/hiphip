@@ -2,7 +2,7 @@ import {
   SEARCH_STORES_REQUEST,
   SEARCH_STORES_SUCCESS,
   SEARCH_STORES_ERROR,
-} from '../actions/storesAPI';
+} from '../actions/yelpAPI';
 
 const initialState = {
   stores: [],
