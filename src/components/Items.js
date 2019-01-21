@@ -45,7 +45,7 @@ export class Items extends Component {
           onClick={() => this.onClickHandler(item.id)}
         >
           {item.name}
-          {item.aisleLocation}
+          {item.aisleLocation && item.aisleLocation.aisleNo}
         </li>
       );
     });
