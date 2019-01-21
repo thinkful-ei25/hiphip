@@ -67,22 +67,6 @@ export class Items extends Component {
     return (
       <Fragment>
         <NavBar />
-<<<<<<< HEAD
-        <h2>{name}</h2>
-        {storeBlock}
-        <ul>
-          {itemElements}
-          <AddItem listId={listId} />
-        </ul>
-        {aislePrompt ? <AddAisle listId={listId} /> : null}
-||||||| merged common ancestors
-        <h2>{name}</h2>
-        {storeBlock}
-        <ul>
-          {itemElements}
-          <AddItem listId={listId} />
-        </ul>
-=======
         <main>
           <h1>{name}</h1>
           {storeBlock}
@@ -91,8 +75,8 @@ export class Items extends Component {
             {itemElements}
             <AddItem listId={listId} />
           </ul>
+          {aislePrompt ? <AddAisle listId={listId} /> : null}
         </main>
->>>>>>> dev
         <Link to="/lists">Lists</Link>
       </Fragment>
     );
