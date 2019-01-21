@@ -2,16 +2,16 @@ import {
   patchItemSuccess,
   patchItemRequest,
   patchItemError,
-  toggleChecked,
+  patchItem,
 } from './items';
 
-describe('toggleChecked', () => {
+describe('patchItem', () => {
   let fetch;
-  const fixture = { id: '001', name: 'Test Name', checked: true };
+  const fixture = { id: '001', name: 'Test Name', isChecked: true };
   const getState = jest.fn(() => ({
     auth: { authToken: 'haha' },
     items: {
-      items: [{ ...fixture, checked: false }],
+      items: [{ ...fixture, isChecked: false }],
     },
   }));
   const dispatch = jest.fn();
@@ -31,7 +31,7 @@ describe('toggleChecked', () => {
   });
 
   it('should dispatch a patchItemSuccess action', () => {
-    return toggleChecked('001')(dispatch, getState).then(() => {
+    return patchItem(fixture)(dispatch, getState).then(() => {
       expect(dispatch).toBeCalledWith(patchItemRequest('001'));
       expect(fetch).toHaveBeenCalled();
       expect(dispatch).toBeCalledWith(patchItemSuccess(fixture));
@@ -40,7 +40,7 @@ describe('toggleChecked', () => {
   });
 
   it('should send the itemId and isChecked status', () => {
-    return toggleChecked('001')(dispatch, getState).then(() => {
+    return patchItem(fixture)(dispatch, getState).then(() => {
       const fetchOptions = fetch.mock.calls[0][1];
       const payload = JSON.parse(fetchOptions.body);
       expect(payload).toHaveProperty('id');
@@ -62,7 +62,7 @@ describe('toggleChecked', () => {
       })
     );
 
-    return toggleChecked('001')(dispatch, getState).then(() => {
+    return patchItem(fixture)(dispatch, getState).then(() => {
       expect(dispatch).toBeCalledWith(patchItemError('001', error));
       fetch.mockRestore();
     });

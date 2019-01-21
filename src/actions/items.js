@@ -95,10 +95,9 @@ export const getItems = listId => (dispatch, getState) => {
     .catch(err => dispatch(getItemsError(err)));
 };
 
-export const toggleChecked = (itemId, listId) => (dispatch, getState) => {
+export const patchItem = (item, listId) => (dispatch, getState) => {
+  const { id: itemId } = item;
   dispatch(patchItemRequest(itemId));
-
-  const item = getState().items.items.find(i => i.id === itemId);
 
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/lists/${listId}/items/${itemId}`, {
@@ -107,10 +106,17 @@ export const toggleChecked = (itemId, listId) => (dispatch, getState) => {
       'Content-Type': 'application/json',
     },
     method: 'PATCH',
-    body: JSON.stringify({ id: itemId, isChecked: !item.isChecked }),
+    body: JSON.stringify(item),
   })
     .then(normalizeResponseErrors)
     .then(res => res.json())
-    .then(({ item }) => dispatch(patchItemSuccess(item)))
+    .then(({ item: newItem }) => dispatch(patchItemSuccess(newItem)))
     .catch(err => dispatch(patchItemError(itemId, err)));
+};
+
+export const toggleChecked = (itemId, listId) => (dispatch, getState) => {
+  const item = getState().items.items.find(i => i.id === itemId);
+  return dispatch(
+    patchItem({ id: itemId, isChecked: !item.isChecked }, listId)
+  );
 };
