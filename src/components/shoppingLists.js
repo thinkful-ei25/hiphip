@@ -20,14 +20,15 @@ export class ShoppingLists extends Component {
       return <Redirect to="/" />;
     }
     const lists = this.props.lists.lists.map(list => {
+      let store = '';
       return (
         <li key={list.id}>
           <Link
             onClick={() => this.clickedAList(list.name)}
             to={`/lists/${list.id}`}
           >
-            {list.name}
-            <br /> {list.address}
+            <div>{list.name}</div>
+            <div>{list.store !== null ? list.store.address : store}</div>
           </Link>
         </li>
       );
