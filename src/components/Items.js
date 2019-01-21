@@ -44,7 +44,8 @@ export class Items extends Component {
           style={item.isChecked ? strikeThrough : null}
           onClick={() => this.onClickHandler(item.id)}
         >
-          item: {item.name} aisle: {item.aisleLocation}
+          {item.name}
+          {item.aisleLocation}
         </li>
       );
     });
@@ -61,12 +62,15 @@ export class Items extends Component {
     return (
       <Fragment>
         <NavBar />
-        <h2>{name}</h2>
-        {storeBlock}
-        <ul>
-          {itemElements}
-          <AddItem listId={listId} />
-        </ul>
+        <main>
+          <h1>{name}</h1>
+          {storeBlock}
+          <h3>item: aisle:</h3>
+          <ul>
+            {itemElements}
+            <AddItem listId={listId} />
+          </ul>
+        </main>
         <Link to="/lists">Lists</Link>
       </Fragment>
     );
