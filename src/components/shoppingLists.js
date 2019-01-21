@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { getLists } from '../actions/shoppingLists';
 import { setListName } from '../actions/items';
+import './component.css';
 
 export class ShoppingLists extends Component {
   componentDidMount() {
@@ -19,19 +20,21 @@ export class ShoppingLists extends Component {
       return <Redirect to="/" />;
     }
     const lists = this.props.lists.lists.map(list => {
+      let store = '';
       return (
         <li key={list.id}>
           <Link
             onClick={() => this.clickedAList(list.name)}
             to={`/lists/${list.id}`}
           >
-            Name: {list.name} Address: {list.address}
+            <div>{list.name}</div>
+            <div>{list.store !== null ? list.store.address : store}</div>
           </Link>
         </li>
       );
     });
 
-    return <ul>{lists}</ul>;
+    return <ul className="shoppingLists">{lists}</ul>;
   }
 }
 
