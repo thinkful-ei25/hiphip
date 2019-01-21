@@ -28,7 +28,8 @@ export class Items extends Component {
           style={item.checked ? strikeThrough : null}
           onClick={() => this.onClickHandler(item.id)}
         >
-          item: {item.name} aisle: {item.aisleLocation}
+          {item.name}
+          {item.aisleLocation}
         </li>
       );
     });
@@ -47,6 +48,7 @@ export class Items extends Component {
         <main>
           <h1>{this.props.items.name}</h1>
           {storeBlock}
+          <h3>item: aisle:</h3>
           <ul>
             {items}
             <AddItem listId={listId} />

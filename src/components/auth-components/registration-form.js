@@ -84,7 +84,7 @@ export class RegistrationForm extends Component {
       </form>
     );
     return (
-      <main claName="formWrap">
+      <main className="formWrap">
         {form}
         {returnToLogin}
       </main>
