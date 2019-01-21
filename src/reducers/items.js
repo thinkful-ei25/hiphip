@@ -1,5 +1,4 @@
 import {
-  TOGGLE_CHECKED,
   ADD_ITEM_REQUEST,
   ADD_ITEM_ERROR,
   ADD_ITEM_SUCCESS,
@@ -7,9 +6,11 @@ import {
   GET_ITEMS_ERROR,
   GET_ITEMS_SUCCESS,
   SET_LIST_NAME,
-  UPDATE_AISLE_DATA_REQUEST,
-  UPDATE_AISLE_DATA_SUCCESS,
-  UPDATE_AISLE_DATA_ERROR,
+  PATCH_ITEM_REQUEST,
+  PATCH_ITEM_ERROR,
+  PATCH_ITEM_SUCCESS,
+  ADD_AISLE_PROMPT,
+  REMOVE_AISLE_PROMPT,
 } from '../actions/items';
 const initialState = {
   id: null,
@@ -18,26 +19,11 @@ const initialState = {
   items: [],
   loading: false,
   error: false,
+  aislePrompt: null,
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case TOGGLE_CHECKED:
-      const toggledItems = state.items.map(item => {
-        if (item.id === action.itemId) {
-          if (!item.checked) {
-            if (!item.aisleLocation) {
-              item.displayAddAisleForm = true;
-            }
-            item.checked = !item.checked;
-          } /* else {
-            item.displayAddAisleForm = false;
-          } */
-        }
-        return item;
-      });
-      return { ...state, toggledItems };
-
     case GET_ITEMS_REQUEST:
       return { ...state, loading: true };
 
@@ -64,26 +50,61 @@ export default function reducer(state = initialState, action) {
       const newItems = [...state.items, action.item];
       return { ...state, loading: false, items: newItems };
     }
-    case UPDATE_AISLE_DATA_REQUEST: {
-      return { ...state };
-    }
-    case UPDATE_AISLE_DATA_SUCCESS:
-      const updatedItem = state.items.map(item => {
-        if (item.id === action.item.id) {
-          action.item.displayAddAisleForm = false;
-          action.item.checked = true;
-          return action.item;
-        } else {
-          return item;
-        }
-      });
-      return { ...state, items: updatedItem };
-
-    case UPDATE_AISLE_DATA_ERROR:
-      return { ...state, error: action.err };
-
     case SET_LIST_NAME:
       return { ...state, name: action.name };
+
+    case PATCH_ITEM_REQUEST: {
+      const { itemId } = action;
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item.id !== itemId) {
+            return item;
+          }
+
+          return { ...item, loading: true };
+        }),
+      };
+    }
+
+    case PATCH_ITEM_ERROR: {
+      const { itemId, error } = action;
+      return {
+        ...state,
+        error,
+        items: state.items.map(item => {
+          if (item.id !== itemId) {
+            return item;
+          }
+
+          // If there is a loading property, remove it
+          const { loading, ...newItem } = item;
+          return newItem;
+        }),
+      };
+    }
+
+    case PATCH_ITEM_SUCCESS: {
+      const { item: newItem } = action;
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item.id !== newItem.id) {
+            return item;
+          }
+
+          // Remove the loading property from the item, in case it exists
+          const { loading, ...itemWithoutLoading } = item;
+          return { ...itemWithoutLoading, ...newItem };
+        }),
+      };
+    }
+
+    case ADD_AISLE_PROMPT:
+      return { ...state, aislePrompt: action.item };
+
+    case REMOVE_AISLE_PROMPT:
+      return { ...state, aislePrompt: null };
 
     default:
       return state;

@@ -2,58 +2,77 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import AddItem from './AddItem';
-import { getItems, toggleChecked } from '../actions/items';
+import { getItems, toggleChecked, displayAislePrompt } from '../actions/items';
 import NavBar from './nav-bar';
 import AddAisle from './AddAisle';
 
 const strikeThrough = { textDecoration: 'line-through' };
+
 export class Items extends Component {
-  toggleCheck(itemId) {
-    this.props.dispatch(toggleChecked(itemId));
+  onClickHandler(item) {
+    const { dispatch, listId } = this.props;
+    if (!item.isChecked && !item.aisleLocation) {
+      dispatch(displayAislePrompt(item));
+    }
+    dispatch(toggleChecked(item.id, listId));
   }
+
   componentDidMount() {
-    this.props.dispatch(getItems(this.props.listId));
+    const { dispatch, listId } = this.props;
+    dispatch(getItems(listId));
   }
+
   render() {
-    const { listId } = this.props;
-    if (this.props.authLoading || this.props.items.loading) {
+    const {
+      authLoading,
+      items,
+      listId,
+      loading,
+      name,
+      store,
+      username,
+      aislePrompt,
+    } = this.props;
+
+    if (authLoading || loading) {
       return <div>Loading...</div>;
     }
-    if (!this.props.username) {
+
+    if (!username) {
       return <Redirect to="/" />;
     }
-    const items = this.props.items.items.map(item => {
+
+    const itemElements = items.map(item => {
       return (
         <li
           key={item.id}
-          style={item.checked ? strikeThrough : null}
-          onClick={() => this.toggleCheck(item.id)}
+          style={item.isChecked ? strikeThrough : null}
+          onClick={() => this.onClickHandler(item)}
         >
           item: {item.name} aisle: {item.aisleLocation}
-          {item.displayAddAisleForm ? (
-            <AddAisle listId={listId} itemId={item.id} />
-          ) : null}
         </li>
       );
     });
+
     let storeBlock;
-    if (this.props.items.store) {
+    if (store) {
       storeBlock = (
         <h3>
-          {this.props.items.store.name}
-          {this.props.items.store.address}
+          {name}
+          {store.address}
         </h3>
       );
     }
     return (
       <Fragment>
         <NavBar />
-        <h2>{this.props.items.name}</h2>
+        <h2>{name}</h2>
         {storeBlock}
         <ul>
-          {items}
+          {itemElements}
           <AddItem listId={listId} />
         </ul>
+        {aislePrompt ? <AddAisle listId={listId} /> : null}
         <Link to="/lists">Lists</Link>
       </Fragment>
     );
@@ -62,11 +81,16 @@ export class Items extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { listId } = ownProps.match.params;
+  const { items, loading, store, name, aislePrompt } = state.items;
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     authLoading: state.auth.loading,
-    items: state.items,
+    items,
+    loading,
+    store,
+    name,
     listId,
+    aislePrompt,
   };
 };
 

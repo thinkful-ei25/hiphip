@@ -22,7 +22,6 @@ export default function reducer(state = initialState, action) {
     case LISTS_ERROR:
       return { ...state, loading: false, err: action.error };
     case CREATE_LIST_REQUEST: {
-      console.log('request');
       return {
         ...state,
         loading: true,
