@@ -4,7 +4,6 @@ import { searchStores } from '../../actions/yelpAPI';
 
 export class StoreSearch extends React.Component {
   convertDistance(meters) {
-    console.log(meters);
     let answer = meters / 1609.344;
     answer = Math.floor(answer * 100) / 100;
     return answer + ' miles away';
