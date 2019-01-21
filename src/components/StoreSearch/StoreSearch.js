@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { searchStores } from '../../actions/storesAPI';
 
-export class StoreSearch extends React.Component {
+export class StoreSearch extends Component {
   renderResults() {
     if (this.props.error) {
       return <strong>{this.props.error}</strong>;

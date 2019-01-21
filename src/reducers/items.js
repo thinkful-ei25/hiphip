@@ -7,6 +7,9 @@ import {
   GET_ITEMS_ERROR,
   GET_ITEMS_SUCCESS,
   SET_LIST_NAME,
+  UPDATE_AISLE_DATA_REQUEST,
+  UPDATE_AISLE_DATA_SUCCESS,
+  UPDATE_AISLE_DATA_ERROR,
 } from '../actions/items';
 const initialState = {
   id: null,
@@ -22,7 +25,14 @@ export default function reducer(state = initialState, action) {
     case TOGGLE_CHECKED:
       const toggledItems = state.items.map(item => {
         if (item.id === action.itemId) {
-          item.checked = !item.checked;
+          if (!item.checked) {
+            if (!item.aisleLocation) {
+              item.displayAddAisleForm = true;
+            }
+            item.checked = !item.checked;
+          } /* else {
+            item.displayAddAisleForm = false;
+          } */
         }
         return item;
       });
@@ -54,6 +64,23 @@ export default function reducer(state = initialState, action) {
       const newItems = [...state.items, action.item];
       return { ...state, loading: false, items: newItems };
     }
+    case UPDATE_AISLE_DATA_REQUEST: {
+      return { ...state };
+    }
+    case UPDATE_AISLE_DATA_SUCCESS:
+      const updatedItem = state.items.map(item => {
+        if (item.id === action.item.id) {
+          action.item.displayAddAisleForm = false;
+          action.item.checked = true;
+          return action.item;
+        } else {
+          return item;
+        }
+      });
+      return { ...state, items: updatedItem };
+
+    case UPDATE_AISLE_DATA_ERROR:
+      return { ...state, error: action.err };
 
     case SET_LIST_NAME:
       return { ...state, name: action.name };

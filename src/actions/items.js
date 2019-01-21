@@ -41,6 +41,25 @@ export const addItemSuccess = item => ({
   item,
 });
 
+export const UPDATE_AISLE_DATA_REQUEST = 'UPDATE_AISLE_DATA_REQUEST';
+export const updateAisleDataRequest = () => ({
+  type: UPDATE_AISLE_DATA_REQUEST,
+});
+
+export const UPDATE_AISLE_DATA_ERROR = 'UPDATE_AISLE_DATA_ERROR';
+export const updateAisleDataError = err => ({
+  type: UPDATE_AISLE_DATA_ERROR,
+  err,
+});
+
+export const UPDATE_AISLE_DATA_SUCCESS = 'UPDATE_AISLE_DATA_SUCCESS';
+export const updateAisleDataSuccess = item => {
+  return {
+    type: UPDATE_AISLE_DATA_SUCCESS,
+    item,
+  };
+};
+
 export const SET_LIST_NAME = 'SET_LIST_NAME';
 export const setListName = name => ({
   type: SET_LIST_NAME,
@@ -80,4 +99,26 @@ export const getItems = listId => (dispatch, getState) => {
       dispatch(getItemsSuccess(list));
     })
     .catch(err => dispatch(getItemsError(err)));
+};
+
+export const updateAisleData = (listId, itemId, aisle) => (
+  dispatch,
+  getState
+) => {
+  dispatch(updateAisleDataRequest());
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/api/lists/${listId}/items/${itemId}`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ aisle }),
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(({ item }) => {
+      dispatch(updateAisleDataSuccess(item));
+    })
+    .catch(err => updateAisleDataError(err));
 };

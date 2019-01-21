@@ -4,10 +4,11 @@ import { Redirect, Link } from 'react-router-dom';
 import AddItem from './AddItem';
 import { getItems, toggleChecked } from '../actions/items';
 import NavBar from './nav-bar';
+import AddAisle from './AddAisle';
 
 const strikeThrough = { textDecoration: 'line-through' };
 export class Items extends Component {
-  onClickHandler(itemId) {
+  toggleCheck(itemId) {
     this.props.dispatch(toggleChecked(itemId));
   }
   componentDidMount() {
@@ -26,9 +27,12 @@ export class Items extends Component {
         <li
           key={item.id}
           style={item.checked ? strikeThrough : null}
-          onClick={() => this.onClickHandler(item.id)}
+          onClick={() => this.toggleCheck(item.id)}
         >
           item: {item.name} aisle: {item.aisleLocation}
+          {item.displayAddAisleForm ? (
+            <AddAisle listId={listId} itemId={item.id} />
+          ) : null}
         </li>
       );
     });
