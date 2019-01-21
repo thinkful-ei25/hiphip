@@ -6,26 +6,42 @@ import { getItems, toggleChecked } from '../actions/items';
 import NavBar from './nav-bar';
 
 const strikeThrough = { textDecoration: 'line-through' };
+
 export class Items extends Component {
   onClickHandler(itemId) {
-    this.props.dispatch(toggleChecked(itemId));
+    const { dispatch, listId } = this.props;
+    dispatch(toggleChecked(itemId, listId));
   }
+
   componentDidMount() {
-    this.props.dispatch(getItems(this.props.listId));
+    const { dispatch, listId } = this.props;
+    dispatch(getItems(listId));
   }
+
   render() {
-    const { listId } = this.props;
-    if (this.props.authLoading || this.props.items.loading) {
+    const {
+      authLoading,
+      items,
+      listId,
+      loading,
+      name,
+      store,
+      username,
+    } = this.props;
+
+    if (authLoading || loading) {
       return <div>Loading...</div>;
     }
-    if (!this.props.username) {
+
+    if (!username) {
       return <Redirect to="/" />;
     }
-    const items = this.props.items.items.map(item => {
+
+    const itemElements = items.map(item => {
       return (
         <li
           key={item.id}
-          style={item.checked ? strikeThrough : null}
+          style={item.isChecked ? strikeThrough : null}
           onClick={() => this.onClickHandler(item.id)}
         >
           {item.name}
@@ -33,12 +49,13 @@ export class Items extends Component {
         </li>
       );
     });
+
     let storeBlock;
-    if (this.props.items.store) {
+    if (store) {
       storeBlock = (
         <h3>
-          {this.props.items.store.name}
-          {this.props.items.store.address}
+          {name}
+          {store.address}
         </h3>
       );
     }
@@ -46,11 +63,11 @@ export class Items extends Component {
       <Fragment>
         <NavBar />
         <main>
-          <h1>{this.props.items.name}</h1>
+          <h1>{name}</h1>
           {storeBlock}
           <h3>item: aisle:</h3>
           <ul>
-            {items}
+            {itemElements}
             <AddItem listId={listId} />
           </ul>
         </main>
@@ -62,10 +79,14 @@ export class Items extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { listId } = ownProps.match.params;
+  const { items, loading, store, name } = state.items;
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     authLoading: state.auth.loading,
-    items: state.items,
+    items,
+    loading,
+    store,
+    name,
     listId,
   };
 };

@@ -1,5 +1,4 @@
 import {
-  TOGGLE_CHECKED,
   ADD_ITEM_REQUEST,
   ADD_ITEM_ERROR,
   ADD_ITEM_SUCCESS,
@@ -7,6 +6,9 @@ import {
   GET_ITEMS_ERROR,
   GET_ITEMS_SUCCESS,
   SET_LIST_NAME,
+  PATCH_ITEM_REQUEST,
+  PATCH_ITEM_ERROR,
+  PATCH_ITEM_SUCCESS,
 } from '../actions/items';
 const initialState = {
   id: null,
@@ -19,15 +21,6 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case TOGGLE_CHECKED:
-      const toggledItems = state.items.map(item => {
-        if (item.id === action.itemId) {
-          item.checked = !item.checked;
-        }
-        return item;
-      });
-      return { ...state, toggledItems };
-
     case GET_ITEMS_REQUEST:
       return { ...state, loading: true };
 
@@ -57,6 +50,53 @@ export default function reducer(state = initialState, action) {
 
     case SET_LIST_NAME:
       return { ...state, name: action.name };
+
+    case PATCH_ITEM_REQUEST: {
+      const { itemId } = action;
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item.id !== itemId) {
+            return item;
+          }
+
+          return { ...item, loading: true };
+        }),
+      };
+    }
+
+    case PATCH_ITEM_ERROR: {
+      const { itemId, error } = action;
+      return {
+        ...state,
+        error,
+        items: state.items.map(item => {
+          if (item.id !== itemId) {
+            return item;
+          }
+
+          // If there is a loading property, remove it
+          const { loading, ...newItem } = item;
+          return newItem;
+        }),
+      };
+    }
+
+    case PATCH_ITEM_SUCCESS: {
+      const { item: newItem } = action;
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item.id !== newItem.id) {
+            return item;
+          }
+
+          // Remove the loading property from the item, in case it exists
+          const { loading, ...itemWithoutLoading } = item;
+          return { ...itemWithoutLoading, ...newItem };
+        }),
+      };
+    }
 
     default:
       return state;
