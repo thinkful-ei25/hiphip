@@ -1,5 +1,7 @@
 import React from 'react';
-import './input.css';
+
+import './Input.css';
+
 export default class Input extends React.Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.meta.active && this.props.meta.active) {

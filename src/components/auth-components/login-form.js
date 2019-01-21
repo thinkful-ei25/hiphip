@@ -1,9 +1,11 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import Input from './input';
+import Input from '../Input';
 import { login } from '../../actions/auth';
 import { required, nonEmpty } from '../../validators';
-import './login-form.css';
+import { Link } from 'react-router-dom';
+import './login.css';
+
 export class LoginForm extends React.Component {
   onSubmit(values) {
     return this.props.dispatch(login(values.username, values.password));
@@ -20,40 +22,43 @@ export class LoginForm extends React.Component {
         </div>
       );
     }
-    const logo = <div className="welcome">Grocery Course</div>;
+    const register = (
+      <Link className="registerLink" to="/register">
+        Register
+      </Link>
+    );
     return (
       <form
-        className="login-form"
+        className="form-itself"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
-        {logo}
         {error}
         <Field
           className="login-field"
-          label="Username"
+          label=""
           component={Input}
-          // component='input'
           type="text"
           name="username"
           validate={[required, nonEmpty]}
         />
 
         <Field
-          label="Password"
-          className="input-form"
+          label=""
+          className="login-field"
           component={Input}
-          // component='input'
           type="password"
           name="password"
           id="password"
           validate={[required, nonEmpty]}
         />
         <button
-          className="button input-form login-btn"
+          className="login-btn"
           disabled={this.props.pristine || this.props.submitting}
         >
-          Log in
+          Log In
         </button>
+        <br />
+        <button className="login-btn">{register}</button>
       </form>
     );
   }

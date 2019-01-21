@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { logout } from '../../actions/auth';
 import { connect } from 'react-redux';
-import './logout.css';
+
 export class Logout extends Component {
-  clickHandler() {
+  logout() {
     this.props.dispatch(logout());
   }
   render() {
     return (
-      <button className="button logout" onClick={() => this.clickHandler()}>
+      <h2 className="button logout" onClick={() => this.logout()}>
         Logout
-      </button>
+      </h2>
     );
   }
 }
