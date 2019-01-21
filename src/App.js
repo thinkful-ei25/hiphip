@@ -5,8 +5,6 @@ import LoginPage from './components/auth-components/login-page';
 import Lists from './components/Lists';
 import Items from './components/Items';
 import CreateShoppingList from './components/CreateShoppingList';
-import StoreSearch from './components/StoreSearch';
-
 class App extends Component {
   render() {
     return (
@@ -16,7 +14,6 @@ class App extends Component {
         <Route exact path="/lists" component={Lists} />
         <Route exact path="/lists/:listId" component={Items} />
         <Route exact path="/lists/create" component={CreateShoppingList} />
-        <Route exact path="/stores/search" component={StoreSearch} />
       </Switch>
     );
   }

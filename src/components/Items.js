@@ -49,7 +49,8 @@ export class Items extends Component {
           style={item.isChecked ? strikeThrough : null}
           onClick={() => this.onClickHandler(item)}
         >
-          item: {item.name} aisle: {item.aisleLocation}
+          {item.name}
+          {item.aisleLocation}
         </li>
       );
     });
@@ -66,6 +67,7 @@ export class Items extends Component {
     return (
       <Fragment>
         <NavBar />
+<<<<<<< HEAD
         <h2>{name}</h2>
         {storeBlock}
         <ul>
@@ -73,6 +75,24 @@ export class Items extends Component {
           <AddItem listId={listId} />
         </ul>
         {aislePrompt ? <AddAisle listId={listId} /> : null}
+||||||| merged common ancestors
+        <h2>{name}</h2>
+        {storeBlock}
+        <ul>
+          {itemElements}
+          <AddItem listId={listId} />
+        </ul>
+=======
+        <main>
+          <h1>{name}</h1>
+          {storeBlock}
+          <h3>item: aisle:</h3>
+          <ul>
+            {itemElements}
+            <AddItem listId={listId} />
+          </ul>
+        </main>
+>>>>>>> dev
         <Link to="/lists">Lists</Link>
       </Fragment>
     );
