@@ -89,6 +89,18 @@ li {
   margin-right: 10%;
 }
 
+.add-item-form {
+  padding-top: 2rem;
+}
+
+.add-item-form input,
+.add-item-form label,
+.add-item-form button {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
 @media only screen and (min-width: 768px) {
   .pageWrapped {
     display: block;

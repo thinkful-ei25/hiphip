@@ -42,7 +42,7 @@ export class AddItem extends React.Component {
           />
         </div>
         <button
-          className="button input-form login-btn"
+          className="button input-form"
           disabled={this.props.pristine || this.props.submitting}
         >
           Add Item
