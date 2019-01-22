@@ -1,9 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import NavBar from '../nav-bar';
 import CreateShoppingListForm from '../CreateShoppingListForm';
 
-function CreateShoppingList() {
+function CreateShoppingList({ user, loggingIn }) {
+  if (loggingIn) {
+    return <div>Logging in</div>;
+  }
+
+  if (!user) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div className="CreateShoppingList">
       <NavBar />
@@ -17,4 +27,9 @@ function CreateShoppingList() {
   );
 }
 
-export default CreateShoppingList;
+const mapStateToProps = state => ({
+  user: state.auth.currentUser,
+  loggingIn: state.auth.loading,
+});
+
+export default connect(mapStateToProps)(CreateShoppingList);
