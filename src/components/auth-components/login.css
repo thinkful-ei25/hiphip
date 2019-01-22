@@ -40,51 +40,12 @@
 }
 
 .form-input {
+  background-color: black;
   text-align: center;
 }
 
 .form-error {
   color: red;
-}
-
-#name {
-  color: black;
-}
-
-#store-name {
-  color: black;
-}
-
-#store-address {
-  color: black;
-}
-
-#store-googleId {
-  color: black;
-}
-
-#firstName {
-  color: black;
-}
-
-#lastName {
-  color: black;
-}
-
-#username {
-  color: black;
-}
-
-#password {
-  color: black;
-}
-
-#passwordConfirm {
-  color: black;
-}
-
-#aisleLocation {
-  color: black;
 }
 
 @media only screen and (min-width: 768px) {
