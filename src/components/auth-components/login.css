@@ -39,8 +39,9 @@
   color: black;
 }
 
-.form-input {
+.login-field {
   background-color: black;
+  color: white;
   text-align: center;
 }
 

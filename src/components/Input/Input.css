@@ -1,8 +1,8 @@
-.form-input{
+.form-input {
   font-size: 16px;
 }
 @media only screen and (max-width: 600px) {
-  .form-input{
+  .form-input {
     margin: 2px 0;
   }
 }

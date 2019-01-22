@@ -60,6 +60,16 @@ export const setListName = name => ({
   name,
 });
 
+export const ADD_AISLE_PROMPT = 'ADD_AISLE_PROMPT';
+export const displayAislePrompt = item => ({
+  type: ADD_AISLE_PROMPT,
+  item,
+});
+export const REMOVE_AISLE_PROMPT = 'ADD_AISLE_PROMPT';
+export const removeAislePrompt = () => ({
+  type: ADD_AISLE_PROMPT,
+});
+
 export const addItemToList = (item, listId) => (dispatch, getState) => {
   dispatch(addItemRequest());
 
@@ -110,7 +120,9 @@ export const patchItem = (item, listId) => (dispatch, getState) => {
   })
     .then(normalizeResponseErrors)
     .then(res => res.json())
-    .then(({ item: newItem }) => dispatch(patchItemSuccess(newItem)))
+    .then(({ item: newItem }) => {
+      dispatch(patchItemSuccess(newItem));
+    })
     .catch(err => dispatch(patchItemError(itemId, err)));
 };
 

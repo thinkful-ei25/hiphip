@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import './Input.css';
 
-export default class Input extends React.Component {
+export default class Input extends Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.meta.active && this.props.meta.active) {
       this.input.focus();
@@ -28,7 +28,7 @@ export default class Input extends React.Component {
           {warning}
         </label>
         <input
-          className="form-input"
+          className={`${this.props.className} form-input`}
           aria-label={this.props.input.name}
           aria-required="true"
           {...this.props.input}

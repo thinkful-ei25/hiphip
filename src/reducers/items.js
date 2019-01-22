@@ -9,6 +9,8 @@ import {
   PATCH_ITEM_REQUEST,
   PATCH_ITEM_ERROR,
   PATCH_ITEM_SUCCESS,
+  ADD_AISLE_PROMPT,
+  REMOVE_AISLE_PROMPT,
 } from '../actions/items';
 const initialState = {
   id: null,
@@ -17,6 +19,7 @@ const initialState = {
   items: [],
   loading: false,
   error: false,
+  aislePrompt: null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -47,7 +50,6 @@ export default function reducer(state = initialState, action) {
       const newItems = [...state.items, action.item];
       return { ...state, loading: false, items: newItems };
     }
-
     case SET_LIST_NAME:
       return { ...state, name: action.name };
 
@@ -97,6 +99,12 @@ export default function reducer(state = initialState, action) {
         }),
       };
     }
+
+    case ADD_AISLE_PROMPT:
+      return { ...state, aislePrompt: action.item };
+
+    case REMOVE_AISLE_PROMPT:
+      return { ...state, aislePrompt: null };
 
     default:
       return state;

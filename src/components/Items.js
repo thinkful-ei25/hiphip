@@ -2,15 +2,20 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import AddItem from './AddItem';
-import { getItems, toggleChecked } from '../actions/items';
+import { getItems, toggleChecked, displayAislePrompt } from '../actions/items';
 import NavBar from './nav-bar';
+import AddAisle from './AddAisle';
+import './component.css';
 
 const strikeThrough = { textDecoration: 'line-through' };
 
 export class Items extends Component {
-  onClickHandler(itemId) {
+  onClickHandler(item) {
     const { dispatch, listId } = this.props;
-    dispatch(toggleChecked(itemId, listId));
+    if (!item.isChecked && !item.aisleLocation) {
+      dispatch(displayAislePrompt(item));
+    }
+    dispatch(toggleChecked(item.id, listId));
   }
 
   componentDidMount() {
@@ -27,6 +32,7 @@ export class Items extends Component {
       name,
       store,
       username,
+      aislePrompt,
     } = this.props;
 
     if (authLoading || loading) {
@@ -36,16 +42,19 @@ export class Items extends Component {
     if (!username) {
       return <Redirect to="/" />;
     }
-
+    const hr = <hr />;
     const itemElements = items.map(item => {
       return (
         <li
           key={item.id}
           style={item.isChecked ? strikeThrough : null}
-          onClick={() => this.onClickHandler(item.id)}
+          onClick={() => this.onClickHandler(item)}
         >
-          {item.name}
-          {item.aisleLocation}
+          <div className="item">{item.name}</div>
+          <div className="item aisle">
+            {item.aisleLocation && item.aisleLocation.aisleNo}
+          </div>
+          <div>{hr}</div>
         </li>
       );
     });
@@ -63,15 +72,20 @@ export class Items extends Component {
       <Fragment>
         <NavBar />
         <main>
-          <h1>{name}</h1>
-          {storeBlock}
-          <h3>item: aisle:</h3>
+          <div className="listTitle">
+            <h1>{name}</h1>
+            {storeBlock}
+          </div>
+          <div>
+            <h3 className="item">item: </h3>
+            <h3 className="item aisle">aisle:</h3>
+          </div>
           <ul>
             {itemElements}
             <AddItem listId={listId} />
           </ul>
+          {aislePrompt ? <AddAisle listId={listId} /> : null}
         </main>
-        <Link to="/lists">Lists</Link>
       </Fragment>
     );
   }
@@ -79,7 +93,7 @@ export class Items extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { listId } = ownProps.match.params;
-  const { items, loading, store, name } = state.items;
+  const { items, loading, store, name, aislePrompt } = state.items;
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     authLoading: state.auth.loading,
@@ -88,6 +102,7 @@ const mapStateToProps = (state, ownProps) => {
     store,
     name,
     listId,
+    aislePrompt,
   };
 };
 

@@ -24,22 +24,23 @@ export class AddItem extends React.Component {
         className="add-item-form"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
-        <legend>Add new item</legend>
         {error}
-        <Field
-          name="name"
-          className="add-item-field"
-          label="Item"
-          type="text"
-          component={Input}
-        />
+        <div className="addItemInputs">
+          <Field
+            name="name"
+            className="add-item-field"
+            label="Item"
+            type="text"
+            component={Input}
+          />
 
-        <Field
-          name="aisleLocation"
-          label="Aisle"
-          component={Input}
-          type="text"
-        />
+          <Field
+            name="aisleLocation"
+            label="Aisle"
+            component={Input}
+            type="text"
+          />
+        </div>
         <button
           className="button input-form login-btn"
           disabled={this.props.pristine || this.props.submitting}
