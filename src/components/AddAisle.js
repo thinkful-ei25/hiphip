@@ -11,7 +11,6 @@ export class AddAisle extends Component {
         patchItem({ id: item.id, aisleLocation: item.aisleLocation }, listId)
       );
     }
-    this.input.value = '';
     dispatch(removeAislePrompt());
   }
   render() {
