@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 
 import listsReducer from './reducers/lists';
 import itemsReducer from './reducers/items';
-import storesReducer from './reducers/storesAPI';
+import storesReducer from './reducers/yelpAPI';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
@@ -16,7 +16,7 @@ const store = createStore(
     auth: authReducer,
     lists: listsReducer,
     items: itemsReducer,
-    storesAPI: storesReducer,
+    yelpAPI: storesReducer,
   }),
   composeEnhancers(applyMiddleware(thunk))
 );
