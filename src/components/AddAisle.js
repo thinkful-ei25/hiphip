@@ -8,7 +8,9 @@ export class AddAisle extends Component {
     item.aisleLocation = this.input.value;
     this.input.value = '';
     if (item.aisleLocation) {
-      dispatch(patchItem(item, listId));
+      dispatch(
+        patchItem({ id: item.id, aisleLocation: item.aisleLocation }, listId)
+      );
     }
     dispatch(removeAislePrompt());
   }
