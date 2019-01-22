@@ -2,16 +2,20 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import AddItem from './AddItem';
-import { getItems, toggleChecked } from '../actions/items';
+import { getItems, toggleChecked, displayAislePrompt } from '../actions/items';
 import NavBar from './nav-bar';
+import AddAisle from './AddAisle';
 import './component.css';
 
 const strikeThrough = { textDecoration: 'line-through' };
 
 export class Items extends Component {
-  onClickHandler(itemId) {
+  onClickHandler(item) {
     const { dispatch, listId } = this.props;
-    dispatch(toggleChecked(itemId, listId));
+    if (!item.isChecked && !item.aisleLocation) {
+      dispatch(displayAislePrompt(item));
+    }
+    dispatch(toggleChecked(item.id, listId));
   }
 
   componentDidMount() {
@@ -28,6 +32,7 @@ export class Items extends Component {
       name,
       store,
       username,
+      aislePrompt,
     } = this.props;
 
     if (authLoading || loading) {
@@ -43,7 +48,7 @@ export class Items extends Component {
         <li
           key={item.id}
           style={item.isChecked ? strikeThrough : null}
-          onClick={() => this.onClickHandler(item.id)}
+          onClick={() => this.onClickHandler(item)}
         >
           <div className="item">{item.name}</div>
           <div className="item aisle">
@@ -79,6 +84,7 @@ export class Items extends Component {
             {itemElements}
             <AddItem listId={listId} />
           </ul>
+          {aislePrompt ? <AddAisle listId={listId} /> : null}
         </main>
       </Fragment>
     );
@@ -87,7 +93,7 @@ export class Items extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { listId } = ownProps.match.params;
-  const { items, loading, store, name } = state.items;
+  const { items, loading, store, name, aislePrompt } = state.items;
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     authLoading: state.auth.loading,
@@ -96,6 +102,7 @@ const mapStateToProps = (state, ownProps) => {
     store,
     name,
     listId,
+    aislePrompt,
   };
 };
 
