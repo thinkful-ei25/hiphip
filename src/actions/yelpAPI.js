@@ -18,11 +18,15 @@ export const searchStoresError = error => ({
   error,
 });
 
-export const searchStores = searchterm => (dispatch, getState) => {
+export const searchStores = (searchterm, coords) => (dispatch, getState) => {
   dispatch(searchStoresRequest());
   const authToken = getState().auth.authToken;
+  // if (!coords) {
+  //   return 'User must share location to find nearby stores';
+  // }
+  const { latitude, longitude } = coords;
   return fetch(
-    `${API_BASE_URL}/api/yelp?term=${searchterm}&category=grocery&latitude=37.786882&longitude=-122.399972`,
+    `${API_BASE_URL}/api/yelp?term=${searchterm}&category=grocery&latitude=${latitude}&longitude=${longitude}`,
     {
       method: 'GET',
       headers: { Authorization: `Bearer ${authToken}` },
@@ -31,7 +35,7 @@ export const searchStores = searchterm => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(({ businesses }) => {
-      console.log(businesses);
       dispatch(searchStoresSuccess(businesses));
-    });
+    })
+    .catch(err => dispatch(searchStoresError));
 };

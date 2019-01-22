@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import { searchStores } from '../../actions/yelpAPI';
 
 export class StoreSearch extends React.Component {
+  getPosition(options) {
+    return new Promise(function(resolve, reject) {
+      navigator.geolocation.getCurrentPosition(resolve, reject, options);
+    });
+  }
+
   convertDistance(meters) {
     let answer = meters / 1609.344;
     answer = Math.floor(answer * 100) / 100;
@@ -32,10 +38,23 @@ export class StoreSearch extends React.Component {
 
   search(e) {
     e.preventDefault();
+    const searchTerm = this.input.value;
     if (this.input.value.trim() === '') {
       return;
     }
-    this.props.dispatch(searchStores(this.input.value));
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
+    this.getPosition(options)
+      .then(pos => {
+        const coords = pos.coords;
+        this.props.dispatch(searchStores(searchTerm, coords));
+      })
+      .catch(err => {
+        console.error(err.message);
+      });
   }
 
   render() {
