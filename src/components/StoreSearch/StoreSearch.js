@@ -12,7 +12,13 @@ export class StoreSearch extends React.Component {
   convertDistance(meters) {
     let answer = meters / 1609.344;
     answer = Math.floor(answer * 100) / 100;
-    return answer + ' miles away';
+    if (answer > 0.5) {
+      return answer + ' miles away';
+    } else {
+      answer = answer * 5280;
+      answer = Math.floor(answer / 100) * 100;
+      return answer + ' feet away';
+    }
   }
 
   renderResults() {

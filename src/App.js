@@ -14,9 +14,8 @@ class App extends Component {
         <Route exact path="/" component={LoginPage} />
         <Route exact path="/register" component={RegistrationPage} />
         <Route exact path="/lists" component={Lists} />
-        <Route exact path="/lists/:listId" component={Items} />
         <Route exact path="/lists/create" component={CreateShoppingList} />
-        <Route exact path="/stores/search" component={StoreSearch} />
+        <Route exact path="/lists/:listId" component={Items} />
       </Switch>
     );
   }
