@@ -37,21 +37,21 @@ export class RegistrationForm extends Component {
       >
         <Field
           label="First Name"
-          className="input-form"
+          className="registration-input"
           component={Input}
           type="text"
           name="firstName"
         />
         <Field
           label="Last Name"
-          className="input-form"
+          className="registration-input"
           component={Input}
           type="text"
           name="lastName"
         />
         <Field
           label="Username"
-          className="input-form"
+          className="registration-input"
           component={Input}
           type="text"
           name="username"
@@ -59,7 +59,7 @@ export class RegistrationForm extends Component {
         />
         <Field
           label="Password"
-          className="input-form"
+          className="registration-input"
           component={Input}
           type="password"
           name="password"
@@ -68,7 +68,7 @@ export class RegistrationForm extends Component {
 
         <Field
           label="Confirm Password"
-          className="input-form"
+          className="registration-input"
           component={Input}
           type="password"
           name="passwordConfirm"

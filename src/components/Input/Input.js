@@ -28,7 +28,7 @@ export default class Input extends Component {
           {warning}
         </label>
         <input
-          className="form-input"
+          className={`${this.props.className} form-input`}
           aria-label={this.props.input.name}
           aria-required="true"
           {...this.props.input}

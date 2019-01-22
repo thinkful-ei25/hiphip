@@ -5,6 +5,7 @@ import AddItem from './AddItem';
 import { getItems, toggleChecked, displayAislePrompt } from '../actions/items';
 import NavBar from './nav-bar';
 import AddAisle from './AddAisle';
+import './component.css';
 
 const strikeThrough = { textDecoration: 'line-through' };
 
@@ -41,7 +42,7 @@ export class Items extends Component {
     if (!username) {
       return <Redirect to="/" />;
     }
-
+    const hr = <hr />;
     const itemElements = items.map(item => {
       return (
         <li
@@ -49,8 +50,11 @@ export class Items extends Component {
           style={item.isChecked ? strikeThrough : null}
           onClick={() => this.onClickHandler(item)}
         >
-          {item.name}
-          {item.aisleLocation && item.aisleLocation.aisleNo}
+          <div className="item">{item.name}</div>
+          <div className="item aisle">
+            {item.aisleLocation && item.aisleLocation.aisleNo}
+          </div>
+          <div>{hr}</div>
         </li>
       );
     });
@@ -68,16 +72,20 @@ export class Items extends Component {
       <Fragment>
         <NavBar />
         <main>
-          <h1>{name}</h1>
-          {storeBlock}
-          <h3>item: aisle:</h3>
+          <div className="listTitle">
+            <h1>{name}</h1>
+            {storeBlock}
+          </div>
+          <div>
+            <h3 className="item">item: </h3>
+            <h3 className="item aisle">aisle:</h3>
+          </div>
           <ul>
             {itemElements}
             <AddItem listId={listId} />
           </ul>
           {aislePrompt ? <AddAisle listId={listId} /> : null}
         </main>
-        <Link to="/lists">Lists</Link>
       </Fragment>
     );
   }
