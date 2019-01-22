@@ -12,7 +12,7 @@ const strikeThrough = { textDecoration: 'line-through' };
 export class Items extends Component {
   onClickHandler(item) {
     const { dispatch, listId } = this.props;
-    if (!item.isChecked && !item.aisleLocation) {
+    if (!item.isChecked && item.aisleLocation && !item.aisleLocation.aisleNo) {
       dispatch(displayAislePrompt(item));
     }
     dispatch(toggleChecked(item.id, listId));
