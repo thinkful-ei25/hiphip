@@ -6,12 +6,12 @@ export class AddAisle extends Component {
     e.preventDefault();
     const { dispatch, listId, item } = this.props;
     item.aisleLocation = this.input.value;
-    this.input.value = '';
     if (item.aisleLocation) {
       dispatch(
         patchItem({ id: item.id, aisleLocation: item.aisleLocation }, listId)
       );
     }
+    this.input.value = '';
     dispatch(removeAislePrompt());
   }
   render() {
