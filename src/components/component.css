@@ -70,7 +70,23 @@ nav h1 {
 
 .pageWrapped img {
   width: 40px;
-  color: orange;
+}
+
+.listTitle {
+  text-align: center;
+  background-color: #ff6a00;
+}
+
+.item {
+  display: inline;
+  margin-left: 5%;
+}
+li {
+  margin-top: 3%;
+}
+.aisle {
+  float: right;
+  margin-right: 10%;
 }
 
 @media only screen and (min-width: 768px) {

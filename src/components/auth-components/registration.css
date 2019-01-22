@@ -13,7 +13,8 @@ label {
   text-align: center;
 }
 
-input {
+.registration-input {
+  background-color: black;
   color: white;
 }
 
