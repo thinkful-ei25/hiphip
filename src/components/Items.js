@@ -6,8 +6,7 @@ import { getItems, toggleChecked, displayAislePrompt } from '../actions/items';
 import NavBar from './nav-bar';
 import AddAisle from './AddAisle';
 import './component.css';
-
-const strikeThrough = { textDecoration: 'line-through' };
+import ShoppingListItem from './ShoppingListItem';
 
 export class Items extends Component {
   onClickHandler(item) {
@@ -42,19 +41,14 @@ export class Items extends Component {
     if (!username) {
       return <Redirect to="/" />;
     }
-    const hr = <hr />;
+
     const itemElements = items.map(item => {
       return (
-        <li
-          key={item.id}
-          style={item.isChecked ? strikeThrough : null}
-          onClick={() => this.onClickHandler(item)}
-        >
-          <div className="item">{item.name}</div>
-          <div className="item aisle">
-            {item.aisleLocation && item.aisleLocation.aisleNo}
-          </div>
-          <div>{hr}</div>
+        <li key={item.id}>
+          <ShoppingListItem
+            item={item}
+            onClick={() => this.onClickHandler(item)}
+          />
         </li>
       );
     });

@@ -1,0 +1,25 @@
+.ShoppingListItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+  border: none;
+  border-bottom: solid 1px black;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+
+.ShoppingListItem--checked::before {
+  content: '';
+  position: absolute;
+  border-bottom: 1px solid black;
+  height: 0.5em;
+  top: 0;
+  width: 100%;
+}
+
+.ShoppingListItem .name,
+.ShoppingListItem .aisle {
+  display: inline-block;
+}
