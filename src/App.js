@@ -5,7 +5,6 @@ import LoginPage from './components/auth-components/login-page';
 import Lists from './components/Lists';
 import Items from './components/Items';
 import CreateShoppingList from './components/CreateShoppingList';
-import StoreSearch from './components/StoreSearch';
 
 class App extends Component {
   render() {
