@@ -3,7 +3,7 @@
   margin: auto;
 }
 
-label {
+.registration-form label {
   display: block;
   text-align: center;
   margin-top: 3%;
