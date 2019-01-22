@@ -63,7 +63,7 @@ export class Items extends Component {
     if (store) {
       storeBlock = (
         <h3>
-          {name}
+          {store.name}
           {store.address}
         </h3>
       );
