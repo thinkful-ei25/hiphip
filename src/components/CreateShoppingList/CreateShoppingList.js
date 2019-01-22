@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 
 import NavBar from '../nav-bar';
 import CreateShoppingListForm from '../CreateShoppingListForm';
-import StoreSearch from '../StoreSearch';
 
 function CreateShoppingList({ user, loggingIn }) {
   if (loggingIn) {
@@ -23,7 +22,6 @@ function CreateShoppingList({ user, loggingIn }) {
           <h1 className="CreateShoppingList-pageTitle">New shopping list</h1>
         </header>
         <CreateShoppingListForm />
-        <StoreSearch />
       </main>
     </div>
   );
