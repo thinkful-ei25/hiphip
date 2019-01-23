@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 
 import NavBar from '../nav-bar';
 import CreateShoppingListForm from '../CreateShoppingListForm';
-import StoreSearch from '../StoreSearch';
 
 function CreateShoppingList({ user, loggingIn, currentStore }) {
   if (loggingIn) {
@@ -15,31 +14,17 @@ function CreateShoppingList({ user, loggingIn, currentStore }) {
     return <Redirect to="/" />;
   }
 
-  if (currentStore === null) {
-    return (
-      <div className="CreateShoppingList">
-        <NavBar />
-        <main>
-          <header>
-            <h1 className="CreateShoppingList-pageTitle">Select a Store</h1>
-          </header>
-          <StoreSearch />
-        </main>
-      </div>
-    );
-  } else {
-    return (
-      <div className="CreateShoppingList">
-        <NavBar />
-        <main>
-          <header>
-            <h1 className="CreateShoppingList-pageTitle">New shopping list</h1>
-          </header>
-          <CreateShoppingListForm />
-        </main>
-      </div>
-    );
-  }
+  return (
+    <div className="CreateShoppingList">
+      <NavBar />
+      <main>
+        <header>
+          <h1 className="CreateShoppingList-pageTitle">New shopping list</h1>
+        </header>
+        <CreateShoppingListForm />
+      </main>
+    </div>
+  );
 }
 
 const mapStateToProps = state => ({
