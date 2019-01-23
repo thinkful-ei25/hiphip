@@ -3,7 +3,7 @@ import { Route, withRouter, Switch } from 'react-router-dom';
 import RegistrationPage from './components/auth-components/registration-page';
 import LoginPage from './components/auth-components/login-page';
 import Lists from './components/Lists';
-import Items from './components/Items';
+import Items from './components/Items/index';
 import CreateShoppingList from './components/CreateShoppingList';
 class App extends Component {
   render() {

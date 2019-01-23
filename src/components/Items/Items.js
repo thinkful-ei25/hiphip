@@ -1,18 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import AddItem from './AddItem';
+import AddItem from '../AddItem';
 import {
   getItems,
   toggleChecked,
   displayAislePrompt,
   sortItems,
   reverseSortItems,
-} from '../actions/items';
-import NavBar from './nav-bar';
-import AddAisle from './AddAisle';
-
-import './component.css';
+  unsortItems,
+} from '../../actions/items';
+import NavBar from '../nav-bar';
+import AddAisle from '../AddAisle';
+import { compareAisle, sortAisle, reverseSortAisle } from './utils';
+import '../component.css';
 
 const strikeThrough = { textDecoration: 'line-through' };
 
@@ -25,9 +26,11 @@ export class Items extends Component {
     dispatch(toggleChecked(item.id, listId));
   }
   onSort() {
-    const { dispatch, sorted } = this.props;
+    const { dispatch, sorted, reverseSorted } = this.props;
     if (sorted) {
       dispatch(reverseSortItems());
+    } else if (reverseSorted) {
+      dispatch(unsortItems());
     } else {
       dispatch(sortItems());
     }
@@ -48,6 +51,8 @@ export class Items extends Component {
       store,
       username,
       aislePrompt,
+      sorted,
+      reverseSorted,
     } = this.props;
 
     if (authLoading || loading) {
@@ -57,8 +62,16 @@ export class Items extends Component {
     if (!username) {
       return <Redirect to="/" />;
     }
+    let sortedItems = items.slice();
+    if (sorted) {
+      sortedItems.sort(compareAisle);
+      sortedItems.sort(sortAisle);
+    } else if (reverseSorted) {
+      sortedItems.sort(compareAisle);
+      sortedItems.sort(reverseSortAisle);
+    }
     const hr = <hr />;
-    let itemElements = items.map(item => {
+    let itemElements = sortedItems.map(item => {
       return (
         <li
           key={item.id}
@@ -118,6 +131,7 @@ const mapStateToProps = (state, ownProps) => {
     aislePrompt,
     sorted,
     reverseSorted,
+    unsort,
   } = state.items;
 
   return {
@@ -131,6 +145,7 @@ const mapStateToProps = (state, ownProps) => {
     aislePrompt,
     sorted,
     reverseSorted,
+    unsort,
   };
 };
 
