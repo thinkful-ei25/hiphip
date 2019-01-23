@@ -60,7 +60,7 @@ export class Items extends Component {
     });
 
     let storeBlock, address;
-    if (store) {
+    if (store && store.address) {
       let location = store.address;
       let addressStr = '';
       for (let i = 0; i < location.display_address.length; i++) {
