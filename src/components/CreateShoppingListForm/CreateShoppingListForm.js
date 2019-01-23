@@ -11,7 +11,7 @@ import { clearCurrentStore } from '../../actions/yelpAPI';
 export class CreateShoppingListForm extends React.Component {
   onSubmit(event) {
     const { dispatch, history, currentStore } = this.props;
-    let store;
+    let store = null;
     event.preventDefault();
     const name = event.target.name.value;
     if (currentStore) {
@@ -20,8 +20,6 @@ export class CreateShoppingListForm extends React.Component {
         address: currentStore.location,
         googleId: currentStore.id,
       };
-    } else {
-      store = null;
     }
 
     dispatch(createList(name, store, history));

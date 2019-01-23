@@ -16,8 +16,8 @@ export class StoreResult extends React.Component {
     }
   }
 
-  handleClickedStore(e, store) {
-    const { name, id, location, coordinates } = store;
+  handleClickedStore() {
+    const { name, id, location, coordinates } = this.props.grocer;
     const newStore = {
       name,
       id,
@@ -33,7 +33,7 @@ export class StoreResult extends React.Component {
     const { name, location, id } = store;
 
     return (
-      <li key={id} onClick={e => this.handleClickedStore(e, store)}>
+      <li key={id} onClick={() => this.handleClickedStore()}>
         <strong>{name}</strong>
         <address>
           {location.address1} {location.address2}
