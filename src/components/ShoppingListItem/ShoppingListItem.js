@@ -1,9 +1,11 @@
 import classNames from 'classnames';
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 
 import './ShoppingListItem.css';
+import { toggleEditMode } from '../../actions/items';
 
-export default function ShoppingListItem({ item, onClick }) {
+export function ShoppingListItem({ item, onClick, toggleEditMode }) {
   const { isEditing } = item;
   if (isEditing) {
     const formId = `edit-item-form-${item.id}`;
@@ -23,7 +25,9 @@ export default function ShoppingListItem({ item, onClick }) {
         <div className="ShoppingListItem-buttons">
           <button type="submit">Submit</button>
           <button type="button">Delete</button>
-          <button type="button">Exit</button>
+          <button type="button" onClick={() => toggleEditMode(item.id)}>
+            Cancel
+          </button>
         </div>
       </Fragment>
     );
@@ -54,8 +58,19 @@ export default function ShoppingListItem({ item, onClick }) {
         {item.aisleLocation && item.aisleLocation.aisleNo}
       </button>
       <div className="ShoppingListItem-buttons">
-        <button type="button">Edit</button>
+        <button type="button" onClick={() => toggleEditMode(item.id)}>
+          Edit
+        </button>
       </div>
     </Fragment>
   );
 }
+
+const mapDispatchToProps = {
+  toggleEditMode,
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ShoppingListItem);

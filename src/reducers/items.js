@@ -11,6 +11,7 @@ import {
   PATCH_ITEM_SUCCESS,
   ADD_AISLE_PROMPT,
   REMOVE_AISLE_PROMPT,
+  TOGGLE_EDIT_MODE,
 } from '../actions/items';
 const initialState = {
   id: null,
@@ -105,6 +106,20 @@ export default function reducer(state = initialState, action) {
 
     case REMOVE_AISLE_PROMPT:
       return { ...state, aislePrompt: null };
+
+    case TOGGLE_EDIT_MODE: {
+      const { id } = action;
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item.id !== id) {
+            return item;
+          }
+
+          return { ...item, isEditing: !item.isEditing };
+        }),
+      };
+    }
 
     default:
       return state;

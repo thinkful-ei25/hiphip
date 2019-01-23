@@ -70,6 +70,12 @@ export const removeAislePrompt = () => ({
   type: ADD_AISLE_PROMPT,
 });
 
+export const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE';
+export const toggleEditMode = id => ({
+  type: TOGGLE_EDIT_MODE,
+  id,
+});
+
 export const addItemToList = (item, listId) => (dispatch, getState) => {
   dispatch(addItemRequest());
 
