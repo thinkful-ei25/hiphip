@@ -15,7 +15,11 @@ import {
   DELETE_ITEM_REQUEST,
   DELETE_ITEM_ERROR,
   DELETE_ITEM_SUCCESS,
+  SORT_ITEMS,
+  REVERSE_SORT_ITEMS,
+  UNSORT_ITEMS,
 } from '../actions/items';
+
 const initialState = {
   id: null,
   name: null,
@@ -24,6 +28,8 @@ const initialState = {
   loading: false,
   error: false,
   aislePrompt: null,
+  sorted: false,
+  reverseSorted: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -162,6 +168,24 @@ export default function reducer(state = initialState, action) {
       };
     }
 
+    case SORT_ITEMS:
+      return {
+        ...state,
+        sorted: true,
+        reverseSorted: false,
+      };
+    case REVERSE_SORT_ITEMS:
+      return {
+        ...state,
+        sorted: false,
+        reverseSorted: true,
+      };
+    case UNSORT_ITEMS:
+      return {
+        ...state,
+        sorted: false,
+        reverseSorted: false,
+      };
     default:
       return state;
   }

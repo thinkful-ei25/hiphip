@@ -93,6 +93,18 @@ export const deleteItemSuccess = id => ({
   type: DELETE_ITEM_SUCCESS,
   id,
 });
+export const SORT_ITEMS = 'SORT_ITEMS';
+export const sortItems = () => ({
+  type: SORT_ITEMS,
+});
+export const REVERSE_SORT_ITEMS = 'REVERSE_SORT_ITEMS ';
+export const reverseSortItems = () => ({
+  type: REVERSE_SORT_ITEMS,
+});
+export const UNSORT_ITEMS = 'UNSORT_ITEMS ';
+export const unsortItems = () => ({
+  type: UNSORT_ITEMS,
+});
 
 export const addItemToList = (item, listId) => (dispatch, getState) => {
   dispatch(addItemRequest());
