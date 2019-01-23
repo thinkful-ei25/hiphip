@@ -3,14 +3,16 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import './ShoppingListItem.css';
-import { toggleEditMode, patchItem } from '../../actions/items';
+import { toggleEditMode, patchItem, deleteItem } from '../../actions/items';
 
 export function ShoppingListItem({
   item,
   onClick,
   toggleEditMode,
   patchItem,
+  deleteItem,
   listId,
+  key,
 }) {
   function handleSubmit(e) {
     console.log(e);
@@ -42,7 +44,11 @@ export function ShoppingListItem({
           <button type="submit" form={formId} className="button">
             Submit
           </button>
-          <button type="button" className="button">
+          <button
+            type="button"
+            className="button"
+            onClick={() => deleteItem(item.id, listId)}
+          >
             Delete
           </button>
           <a
@@ -97,6 +103,7 @@ export function ShoppingListItem({
 const mapDispatchToProps = {
   toggleEditMode,
   patchItem,
+  deleteItem,
 };
 
 export default connect(

@@ -12,6 +12,9 @@ import {
   ADD_AISLE_PROMPT,
   REMOVE_AISLE_PROMPT,
   TOGGLE_EDIT_MODE,
+  DELETE_ITEM_REQUEST,
+  DELETE_ITEM_ERROR,
+  DELETE_ITEM_SUCCESS,
 } from '../actions/items';
 const initialState = {
   id: null,
@@ -118,6 +121,44 @@ export default function reducer(state = initialState, action) {
 
           return { ...item, isEditing: !item.isEditing };
         }),
+      };
+    }
+
+    case DELETE_ITEM_REQUEST: {
+      const { id } = action;
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item.id !== id) {
+            return item;
+          }
+
+          return { ...item, loading: true };
+        }),
+      };
+    }
+
+    case DELETE_ITEM_ERROR: {
+      const { id, error } = action;
+      return {
+        ...state,
+        error,
+        items: state.items.map(item => {
+          if (item.id !== id) {
+            return item;
+          }
+
+          const { loading, ...withoutLoading } = item;
+          return withoutLoading;
+        }),
+      };
+    }
+
+    case DELETE_ITEM_SUCCESS: {
+      const { id } = action;
+      return {
+        ...state,
+        items: state.items.filter(item => item.id !== id),
       };
     }
 
