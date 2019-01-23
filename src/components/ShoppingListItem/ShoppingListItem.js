@@ -3,27 +3,44 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import './ShoppingListItem.css';
-import { toggleEditMode } from '../../actions/items';
+import { toggleEditMode, patchItem } from '../../actions/items';
 
-export function ShoppingListItem({ item, onClick, toggleEditMode }) {
+export function ShoppingListItem({
+  item,
+  onClick,
+  toggleEditMode,
+  patchItem,
+  listId,
+}) {
+  function handleSubmit(e) {
+    console.log(e);
+    e.preventDefault();
+    const name = e.target.name.value;
+    const aisleLocation = e.target.aisle.value;
+    patchItem({ id: item.id, name, aisleLocation }, listId);
+  }
+
   const { isEditing } = item;
   if (isEditing) {
     const formId = `edit-item-form-${item.id}`;
+
     return (
       <Fragment>
         <div className="ShoppingListItem--editing item">
-          <form id={formId} />
-          <input form={formId} name="name" value={item.name} />
+          <form id={formId} onSubmit={handleSubmit} />
+          <input form={formId} name="name" defaultValue={item.name} />
         </div>
         <div className="ShoppingListItem--editing aisle">
           <input
             form={formId}
-            name="name"
-            value={item.aisleLocation && item.aisleLocation.aisleNo}
+            name="aisle"
+            defaultValue={item.aisleLocation && item.aisleLocation.aisleNo}
           />
         </div>
         <div className="ShoppingListItem-buttons">
-          <button type="submit">Submit</button>
+          <button type="submit" form={formId}>
+            Submit
+          </button>
           <button type="button">Delete</button>
           <button type="button" onClick={() => toggleEditMode(item.id)}>
             Cancel
@@ -68,6 +85,7 @@ export function ShoppingListItem({ item, onClick, toggleEditMode }) {
 
 const mapDispatchToProps = {
   toggleEditMode,
+  patchItem,
 };
 
 export default connect(

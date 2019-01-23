@@ -47,6 +47,7 @@ export class Items extends Component {
         <ShoppingListItem
           key={item.id}
           item={item}
+          listId={listId}
           onClick={() => this.onClickHandler(item)}
         />
       );
