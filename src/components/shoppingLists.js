@@ -28,7 +28,10 @@ export class ShoppingLists extends Component {
             to={`/lists/${list.id}`}
           >
             <div>{list.name}</div>
-            <div>{list.store !== null ? list.store.address : store}</div>
+            <div>
+              {list.store !== null ? list.store.name + ' - ' : store}
+              {list.store !== null ? list.store.address.address1 : store}
+            </div>
           </Link>
         </li>
       );

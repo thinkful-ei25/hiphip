@@ -4,9 +4,8 @@ import { Redirect } from 'react-router-dom';
 
 import NavBar from '../nav-bar';
 import CreateShoppingListForm from '../CreateShoppingListForm';
-import StoreSearch from '../StoreSearch';
 
-function CreateShoppingList({ user, loggingIn }) {
+function CreateShoppingList({ user, loggingIn, currentStore }) {
   if (loggingIn) {
     return <div>Logging in</div>;
   }
@@ -23,7 +22,6 @@ function CreateShoppingList({ user, loggingIn }) {
           <h1 className="CreateShoppingList-pageTitle">New shopping list</h1>
         </header>
         <CreateShoppingListForm />
-        <StoreSearch />
       </main>
     </div>
   );
@@ -32,6 +30,7 @@ function CreateShoppingList({ user, loggingIn }) {
 const mapStateToProps = state => ({
   user: state.auth.currentUser,
   loggingIn: state.auth.loading,
+  currentStore: state.yelpAPI.currentStore,
 });
 
 export default connect(mapStateToProps)(CreateShoppingList);

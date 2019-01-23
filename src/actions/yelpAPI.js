@@ -39,3 +39,14 @@ export const searchStores = (searchterm, coords) => (dispatch, getState) => {
     })
     .catch(err => dispatch(searchStoresError));
 };
+
+export const SET_CURRENT_STORE = 'SET_CURRENT_STORE';
+export const setCurrentStore = store => ({
+  type: SET_CURRENT_STORE,
+  store,
+});
+
+export const CLEAR_CURRENT_STORE = 'CLEAR_CURRENT_STORE';
+export const clearCurrentStore = () => ({
+  type: CLEAR_CURRENT_STORE,
+});
