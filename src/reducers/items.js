@@ -120,6 +120,7 @@ export default function reducer(state = initialState, action) {
         items: state.items.sort(sortAisle),
       };
     case REVERSE_SORT_ITEMS:
+      state.items.sort(compareAisle);
       return {
         ...state,
         sorted: false,
