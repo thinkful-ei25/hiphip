@@ -1,17 +1,45 @@
 export function compareAisle(a, b) {
-  if (a.aisleLocation.aisleNo > b.aisleLocation.aisleNo) {
+  let { aisleNo: aisleA } = a.aisleLocation;
+  let { aisleNo: aisleB } = b.aisleLocation;
+  if (aisleA > aisleB) {
     return 1;
-  } else if (a.aisleLocation.aisleNo < b.aisleLocation.aisleNo) {
+  } else if (aisleA < aisleB) {
     return -1;
   } else {
     return 0;
   }
 }
 
-export function reverseCompareAisle(a, b) {
-  if (a.aisleLocation.aisleNo > b.aisleLocation.aisleNo) {
+export function sortAisle(a, b) {
+  let { aisleNo: aisleA } = a.aisleLocation;
+  let { aisleNo: aisleB } = b.aisleLocation;
+  if (!isNaN(aisleA)) {
+    aisleA = parseInt(aisleA);
+  }
+  if (!isNaN(aisleB)) {
+    aisleB = parseInt(aisleB);
+  }
+  if (aisleA > aisleB) {
+    return 1;
+  } else if (aisleA < aisleB) {
     return -1;
-  } else if (a.aisleLocation.aisleNo < b.aisleLocation.aisleNo) {
+  } else {
+    return 0;
+  }
+}
+
+export function reverseSortAisle(a, b) {
+  let { aisleNo: aisleA } = a.aisleLocation;
+  let { aisleNo: aisleB } = b.aisleLocation;
+  if (!isNaN(aisleA)) {
+    aisleA = parseInt(aisleA);
+  }
+  if (!isNaN(aisleB)) {
+    aisleB = parseInt(aisleB);
+  }
+  if (aisleA > aisleB) {
+    return -1;
+  } else if (aisleA < aisleB) {
     return 1;
   } else {
     return 0;

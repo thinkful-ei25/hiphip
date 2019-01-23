@@ -25,7 +25,7 @@ export class Items extends Component {
     dispatch(toggleChecked(item.id, listId));
   }
   onSort() {
-    const { dispatch, sorted, reverseSorted } = this.props;
+    const { dispatch, sorted } = this.props;
     if (sorted) {
       dispatch(reverseSortItems());
     } else {
