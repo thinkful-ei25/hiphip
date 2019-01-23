@@ -70,6 +70,11 @@ export const removeAislePrompt = () => ({
   type: ADD_AISLE_PROMPT,
 });
 
+export const SORT_ITEMS = 'SORT_ITEMS';
+export const sortItems = () => ({
+  type: SORT_ITEMS,
+});
+
 export const addItemToList = (item, listId) => (dispatch, getState) => {
   dispatch(addItemRequest());
 

@@ -1,10 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import AddItem from './AddItem';
-import { getItems, toggleChecked, displayAislePrompt } from '../actions/items';
+import {
+  getItems,
+  toggleChecked,
+  displayAislePrompt,
+  sortItems,
+} from '../actions/items';
 import NavBar from './nav-bar';
 import AddAisle from './AddAisle';
+
 import './component.css';
 
 const strikeThrough = { textDecoration: 'line-through' };
@@ -17,7 +23,11 @@ export class Items extends Component {
     }
     dispatch(toggleChecked(item.id, listId));
   }
-
+  onSort() {
+    const { dispatch } = this.props;
+    this.forceUpdate();
+    dispatch(sortItems());
+  }
   componentDidMount() {
     const { dispatch, listId } = this.props;
     dispatch(getItems(listId));
@@ -43,7 +53,7 @@ export class Items extends Component {
       return <Redirect to="/" />;
     }
     const hr = <hr />;
-    const itemElements = items.map(item => {
+    let itemElements = items.map(item => {
       return (
         <li
           key={item.id}
@@ -72,6 +82,7 @@ export class Items extends Component {
       <Fragment>
         <NavBar />
         <main>
+          <button onClick={() => this.onSort()}>sort</button>
           <div className="listTitle">
             <h1>{name}</h1>
             {storeBlock}
@@ -94,6 +105,7 @@ export class Items extends Component {
 const mapStateToProps = (state, ownProps) => {
   const { listId } = ownProps.match.params;
   const { items, loading, store, name, aislePrompt } = state.items;
+
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     authLoading: state.auth.loading,

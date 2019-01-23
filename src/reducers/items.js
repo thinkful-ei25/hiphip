@@ -11,7 +11,9 @@ import {
   PATCH_ITEM_SUCCESS,
   ADD_AISLE_PROMPT,
   REMOVE_AISLE_PROMPT,
+  SORT_ITEMS,
 } from '../actions/items';
+import { compareAisle } from './utils';
 const initialState = {
   id: null,
   name: null,
@@ -20,6 +22,7 @@ const initialState = {
   loading: false,
   error: false,
   aislePrompt: null,
+  sorted: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -105,6 +108,9 @@ export default function reducer(state = initialState, action) {
 
     case REMOVE_AISLE_PROMPT:
       return { ...state, aislePrompt: null };
+
+    case SORT_ITEMS:
+      return { ...state, sorted: true, items: state.items.sort(compareAisle) };
 
     default:
       return state;
