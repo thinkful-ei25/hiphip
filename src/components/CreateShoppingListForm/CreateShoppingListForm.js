@@ -17,7 +17,6 @@ export class CreateShoppingListForm extends React.Component {
   onSubmit(event) {
     const { dispatch, history, currentStore } = this.props;
     let store;
-    console.log(this.state.wantStore);
     event.preventDefault();
     const name = event.target.name.value;
     if (currentStore) {
@@ -35,7 +34,6 @@ export class CreateShoppingListForm extends React.Component {
 
   newStore() {
     const { dispatch } = this.props;
-    console.log('hi there, i cleared the currentStore');
     dispatch(clearCurrentStore());
   }
 

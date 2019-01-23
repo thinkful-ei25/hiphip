@@ -24,7 +24,6 @@ export class StoreResult extends React.Component {
       location,
       coordinates,
     };
-    console.log(newStore);
     this.props.setCurrentStore(newStore);
   }
 
