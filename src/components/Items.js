@@ -7,6 +7,7 @@ import {
   toggleChecked,
   displayAislePrompt,
   sortItems,
+  reverseSortItems,
 } from '../actions/items';
 import NavBar from './nav-bar';
 import AddAisle from './AddAisle';
@@ -24,9 +25,13 @@ export class Items extends Component {
     dispatch(toggleChecked(item.id, listId));
   }
   onSort() {
-    const { dispatch } = this.props;
+    const { dispatch, sorted, reverseSorted } = this.props;
+    if (sorted) {
+      dispatch(reverseSortItems());
+    } else {
+      dispatch(sortItems());
+    }
     this.forceUpdate();
-    dispatch(sortItems());
   }
   componentDidMount() {
     const { dispatch, listId } = this.props;
@@ -82,14 +87,15 @@ export class Items extends Component {
       <Fragment>
         <NavBar />
         <main>
-          <button onClick={() => this.onSort()}>sort</button>
           <div className="listTitle">
             <h1>{name}</h1>
             {storeBlock}
           </div>
           <div>
             <h3 className="item">item: </h3>
-            <h3 className="item aisle">aisle:</h3>
+            <h3 className="item aisle" onClick={() => this.onSort()}>
+              aisle:
+            </h3>
           </div>
           <ul>
             {itemElements}
@@ -104,7 +110,15 @@ export class Items extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { listId } = ownProps.match.params;
-  const { items, loading, store, name, aislePrompt } = state.items;
+  const {
+    items,
+    loading,
+    store,
+    name,
+    aislePrompt,
+    sorted,
+    reverseSorted,
+  } = state.items;
 
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
@@ -115,6 +129,8 @@ const mapStateToProps = (state, ownProps) => {
     name,
     listId,
     aislePrompt,
+    sorted,
+    reverseSorted,
   };
 };
 

@@ -74,6 +74,10 @@ export const SORT_ITEMS = 'SORT_ITEMS';
 export const sortItems = () => ({
   type: SORT_ITEMS,
 });
+export const REVERSE_SORT_ITEMS = 'REVERSE_SORT_ITEMS ';
+export const reverseSortItems = () => ({
+  type: REVERSE_SORT_ITEMS,
+});
 
 export const addItemToList = (item, listId) => (dispatch, getState) => {
   dispatch(addItemRequest());

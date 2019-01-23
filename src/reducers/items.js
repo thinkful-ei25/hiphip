@@ -12,8 +12,9 @@ import {
   ADD_AISLE_PROMPT,
   REMOVE_AISLE_PROMPT,
   SORT_ITEMS,
+  REVERSE_SORT_ITEMS,
 } from '../actions/items';
-import { compareAisle } from './utils';
+import { compareAisle, reverseCompareAisle } from './utils';
 const initialState = {
   id: null,
   name: null,
@@ -23,6 +24,7 @@ const initialState = {
   error: false,
   aislePrompt: null,
   sorted: false,
+  reverseSorted: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -110,8 +112,19 @@ export default function reducer(state = initialState, action) {
       return { ...state, aislePrompt: null };
 
     case SORT_ITEMS:
-      return { ...state, sorted: true, items: state.items.sort(compareAisle) };
-
+      return {
+        ...state,
+        sorted: true,
+        reverseSorted: false,
+        items: state.items.sort(compareAisle),
+      };
+    case REVERSE_SORT_ITEMS:
+      return {
+        ...state,
+        sorted: false,
+        reverseSorted: true,
+        items: state.items.sort(reverseCompareAisle),
+      };
     default:
       return state;
   }
