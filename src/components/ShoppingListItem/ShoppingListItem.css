@@ -34,3 +34,8 @@
   flex: 1 1;
   padding: 0 1em;
 }
+
+.ShoppingListItem--editing input {
+  display: inline-block;
+  width: 80%;
+}

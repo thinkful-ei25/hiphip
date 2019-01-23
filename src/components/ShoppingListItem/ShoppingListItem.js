@@ -6,7 +6,27 @@ import './ShoppingListItem.css';
 export default function ShoppingListItem({ item, onClick }) {
   const { isEditing } = item;
   if (isEditing) {
-    return null;
+    const formId = `edit-item-form-${item.id}`;
+    return (
+      <Fragment>
+        <div className="ShoppingListItem--editing item">
+          <form id={formId} />
+          <input form={formId} name="name" value={item.name} />
+        </div>
+        <div className="ShoppingListItem--editing aisle">
+          <input
+            form={formId}
+            name="name"
+            value={item.aisleLocation && item.aisleLocation.aisleNo}
+          />
+        </div>
+        <div className="ShoppingListItem-buttons">
+          <button type="submit">Submit</button>
+          <button type="button">Delete</button>
+          <button type="button">Exit</button>
+        </div>
+      </Fragment>
+    );
   }
 
   return (
