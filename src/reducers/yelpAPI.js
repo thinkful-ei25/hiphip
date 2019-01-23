@@ -3,6 +3,7 @@ import {
   SEARCH_STORES_SUCCESS,
   SEARCH_STORES_ERROR,
   SET_CURRENT_STORE,
+  CLEAR_CURRENT_STORE,
 } from '../actions/yelpAPI';
 
 const initialState = {
@@ -22,6 +23,8 @@ export default function storeReducer(state = initialState, action) {
       return { ...state, loading: false, stores: action.stores };
     case SET_CURRENT_STORE:
       return { ...state, loading: false, currentStore: action.store };
+    case CLEAR_CURRENT_STORE:
+      return { ...state, currentStore: null };
     default:
       return state;
   }

@@ -45,3 +45,8 @@ export const setCurrentStore = store => ({
   type: SET_CURRENT_STORE,
   store,
 });
+
+export const CLEAR_CURRENT_STORE = 'CLEAR_CURRENT_STORE';
+export const clearCurrentStore = () => ({
+  type: CLEAR_CURRENT_STORE,
+});

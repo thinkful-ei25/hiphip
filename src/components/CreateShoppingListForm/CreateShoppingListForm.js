@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import './CreateShoppingListForm.css';
 import { createList } from '../../actions/shoppingLists';
+import { clearCurrentStore } from '../../actions/yelpAPI';
 
 export class CreateShoppingListForm extends React.Component {
   onSubmit(event) {
@@ -18,6 +19,12 @@ export class CreateShoppingListForm extends React.Component {
     };
 
     dispatch(createList(name, store, history));
+  }
+
+  newStore() {
+    const { dispatch } = this.props;
+    console.log('hi there, i cleared the currentStore');
+    dispatch(clearCurrentStore());
   }
 
   render() {
@@ -44,6 +51,7 @@ export class CreateShoppingListForm extends React.Component {
             <br />
             {location.city}, {location.state} {location.zip_code}
           </address>
+          <button onClick={() => this.newStore()}>Select another store</button>
         </div>
         <button type="submit">Submit</button>
       </form>
