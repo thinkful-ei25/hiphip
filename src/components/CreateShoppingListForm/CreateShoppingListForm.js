@@ -46,7 +46,7 @@ export class CreateShoppingListForm extends React.Component {
     if (!currentStore) {
       search = (
         <div>
-          <p>Search for a store</p>
+          Would you like a store for your list?
           <StoreSearch />
         </div>
       );
