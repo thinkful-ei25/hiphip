@@ -1,25 +1,36 @@
-.ShoppingListItem {
-  display: block;
-  width: 100%;
-  text-align: left;
-  font-size: 1rem;
-  border: none;
-  border-bottom: solid 1px black;
+.ShoppingListItem--checked {
+  text-decoration: line-through;
   position: relative;
-  cursor: pointer;
-  outline: none;
 }
 
 .ShoppingListItem--checked::before {
   content: '';
   position: absolute;
-  border-bottom: 1px solid black;
-  height: 0.5em;
-  top: 0;
+  left: 0;
+  top: 50%;
   width: 100%;
+  border-bottom: 1px solid black;
 }
 
-.ShoppingListItem .name,
-.ShoppingListItem .aisle {
-  display: inline-block;
+.ShoppingListItem {
+  font-size: 1rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #eeeeee;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0.5em 0;
+}
+
+.ShoppingListItem-buttons {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.ShoppingListItem-buttons button {
+  flex: 1 1;
+  padding: 0 1em;
 }

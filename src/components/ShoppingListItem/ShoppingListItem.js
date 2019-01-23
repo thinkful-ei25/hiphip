@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import './ShoppingListItem.css';
 
@@ -10,17 +10,32 @@ export default function ShoppingListItem({ item, onClick }) {
   }
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={classNames('ShoppingListItem', {
-        'ShoppingListItem--checked': item.isChecked,
-      })}
-    >
-      <div className="name">{item.name}</div>
-      <div className="aisle">
+    <Fragment>
+      <button
+        className={classNames(
+          'ShoppingListItem',
+          { 'ShoppingListItem--checked': item.isChecked },
+          'item'
+        )}
+        type="button"
+        onClick={onClick}
+      >
+        {item.name}
+      </button>
+      <button
+        className={classNames(
+          'ShoppingListItem',
+          { 'ShoppingListItem--checked': item.isChecked },
+          'aisle'
+        )}
+        onClick={onClick}
+        type="button"
+      >
         {item.aisleLocation && item.aisleLocation.aisleNo}
+      </button>
+      <div className="ShoppingListItem-buttons">
+        <button type="button">Edit</button>
       </div>
-    </button>
+    </Fragment>
   );
 }

@@ -44,12 +44,11 @@ export class Items extends Component {
 
     const itemElements = items.map(item => {
       return (
-        <li key={item.id}>
-          <ShoppingListItem
-            item={item}
-            onClick={() => this.onClickHandler(item)}
-          />
-        </li>
+        <ShoppingListItem
+          key={item.id}
+          item={item}
+          onClick={() => this.onClickHandler(item)}
+        />
       );
     });
 
@@ -65,19 +64,17 @@ export class Items extends Component {
     return (
       <Fragment>
         <NavBar />
-        <main>
-          <div className="listTitle">
+        <main className="Items">
+          <header className="listTitle">
             <h1>{name}</h1>
             {storeBlock}
-          </div>
-          <div>
-            <h3 className="item">item: </h3>
-            <h3 className="item aisle">aisle:</h3>
-          </div>
-          <ul>
+          </header>
+          <section className="shoppingList">
+            <div className="item list-heading">Item</div>
+            <div className="aisle list-heading">Aisle</div>
             {itemElements}
-            <AddItem listId={listId} />
-          </ul>
+          </section>
+          <AddItem listId={listId} />
           {aislePrompt ? <AddAisle listId={listId} /> : null}
         </main>
       </Fragment>

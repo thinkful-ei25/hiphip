@@ -77,16 +77,8 @@ nav h1 {
   background-color: #ff6a00;
 }
 
-.item {
-  display: inline;
-  margin-left: 5%;
-}
 li {
   margin-top: 3%;
-}
-.aisle {
-  float: right;
-  margin-right: 10%;
 }
 
 .add-item-form {
@@ -98,6 +90,28 @@ li {
 .add-item-form button {
   display: block;
   margin: 0 auto;
+  text-align: center;
+}
+
+.Items .shoppingList {
+  display: grid;
+  grid-template: auto / 3fr 1fr 3em;
+  padding: 1em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.Items .list-heading {
+  font-weight: bold;
+  text-align: center;
+}
+
+.Items .item {
+  grid-column: 1;
+}
+
+.Items .aisle {
+  grid-column: 2;
   text-align: center;
 }
 
