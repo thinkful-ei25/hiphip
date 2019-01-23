@@ -9,11 +9,6 @@ import { createList } from '../../actions/shoppingLists';
 import { clearCurrentStore } from '../../actions/yelpAPI';
 
 export class CreateShoppingListForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { wantStore: false };
-  }
-
   onSubmit(event) {
     const { dispatch, history, currentStore } = this.props;
     let store;
