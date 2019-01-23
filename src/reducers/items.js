@@ -11,7 +11,11 @@ import {
   PATCH_ITEM_SUCCESS,
   ADD_AISLE_PROMPT,
   REMOVE_AISLE_PROMPT,
+  SORT_ITEMS,
+  REVERSE_SORT_ITEMS,
+  UNSORT_ITEMS,
 } from '../actions/items';
+
 const initialState = {
   id: null,
   name: null,
@@ -20,6 +24,8 @@ const initialState = {
   loading: false,
   error: false,
   aislePrompt: null,
+  sorted: false,
+  reverseSorted: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -106,6 +112,24 @@ export default function reducer(state = initialState, action) {
     case REMOVE_AISLE_PROMPT:
       return { ...state, aislePrompt: null };
 
+    case SORT_ITEMS:
+      return {
+        ...state,
+        sorted: true,
+        reverseSorted: false,
+      };
+    case REVERSE_SORT_ITEMS:
+      return {
+        ...state,
+        sorted: false,
+        reverseSorted: true,
+      };
+    case UNSORT_ITEMS:
+      return {
+        ...state,
+        sorted: false,
+        reverseSorted: false,
+      };
     default:
       return state;
   }
