@@ -13,9 +13,9 @@ import {
 import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
 import { compareAisle, sortAisle, reverseSortAisle } from './utils';
-import '../component.css';
 
-const strikeThrough = { textDecoration: 'line-through' };
+import '../component.css';
+import ShoppingListItem from '../ShoppingListItem';
 
 export class Items extends Component {
   onClickHandler(item) {
@@ -70,20 +70,14 @@ export class Items extends Component {
       sortedItems.sort(compareAisle);
       sortedItems.sort(reverseSortAisle);
     }
-    const hr = <hr />;
     let itemElements = sortedItems.map(item => {
       return (
-        <li
+        <ShoppingListItem
           key={item.id}
-          style={item.isChecked ? strikeThrough : null}
+          item={item}
+          listId={listId}
           onClick={() => this.onClickHandler(item)}
-        >
-          <div className="item">{item.name}</div>
-          <div className="item aisle">
-            {item.aisleLocation && item.aisleLocation.aisleNo}
-          </div>
-          <div>{hr}</div>
-        </li>
+        />
       );
     });
 
@@ -105,21 +99,19 @@ export class Items extends Component {
     return (
       <Fragment>
         <NavBar />
-        <main>
-          <div className="listTitle">
+        <main className="Items">
+          <header className="listTitle">
             <h1>{name}</h1>
             {storeBlock}
-          </div>
-          <div>
-            <h3 className="item">item: </h3>
-            <h3 className="item aisle" onClick={() => this.onSort()}>
-              aisle:
-            </h3>
-          </div>
-          <ul>
+          </header>
+          <section className="shoppingList">
+            <div className="item list-heading">Item</div>
+            <div className="aisle list-heading" onClick={() => this.onSort()}>
+              Aisle
+            </div>
             {itemElements}
-            <AddItem listId={listId} />
-          </ul>
+          </section>
+          <AddItem listId={listId} />
           {aislePrompt ? <AddAisle listId={listId} /> : null}
         </main>
       </Fragment>

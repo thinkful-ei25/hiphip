@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import CreateShoppingListForm from './create-shopping-list-form';
+import { CreateShoppingListForm } from './CreateShoppingListForm';
 
 describe('CreateShoppingListForm', () => {
   it('should render a form', () => {
