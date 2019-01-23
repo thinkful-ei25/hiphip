@@ -39,3 +39,9 @@ export const searchStores = (searchterm, coords) => (dispatch, getState) => {
     })
     .catch(err => dispatch(searchStoresError));
 };
+
+export const SET_CURRENT_STORE = 'SET_CURRENT_STORE';
+export const setCurrentStore = store => ({
+  type: SET_CURRENT_STORE,
+  store,
+});

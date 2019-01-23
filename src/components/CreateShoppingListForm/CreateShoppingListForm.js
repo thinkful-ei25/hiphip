@@ -7,20 +7,23 @@ import { createList } from '../../actions/shoppingLists';
 
 export class CreateShoppingListForm extends React.Component {
   onSubmit(event) {
-    const { dispatch, history } = this.props;
+    const { dispatch, history, currentStore } = this.props;
 
     event.preventDefault();
     const name = event.target.name.value;
     const store = {
-      name: event.target['store-name'].value,
-      address: event.target['store-address'].value,
-      googleId: event.target['store-googleId'].value,
+      name: currentStore.name,
+      address: currentStore.location,
+      googleId: currentStore.id,
     };
 
     dispatch(createList(name, store, history));
   }
 
   render() {
+    const { currentStore } = this.props;
+    const { name, location } = currentStore;
+
     return (
       <form
         className="CreateShoppingListForm"
@@ -33,21 +36,15 @@ export class CreateShoppingListForm extends React.Component {
             <input id="name" name="name" />
           </label>
         </fieldset>
-        <fieldset>
-          <legend>Store</legend>
-          <label htmlFor="store-name">
-            Store name
-            <input id="store-name" name="store-name" />
-          </label>
-          <label htmlFor="store-address">
-            Store address
-            <input id="store-address" name="store-address" />
-          </label>
-          <label htmlFor="store-googleId">
-            Google Place Id
-            <input id="store-googleId" name="store-googleId" />
-          </label>
-        </fieldset>
+        <div className="selected-store">
+          <p>Here is your current store for your list:</p>
+          <strong>{name}</strong>
+          <address>
+            {location.address1} {location.address2}
+            <br />
+            {location.city}, {location.state} {location.zip_code}
+          </address>
+        </div>
         <button type="submit">Submit</button>
       </form>
     );
@@ -57,6 +54,7 @@ export class CreateShoppingListForm extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     history: ownProps.history,
+    currentStore: state.yelpAPI.currentStore,
   };
 };
 
