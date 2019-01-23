@@ -18,7 +18,7 @@ export class CreateShoppingListForm extends React.Component {
       store = {
         name: currentStore.name,
         address: currentStore.location,
-        googleId: currentStore.id,
+        yelpId: currentStore.id,
       };
     }
 
