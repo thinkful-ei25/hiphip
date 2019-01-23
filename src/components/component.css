@@ -95,7 +95,7 @@ li {
 
 .Items .shoppingList {
   display: grid;
-  grid-template: auto / 3fr 1fr 3em;
+  grid-template: auto / 5fr 1fr 1fr;
   padding: 1em;
   max-width: 800px;
   margin: 0 auto;
@@ -113,6 +113,20 @@ li {
 .Items .aisle {
   grid-column: 2;
   text-align: center;
+}
+
+.button {
+  display: inline-block;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 0.85em;
+  padding: 0 0.5em;
+  cursor: pointer;
+  text-align: center;
+}
+
+a.button:visited {
+  color: inherit;
 }
 
 @media only screen and (min-width: 768px) {

@@ -30,9 +30,8 @@
   align-items: center;
 }
 
-.ShoppingListItem-buttons button {
+.ShoppingListItem-buttons .button {
   flex: 1 1;
-  padding: 0 1em;
 }
 
 .ShoppingListItem--editing input {

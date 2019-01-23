@@ -17,6 +17,7 @@ export function ShoppingListItem({
     e.preventDefault();
     const name = e.target.name.value;
     const aisleLocation = e.target.aisle.value;
+    toggleEditMode(item.id);
     patchItem({ id: item.id, name, aisleLocation }, listId);
   }
 
@@ -38,13 +39,19 @@ export function ShoppingListItem({
           />
         </div>
         <div className="ShoppingListItem-buttons">
-          <button type="submit" form={formId}>
+          <button type="submit" form={formId} className="button">
             Submit
           </button>
-          <button type="button">Delete</button>
-          <button type="button" onClick={() => toggleEditMode(item.id)}>
-            Cancel
+          <button type="button" className="button">
+            Delete
           </button>
+          <a
+            href="# "
+            onClick={() => toggleEditMode(item.id)}
+            className="button"
+          >
+            Cancel
+          </a>
         </div>
       </Fragment>
     );
@@ -75,9 +82,13 @@ export function ShoppingListItem({
         {item.aisleLocation && item.aisleLocation.aisleNo}
       </button>
       <div className="ShoppingListItem-buttons">
-        <button type="button" onClick={() => toggleEditMode(item.id)}>
+        <a
+          className="button"
+          href="#edit"
+          onClick={() => toggleEditMode(item.id)}
+        >
           Edit
-        </button>
+        </a>
       </div>
     </Fragment>
   );
