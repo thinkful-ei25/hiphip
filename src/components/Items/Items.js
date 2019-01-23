@@ -87,12 +87,18 @@ export class Items extends Component {
       );
     });
 
-    let storeBlock;
-    if (store) {
+    let storeBlock, address;
+    if (store && store.address) {
+      let location = store.address;
+      let addressStr = '';
+      for (let i = 0; i < location.display_address.length; i++) {
+        addressStr += location.display_address[i] + ' ';
+      }
+      address = <address>{addressStr}</address>;
       storeBlock = (
         <h3>
           {store.name}
-          {store.address}
+          {address}
         </h3>
       );
     }

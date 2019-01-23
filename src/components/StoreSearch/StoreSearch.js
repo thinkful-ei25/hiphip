@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { searchStores } from '../../actions/yelpAPI';
 
+import StoreResult from '../StoreResult';
+
 export class StoreSearch extends React.Component {
   getPosition(options) {
     return new Promise(function(resolve, reject) {
@@ -9,34 +11,13 @@ export class StoreSearch extends React.Component {
     });
   }
 
-  convertDistance(meters) {
-    let answer = meters / 1609.344;
-    answer = Math.floor(answer * 100) / 100;
-    if (answer > 0.5) {
-      return answer + ' miles away';
-    } else {
-      answer = answer * 5280;
-      answer = Math.floor(answer / 100) * 100;
-      return answer + ' feet away';
-    }
-  }
-
   renderResults() {
     if (this.props.error) {
       return <strong>{this.props.error}</strong>;
     }
 
-    const stores = this.props.stores.map((store, index) => (
-      <li key={index}>
-        <strong>{store.name}</strong>
-        <address>
-          {store.location.address1}
-          <br />
-          {store.location.city}, {store.location.state}{' '}
-          {store.location.zip_code}
-        </address>
-        <p>{this.convertDistance(store.distance)}</p>
-      </li>
+    const stores = this.props.stores.map(store => (
+      <StoreResult key={store.id} grocer={store} />
     ));
 
     return stores;

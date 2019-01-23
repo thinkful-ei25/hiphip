@@ -19,7 +19,7 @@ import {
 const initialState = {
   id: null,
   name: null,
-  store: {},
+  store: null,
   items: [],
   loading: false,
   error: false,
