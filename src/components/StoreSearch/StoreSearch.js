@@ -46,6 +46,7 @@ export class StoreSearch extends React.Component {
         type="text"
         name="location"
         ref={location => (this.input = location)}
+        placeholder="Address, City, State, Zip"
       />
     );
     if (this.props.userLocation) {
@@ -58,6 +59,7 @@ export class StoreSearch extends React.Component {
             type="search"
             name="searchTerm"
             ref={term => (this.input = term)}
+            placeholder="Store Name..."
           />
           {locationField}
           <button>Search</button>
