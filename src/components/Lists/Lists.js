@@ -6,7 +6,7 @@ import '../component.css';
 import './Lists.css';
 
 import ShoppingList from '../ShoppingList';
-import NavBar from '../nav-bar';
+import NavBar from '../NavBar';
 import CreateShoppingList from '../CreateShoppingList';
 
 import { getLists } from '../../actions/shoppingLists';

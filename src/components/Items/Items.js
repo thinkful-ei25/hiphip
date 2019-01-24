@@ -13,7 +13,7 @@ import {
   editListName,
   changeListName,
 } from '../../actions/items';
-import NavBar from '../nav-bar';
+import NavBar from '../NavBar';
 import AddAisle from '../AddAisle';
 import { compareAisle, sortAisle, reverseSortAisle } from './utils';
 
