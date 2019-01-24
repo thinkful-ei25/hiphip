@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import throttle from 'lodash/throttle';
 import authReducer from './reducers/auth';
 import {
   loadAuthToken,
@@ -26,9 +27,11 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk))
 );
 
-store.subscribe(() => {
-  writeReduxState(store.getState());
-});
+store.subscribe(
+  throttle(() => {
+    writeReduxState(store.getState());
+  }, 1000)
+);
 
 // Hydrate the authToken from localStorage if it exist
 const authToken = loadAuthToken();
