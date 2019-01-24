@@ -1,7 +1,11 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import authReducer from './reducers/auth';
-import { loadAuthToken } from './local-storage';
+import {
+  loadAuthToken,
+  loadReduxState,
+  writeReduxState,
+} from './local-storage';
 import { setAuthToken, refreshAuthToken } from './actions/auth';
 import thunk from 'redux-thunk';
 
@@ -18,8 +22,14 @@ const store = createStore(
     items: itemsReducer,
     yelpAPI: storesReducer,
   }),
+  loadReduxState(),
   composeEnhancers(applyMiddleware(thunk))
 );
+
+store.subscribe(() => {
+  writeReduxState(store.getState());
+  console.log(loadReduxState());
+});
 
 // Hydrate the authToken from localStorage if it exist
 const authToken = loadAuthToken();
