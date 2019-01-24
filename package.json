@@ -12,6 +12,7 @@
     "jwt-decode": "^2.2.0",
     "npm": "^6.6.0",
     "react": "^16.7.0",
+    "react-click-n-hold": "^1.0.7",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
