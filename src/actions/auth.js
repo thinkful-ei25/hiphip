@@ -106,6 +106,12 @@ export const refreshAuthToken = () => (dispatch, getState) => {
       // We couldn't get a refresh token because our current credentials
       // are invalid or expired, or something else went wrong, so clear
       // them and sign us out
+      if (err instanceof TypeError) {
+        console.log('Working in offline mode, skipping login');
+        storeAuthInfo(authToken, dispatch);
+        return;
+      }
+
       dispatch(authError(err));
       dispatch(clearAuth());
       clearAuthToken(authToken);
