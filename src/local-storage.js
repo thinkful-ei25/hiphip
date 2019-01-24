@@ -30,7 +30,8 @@ export const loadReduxState = () => {
 
 export const writeReduxState = state => {
   try {
-    const serialized = JSON.stringify(state);
+    const { form, ...stateToSerialize } = state;
+    const serialized = JSON.stringify({ ...stateToSerialize });
     localStorage.setItem('reduxState', serialized);
   } catch (e) {
     console.error(e);

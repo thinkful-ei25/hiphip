@@ -28,7 +28,6 @@ const store = createStore(
 
 store.subscribe(() => {
   writeReduxState(store.getState());
-  console.log(loadReduxState());
 });
 
 // Hydrate the authToken from localStorage if it exist
