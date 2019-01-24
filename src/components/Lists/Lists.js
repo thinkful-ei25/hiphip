@@ -1,13 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import ShoppingLists from './shoppingLists';
+import ShoppingLists from '../shoppingLists';
 
-import './component.css';
-import NavBar from './nav-bar';
+import '../component.css';
+import './Lists.css';
+
+import NavBar from '../nav-bar';
+import CreateShoppingList from '../CreateShoppingList';
 
 export class Lists extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { addingList: false };
+  }
+
   render() {
+    let CreateListModal = <div className="empty-div">I'm here</div>;
+    if (this.state.addingList) {
+      CreateListModal = (
+        <div>
+          <CreateShoppingList />
+        </div>
+      );
+    }
+
     if (!this.props.username) {
       return <Redirect to="/" />;
     }
@@ -27,6 +44,7 @@ export class Lists extends Component {
     const mainListPage = (
       <div className="wrappedListPage">
         {navBarJSX}
+        {CreateListModal}
         {pageWrapped}
       </div>
     );
