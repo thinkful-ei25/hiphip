@@ -1,54 +1,74 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { searchStores } from '../../actions/yelpAPI';
+import {
+  searchStores,
+  setUserLocation,
+  searchStoresWithLocation,
+} from '../../actions/yelpAPI';
 
 import StoreResult from '../StoreResult';
 
+import './StoreSearch.css';
+
 export class StoreSearch extends React.Component {
-  getPosition(options) {
-    return new Promise(function(resolve, reject) {
-      navigator.geolocation.getCurrentPosition(resolve, reject, options);
-    });
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(setUserLocation());
   }
 
   renderResults() {
     if (this.props.error) {
-      return <strong>{this.props.error}</strong>;
+      return;
     }
 
-    const stores = this.props.stores.map(store => (
-      <StoreResult key={store.id} grocer={store} />
-    ));
+    let stores = [];
+    if (this.props.stores) {
+      stores = this.props.stores.map(store => (
+        <StoreResult key={store.id} grocer={store} />
+      ));
+    }
 
     return stores;
   }
 
   search(e) {
     e.preventDefault();
-    const searchTerm = this.input.value;
-    if (this.input.value.trim() === '') {
-      return;
+    let location = e.target.location.value;
+    let searchTerm = e.target.searchTerm.value;
+    if (searchTerm.trim() === '') {
+      searchTerm = 'grocery';
     }
-    const options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0,
-    };
-    this.getPosition(options)
-      .then(pos => {
-        const coords = pos.coords;
-        this.props.dispatch(searchStores(searchTerm, coords));
-      })
-      .catch(err => {
-        console.error(err.message);
-      });
+    if (this.props.userLocation && location.trim() === '') {
+      this.props.dispatch(searchStores(searchTerm, this.props.userLocation));
+    } else {
+      this.props.dispatch(searchStoresWithLocation(searchTerm, location));
+    }
   }
 
   render() {
+    let placeholderText = 'Address, City, State, Zip';
+    if (this.props.userLocation) {
+      placeholderText = 'Using Current Location...';
+    }
+    let locationField = (
+      <input
+        type="text"
+        name="location"
+        ref={location => (this.input = location)}
+        placeholder={placeholderText}
+      />
+    );
+
     return (
       <div className="store-search">
         <form onSubmit={e => this.search(e)}>
-          <input type="search" ref={input => (this.input = input)} />
+          <input
+            type="search"
+            name="searchTerm"
+            ref={term => (this.input = term)}
+            placeholder="Store Name..."
+          />
+          {locationField}
           <button>Search</button>
         </form>
         <ul className="store-search-results">{this.renderResults()}</ul>
@@ -61,6 +81,7 @@ const mapStateToProps = state => ({
   stores: state.yelpAPI.stores,
   loading: state.yelpAPI.loading,
   error: state.yelpAPI.error,
+  userLocation: state.yelpAPI.userLocation,
 });
 
 export default connect(mapStateToProps)(StoreSearch);

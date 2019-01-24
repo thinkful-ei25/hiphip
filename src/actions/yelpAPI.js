@@ -21,12 +21,9 @@ export const searchStoresError = error => ({
 export const searchStores = (searchterm, coords) => (dispatch, getState) => {
   dispatch(searchStoresRequest());
   const authToken = getState().auth.authToken;
-  // if (!coords) {
-  //   return 'User must share location to find nearby stores';
-  // }
   const { latitude, longitude } = coords;
   return fetch(
-    `${API_BASE_URL}/api/yelp?term=${searchterm}&category=grocery&latitude=${latitude}&longitude=${longitude}`,
+    `${API_BASE_URL}/api/yelp/coords?term=${searchterm}&category=grocery&latitude=${latitude}&longitude=${longitude}`,
     {
       method: 'GET',
       headers: { Authorization: `Bearer ${authToken}` },
@@ -37,7 +34,28 @@ export const searchStores = (searchterm, coords) => (dispatch, getState) => {
     .then(({ businesses }) => {
       dispatch(searchStoresSuccess(businesses));
     })
-    .catch(err => dispatch(searchStoresError));
+    .catch(err => dispatch(searchStoresError(err)));
+};
+
+export const searchStoresWithLocation = (searchterm, location) => (
+  dispatch,
+  getState
+) => {
+  dispatch(searchStoresRequest());
+  const authToken = getState().auth.authToken;
+  return fetch(
+    `${API_BASE_URL}/api/yelp/location?term=${searchterm}&category=grocery&location=${location}`,
+    {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${authToken}` },
+    }
+  )
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(({ businesses }) => {
+      dispatch(searchStoresSuccess(businesses));
+    })
+    .catch(err => dispatch(searchStoresError(err)));
 };
 
 export const SET_CURRENT_STORE = 'SET_CURRENT_STORE';
@@ -50,3 +68,40 @@ export const CLEAR_CURRENT_STORE = 'CLEAR_CURRENT_STORE';
 export const clearCurrentStore = () => ({
   type: CLEAR_CURRENT_STORE,
 });
+
+export const USER_LOCATION_REQUEST = 'USER_LOCATION_REQUEST';
+export const userLocationRequest = () => ({
+  type: USER_LOCATION_REQUEST,
+});
+
+export const USER_LOCATION_SUCCESS = 'USER_LOCATION_SUCCESS';
+export const userLocationSuccess = location => ({
+  type: USER_LOCATION_SUCCESS,
+  location,
+});
+
+export const USER_LOCATION_ERROR = 'USER_LOCATION_ERROR';
+export const userLocationError = error => ({
+  type: USER_LOCATION_ERROR,
+  error,
+});
+
+export const setUserLocation = () => (dispatch, getState) => {
+  dispatch(userLocationRequest());
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
+  return new Promise(function(resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject, options);
+  })
+    .then(pos => {
+      const coords = pos.coords;
+      dispatch(userLocationSuccess(coords));
+      return dispatch(searchStores('grocery store', coords));
+    })
+    .catch(error => {
+      dispatch(userLocationError(error));
+    });
+};
