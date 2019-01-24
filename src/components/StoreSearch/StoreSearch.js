@@ -18,12 +18,15 @@ export class StoreSearch extends React.Component {
 
   renderResults() {
     if (this.props.error) {
-      return <strong>{this.props.error.message}</strong>;
+      return;
     }
 
-    const stores = this.props.stores.map(store => (
-      <StoreResult key={store.id} grocer={store} />
-    ));
+    let stores = [];
+    if (this.props.stores) {
+      stores = this.props.stores.map(store => (
+        <StoreResult key={store.id} grocer={store} />
+      ));
+    }
 
     return stores;
   }

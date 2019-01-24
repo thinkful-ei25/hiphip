@@ -102,7 +102,6 @@ export const setUserLocation = () => (dispatch, getState) => {
       return dispatch(searchStores('grocery store', coords));
     })
     .catch(error => {
-      console.log(error);
       dispatch(userLocationError(error));
     });
 };
