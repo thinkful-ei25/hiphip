@@ -136,6 +136,13 @@ export const getItems = listId => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(({ list }) => {
+      list.items.map((item, idx) => {
+        if (idx === list.items.length - 1) {
+          return (item.next = null);
+        } else {
+          return (item.next = idx + 1);
+        }
+      });
       dispatch(getItemsSuccess(list));
     })
     .catch(err => dispatch(getItemsError(err)));
