@@ -8,6 +8,8 @@ import {
 
 import StoreResult from '../StoreResult';
 
+import './StoreSearch.css';
+
 export class StoreSearch extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -29,11 +31,11 @@ export class StoreSearch extends React.Component {
   search(e) {
     e.preventDefault();
     let location = e.target.location.value;
-    const searchTerm = e.target.searchTerm.value;
-    if (this.input.value.trim() === '') {
-      return;
+    let searchTerm = e.target.searchTerm.value;
+    if (searchTerm.trim() === '') {
+      searchTerm = 'grocery';
     }
-    if (this.props.userLocation) {
+    if (this.props.userLocation && location.trim() === '') {
       this.props.dispatch(searchStores(searchTerm, this.props.userLocation));
     } else {
       this.props.dispatch(searchStoresWithLocation(searchTerm, location));
@@ -41,17 +43,19 @@ export class StoreSearch extends React.Component {
   }
 
   render() {
+    let placeholderText = 'Address, City, State, Zip';
+    if (this.props.userLocation) {
+      placeholderText = 'Using Current Location...';
+    }
     let locationField = (
       <input
         type="text"
         name="location"
         ref={location => (this.input = location)}
-        placeholder="Address, City, State, Zip"
+        placeholder={placeholderText}
       />
     );
-    if (this.props.userLocation) {
-      locationField = <div>Using Current Location</div>;
-    }
+
     return (
       <div className="store-search">
         <form onSubmit={e => this.search(e)}>

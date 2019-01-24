@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { setCurrentStore } from '../../actions/yelpAPI';
 
+import './StoreResult.css';
+
 export class StoreResult extends React.Component {
   convertDistance(meters) {
     let answer = meters / 1609.344;
@@ -33,7 +35,11 @@ export class StoreResult extends React.Component {
     const { name, location, id } = store;
 
     return (
-      <li key={id} onClick={() => this.handleClickedStore()}>
+      <li
+        key={id}
+        onClick={() => this.handleClickedStore()}
+        className="store-result"
+      >
         <strong>{name}</strong>
         <address>
           {location.address1} {location.address2}
