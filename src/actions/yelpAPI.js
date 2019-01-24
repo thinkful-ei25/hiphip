@@ -21,12 +21,9 @@ export const searchStoresError = error => ({
 export const searchStores = (searchterm, coords) => (dispatch, getState) => {
   dispatch(searchStoresRequest());
   const authToken = getState().auth.authToken;
-  // if (!coords) {
-  //   return 'User must share location to find nearby stores';
-  // }
   const { latitude, longitude } = coords;
   return fetch(
-    `${API_BASE_URL}/api/yelp?term=${searchterm}&category=grocery&latitude=${latitude}&longitude=${longitude}`,
+    `${API_BASE_URL}/api/yelp/coords?term=${searchterm}&category=grocery&latitude=${latitude}&longitude=${longitude}`,
     {
       method: 'GET',
       headers: { Authorization: `Bearer ${authToken}` },
@@ -40,10 +37,26 @@ export const searchStores = (searchterm, coords) => (dispatch, getState) => {
     .catch(err => dispatch(searchStoresError(err)));
 };
 
-export const searchStoresWithLocation = (searchTerm, location) => (
+export const searchStoresWithLocation = (searchterm, location) => (
   dispatch,
   getState
-) => {};
+) => {
+  dispatch(searchStoresRequest());
+  const authToken = getState().auth.authToken;
+  return fetch(
+    `${API_BASE_URL}/api/yelp/location?term=${searchterm}&category=grocery&location=${location}`,
+    {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${authToken}` },
+    }
+  )
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(({ businesses }) => {
+      dispatch(searchStoresSuccess(businesses));
+    })
+    .catch(err => dispatch(searchStoresError(err)));
+};
 
 export const SET_CURRENT_STORE = 'SET_CURRENT_STORE';
 export const setCurrentStore = store => ({

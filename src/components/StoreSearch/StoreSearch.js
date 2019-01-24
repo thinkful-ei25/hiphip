@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { searchStores, setUserLocation } from '../../actions/yelpAPI';
+import {
+  searchStores,
+  setUserLocation,
+  searchStoresWithLocation,
+} from '../../actions/yelpAPI';
 
 import StoreResult from '../StoreResult';
 
@@ -24,16 +28,25 @@ export class StoreSearch extends React.Component {
 
   search(e) {
     e.preventDefault();
-    const searchTerm = this.input.value;
+    let location = e.target.location.value;
+    const searchTerm = e.target.searchTerm.value;
     if (this.input.value.trim() === '') {
       return;
     }
-    this.props.dispatch(searchStores(searchTerm, this.props.userLocation));
+    if (this.props.userLocation) {
+      this.props.dispatch(searchStores(searchTerm, this.props.userLocation));
+    } else {
+      this.props.dispatch(searchStoresWithLocation(searchTerm, location));
+    }
   }
 
   render() {
     let locationField = (
-      <input type="text" id="loction" ref={input => (this.input = input)} />
+      <input
+        type="text"
+        name="location"
+        ref={location => (this.input = location)}
+      />
     );
     if (this.props.userLocation) {
       locationField = <div>Using Current Location</div>;
@@ -41,7 +54,11 @@ export class StoreSearch extends React.Component {
     return (
       <div className="store-search">
         <form onSubmit={e => this.search(e)}>
-          <input type="search" id="name" ref={input => (this.input = input)} />
+          <input
+            type="search"
+            name="searchTerm"
+            ref={term => (this.input = term)}
+          />
           {locationField}
           <button>Search</button>
         </form>
