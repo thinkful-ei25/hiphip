@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import LoginForm from './login-form';
 import './login.css';
@@ -11,6 +11,11 @@ export function LoginPage(props) {
   if (props.loggedIn) {
     return <Redirect to="/lists" />;
   }
+  const about = (
+    <Link className="about-click" to="/about">
+      About
+    </Link>
+  );
   const logIn = <LoginForm className="wrappedForm" />;
 
   const logo = <h1 className="logo">GoCery</h1>;
@@ -20,7 +25,12 @@ export function LoginPage(props) {
       {logIn}
     </div>
   );
-  return <main className="splash">{wrapped}</main>;
+  return (
+    <main className="splash">
+      {about}
+      {wrapped}
+    </main>
+  );
 }
 
 const mapStateToProps = state => ({

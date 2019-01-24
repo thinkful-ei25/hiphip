@@ -49,6 +49,10 @@
   color: red;
 }
 
+.about-click {
+  color: #56e722;
+}
+
 @media only screen and (min-width: 768px) {
   .login-btn {
     width: 15%;

@@ -4,6 +4,7 @@ import RegistrationPage from './components/auth-components/registration-page';
 import LoginPage from './components/auth-components/login-page';
 import Lists from './components/Lists';
 import Items from './components/Items';
+import { About } from './components/about';
 import CreateShoppingList from './components/CreateShoppingList';
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
         <Route exact path="/lists" component={Lists} />
         <Route exact path="/lists/create" component={CreateShoppingList} />
         <Route exact path="/lists/:listId" component={Items} />
+        <Route exact path="/about" component={About} />
       </Switch>
     );
   }
