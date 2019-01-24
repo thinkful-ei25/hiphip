@@ -70,6 +70,29 @@ export const removeAislePrompt = () => ({
   type: ADD_AISLE_PROMPT,
 });
 
+export const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE';
+export const toggleEditMode = id => ({
+  type: TOGGLE_EDIT_MODE,
+  id,
+});
+
+export const DELETE_ITEM_REQUEST = 'DELETE_ITEM_REQUEST';
+export const deleteItemRequest = id => ({
+  type: DELETE_ITEM_REQUEST,
+  id,
+});
+
+export const DELETE_ITEM_ERROR = 'DELETE_ITEM_ERROR';
+export const deleteItemError = (id, error) => ({
+  type: DELETE_ITEM_ERROR,
+  id,
+});
+
+export const DELETE_ITEM_SUCCESS = 'DELETE_ITEM_SUCCESS';
+export const deleteItemSuccess = id => ({
+  type: DELETE_ITEM_SUCCESS,
+  id,
+});
 export const SORT_ITEMS = 'SORT_ITEMS';
 export const sortItems = () => ({
   type: SORT_ITEMS,
@@ -144,4 +167,19 @@ export const toggleChecked = (itemId, listId) => (dispatch, getState) => {
   return dispatch(
     patchItem({ id: itemId, isChecked: !item.isChecked }, listId)
   );
+};
+
+export const deleteItem = (itemId, listId) => (dispatch, getState) => {
+  dispatch(deleteItemRequest(itemId));
+
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/api/lists/${listId}/items/${itemId}`, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+    method: 'DELETE',
+  })
+    .then(normalizeResponseErrors)
+    .then(() => dispatch(deleteItemSuccess(itemId)))
+    .catch(error => dispatch(deleteItemError(itemId, error)));
 };

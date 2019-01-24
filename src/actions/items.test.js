@@ -3,7 +3,13 @@ import {
   patchItemRequest,
   patchItemError,
   patchItem,
+  deleteItemRequest,
+  deleteItemSuccess,
+  deleteItemError,
+  deleteItem,
 } from './items';
+
+import { API_BASE_URL } from '../config';
 
 describe('patchItem', () => {
   let fetch;
@@ -65,6 +71,81 @@ describe('patchItem', () => {
     return patchItem(fixture)(dispatch, getState).then(() => {
       expect(dispatch).toBeCalledWith(patchItemError('001', error));
       fetch.mockRestore();
+    });
+  });
+});
+
+describe('deleteItem', () => {
+  let fetch;
+  const dispatch = jest.fn();
+  const getState = jest.fn(() => ({
+    auth: { authToken: 'haha' },
+  }));
+
+  beforeAll(() => {
+    fetch = jest.spyOn(global, 'fetch');
+  });
+
+  afterAll(() => {
+    fetch.mockRestore();
+  });
+
+  beforeEach(() => {
+    fetch.mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => undefined,
+      })
+    );
+  });
+
+  afterEach(() => {
+    fetch.mockClear();
+    dispatch.mockClear();
+  });
+
+  it('should dispatch a deleteItemRequest', () => {
+    return deleteItem('1', 'listid')(dispatch, getState).then(() => {
+      expect(dispatch).toBeCalledWith(deleteItemRequest('1'));
+    });
+  });
+
+  it('should dispatch a deleteItemSuccess on success', () => {
+    return deleteItem('1', 'listid')(dispatch, getState).then(() => {
+      expect(dispatch).toBeCalledWith(deleteItemSuccess('1'));
+    });
+  });
+
+  it('should dispatch a deleteItemError with the id and error', () => {
+    const error = { message: 'Internal server error', code: 500 };
+
+    fetch.mockImplementation(() =>
+      Promise.resolve({
+        ok: false,
+        json: () => Promise.resolve(error),
+        headers: {
+          has: () => true,
+          get: () => 'application/json',
+        },
+      })
+    );
+
+    return deleteItem('1', 'listid')(dispatch, getState).then(() => {
+      expect(dispatch).toBeCalledWith(deleteItemError('1', error));
+    });
+  });
+
+  it('should send a fetch request to the correct url', () => {
+    return deleteItem('itemId', 'listId')(dispatch, getState).then(() => {
+      expect(fetch).toBeCalledWith(
+        `${API_BASE_URL}/api/lists/listId/items/itemId`,
+        expect.objectContaining({
+          method: 'DELETE',
+          headers: expect.objectContaining({
+            Authorization: expect.any(String),
+          }),
+        })
+      );
     });
   });
 });
