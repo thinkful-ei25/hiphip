@@ -129,6 +129,11 @@ a.button:visited {
   color: inherit;
 }
 
+.editIcon {
+  width: 4vh;
+  margin-left: 2vh;
+}
+
 @media only screen and (min-width: 768px) {
   .pageWrapped {
     display: block;

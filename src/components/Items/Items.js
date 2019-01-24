@@ -107,17 +107,27 @@ export class Items extends Component {
     let header;
     if (editingName) {
       header = (
-        <div onClick={() => this.editing()}>
+        <div>
           {' '}
-          you are editing <button>edit</button>
+          <img
+            className="editIcon"
+            src="/edit.png"
+            alt="editList"
+            onClick={() => this.editing()}
+          />
         </div>
       );
     } else {
       header = (
         <header className="listTitle">
-          <h1 onClick={() => this.editing()}>
+          <h1>
             {name}
-            <button>edit</button>
+            <img
+              className="editIcon"
+              src="/edit.png"
+              alt="editList"
+              onClick={() => this.editing()}
+            />
           </h1>
           {storeBlock}
         </header>
