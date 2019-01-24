@@ -1,19 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { searchStores } from '../../actions/yelpAPI';
+import { searchStores, setUserLocation } from '../../actions/yelpAPI';
 
 import StoreResult from '../StoreResult';
 
 export class StoreSearch extends React.Component {
-  getPosition(options) {
-    return new Promise(function(resolve, reject) {
-      navigator.geolocation.getCurrentPosition(resolve, reject, options);
-    });
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(setUserLocation());
   }
 
   renderResults() {
     if (this.props.error) {
-      return <strong>{this.props.error}</strong>;
+      return <strong>{this.props.error.message}</strong>;
     }
 
     const stores = this.props.stores.map(store => (
@@ -29,26 +28,21 @@ export class StoreSearch extends React.Component {
     if (this.input.value.trim() === '') {
       return;
     }
-    const options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0,
-    };
-    this.getPosition(options)
-      .then(pos => {
-        const coords = pos.coords;
-        this.props.dispatch(searchStores(searchTerm, coords));
-      })
-      .catch(err => {
-        console.error(err.message);
-      });
+    this.props.dispatch(searchStores(searchTerm, this.props.userLocation));
   }
 
   render() {
+    let locationField = (
+      <input type="text" id="loction" ref={input => (this.input = input)} />
+    );
+    if (this.props.userLocation) {
+      locationField = <div>Using Current Location</div>;
+    }
     return (
       <div className="store-search">
         <form onSubmit={e => this.search(e)}>
-          <input type="search" ref={input => (this.input = input)} />
+          <input type="search" id="name" ref={input => (this.input = input)} />
+          {locationField}
           <button>Search</button>
         </form>
         <ul className="store-search-results">{this.renderResults()}</ul>
@@ -61,6 +55,7 @@ const mapStateToProps = state => ({
   stores: state.yelpAPI.stores,
   loading: state.yelpAPI.loading,
   error: state.yelpAPI.error,
+  userLocation: state.yelpAPI.userLocation,
 });
 
 export default connect(mapStateToProps)(StoreSearch);

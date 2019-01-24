@@ -37,8 +37,13 @@ export const searchStores = (searchterm, coords) => (dispatch, getState) => {
     .then(({ businesses }) => {
       dispatch(searchStoresSuccess(businesses));
     })
-    .catch(err => dispatch(searchStoresError));
+    .catch(err => dispatch(searchStoresError(err)));
 };
+
+export const searchStoresWithLocation = (searchTerm, location) => (
+  dispatch,
+  getState
+) => {};
 
 export const SET_CURRENT_STORE = 'SET_CURRENT_STORE';
 export const setCurrentStore = store => ({
@@ -50,3 +55,40 @@ export const CLEAR_CURRENT_STORE = 'CLEAR_CURRENT_STORE';
 export const clearCurrentStore = () => ({
   type: CLEAR_CURRENT_STORE,
 });
+
+export const USER_LOCATION_REQUEST = 'USER_LOCATION_REQUEST';
+export const userLocationRequest = () => ({
+  type: USER_LOCATION_REQUEST,
+});
+
+export const USER_LOCATION_SUCCESS = 'USER_LOCATION_SUCCESS';
+export const userLocationSuccess = location => ({
+  type: USER_LOCATION_SUCCESS,
+  location,
+});
+
+export const USER_LOCATION_ERROR = 'USER_LOCATION_ERROR';
+export const userLocationError = error => ({
+  type: USER_LOCATION_ERROR,
+  error,
+});
+
+export const setUserLocation = () => (dispatch, getState) => {
+  dispatch(userLocationRequest());
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
+  return new Promise(function(resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject, options);
+  })
+    .then(pos => {
+      const coords = pos.coords;
+      dispatch(userLocationSuccess(coords));
+    })
+    .catch(error => {
+      console.log(error);
+      dispatch(userLocationError(error));
+    });
+};
