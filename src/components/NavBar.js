@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOut from './auth-components/logout';
+import ConnectivityMessage from './ConnectivityMessage';
 import './component.css';
 
 export class NavBar extends React.Component {
@@ -15,14 +16,14 @@ export class NavBar extends React.Component {
         <h1>My Lists</h1>
       </Link>
     );
-    const NavBar = (
-      <div className="navigation">
+
+    return (
+      <nav className="navigation">
+        <ConnectivityMessage />
         {logOutButton}
         {listLink}
-      </div>
+      </nav>
     );
-
-    return <nav className="nav-container">{NavBar}</nav>;
   }
 }
 
