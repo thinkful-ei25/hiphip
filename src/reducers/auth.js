@@ -62,6 +62,7 @@ export default function reducer(state = initialState, action) {
     case STAY_LOGGEDIN:
       return {
         ...state,
+        loading: false,
         logoutWarning: false,
       };
     default:

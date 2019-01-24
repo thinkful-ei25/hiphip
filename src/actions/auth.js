@@ -103,15 +103,15 @@ export const refreshAuthToken = () => (dispatch, getState) => {
     .then(res => res.json())
     .then(({ authToken }) => storeAuthInfo(authToken, dispatch))
     .catch(err => {
-      // We couldn't get a refresh token because our current credentials
-      // are invalid or expired, or something else went wrong, so clear
-      // them and sign us out
+      // We are offline
       if (err instanceof TypeError) {
-        console.log('Working in offline mode, skipping login');
-        storeAuthInfo(authToken, dispatch);
+        dispatch(stayLoggedIn());
         return;
       }
 
+      // We couldn't get a refresh token because our current credentials
+      // are invalid or expired, or something else went wrong, so clear
+      // them and sign us out
       dispatch(authError(err));
       dispatch(clearAuth());
       clearAuthToken(authToken);
