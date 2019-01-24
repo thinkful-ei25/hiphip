@@ -9,6 +9,7 @@ import {
   sortItems,
   reverseSortItems,
   unsortItems,
+  editListName,
 } from '../../actions/items';
 import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
@@ -41,6 +42,11 @@ export class Items extends Component {
     dispatch(getItems(listId));
   }
 
+  editing() {
+    const { dispatch, editingName } = this.props;
+    dispatch(editListName());
+    console.log(editingName);
+  }
   render() {
     const {
       authLoading,
@@ -53,6 +59,7 @@ export class Items extends Component {
       aislePrompt,
       sorted,
       reverseSorted,
+      editingName,
     } = this.props;
 
     if (authLoading || loading) {
@@ -92,18 +99,35 @@ export class Items extends Component {
       storeBlock = (
         <h3>
           {store.name}
+
           {address}
         </h3>
+      );
+    }
+    let header;
+    if (editingName) {
+      header = (
+        <div onClick={() => this.editing()}>
+          {' '}
+          you are editing <button>edit</button>
+        </div>
+      );
+    } else {
+      header = (
+        <header className="listTitle">
+          <h1 onClick={() => this.editing()}>
+            {name}
+            <button>edit</button>
+          </h1>
+          {storeBlock}
+        </header>
       );
     }
     return (
       <Fragment>
         <NavBar />
         <main className="Items">
-          <header className="listTitle">
-            <h1>{name}</h1>
-            {storeBlock}
-          </header>
+          {header}
           <section className="shoppingList">
             <div className="item list-heading">Item</div>
             <div className="aisle list-heading" onClick={() => this.onSort()}>
@@ -130,8 +154,8 @@ const mapStateToProps = (state, ownProps) => {
     sorted,
     reverseSorted,
     unsort,
+    editingName,
   } = state.items;
-
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     authLoading: state.auth.loading,
@@ -144,6 +168,7 @@ const mapStateToProps = (state, ownProps) => {
     sorted,
     reverseSorted,
     unsort,
+    editingName,
   };
 };
 

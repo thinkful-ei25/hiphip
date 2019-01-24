@@ -100,6 +100,11 @@ export const unsortItems = () => ({
   type: UNSORT_ITEMS,
 });
 
+export const EDIT_LIST_NAME = 'EDIT_LIST_NAME';
+export const editListName = () => ({
+  type: EDIT_LIST_NAME,
+});
+
 export const addItemToList = (item, listId) => (dispatch, getState) => {
   dispatch(addItemRequest());
 

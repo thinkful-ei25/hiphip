@@ -23,7 +23,6 @@ export default function ShoppingList({ id, name, store, editing }) {
           {store !== null ? store.address.address1 : store}
         </div>
       </Link>
-      <button>edit</button>
     </li>
   );
 }

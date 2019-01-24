@@ -17,6 +17,7 @@ import {
   SORT_ITEMS,
   REVERSE_SORT_ITEMS,
   UNSORT_ITEMS,
+  EDIT_LIST_NAME,
 } from '../actions/items';
 
 const initialState = {
@@ -29,6 +30,7 @@ const initialState = {
   aislePrompt: null,
   sorted: false,
   reverseSorted: false,
+  editingName: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -125,6 +127,10 @@ export default function reducer(state = initialState, action) {
           return { ...item, isEditing: !item.isEditing };
         }),
       };
+    }
+
+    case EDIT_LIST_NAME: {
+      return { ...state, editingName: !state.editingName };
     }
 
     case DELETE_ITEM_REQUEST: {
