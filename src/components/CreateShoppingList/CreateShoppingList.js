@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import NavBar from '../nav-bar';
 import CreateShoppingListForm from '../CreateShoppingListForm';
 
 function CreateShoppingList({ user, loggingIn, currentStore }) {
@@ -16,7 +15,6 @@ function CreateShoppingList({ user, loggingIn, currentStore }) {
 
   return (
     <div className="CreateShoppingList">
-      <NavBar />
       <main>
         <header>
           <h1 className="CreateShoppingList-pageTitle">New shopping list</h1>

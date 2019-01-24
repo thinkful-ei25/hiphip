@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import ShoppingLists from '../shoppingLists';
 
 import '../component.css';
@@ -15,12 +15,18 @@ export class Lists extends Component {
     this.state = { addingList: false };
   }
 
+  toggleModal() {
+    const addingList = !this.state.addingList;
+    this.setState({ addingList });
+  }
+
   render() {
     let CreateListModal = <div className="empty-div">I'm here</div>;
     if (this.state.addingList) {
       CreateListModal = (
-        <div>
+        <div className="CreateShoppingList-container">
           <CreateShoppingList />
+          <button onClick={() => this.toggleModal()}>Close</button>
         </div>
       );
     }
@@ -31,9 +37,9 @@ export class Lists extends Component {
     const navBarJSX = <NavBar />;
     const lists = <ShoppingLists />;
     const createList = (
-      <Link to="/lists/create">
-        <img src="/plus.png" alt="addList" />
-      </Link>
+      <button className="add-list-button" onClick={() => this.toggleModal()}>
+        Add List
+      </button>
     );
     const pageWrapped = (
       <div className="pageWrapped">
