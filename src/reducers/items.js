@@ -5,7 +5,6 @@ import {
   GET_ITEMS_REQUEST,
   GET_ITEMS_ERROR,
   GET_ITEMS_SUCCESS,
-  SET_LIST_NAME,
   PATCH_ITEM_REQUEST,
   PATCH_ITEM_ERROR,
   PATCH_ITEM_SUCCESS,
@@ -60,8 +59,6 @@ export default function reducer(state = initialState, action) {
       const newItems = [...state.items, action.item];
       return { ...state, loading: false, items: newItems };
     }
-    case SET_LIST_NAME:
-      return { ...state, name: action.name };
 
     case PATCH_ITEM_REQUEST: {
       const { itemId } = action;

@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import { getLists } from '../actions/shoppingLists';
-import { setListName } from '../actions/items';
-import './component.css';
+import { getLists } from '../../actions/shoppingLists';
+import '../component.css';
 
 export class ShoppingLists extends Component {
   componentDidMount() {
     this.props.dispatch(getLists());
-  }
-  clickedAList(name) {
-    this.props.dispatch(setListName(name));
   }
   render() {
     if (this.props.lists.loading || this.props.username.loading) {

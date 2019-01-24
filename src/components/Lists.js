@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import ShoppingLists from './shoppingLists';
+import ShoppingLists from './ShoppingLists';
 
 import './component.css';
 import NavBar from './nav-bar';

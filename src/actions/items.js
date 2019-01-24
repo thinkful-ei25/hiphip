@@ -54,12 +54,6 @@ export const addItemSuccess = item => ({
   item,
 });
 
-export const SET_LIST_NAME = 'SET_LIST_NAME';
-export const setListName = name => ({
-  type: SET_LIST_NAME,
-  name,
-});
-
 export const ADD_AISLE_PROMPT = 'ADD_AISLE_PROMPT';
 export const displayAislePrompt = item => ({
   type: ADD_AISLE_PROMPT,
