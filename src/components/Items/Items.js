@@ -63,16 +63,16 @@ export class Items extends Component {
     if (!username) {
       return <Redirect to="/" />;
     }
-    // let sortedItems = items.slice();
-    // if (sorted) {
-    //   sortedItems.sort(compareAisle);
-    //   sortedItems.sort(sortAisle);
-    // } else if (reverseSorted) {
-    //   sortedItems.sort(compareAisle);
-    //   sortedItems.sort(reverseSortAisle);
-    // } else {
-    let sortedItems = manualSort(items, head);
-    // }
+    let sortedItems = items.slice();
+    if (sorted) {
+      sortedItems.sort(compareAisle);
+      sortedItems.sort(sortAisle);
+    } else if (reverseSorted) {
+      sortedItems.sort(compareAisle);
+      sortedItems.sort(reverseSortAisle);
+    } else {
+      sortedItems = manualSort(items, head);
+    }
     let itemElements = sortedItems.map(item => {
       return (
         <ShoppingListItem
