@@ -14,7 +14,11 @@ import { clearCurrentStore, setUserLocation } from '../../actions/yelpAPI';
 
 export class Lists extends Component {
   componentDidMount() {
-    this.props.dispatch(getLists());
+    const { online } = this.props;
+    if (online) {
+      this.props.dispatch(getLists());
+    }
+
     this.props.dispatch(setUserLocation());
   }
 
