@@ -18,7 +18,9 @@ import {
   REVERSE_SORT_ITEMS,
   UNSORT_ITEMS,
   EDIT_LIST_NAME,
-  CHANGE_LIST_NAME,
+  CHANGE_LIST_NAME_REQUEST,
+  CHANGE_LIST_NAME_SUCCESS,
+  CHANGE_LIST_NAME_ERROR,
 } from '../actions/items';
 
 const initialState = {
@@ -134,11 +136,6 @@ export default function reducer(state = initialState, action) {
       return { ...state, editingName: !state.editingName };
     }
 
-    case CHANGE_LIST_NAME: {
-      console.log(action);
-      return { ...state, name: action.name, editingName: !state.editingName };
-    }
-
     case DELETE_ITEM_REQUEST: {
       const { id } = action;
       return {
@@ -176,6 +173,14 @@ export default function reducer(state = initialState, action) {
         items: state.items.filter(item => item.id !== id),
       };
     }
+    case CHANGE_LIST_NAME_REQUEST: {
+      return { ...state, loading: true, error: null };
+    }
+    case CHANGE_LIST_NAME_SUCCESS: {
+      return { ...state, name: action.name, editingName: !state.editingName };
+    }
+    case CHANGE_LIST_NAME_ERROR:
+      return { ...state, error: action.error, loading: false };
 
     case SORT_ITEMS:
       return {

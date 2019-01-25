@@ -76,6 +76,25 @@ export const deleteItemRequest = id => ({
   id,
 });
 
+export const CHANGE_LIST_NAME_REQUEST = 'CHANGE_LIST_NAME_REQUEST';
+export const changeListNameRequest = () => ({
+  type: CHANGE_LIST_NAME_REQUEST,
+});
+
+export const CHANGE_LIST_NAME_SUCCESS = 'CHANGE_LIST_NAME_SUCCESS';
+export const changeListNameSuccess = (name, listId) => ({
+  type: CHANGE_LIST_NAME_SUCCESS,
+  name,
+  listId,
+});
+
+export const CHANGE_LIST_NAME_ERROR = 'CHANGE_LIST_NAME_ERROR';
+export const changeListNameError = (listId, error) => ({
+  type: CHANGE_LIST_NAME_ERROR,
+  listId,
+  error,
+});
+
 export const DELETE_ITEM_ERROR = 'DELETE_ITEM_ERROR';
 export const deleteItemError = (id, error) => ({
   type: DELETE_ITEM_ERROR,
@@ -161,27 +180,20 @@ export const patchItem = (item, listId) => (dispatch, getState) => {
     .catch(err => dispatch(patchItemError(itemId, err)));
 };
 
-export const CHANGE_LIST_NAME = 'CHANGE_LIST_NAME';
-// export const changeListName = (name, listId) => ({
-//   type: CHANGE_LIST_NAME,
-//   name,
-//   listId,
-// });
 export const changeListName = (name, listId) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/lists/${listId}`, {
-    method: 'PATCH',
     headers: {
       Authorization: `Bearer ${authToken}`,
       'Content-Type': 'application/json',
     },
-    name: JSON.stringify(name),
+    method: 'PATCH',
+    body: JSON.stringify({ name }),
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(name => {
-      dispatch(changeListName(name));
-    });
+    .then(() => dispatch(changeListNameSuccess(name)))
+    .catch(err => dispatch(changeListNameError(listId, err)));
 };
 
 export const toggleChecked = (itemId, listId) => (dispatch, getState) => {
