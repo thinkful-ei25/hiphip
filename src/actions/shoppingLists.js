@@ -37,19 +37,7 @@ export const deleteList = listId => (dispatch, getState) => {
       Authorization: `Bearer ${authToken}`,
     },
   })
-    .then(res => {
-      if (!res.ok) {
-        const contentType = res.headers.get('content-type');
-        if (contentType && contentType.startsWith('application/json')) {
-          return res.json().then(err => Promise.reject(err));
-        }
-
-        const error = new Error(res.statusText);
-        error.code = res.status;
-        return Promise.reject(error);
-      }
-      return res;
-    })
+    .then(res => normalizeResponseErrors(res))
     .then(() => dispatch(deleteListSuccess(listId)))
     .catch(error => dispatch(deleteListError(error)));
 };
