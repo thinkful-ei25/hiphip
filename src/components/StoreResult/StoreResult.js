@@ -1,23 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import DistanceDisplay from '../DistanceDisplay';
 import { setCurrentStore } from '../../actions/yelpAPI';
 
 import './StoreResult.css';
 
 export class StoreResult extends React.Component {
-  convertDistance(meters) {
-    let answer = meters / 1609.344;
-    answer = Math.floor(answer * 100) / 100;
-    if (answer > 0.5) {
-      return answer + ' miles away';
-    } else {
-      answer = answer * 5280;
-      answer = Math.floor(answer / 100) * 100;
-      return answer + ' feet away';
-    }
-  }
-
   handleClickedStore() {
     const { name, id, location, coordinates } = this.props.grocer;
     const newStore = {
@@ -46,7 +35,9 @@ export class StoreResult extends React.Component {
           <br />
           {location.city}, {location.state} {location.zip_code}
         </address>
-        <p>{this.convertDistance(store.distance)}</p>
+        <p>
+          <DistanceDisplay meters={store.distance} /> away
+        </p>
       </li>
     );
   }
