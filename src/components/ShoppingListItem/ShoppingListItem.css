@@ -1,0 +1,40 @@
+.ShoppingListItem--checked {
+  text-decoration: line-through;
+  position: relative;
+}
+
+.ShoppingListItem--checked::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.ShoppingListItem {
+  font-size: 1rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #eeeeee;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0.5em 0;
+}
+
+.ShoppingListItem-buttons {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.ShoppingListItem-buttons .button {
+  flex: 1 1;
+}
+
+.ShoppingListItem--editing input {
+  display: inline-block;
+  width: 80%;
+}

@@ -77,16 +77,8 @@ nav h1 {
   background-color: #ff6a00;
 }
 
-.item {
-  display: inline;
-  margin-left: 5%;
-}
 li {
   margin-top: 3%;
-}
-.aisle {
-  float: right;
-  margin-right: 10%;
 }
 
 .add-item-form {
@@ -99,6 +91,56 @@ li {
   display: block;
   margin: 0 auto;
   text-align: center;
+}
+
+.Items .shoppingList {
+  display: grid;
+  grid-template: auto / 5fr 1fr 1fr;
+  padding: 1em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.Items .list-heading {
+  font-weight: bold;
+  text-align: center;
+}
+
+.Items .item {
+  grid-column: 1;
+}
+
+.Items .aisle {
+  grid-column: 2;
+  text-align: center;
+}
+
+.button {
+  display: inline-block;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 0.85em;
+  padding: 0 0.5em;
+  cursor: pointer;
+  text-align: center;
+}
+
+a.button:visited {
+  color: inherit;
+}
+
+.editIcon {
+  width: 3vh;
+  margin-left: 0.75vh;
+}
+.editIconTwo {
+  width: 4.5vh;
+  margin-left: 2vh;
+}
+
+/* :TODO figure out what is overriding */
+.deleteIcon {
+  width: 3vh !important;
 }
 
 @media only screen and (min-width: 768px) {

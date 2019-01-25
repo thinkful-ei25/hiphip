@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 
 import Input from './Input';
 import { addItemToList } from '../actions/items';
 
-export class AddItem extends React.Component {
+export class AddItem extends Component {
   onSubmit(values) {
     const { listId } = this.props;
     this.props.dispatch(addItemToList(values, listId));

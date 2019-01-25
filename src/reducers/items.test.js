@@ -3,6 +3,9 @@ import {
   PATCH_ITEM_SUCCESS,
   PATCH_ITEM_REQUEST,
   PATCH_ITEM_ERROR,
+  DELETE_ITEM_REQUEST,
+  DELETE_ITEM_ERROR,
+  DELETE_ITEM_SUCCESS,
 } from '../actions/items';
 
 describe('PATCH_ITEM_SUCCESS', () => {
@@ -91,4 +94,58 @@ describe('PATCH_ITEM_ERROR', () => {
   const state = itemReducer(initialState, fixture);
   expect(state.error).toEqual(fixture.error);
   expect(state.items[0].loading).toBeUndefined();
+});
+
+describe('DELETE_ITEM', () => {
+  let initialState;
+
+  beforeEach(() => {
+    initialState = {
+      items: [{ id: '0' }, { id: '1' }, { id: '2' }],
+    };
+  });
+
+  describe('REQUEST', () => {
+    it('should add a loading flag to the appropiate action', () => {
+      const action = {
+        type: DELETE_ITEM_REQUEST,
+        id: '1',
+      };
+
+      const state = itemReducer(initialState, action);
+      expect(state.items[1].loading).toBeTruthy();
+    });
+  });
+
+  describe('ERROR', () => {
+    const action = {
+      type: DELETE_ITEM_ERROR,
+      id: '1',
+      error: { message: 'Error' },
+    };
+
+    it('should set the error', () => {
+      const state = itemReducer(initialState, action);
+      expect(state.error).toEqual(action.error);
+    });
+
+    it('should clear the loading flag', () => {
+      initialState.items[1].loading = true;
+      const state = itemReducer(initialState, action);
+      expect(state.items[1].loading).toBeUndefined();
+    });
+  });
+
+  describe('SUCCESS', () => {
+    it('should remove the item from the items list', () => {
+      const action = {
+        type: DELETE_ITEM_SUCCESS,
+        id: '1',
+      };
+
+      const state = itemReducer(initialState, action);
+      expect(state.items).toHaveLength(2);
+      expect(state.items).not.toContainEqual({ id: '1' });
+    });
+  });
 });

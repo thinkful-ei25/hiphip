@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import NavBar from '../nav-bar';
-import CreateShoppingListForm from '../CreateShoppingListForm';
-import StoreSearch from '../StoreSearch';
+import './CreateShoppingList.css';
 
-function CreateShoppingList({ user, loggingIn }) {
+import CreateShoppingListForm from '../CreateShoppingListForm';
+
+function CreateShoppingList({ user, loggingIn, currentStore }) {
   if (loggingIn) {
     return <div>Logging in</div>;
   }
@@ -17,14 +17,10 @@ function CreateShoppingList({ user, loggingIn }) {
 
   return (
     <div className="CreateShoppingList">
-      <NavBar />
-      <main>
-        <header>
-          <h1 className="CreateShoppingList-pageTitle">New shopping list</h1>
-        </header>
-        <CreateShoppingListForm />
-        <StoreSearch />
-      </main>
+      <header>
+        <h2 className="CreateShoppingList-pageTitle">New shopping list</h2>
+      </header>
+      <CreateShoppingListForm />
     </div>
   );
 }
@@ -32,6 +28,7 @@ function CreateShoppingList({ user, loggingIn }) {
 const mapStateToProps = state => ({
   user: state.auth.currentUser,
   loggingIn: state.auth.loading,
+  currentStore: state.yelpAPI.currentStore,
 });
 
 export default connect(mapStateToProps)(CreateShoppingList);
