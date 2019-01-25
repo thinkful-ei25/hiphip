@@ -105,13 +105,6 @@ export const editListName = () => ({
   type: EDIT_LIST_NAME,
 });
 
-export const CHANGE_LIST_NAME = 'CHANGE_LIST_NAME';
-export const changeListName = (name, listId) => ({
-  type: CHANGE_LIST_NAME,
-  name,
-  listId,
-});
-
 export const addItemToList = (item, listId) => (dispatch, getState) => {
   dispatch(addItemRequest());
 
@@ -166,6 +159,29 @@ export const patchItem = (item, listId) => (dispatch, getState) => {
       dispatch(patchItemSuccess(newItem));
     })
     .catch(err => dispatch(patchItemError(itemId, err)));
+};
+
+export const CHANGE_LIST_NAME = 'CHANGE_LIST_NAME';
+// export const changeListName = (name, listId) => ({
+//   type: CHANGE_LIST_NAME,
+//   name,
+//   listId,
+// });
+export const changeListName = (name, listId) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/api/lists/${listId}`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+    },
+    name: JSON.stringify(name),
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(name => {
+      dispatch(changeListName(name));
+    });
 };
 
 export const toggleChecked = (itemId, listId) => (dispatch, getState) => {

@@ -54,6 +54,7 @@ export class Items extends Component {
   newName(e) {
     const { dispatch } = this.props;
     e.preventDefault();
+    console.log(this);
     console.log(this.editListName.value, this.props.listId);
     dispatch(changeListName(this.editListName.value, this.props.listId));
   }
