@@ -3,7 +3,13 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import './ShoppingListItem.css';
-import { toggleEditMode, patchItem, deleteItem } from '../../actions/items';
+import {
+  toggleEditMode,
+  patchItem,
+  deleteItem,
+  manualSortUp,
+  manualSortDown,
+} from '../../actions/items';
 
 export function ShoppingListItem({
   item,
@@ -13,6 +19,8 @@ export function ShoppingListItem({
   deleteItem,
   listId,
   key,
+  manualSortUp,
+  manualSortDown,
 }) {
   function handleSubmit(e) {
     console.log(e);
@@ -87,6 +95,7 @@ export function ShoppingListItem({
       >
         {item.aisleLocation && item.aisleLocation.aisleNo}
       </button>
+
       <div className="ShoppingListItem-buttons">
         <a
           className="button"
@@ -94,6 +103,15 @@ export function ShoppingListItem({
           onClick={() => toggleEditMode(item.id)}
         >
           Edit
+        </a>
+      </div>
+      <div>
+        <a href="#sorted" onClick={() => manualSortUp(item.id)}>
+          U
+        </a>
+
+        <a href="#sorted" onClick={() => manualSortDown(item.id)}>
+          D
         </a>
       </div>
     </Fragment>
@@ -104,6 +122,8 @@ const mapDispatchToProps = {
   toggleEditMode,
   patchItem,
   deleteItem,
+  manualSortUp,
+  manualSortDown,
 };
 
 export default connect(

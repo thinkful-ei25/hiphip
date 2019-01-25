@@ -1,3 +1,13 @@
+export function manualSort(items, head) {
+  const manSortItems = [];
+  let currentIndex = head;
+  while (items[currentIndex]) {
+    manSortItems.push(items[currentIndex]);
+    currentIndex = items[currentIndex].next;
+  }
+  return manSortItems;
+}
+
 export function compareAisle(a, b) {
   let { aisleNo: aisleA } = a.aisleLocation;
   let { aisleNo: aisleB } = b.aisleLocation;

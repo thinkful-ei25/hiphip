@@ -18,8 +18,10 @@ import {
   SORT_ITEMS,
   REVERSE_SORT_ITEMS,
   UNSORT_ITEMS,
+  MANUAL_SORT_UP,
+  MANUAL_SORT_DOWN,
 } from '../actions/items';
-
+import { moveItem } from './utils';
 const initialState = {
   id: null,
   name: null,
@@ -30,6 +32,7 @@ const initialState = {
   aislePrompt: null,
   sorted: false,
   reverseSorted: false,
+  head: null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -48,6 +51,7 @@ export default function reducer(state = initialState, action) {
         store: action.shoppingList.store,
         items: action.shoppingList.items,
         error: false,
+        head: 0,
       };
 
     case ADD_ITEM_REQUEST:
@@ -186,6 +190,16 @@ export default function reducer(state = initialState, action) {
         sorted: false,
         reverseSorted: false,
       };
+    case MANUAL_SORT_UP:
+      const itemsUp = moveItem(state.items, action.itemId, state.head);
+      return {
+        ...state,
+        items: itemsUp.newItems,
+        head: itemsUp.head,
+      };
+    case MANUAL_SORT_DOWN:
+      const downItem = moveItem(state.items, action.itemId, state.head, true);
+      return { ...state, items: downItem.newItems, head: downItem.head };
     default:
       return state;
   }

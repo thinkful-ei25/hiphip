@@ -12,7 +12,7 @@ import {
 } from '../../actions/items';
 import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
-import { compareAisle, sortAisle, reverseSortAisle } from './utils';
+import { manualSort, compareAisle, sortAisle, reverseSortAisle } from './utils';
 
 import '../component.css';
 import ShoppingListItem from '../ShoppingListItem';
@@ -53,6 +53,7 @@ export class Items extends Component {
       aislePrompt,
       sorted,
       reverseSorted,
+      head,
     } = this.props;
 
     if (authLoading || loading) {
@@ -62,14 +63,16 @@ export class Items extends Component {
     if (!username) {
       return <Redirect to="/" />;
     }
-    let sortedItems = items.slice();
-    if (sorted) {
-      sortedItems.sort(compareAisle);
-      sortedItems.sort(sortAisle);
-    } else if (reverseSorted) {
-      sortedItems.sort(compareAisle);
-      sortedItems.sort(reverseSortAisle);
-    }
+    // let sortedItems = items.slice();
+    // if (sorted) {
+    //   sortedItems.sort(compareAisle);
+    //   sortedItems.sort(sortAisle);
+    // } else if (reverseSorted) {
+    //   sortedItems.sort(compareAisle);
+    //   sortedItems.sort(reverseSortAisle);
+    // } else {
+    let sortedItems = manualSort(items, head);
+    // }
     let itemElements = sortedItems.map(item => {
       return (
         <ShoppingListItem
@@ -130,6 +133,7 @@ const mapStateToProps = (state, ownProps) => {
     sorted,
     reverseSorted,
     unsort,
+    head,
   } = state.items;
 
   return {
@@ -144,6 +148,7 @@ const mapStateToProps = (state, ownProps) => {
     sorted,
     reverseSorted,
     unsort,
+    head,
   };
 };
 

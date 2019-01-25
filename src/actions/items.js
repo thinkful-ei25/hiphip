@@ -26,10 +26,12 @@ export const getItemsRequests = () => ({
 });
 
 export const GET_ITEMS_SUCCESS = 'GET_ITEMS_SUCCESS';
-export const getItemsSuccess = shoppingList => ({
-  type: GET_ITEMS_SUCCESS,
-  shoppingList,
-});
+export const getItemsSuccess = shoppingList => {
+  return {
+    type: GET_ITEMS_SUCCESS,
+    shoppingList,
+  };
+};
 
 export const GET_ITEMS_ERROR = 'GET_ITEMS_ERROR';
 export const getItemsError = error => ({
@@ -106,6 +108,17 @@ export const unsortItems = () => ({
   type: UNSORT_ITEMS,
 });
 
+export const MANUAL_SORT_UP = 'MANUAL_SORT_UP';
+export const manualSortUp = itemId => ({
+  type: MANUAL_SORT_UP,
+  itemId,
+});
+
+export const MANUAL_SORT_DOWN = 'MANUAL_SORT_DOWN';
+export const manualSortDown = itemId => ({
+  type: MANUAL_SORT_DOWN,
+  itemId,
+});
 export const addItemToList = (item, listId) => (dispatch, getState) => {
   dispatch(addItemRequest());
 
