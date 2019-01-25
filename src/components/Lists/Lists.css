@@ -4,8 +4,8 @@
 }
 
 .CreateShoppingList-container {
-  background-color: white;
-  max-width: 300px;
+  background-color: transparent;
+  max-width: 50%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -16,4 +16,8 @@
   width: 100px;
   height: 100px;
   background-image: url('/public/plus.png');
+}
+
+.close-button {
+  float: right;
 }

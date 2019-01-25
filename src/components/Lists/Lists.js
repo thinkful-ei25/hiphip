@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import ShoppingLists from '../shoppingLists';
 
 import '../component.css';
 import './Lists.css';
 
+import ShoppingLists from '../shoppingLists';
 import NavBar from '../nav-bar';
 import CreateShoppingList from '../CreateShoppingList';
+
+import { clearCurrentStore, clearStores } from '../../actions/yelpAPI';
 
 export class Lists extends Component {
   constructor(props) {
@@ -20,13 +22,25 @@ export class Lists extends Component {
     this.setState({ addingList });
   }
 
+  closeOut() {
+    this.props.dispatch(clearCurrentStore());
+  }
+
   render() {
-    let CreateListModal = <div className="empty-div">I'm here</div>;
+    let CreateListModal;
     if (this.state.addingList) {
       CreateListModal = (
         <div className="CreateShoppingList-container">
+          <button
+            className="close-button"
+            onClick={() => {
+              this.toggleModal();
+              this.closeOut();
+            }}
+          >
+            Close
+          </button>
           <CreateShoppingList />
-          <button onClick={() => this.toggleModal()}>Close</button>
         </div>
       );
     }

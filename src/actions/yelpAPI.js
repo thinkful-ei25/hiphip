@@ -69,6 +69,11 @@ export const clearCurrentStore = () => ({
   type: CLEAR_CURRENT_STORE,
 });
 
+export const CLEAR_STORES = 'CLEAR_STORES';
+export const clearStores = () => ({
+  type: CLEAR_STORES,
+});
+
 export const USER_LOCATION_REQUEST = 'USER_LOCATION_REQUEST';
 export const userLocationRequest = () => ({
   type: USER_LOCATION_REQUEST,

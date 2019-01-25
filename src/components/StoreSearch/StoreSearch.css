@@ -2,4 +2,5 @@
   list-style-type: none;
   overflow-y: scroll;
   height: 500px;
+  background: transparent;
 }

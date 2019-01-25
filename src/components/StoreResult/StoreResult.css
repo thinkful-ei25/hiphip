@@ -1,14 +1,15 @@
 .store-result {
-  border: 1px solid black;
+  border: 1px solid #ff6a00;
   border-radius: 20px;
   text-align: center;
-  max-width: 250px;
+  width: 95%;
   padding: 5px;
   margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
+  background-color: #ff6a00;
 }
 
 .store-result:hover {
-  background-color: #dddddd;
+  background-color: #db5e04;
 }
