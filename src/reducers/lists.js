@@ -5,6 +5,9 @@ import {
   CREATE_LIST_REQUEST,
   CREATE_LIST_SUCCESS,
   CREATE_LIST_ERROR,
+  DELETE_LIST_REQUEST,
+  DELETE_LIST_SUCCESS,
+  DELETE_LIST_ERROR,
 } from '../actions/shoppingLists';
 
 const initialState = {
@@ -39,6 +42,18 @@ export default function reducer(state = initialState, action) {
     }
     case CREATE_LIST_ERROR:
       return { ...state, loading: false, error: action.error };
+
+    case DELETE_LIST_REQUEST:
+      return { ...state, loading: true };
+    case DELETE_LIST_ERROR:
+      return { ...state, error: action.error, loading: false };
+    case DELETE_LIST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        lists: state.lists.filter(list => list.id !== action.listId),
+      };
     default:
       return state;
   }

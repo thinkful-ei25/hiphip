@@ -35,13 +35,18 @@ export class CreateShoppingListForm extends React.Component {
     const { currentStore } = this.props;
     let storeDisplay;
     let search;
+    let clearButton;
+    let submitButton;
     if (!currentStore) {
       search = (
-        <div>
-          Would you like a store for your list?
+        <div className="search-container">
+          <p className="search-question">
+            Would you like a store for your list?
+          </p>
           <StoreSearch />
         </div>
       );
+      submitButton = <button type="submit">Create List with no Store</button>;
     } else {
       const { name, location } = currentStore;
       storeDisplay = (
@@ -53,26 +58,27 @@ export class CreateShoppingListForm extends React.Component {
             <br />
             {location.city}, {location.state} {location.zip_code}
           </address>
-          <button onClick={() => this.newStore()}>Select another store</button>
         </div>
       );
+      clearButton = (
+        <button onClick={() => this.newStore()}>Select another store</button>
+      );
+      submitButton = <button type="submit">Create List</button>;
     }
 
     return (
-      <div>
+      <div className="CreateShoppingListForm-container">
         <form
           className="CreateShoppingListForm"
           onSubmit={event => this.onSubmit(event)}
         >
-          <fieldset>
-            <legend>List</legend>
-            <label htmlFor="name">
-              List name
-              <input id="name" name="name" />
-            </label>
-          </fieldset>
+          <label htmlFor="name" className="name-label">
+            List name
+            <input id="name" name="name" />
+          </label>
           {storeDisplay}
-          <button type="submit">Create List</button>
+          {clearButton}
+          {submitButton}
         </form>
         {search}
       </div>
