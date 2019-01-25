@@ -30,7 +30,7 @@ export default function ShoppingList({
           {store !== null ? store.name + ' - ' : store}
           {store !== null ? store.address.address1 : store}
         </div>
-        {store && (
+        {store && store.coordinates && (
           <div className="distanceFromStore">
             <CoordinateDistance
               userLocation={userLocation}
