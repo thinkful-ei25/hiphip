@@ -50,8 +50,12 @@ export class Items extends Component {
   }
 
   newName(e) {
-    const { dispatch } = this.props;
     e.preventDefault();
+    const { dispatch } = this.props;
+    if (!this.editListName.value.trim()) {
+      dispatch(editListName());
+      return;
+    }
     dispatch(changeListName(this.editListName.value, this.props.listId));
   }
 
