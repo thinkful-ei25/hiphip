@@ -48,8 +48,6 @@ export default function reducer(state = initialState, action) {
     case DELETE_LIST_ERROR:
       return { ...state, error: action.error, loading: false };
     case DELETE_LIST_SUCCESS:
-      console.log('you hit success');
-      console.log(action);
       return {
         ...state,
         loading: false,

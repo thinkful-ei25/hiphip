@@ -5,17 +5,6 @@ import { deleteList } from '../../actions/shoppingLists';
 import '../component.css';
 
 export class ShoppingList extends Component {
-  // export default function ShoppingList({ id, name, store, editing }) {
-  // if (editing) {
-  //   return (
-  //     <li key={id}>
-  //       <form id={id} />
-  //       <input name="name" defaultValue={name} />
-  //       {store ? <input name="store" defaultValue={store.name} /> : null}
-  //       <button>delete</button>
-  //     </li>
-  //   );
-  // }
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +16,6 @@ export class ShoppingList extends Component {
     this.setState({
       deleteModal: !this.state.deleteModal,
     });
-    console.log(this.state);
   }
 
   confirmDelete() {
@@ -38,7 +26,7 @@ export class ShoppingList extends Component {
   }
 
   render() {
-    const { id, store, name } = this.props;
+    const { id, groceryStore: store, name } = this.props;
 
     let deleteButton = (
       <button onClick={() => this.deleteClicked()}>

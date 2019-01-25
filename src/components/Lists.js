@@ -22,7 +22,7 @@ export class Lists extends Component {
       <ShoppingList
         id={list.id}
         name={list.name}
-        store={list.store}
+        groceryStore={list.store}
         editing={list.editing}
       />
     ));
