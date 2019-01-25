@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import AddItem from '../AddItem';
-import { Form, Text } from 'react-form';
 
 import {
   getItems,
