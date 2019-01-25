@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import ShoppingList from './ShoppingList';
 import { getLists } from '../actions/shoppingLists';
+import { setUserLocation } from '../actions/yelpAPI';
 
 import './component.css';
 import NavBar from './nav-bar';
@@ -10,9 +11,11 @@ import NavBar from './nav-bar';
 export class Lists extends Component {
   componentDidMount() {
     this.props.dispatch(getLists());
+    this.props.dispatch(setUserLocation());
   }
 
   render() {
+    const { userLocation } = this.props;
     if (!this.props.username) {
       return <Redirect to="/" />;
     }
@@ -24,6 +27,7 @@ export class Lists extends Component {
         name={list.name}
         store={list.store}
         editing={list.editing}
+        userLocation={userLocation}
       />
     ));
     const createList = (
@@ -51,6 +55,7 @@ const mapStateToProps = state => {
   return {
     username: state.auth.currentUser && state.auth.currentUser.username,
     lists: state.lists,
+    userLocation: state.yelpAPI.userLocation,
   };
 };
 

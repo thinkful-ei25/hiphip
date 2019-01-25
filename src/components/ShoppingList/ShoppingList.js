@@ -2,7 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../component.css';
 
-export default function ShoppingList({ id, name, store, editing }) {
+import CoordinateDistance from '../CoordinateDistance';
+
+export default function ShoppingList({
+  id,
+  name,
+  store,
+  editing,
+  userLocation,
+}) {
   if (editing) {
     return (
       <li key={id}>
@@ -15,13 +23,22 @@ export default function ShoppingList({ id, name, store, editing }) {
   }
 
   return (
-    <li key={id}>
+    <li key={id} className="ShoppingList">
       <Link to={`/lists/${id}`}>
         <div>{name}</div>
         <div>
           {store !== null ? store.name + ' - ' : store}
           {store !== null ? store.address.address1 : store}
         </div>
+        {store && (
+          <div className="distanceFromStore">
+            <CoordinateDistance
+              userLocation={userLocation}
+              point={store.coordinates}
+            />{' '}
+            away
+          </div>
+        )}
       </Link>
     </li>
   );
