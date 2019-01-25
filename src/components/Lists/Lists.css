@@ -15,7 +15,7 @@
   border-radius: 50%;
   width: 100px;
   height: 100px;
-  background-image: url('/public/plus.png');
+  background-image: url('/plus.png');
 }
 
 .close-button {

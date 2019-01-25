@@ -50,11 +50,14 @@ export class Lists extends Component {
     }
     const navBarJSX = <NavBar />;
     const lists = <ShoppingLists />;
-    const createList = (
+    let createList = (
       <button className="add-list-button" onClick={() => this.toggleModal()}>
         Add List
       </button>
     );
+    if (this.state.addingList) {
+      createList = null;
+    }
     const pageWrapped = (
       <div className="pageWrapped">
         {lists}
