@@ -48,7 +48,6 @@ export class Items extends Component {
   editing() {
     const { dispatch, editingName } = this.props;
     dispatch(editListName());
-    console.log(editingName);
   }
 
   newName(e) {

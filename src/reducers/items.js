@@ -177,10 +177,20 @@ export default function reducer(state = initialState, action) {
       return { ...state, loading: true, error: null };
     }
     case CHANGE_LIST_NAME_SUCCESS: {
-      return { ...state, name: action.name, editingName: !state.editingName };
+      return {
+        ...state,
+        name: action.name,
+        loading: false,
+        editingName: false,
+      };
     }
     case CHANGE_LIST_NAME_ERROR:
-      return { ...state, error: action.error, loading: false };
+      return {
+        ...state,
+        error: action.error,
+        loading: false,
+        editingName: false,
+      };
 
     case SORT_ITEMS:
       return {
