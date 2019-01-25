@@ -99,7 +99,7 @@ export const setUserLocation = () => (dispatch, getState) => {
     .then(pos => {
       const coords = pos.coords;
       dispatch(userLocationSuccess(coords));
-      return dispatch(searchStores('grocery store', coords));
+      return coords;
     })
     .catch(error => {
       dispatch(userLocationError(error));
