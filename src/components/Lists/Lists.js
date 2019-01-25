@@ -9,7 +9,7 @@ import ShoppingLists from '../shoppingLists';
 import NavBar from '../nav-bar';
 import CreateShoppingList from '../CreateShoppingList';
 
-import { clearCurrentStore, clearStores } from '../../actions/yelpAPI';
+import { clearCurrentStore } from '../../actions/yelpAPI';
 
 export class Lists extends Component {
   constructor(props) {
@@ -27,9 +27,9 @@ export class Lists extends Component {
   }
 
   render() {
-    let CreateListModal;
+    let createListModal;
     if (this.state.addingList) {
-      CreateListModal = (
+      createListModal = (
         <div className="CreateShoppingList-container">
           <button
             className="close-button"
@@ -64,7 +64,7 @@ export class Lists extends Component {
     const mainListPage = (
       <div className="wrappedListPage">
         {navBarJSX}
-        {CreateListModal}
+        {createListModal}
         {pageWrapped}
       </div>
     );

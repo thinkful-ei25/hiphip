@@ -17,12 +17,10 @@ function CreateShoppingList({ user, loggingIn, currentStore }) {
 
   return (
     <div className="CreateShoppingList">
-      <main>
-        <header>
-          <h1 className="CreateShoppingList-pageTitle">New shopping list</h1>
-        </header>
-        <CreateShoppingListForm />
-      </main>
+      <header>
+        <h2 className="CreateShoppingList-pageTitle">New shopping list</h2>
+      </header>
+      <CreateShoppingListForm />
     </div>
   );
 }
