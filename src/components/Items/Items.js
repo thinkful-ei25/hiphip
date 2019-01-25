@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import AddItem from '../AddItem';
+
 import {
   getItems,
   toggleChecked,
@@ -9,6 +10,8 @@ import {
   sortItems,
   reverseSortItems,
   unsortItems,
+  editListName,
+  changeListName,
 } from '../../actions/items';
 import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
@@ -41,6 +44,21 @@ export class Items extends Component {
     dispatch(getItems(listId));
   }
 
+  editing() {
+    const { dispatch, editingName } = this.props;
+    dispatch(editListName());
+  }
+
+  newName(e) {
+    e.preventDefault();
+    const { dispatch } = this.props;
+    if (!this.editListName.value.trim()) {
+      dispatch(editListName());
+      return;
+    }
+    dispatch(changeListName(this.editListName.value, this.props.listId));
+  }
+
   render() {
     const {
       authLoading,
@@ -53,6 +71,7 @@ export class Items extends Component {
       aislePrompt,
       sorted,
       reverseSorted,
+      editingName,
     } = this.props;
 
     if (authLoading || loading) {
@@ -92,18 +111,66 @@ export class Items extends Component {
       storeBlock = (
         <h3>
           {store.name}
+
           {address}
         </h3>
+      );
+    }
+    let header;
+    let editForm = (
+      <form onSubmit={e => this.newName(e)}>
+        <input
+          type="text"
+          ref={editListName => {
+            this.editListName = editListName;
+          }}
+        />
+        <button>
+          <img
+            className="editIcon"
+            src="/edit.png"
+            alt="editList"
+            type="submit"
+          />
+        </button>
+      </form>
+    );
+    if (editingName) {
+      header = (
+        <header className="listTitle">
+          <h1>
+            {editForm}
+            <img
+              className="editIconTwo"
+              src="/edit2.png"
+              alt="editList"
+              onClick={() => this.editing()}
+            />
+          </h1>
+          {storeBlock}
+        </header>
+      );
+    } else {
+      header = (
+        <header className="listTitle">
+          <h1>
+            {name}
+            <img
+              className="editIconTwo"
+              src="/edit2.png"
+              alt="editList"
+              onClick={() => this.editing()}
+            />
+          </h1>
+          {storeBlock}
+        </header>
       );
     }
     return (
       <Fragment>
         <NavBar />
         <main className="Items">
-          <header className="listTitle">
-            <h1>{name}</h1>
-            {storeBlock}
-          </header>
+          {header}
           <section className="shoppingList">
             <div className="item list-heading">Item</div>
             <div className="aisle list-heading" onClick={() => this.onSort()}>
@@ -130,8 +197,8 @@ const mapStateToProps = (state, ownProps) => {
     sorted,
     reverseSorted,
     unsort,
+    editingName,
   } = state.items;
-
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     authLoading: state.auth.loading,
@@ -144,6 +211,7 @@ const mapStateToProps = (state, ownProps) => {
     sorted,
     reverseSorted,
     unsort,
+    editingName,
   };
 };
 

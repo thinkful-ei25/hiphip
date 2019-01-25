@@ -129,6 +129,20 @@ a.button:visited {
   color: inherit;
 }
 
+.editIcon {
+  width: 3vh;
+  margin-left: 0.75vh;
+}
+.editIconTwo {
+  width: 4.5vh;
+  margin-left: 2vh;
+}
+
+/* :TODO figure out what is overriding */
+.deleteIcon {
+  width: 3vh !important;
+}
+
 @media only screen and (min-width: 768px) {
   .pageWrapped {
     display: block;

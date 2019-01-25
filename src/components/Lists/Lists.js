@@ -5,13 +5,18 @@ import { Redirect } from 'react-router-dom';
 import '../component.css';
 import './Lists.css';
 
-import ShoppingLists from '../shoppingLists';
+import ShoppingList from '../ShoppingList';
 import NavBar from '../nav-bar';
 import CreateShoppingList from '../CreateShoppingList';
 
+import { getLists } from '../../actions/shoppingLists';
 import { clearCurrentStore } from '../../actions/yelpAPI';
 
 export class Lists extends Component {
+  componentDidMount() {
+    this.props.dispatch(getLists());
+  }
+
   constructor(props) {
     super(props);
     this.state = { addingList: false };
@@ -27,6 +32,9 @@ export class Lists extends Component {
   }
 
   render() {
+    if (!this.props.username) {
+      return <Redirect to="/" />;
+    }
     let createListModal;
     if (this.state.addingList) {
       createListModal = (
@@ -44,12 +52,16 @@ export class Lists extends Component {
         </div>
       );
     }
-
-    if (!this.props.username) {
-      return <Redirect to="/" />;
-    }
     const navBarJSX = <NavBar />;
-    const lists = <ShoppingLists />;
+    const { lists } = this.props;
+    const shoppingLists = lists.map(list => (
+      <ShoppingList
+        id={list.id}
+        name={list.name}
+        groceryStore={list.store}
+        editing={list.editing}
+      />
+    ));
     let createList = (
       <button className="add-list-button" onClick={() => this.toggleModal()}>
         Add List
@@ -60,7 +72,7 @@ export class Lists extends Component {
     }
     const pageWrapped = (
       <div className="pageWrapped">
-        {lists}
+        <ul className="shoppingLists">{shoppingLists}</ul>
         {createList}
       </div>
     );
@@ -78,6 +90,7 @@ export class Lists extends Component {
 const mapStateToProps = state => {
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
+    lists: state.lists.lists,
   };
 };
 
