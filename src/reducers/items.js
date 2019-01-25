@@ -24,7 +24,7 @@ import {
 } from '../actions/items';
 
 const initialState = {
-  id: null,
+  listId: null,
   name: null,
   store: null,
   items: [],
@@ -48,6 +48,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
+        listId: action.shoppingList.id,
         name: action.shoppingList.name,
         store: action.shoppingList.store,
         items: action.shoppingList.items,
