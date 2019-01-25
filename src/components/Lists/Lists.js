@@ -33,6 +33,8 @@ export class Lists extends Component {
   }
 
   render() {
+    const { lists, online } = this.props;
+
     if (!this.props.username) {
       return <Redirect to="/" />;
     }
@@ -54,7 +56,6 @@ export class Lists extends Component {
       );
     }
     const navBarJSX = <NavBar />;
-    const { lists } = this.props;
     const shoppingLists = lists.map(list => (
       <ShoppingList
         id={list.id}
@@ -64,7 +65,11 @@ export class Lists extends Component {
       />
     ));
     let createList = (
-      <button className="add-list-button" onClick={() => this.toggleModal()}>
+      <button
+        disabled={!online}
+        className="add-list-button"
+        onClick={() => this.toggleModal()}
+      >
         Add List
       </button>
     );
@@ -92,6 +97,7 @@ const mapStateToProps = state => {
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     lists: state.lists.lists,
+    online: state.connectivity.online,
   };
 };
 
