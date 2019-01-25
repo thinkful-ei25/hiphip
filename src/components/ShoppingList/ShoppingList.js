@@ -28,10 +28,10 @@ export class ShoppingList extends Component {
   }
 
   render() {
-    const { id, groceryStore: store, name, userLocation } = this.props;
+    const { id, groceryStore: store, name, userLocation, online } = this.props;
 
     let deleteButton = (
-      <button onClick={() => this.deleteClicked()}>
+      <button disabled={!online} onClick={() => this.deleteClicked()}>
         <img className="deleteIcon" src="/delete.png" />
       </button>
     );
@@ -69,6 +69,7 @@ export class ShoppingList extends Component {
 
 const mapStateToProps = state => ({
   userLocation: state.yelpAPI.userLocation,
+  online: state.connectivity.online,
 });
 
 const mapDispatchToProps = {
