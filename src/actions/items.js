@@ -105,6 +105,13 @@ export const editListName = () => ({
   type: EDIT_LIST_NAME,
 });
 
+export const CHANGE_LIST_NAME = 'CHANGE_LIST_NAME';
+export const changeListName = (name, listId) => ({
+  type: CHANGE_LIST_NAME,
+  name,
+  listId,
+});
+
 export const addItemToList = (item, listId) => (dispatch, getState) => {
   dispatch(addItemRequest());
 

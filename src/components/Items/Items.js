@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import AddItem from '../AddItem';
+import { Form, Text } from 'react-form';
+
 import {
   getItems,
   toggleChecked,
@@ -10,6 +12,7 @@ import {
   reverseSortItems,
   unsortItems,
   editListName,
+  changeListName,
 } from '../../actions/items';
 import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
@@ -47,6 +50,14 @@ export class Items extends Component {
     dispatch(editListName());
     console.log(editingName);
   }
+
+  newName(e) {
+    const { dispatch } = this.props;
+    e.preventDefault();
+    console.log(this.editListName.value, this.props.listId);
+    dispatch(changeListName(this.editListName.value, this.props.listId));
+  }
+
   render() {
     const {
       authLoading,
@@ -105,26 +116,34 @@ export class Items extends Component {
       );
     }
     let header;
-    if (editingName) {
-      header = (
-        <div>
-          {' '}
+    let editForm = (
+      <form onSubmit={e => this.newName(e)}>
+        <input
+          type="text"
+          ref={editListName => {
+            this.editListName = editListName;
+          }}
+        />
+        <button>
           <img
             className="editIcon"
             src="/edit.png"
             alt="editList"
-            onClick={() => this.editing()}
+            type="submit"
           />
-        </div>
-      );
+        </button>
+      </form>
+    );
+    if (editingName) {
+      header = <div>{editForm}</div>;
     } else {
       header = (
         <header className="listTitle">
           <h1>
             {name}
             <img
-              className="editIcon"
-              src="/edit.png"
+              className="editIconTwo"
+              src="/edit2.png"
               alt="editList"
               onClick={() => this.editing()}
             />

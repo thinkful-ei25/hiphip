@@ -18,6 +18,7 @@ import {
   REVERSE_SORT_ITEMS,
   UNSORT_ITEMS,
   EDIT_LIST_NAME,
+  CHANGE_LIST_NAME,
 } from '../actions/items';
 
 const initialState = {
@@ -131,6 +132,11 @@ export default function reducer(state = initialState, action) {
 
     case EDIT_LIST_NAME: {
       return { ...state, editingName: !state.editingName };
+    }
+
+    case CHANGE_LIST_NAME: {
+      console.log(action);
+      return { ...state, name: action.name, editingName: !state.editingName };
     }
 
     case DELETE_ITEM_REQUEST: {
