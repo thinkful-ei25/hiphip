@@ -103,7 +103,6 @@ export const setUserLocation = () => (dispatch, getState) => {
   })
     .then(pos => {
       const coords = pos.coords;
-      console.log(coords);
       dispatch(userLocationSuccess(coords));
       return dispatch(searchStores('grocery store', coords));
     })
