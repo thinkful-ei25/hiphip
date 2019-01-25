@@ -134,7 +134,20 @@ export class Items extends Component {
       </form>
     );
     if (editingName) {
-      header = <div>{editForm}</div>;
+      header = (
+        <header className="listTitle">
+          <h1>
+            {editForm}
+            <img
+              className="editIconTwo"
+              src="/edit2.png"
+              alt="editList"
+              onClick={() => this.editing()}
+            />
+          </h1>
+          {storeBlock}
+        </header>
+      );
     } else {
       header = (
         <header className="listTitle">
