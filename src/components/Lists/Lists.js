@@ -10,11 +10,12 @@ import NavBar from '../nav-bar';
 import CreateShoppingList from '../CreateShoppingList';
 
 import { getLists } from '../../actions/shoppingLists';
-import { clearCurrentStore } from '../../actions/yelpAPI';
+import { clearCurrentStore, setUserLocation } from '../../actions/yelpAPI';
 
 export class Lists extends Component {
   componentDidMount() {
     this.props.dispatch(getLists());
+    this.props.dispatch(setUserLocation());
   }
 
   constructor(props) {

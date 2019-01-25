@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { deleteList } from '../../actions/shoppingLists';
 import '../component.css';
 
+import CoordinateDistance from '../CoordinateDistance';
+
 export class ShoppingList extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +28,7 @@ export class ShoppingList extends Component {
   }
 
   render() {
-    const { id, groceryStore: store, name } = this.props;
+    const { id, groceryStore: store, name, userLocation } = this.props;
 
     let deleteButton = (
       <button onClick={() => this.deleteClicked()}>
@@ -42,13 +44,22 @@ export class ShoppingList extends Component {
       );
     }
     return (
-      <li key={id}>
+      <li key={id} className="ShoppingList">
         <Link to={`/lists/${id}`}>
           <div>{name}</div>
           <div>
             {store !== null ? store.name + ' - ' : store}
             {store !== null ? store.address.address1 : store}
           </div>
+          {store && store.coordinates && (
+            <div className="distanceFromStore">
+              <CoordinateDistance
+                userLocation={userLocation}
+                point={store.coordinates}
+              />{' '}
+              away
+            </div>
+          )}
         </Link>
         {deleteButton}
       </li>
@@ -56,11 +67,15 @@ export class ShoppingList extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  userLocation: state.yelpAPI.userLocation,
+});
+
 const mapDispatchToProps = {
   deleteList,
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ShoppingList);
