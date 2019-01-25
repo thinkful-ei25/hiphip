@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import ShoppingLists from './shoppingLists';
+import ShoppingList from './ShoppingList';
+import { getLists } from '../actions/shoppingLists';
 
 import './component.css';
 import NavBar from './nav-bar';
 
 export class Lists extends Component {
+  componentDidMount() {
+    this.props.dispatch(getLists());
+  }
+
   render() {
     if (!this.props.username) {
       return <Redirect to="/" />;
     }
     const navBarJSX = <NavBar />;
-    const lists = <ShoppingLists />;
+    const { lists } = this.props.lists;
+    const shoppingLists = lists.map(list => (
+      <ShoppingList
+        id={list.id}
+        name={list.name}
+        store={list.store}
+        editing={list.editing}
+      />
+    ));
     const createList = (
       <Link to="/lists/create">
         <img src="/plus.png" alt="addList" />
@@ -20,7 +33,7 @@ export class Lists extends Component {
     );
     const pageWrapped = (
       <div className="pageWrapped">
-        {lists}
+        <ul className="shoppingLists">{shoppingLists}</ul>
         {createList}
       </div>
     );
@@ -36,7 +49,8 @@ export class Lists extends Component {
 
 const mapStateToProps = state => {
   return {
-    username: state.auth.currentUser ? state.auth.currentUser.username : null,
+    username: state.auth.currentUser && state.auth.currentUser.username,
+    lists: state.lists,
   };
 };
 
