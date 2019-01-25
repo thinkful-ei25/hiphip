@@ -45,7 +45,7 @@ export class CreateShoppingListForm extends React.Component {
       const { name, location } = currentStore;
       storeDisplay = (
         <div className="selected-store">
-          <p>Here is your current store for your list:</p>
+          <p>Selected store:</p>
           <strong>{name}</strong>
           <address>
             {location.address1} {location.address2}
