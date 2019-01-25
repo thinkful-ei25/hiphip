@@ -22,12 +22,18 @@ import ShoppingListItem from '../ShoppingListItem';
 
 export class Items extends Component {
   onClickHandler(item) {
-    const { dispatch, listId } = this.props;
+    const { dispatch, listId, online } = this.props;
+    if (!online) {
+      return;
+    }
+
     if (!item.isChecked && item.aisleLocation && !item.aisleLocation.aisleNo) {
       dispatch(displayAislePrompt(item));
     }
+
     dispatch(toggleChecked(item.id, listId));
   }
+
   onSort() {
     const { dispatch, sorted, reverseSorted } = this.props;
     if (sorted) {
@@ -39,9 +45,19 @@ export class Items extends Component {
     }
     this.forceUpdate();
   }
+
   componentDidMount() {
-    const { dispatch, listId } = this.props;
-    dispatch(getItems(listId));
+    const { dispatch, listId, online } = this.props;
+    if (online) {
+      dispatch(getItems(listId));
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { online, dispatch, listId } = this.props;
+    if (!prevProps.online && online) {
+      dispatch(getItems(listId));
+    }
   }
 
   editing() {
@@ -72,6 +88,7 @@ export class Items extends Component {
       sorted,
       reverseSorted,
       editingName,
+      online,
     } = this.props;
 
     if (authLoading || loading) {
@@ -95,6 +112,7 @@ export class Items extends Component {
           key={item.id}
           item={item}
           listId={listId}
+          editable={online}
           onClick={() => this.onClickHandler(item)}
         />
       );
@@ -178,8 +196,8 @@ export class Items extends Component {
             </div>
             {itemElements}
           </section>
-          <AddItem listId={listId} />
-          {aislePrompt ? <AddAisle listId={listId} /> : null}
+          {online && <AddItem listId={listId} />}
+          {online && aislePrompt ? <AddAisle listId={listId} /> : null}
         </main>
       </Fragment>
     );
@@ -202,6 +220,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     authLoading: state.auth.loading,
+    online: state.connectivity.online,
     items,
     loading,
     store,

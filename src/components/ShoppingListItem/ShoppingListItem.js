@@ -12,7 +12,7 @@ export function ShoppingListItem({
   patchItem,
   deleteItem,
   listId,
-  key,
+  editable,
 }) {
   function handleSubmit(e) {
     console.log(e);
@@ -88,9 +88,15 @@ export function ShoppingListItem({
         {item.aisleLocation && item.aisleLocation.aisleNo}
       </button>
       <div className="ShoppingListItem-buttons">
-        <a href="#edit" onClick={() => toggleEditMode(item.id)}>
-          <img className="editIcon" src="/edit.png" alt="editList" />
-        </a>
+        {editable && (
+          <a
+            className="button"
+            href="#edit"
+            onClick={() => toggleEditMode(item.id)}
+          >
+            <img className="editIcon" src="/edit.png" alt="editList" />
+          </a>
+        )}
       </div>
     </Fragment>
   );
