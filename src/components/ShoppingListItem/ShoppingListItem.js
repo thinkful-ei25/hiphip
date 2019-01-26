@@ -3,7 +3,12 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import './ShoppingListItem.css';
-import { toggleEditMode, patchItem, deleteItem } from '../../actions/items';
+import {
+  toggleEditMode,
+  patchItem,
+  deleteItem,
+  reorder,
+} from '../../actions/items';
 
 export function ShoppingListItem({
   item,
@@ -12,6 +17,8 @@ export function ShoppingListItem({
   patchItem,
   deleteItem,
   listId,
+  reorder,
+  index,
   key,
 }) {
   function handleSubmit(e) {
@@ -96,6 +103,11 @@ export function ShoppingListItem({
           Edit
         </a>
       </div>
+      <div>
+        <button onClick={() => reorder(index, listId, 'up')}>U</button>
+
+        <button onClick={() => reorder(index, listId, 'down')}>D</button>
+      </div>
     </Fragment>
   );
 }
@@ -104,6 +116,7 @@ const mapDispatchToProps = {
   toggleEditMode,
   patchItem,
   deleteItem,
+  reorder,
 };
 
 export default connect(

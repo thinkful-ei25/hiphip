@@ -89,9 +89,9 @@ export const deleteItemError = (id, error) => ({
 });
 
 export const DELETE_ITEM_SUCCESS = 'DELETE_ITEM_SUCCESS';
-export const deleteItemSuccess = id => ({
+export const deleteItemSuccess = items => ({
   type: DELETE_ITEM_SUCCESS,
-  id,
+  items,
 });
 export const SORT_ITEMS = 'SORT_ITEMS';
 export const sortItems = () => ({
@@ -104,6 +104,22 @@ export const reverseSortItems = () => ({
 export const UNSORT_ITEMS = 'UNSORT_ITEMS ';
 export const unsortItems = () => ({
   type: UNSORT_ITEMS,
+});
+export const REORDER_REQUEST = 'REORDER_REQUEST';
+export const reorderRequest = index => ({
+  type: REORDER_REQUEST,
+  index,
+});
+export const REORDER_ERROR = 'REORDER_ERROR';
+export const reorderError = (itemId, err) => ({
+  type: REORDER_ERROR,
+  itemId,
+  err,
+});
+export const REORDER_SUCCESS = 'REORDER';
+export const reorderSuccess = items => ({
+  type: REORDER_SUCCESS,
+  items,
 });
 
 export const addItemToList = (item, listId) => (dispatch, getState) => {
@@ -180,6 +196,27 @@ export const deleteItem = (itemId, listId) => (dispatch, getState) => {
     method: 'DELETE',
   })
     .then(normalizeResponseErrors)
-    .then(() => dispatch(deleteItemSuccess(itemId)))
+    .then(res => res.json())
+    .then(({ items }) => dispatch(deleteItemSuccess(items)))
     .catch(error => dispatch(deleteItemError(itemId, error)));
+};
+
+export const reorder = (index, listId, direction) => (dispatch, getState) => {
+  dispatch(reorderRequest());
+
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/api/lists/${listId}/items/`, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ index, direction }),
+    method: 'PATCH',
+  })
+    .then(normalizeResponseErrors)
+    .then(res => res.json())
+    .then(({ items }) => {
+      dispatch(reorderSuccess(items));
+    })
+    .catch(error => dispatch(reorderError(error)));
 };
