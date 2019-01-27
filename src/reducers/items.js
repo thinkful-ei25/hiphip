@@ -5,7 +5,6 @@ import {
   GET_ITEMS_REQUEST,
   GET_ITEMS_ERROR,
   GET_ITEMS_SUCCESS,
-  SET_LIST_NAME,
   PATCH_ITEM_REQUEST,
   PATCH_ITEM_ERROR,
   PATCH_ITEM_SUCCESS,
@@ -18,9 +17,17 @@ import {
   SORT_ITEMS,
   REVERSE_SORT_ITEMS,
   UNSORT_ITEMS,
+<<<<<<< HEAD
   REORDER_REQUEST,
   REORDER_ERROR,
   REORDER_SUCCESS,
+||||||| merged common ancestors
+=======
+  EDIT_LIST_NAME,
+  CHANGE_LIST_NAME_REQUEST,
+  CHANGE_LIST_NAME_SUCCESS,
+  CHANGE_LIST_NAME_ERROR,
+>>>>>>> dev
 } from '../actions/items';
 
 const initialState = {
@@ -33,6 +40,7 @@ const initialState = {
   aislePrompt: null,
   sorted: false,
   reverseSorted: false,
+  editingName: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -63,8 +71,6 @@ export default function reducer(state = initialState, action) {
       const newItems = [...state.items, action.item];
       return { ...state, loading: false, items: newItems };
     }
-    case SET_LIST_NAME:
-      return { ...state, name: action.name };
 
     case PATCH_ITEM_REQUEST: {
       const { itemId } = action;
@@ -133,6 +139,10 @@ export default function reducer(state = initialState, action) {
       };
     }
 
+    case EDIT_LIST_NAME: {
+      return { ...state, editingName: !state.editingName };
+    }
+
     case DELETE_ITEM_REQUEST: {
       const { id } = action;
       return {
@@ -170,6 +180,24 @@ export default function reducer(state = initialState, action) {
         items: action.items,
       };
     }
+    case CHANGE_LIST_NAME_REQUEST: {
+      return { ...state, loading: true, error: null };
+    }
+    case CHANGE_LIST_NAME_SUCCESS: {
+      return {
+        ...state,
+        name: action.name,
+        loading: false,
+        editingName: false,
+      };
+    }
+    case CHANGE_LIST_NAME_ERROR:
+      return {
+        ...state,
+        error: action.error,
+        loading: false,
+        editingName: false,
+      };
 
     case SORT_ITEMS:
       return {

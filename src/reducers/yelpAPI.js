@@ -4,6 +4,7 @@ import {
   SEARCH_STORES_ERROR,
   SET_CURRENT_STORE,
   CLEAR_CURRENT_STORE,
+  CLEAR_STORES,
   USER_LOCATION_ERROR,
   USER_LOCATION_REQUEST,
   USER_LOCATION_SUCCESS,
@@ -29,6 +30,8 @@ export default function storeReducer(state = initialState, action) {
       return { ...state, loading: false, currentStore: action.store };
     case CLEAR_CURRENT_STORE:
       return { ...state, currentStore: null };
+    case CLEAR_STORES:
+      return { ...state, stores: [] };
     case USER_LOCATION_ERROR:
       return { ...state, userLocation: null, error: action.error };
     case USER_LOCATION_REQUEST:

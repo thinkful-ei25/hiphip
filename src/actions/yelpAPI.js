@@ -69,6 +69,11 @@ export const clearCurrentStore = () => ({
   type: CLEAR_CURRENT_STORE,
 });
 
+export const CLEAR_STORES = 'CLEAR_STORES';
+export const clearStores = () => ({
+  type: CLEAR_STORES,
+});
+
 export const USER_LOCATION_REQUEST = 'USER_LOCATION_REQUEST';
 export const userLocationRequest = () => ({
   type: USER_LOCATION_REQUEST,
@@ -99,7 +104,7 @@ export const setUserLocation = () => (dispatch, getState) => {
     .then(pos => {
       const coords = pos.coords;
       dispatch(userLocationSuccess(coords));
-      return dispatch(searchStores('grocery store', coords));
+      return coords;
     })
     .catch(error => {
       dispatch(userLocationError(error));

@@ -13,7 +13,9 @@ import './StoreSearch.css';
 export class StoreSearch extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(setUserLocation());
+    dispatch(setUserLocation()).then(userCoordinates =>
+      dispatch(searchStores('grocery store', userCoordinates))
+    );
   }
 
   renderResults() {
@@ -61,7 +63,7 @@ export class StoreSearch extends React.Component {
 
     return (
       <div className="store-search">
-        <form onSubmit={e => this.search(e)}>
+        <form className="store-search-form" onSubmit={e => this.search(e)}>
           <input
             type="search"
             name="searchTerm"

@@ -54,12 +54,6 @@ export const addItemSuccess = item => ({
   item,
 });
 
-export const SET_LIST_NAME = 'SET_LIST_NAME';
-export const setListName = name => ({
-  type: SET_LIST_NAME,
-  name,
-});
-
 export const ADD_AISLE_PROMPT = 'ADD_AISLE_PROMPT';
 export const displayAislePrompt = item => ({
   type: ADD_AISLE_PROMPT,
@@ -80,6 +74,25 @@ export const DELETE_ITEM_REQUEST = 'DELETE_ITEM_REQUEST';
 export const deleteItemRequest = id => ({
   type: DELETE_ITEM_REQUEST,
   id,
+});
+
+export const CHANGE_LIST_NAME_REQUEST = 'CHANGE_LIST_NAME_REQUEST';
+export const changeListNameRequest = () => ({
+  type: CHANGE_LIST_NAME_REQUEST,
+});
+
+export const CHANGE_LIST_NAME_SUCCESS = 'CHANGE_LIST_NAME_SUCCESS';
+export const changeListNameSuccess = (name, listId) => ({
+  type: CHANGE_LIST_NAME_SUCCESS,
+  name,
+  listId,
+});
+
+export const CHANGE_LIST_NAME_ERROR = 'CHANGE_LIST_NAME_ERROR';
+export const changeListNameError = (listId, error) => ({
+  type: CHANGE_LIST_NAME_ERROR,
+  listId,
+  error,
 });
 
 export const DELETE_ITEM_ERROR = 'DELETE_ITEM_ERROR';
@@ -120,6 +133,11 @@ export const REORDER_SUCCESS = 'REORDER';
 export const reorderSuccess = items => ({
   type: REORDER_SUCCESS,
   items,
+});
+
+export const EDIT_LIST_NAME = 'EDIT_LIST_NAME';
+export const editListName = () => ({
+  type: EDIT_LIST_NAME,
 });
 
 export const addItemToList = (item, listId) => (dispatch, getState) => {
@@ -176,6 +194,22 @@ export const patchItem = (item, listId) => (dispatch, getState) => {
       dispatch(patchItemSuccess(newItem));
     })
     .catch(err => dispatch(patchItemError(itemId, err)));
+};
+
+export const changeListName = (name, listId) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/api/lists/${listId}`, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+    },
+    method: 'PATCH',
+    body: JSON.stringify({ name }),
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(() => dispatch(changeListNameSuccess(name)))
+    .catch(err => dispatch(changeListNameError(listId, err)));
 };
 
 export const toggleChecked = (itemId, listId) => (dispatch, getState) => {

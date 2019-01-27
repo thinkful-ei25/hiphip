@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
 import RegistrationPage from './components/auth-components/registration-page';
 import LoginPage from './components/auth-components/login-page';
-import Lists from './components/Lists';
+import Lists from './components/Lists/Lists.js';
 import Items from './components/Items';
 import CreateShoppingList from './components/CreateShoppingList';
 class App extends Component {

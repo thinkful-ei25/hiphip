@@ -95,12 +95,8 @@ export function ShoppingListItem({
         {item.aisleLocation && item.aisleLocation.aisleNo}
       </button>
       <div className="ShoppingListItem-buttons">
-        <a
-          className="button"
-          href="#edit"
-          onClick={() => toggleEditMode(item.id)}
-        >
-          Edit
+        <a href="#edit" onClick={() => toggleEditMode(item.id)}>
+          <img className="editIcon" src="/edit.png" alt="editList" />
         </a>
       </div>
       <div>
