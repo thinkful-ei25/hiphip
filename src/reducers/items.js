@@ -17,17 +17,13 @@ import {
   SORT_ITEMS,
   REVERSE_SORT_ITEMS,
   UNSORT_ITEMS,
-<<<<<<< HEAD
   REORDER_REQUEST,
   REORDER_ERROR,
   REORDER_SUCCESS,
-||||||| merged common ancestors
-=======
-  EDIT_LIST_NAME,
   CHANGE_LIST_NAME_REQUEST,
   CHANGE_LIST_NAME_SUCCESS,
   CHANGE_LIST_NAME_ERROR,
->>>>>>> dev
+
 } from '../actions/items';
 
 const initialState = {
