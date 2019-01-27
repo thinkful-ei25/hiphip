@@ -7,12 +7,22 @@ export class Logout extends Component {
     this.props.dispatch(logout());
   }
   render() {
+    const { disabled } = this.props;
     return (
-      <h2 className="button logout" onClick={() => this.logout()}>
+      <button
+        type="button"
+        className="button logout"
+        disabled={disabled}
+        onClick={() => this.logout()}
+      >
         Logout
-      </h2>
+      </button>
     );
   }
 }
 
-export default connect()(Logout);
+const mapStateToProps = state => ({
+  disabled: !state.connectivity.online,
+});
+
+export default connect(mapStateToProps)(Logout);

@@ -9,11 +9,12 @@ nav a {
   color: black;
 }
 
-nav h2 {
+nav button {
   float: left;
   font-size: 15px;
-  display: inline;
   margin-left: 3%;
+  background-color: inherit;
+  font-weight: bold;
 }
 
 nav h1 {
