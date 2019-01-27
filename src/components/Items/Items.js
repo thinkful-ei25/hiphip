@@ -89,10 +89,11 @@ export class Items extends Component {
       sortedItems.sort(compareAisle);
       sortedItems.sort(reverseSortAisle);
     }
-    let itemElements = sortedItems.map(item => {
+    let itemElements = sortedItems.map((item, index) => {
       return (
         <ShoppingListItem
           key={item.id}
+          index={index}
           item={item}
           listId={listId}
           onClick={() => this.onClickHandler(item)}

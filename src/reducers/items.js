@@ -17,10 +17,17 @@ import {
   SORT_ITEMS,
   REVERSE_SORT_ITEMS,
   UNSORT_ITEMS,
+<<<<<<< HEAD
+  REORDER_REQUEST,
+  REORDER_ERROR,
+  REORDER_SUCCESS,
+||||||| merged common ancestors
+=======
   EDIT_LIST_NAME,
   CHANGE_LIST_NAME_REQUEST,
   CHANGE_LIST_NAME_SUCCESS,
   CHANGE_LIST_NAME_ERROR,
+>>>>>>> dev
 } from '../actions/items';
 
 const initialState = {
@@ -167,10 +174,10 @@ export default function reducer(state = initialState, action) {
     }
 
     case DELETE_ITEM_SUCCESS: {
-      const { id } = action;
+      console.log(action);
       return {
         ...state,
-        items: state.items.filter(item => item.id !== id),
+        items: action.items,
       };
     }
     case CHANGE_LIST_NAME_REQUEST: {
@@ -210,6 +217,19 @@ export default function reducer(state = initialState, action) {
         sorted: false,
         reverseSorted: false,
       };
+
+    case REORDER_REQUEST:
+      return {
+        ...state,
+      };
+    case REORDER_ERROR:
+      const { error } = action;
+      return { ...state, error, loading: false };
+
+    case REORDER_SUCCESS:
+      console.log(action);
+      return { ...state, items: action.items, loading: false };
+
     default:
       return state;
   }
