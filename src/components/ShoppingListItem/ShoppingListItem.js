@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import './ShoppingListItem.css';
+import '../../css/master.css';
 import {
   toggleEditMode,
   patchItem,
