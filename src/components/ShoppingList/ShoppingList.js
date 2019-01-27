@@ -67,7 +67,6 @@ export class ShoppingList extends Component {
             away
           </div>
         )}
-        {deleteButton}
       </Fragment>
     );
 
@@ -78,6 +77,7 @@ export class ShoppingList extends Component {
         ) : (
           <div>{linkBody}</div>
         )}
+        {deleteButton}
       </li>
     );
   }
