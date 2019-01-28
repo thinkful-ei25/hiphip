@@ -299,6 +299,10 @@ a {
   display: block;
 }
 
+.error-prompt {
+  color: red;
+}
+
 .selected-store {
   border: 1px solid #ff6a00;
   border-radius: 20px;
