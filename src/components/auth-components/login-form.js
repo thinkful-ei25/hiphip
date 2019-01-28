@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from '../Input';
 import { login } from '../../actions/auth';
 import { required, nonEmpty } from '../../validators';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../../css/master.css';
 
-export class LoginForm extends Component {
+export class LoginForm extends React.Component {
   onSubmit(values) {
     return this.props.dispatch(login(values.username, values.password));
   }
@@ -15,14 +15,18 @@ export class LoginForm extends Component {
     // console.log(this.props);
     let error;
     if (this.props.error) {
-      console.log('error:', this.props.error);
+      //   console.log('error:',this.props.error);
       error = (
         <div className="form-error" aria-live="polite">
           {this.props.error}
         </div>
       );
     }
-    const register = <Link to="/register">Register</Link>;
+    const register = (
+      <Link className="registerLink" to="/register">
+        Register
+      </Link>
+    );
     return (
       <form
         className="form-itself"
