@@ -1,3 +1,8 @@
+This is a text file with sample css code that may
+be re-omplemented. WIll be deleted after styling
+
+
+
 /* index.css */
 /* #region */
 
