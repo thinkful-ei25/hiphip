@@ -34,7 +34,7 @@ const initialState = {
   loading: false,
   error: false,
   aislePrompt: null,
-  sorted: false,
+  sorted: true,
   reverseSorted: false,
   editingName: false,
 };
