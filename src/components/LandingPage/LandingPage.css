@@ -1,19 +1,37 @@
 .LandingPage h1 {
   font-size: 40px;
   text-align: center;
-  margin: 50px;
+  margin: 1rem;
+  color: var(--ourOrange);
+  font-family: 'Righteous', 'serif';
 }
 
 .hero {
   display: grid;
   grid-template: auto/1fr;
   margin: 0 auto;
-  padding: 0 1em;
+  padding: 2em;
+  background-color: #eeeeee;
 }
 
 .hero .button {
   margin: 0 auto;
   padding: 0.5em 1em;
+  background-color: var(--ourGreen);
+  border: none;
+  border-radius: 4px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero h2 {
+  font-family: 'Righteous', 'serif';
+  font-size: 1.5rem;
+}
+
+.hero p {
+  font-family: 'Lato', 'sans-serif';
+  margin: 1em 0;
 }
 
 .hero img {
@@ -23,12 +41,17 @@
 
 .hero-titles {
   display: flex;
+  margin: 2rem 0;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
 }
 
 @media only screen and (min-width: 768px) {
+  .LandingPage h1 {
+    margin: 3rem;
+  }
+
   .hero {
     grid-template: auto/1fr 1fr;
     max-width: 1000px;
