@@ -20,7 +20,7 @@
 }
 
 .logo {
-  color: #56e722;
+  color: var(--ourGreen);
   text-align: center;
   padding-top: 5%;
   font-size: 7vh;

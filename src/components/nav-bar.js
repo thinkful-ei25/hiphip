@@ -1,26 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogOut from './auth-components/logout';
+import LogOut from './logout';
+import './navbar.css';
 export class NavBar extends React.Component {
   render() {
     let logOutButton;
     if (this.props.loggedIn) {
-      logOutButton = <LogOut />;
+      logOutButton = <LogOut className="rightNav" />;
     }
     const listLink = (
-      <Link to="/lists">
+      <Link to="/lists" className="leftNav">
         <h1>My Lists</h1>
       </Link>
     );
     const NavBar = (
-      <div className="navigation">
-        {logOutButton}
-        {listLink}
-      </div>
+      <ul className="navUl">
+        <li>{listLink}</li>
+        <li>{logOutButton}</li>
+      </ul>
     );
 
-    return <nav className="nav-container">{NavBar}</nav>;
+    return <nav className="navbar">{NavBar}</nav>;
   }
 }
 

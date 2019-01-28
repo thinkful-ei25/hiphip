@@ -30,9 +30,7 @@ export class ShoppingList extends Component {
     const { id, groceryStore: store, name, userLocation } = this.props;
 
     let deleteButton = (
-      <button onClick={() => this.deleteClicked()}>
-        <img className="deleteIcon" src="/delete.png" />
-      </button>
+      <i class="fas fa-trash-alt fa-2x" onClick={() => this.deleteClicked()} />
     );
     if (this.state.deleteModal) {
       deleteButton = (

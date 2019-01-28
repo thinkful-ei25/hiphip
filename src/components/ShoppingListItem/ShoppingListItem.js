@@ -95,7 +95,7 @@ export function ShoppingListItem({
       </button>
       <div className="ShoppingListItem-buttons">
         <a href="#edit" onClick={() => toggleEditMode(item.id)}>
-          <img className="editIcon" src="/edit.png" alt="editList" />
+          <i className="fas fa-edit" type="submit" />
         </a>
       </div>
       <div>

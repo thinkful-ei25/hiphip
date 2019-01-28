@@ -1,0 +1,58 @@
+.CreateShoppingList-container {
+  background-color: transparent;
+  max-width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+.CreateShoppingList-pageTitle {
+  color: white;
+}
+
+.CreateShoppingListForm-container {
+}
+
+.CreateShoppingListForm label {
+  display: block;
+}
+
+.selected-store {
+  border: 1px solid #ff6a00;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 100%;
+  padding: 5px;
+  margin-top: 10px;
+  background-color: #ff6a00;
+}
+
+.search-question {
+  color: white;
+}
+
+.name-label {
+  color: white;
+}
+
+.name-label > input {
+  margin-left: 10px;
+}
+
+.store-result {
+  border: 1px solid #ff6a00;
+  border-radius: 20px;
+  text-align: center;
+  width: 95%;
+  padding: 5px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ff6a00;
+}
+
+.store-search-results {
+  list-style-type: none;
+  overflow-y: scroll;
+  height: 500px;
+  background: transparent;
+}

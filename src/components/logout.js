@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { logout } from '../../actions/auth';
+import { logout } from '../actions/auth';
 import { connect } from 'react-redux';
 export class Logout extends Component {
   logout() {
