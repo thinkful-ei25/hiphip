@@ -81,7 +81,8 @@ export function ShoppingListItem({
         className={classNames(
           'ShoppingListItem',
           { 'ShoppingListItem--checked': item.isChecked },
-          'item'
+          'item',
+          'padded'
         )}
         type="button"
         onClick={onClick}
@@ -92,7 +93,8 @@ export function ShoppingListItem({
         className={classNames(
           'ShoppingListItem',
           { 'ShoppingListItem--checked': item.isChecked },
-          'aisle'
+          'aisle',
+          'padded'
         )}
         onClick={onClick}
         type="button"
