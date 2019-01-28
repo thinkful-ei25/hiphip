@@ -17,7 +17,6 @@ import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
 import { compareAisle, sortAisle, reverseSortAisle } from './utils';
 
-import '../../css/master.css';
 import ShoppingListItem from '../ShoppingListItem';
 
 export class Items extends Component {

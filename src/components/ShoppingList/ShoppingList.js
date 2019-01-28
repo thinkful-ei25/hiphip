@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteList } from '../../actions/shoppingLists';
-import '../../css/master.css';
 
 import CoordinateDistance from '../CoordinateDistance';
 

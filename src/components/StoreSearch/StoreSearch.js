@@ -8,8 +8,6 @@ import {
 
 import StoreResult from '../StoreResult';
 
-import '../../css/master.css';
-
 export class StoreSearch extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;

@@ -1,0 +1,94 @@
+.splash {
+  display: inline-block;
+  min-width: 100%;
+  background: url('/bg.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+}
+
+.login-form {
+  display: block;
+  width: 66%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  box-shadow: inset 0 0 0 200px rgba(28, 31, 37, 0.5);
+  text-align: center;
+}
+
+.logo {
+  color: #56e722;
+  text-align: center;
+  padding-top: 5%;
+  font-size: 7vh;
+  font-style: bold;
+  margin-bottom: 2vh;
+}
+
+.form-itself div {
+  margin-bottom: 3%;
+}
+.login-field {
+  text-align: center;
+}
+
+.form-error {
+  color: red;
+}
+
+.login-btn {
+  width: 40%;
+  margin: auto;
+  margin-bottom: 5%;
+}
+
+.wrappedReg {
+  display: block;
+  width: 66%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  box-shadow: inset 0 0 0 200px rgba(28, 31, 37, 0.5);
+  text-align: center;
+  color: #56e722;
+}
+
+.registration-form div {
+  margin-bottom: 2vh;
+}
+
+@media only screen and (min-width: 768px) {
+  .login-btn {
+    width: 15%;
+    margin: 0px;
+    margin-bottom: 5%;
+    margin-top: 1vh;
+  }
+
+  .form-itself div {
+    margin-bottom: 1%;
+  }
+
+  .registration-form div {
+    margin-bottom: 0;
+  }
+  .registration-form {
+    width: 20%;
+    margin: auto;
+    margin-bottom: -2vh;
+  }
+
+  .registration-form .login-btn {
+    width: 25%;
+    margin-top: 2px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .form-itself div {
+    margin-bottom: 0%;
+  }
+}

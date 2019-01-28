@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import '../../css/master.css';
 import ShoppingList from '../ShoppingList';
 import NavBar from '../nav-bar';
 import CreateShoppingList from '../CreateShoppingList';
