@@ -3,13 +3,13 @@
   text-align: center;
   margin: 1rem;
   color: var(--ourOrange);
-  font-family: 'Righteous', 'serif';
+  font-family: var(--titleFonts);
 }
 
 .hero {
   display: grid;
   grid-template: auto/1fr;
-  margin: 0 auto;
+  margin: 1rem auto;
   padding: 2em;
   background-color: #eeeeee;
 }
