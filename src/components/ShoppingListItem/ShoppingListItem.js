@@ -55,12 +55,9 @@ export function ShoppingListItem({
           />
         </div>
         <div className="ShoppingListItem-buttons">
-          <i
-            className="fas fa-check-circle fa-1x"
-            type="submit"
-            form={formId}
-          />
-
+          <button type="submit" form={formId} className="editItemButton">
+            <i className="fas fa-check-circle fa-1x" />
+          </button>
           <i
             className="fas fa-trash-alt fa-1x"
             onClick={() => deleteItem(item.id, listId)}

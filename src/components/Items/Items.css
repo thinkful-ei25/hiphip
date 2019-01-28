@@ -65,6 +65,7 @@
 .ShoppingListItem--editing {
   border: none;
   padding: 0 auto;
+  background-color: white;
 }
 
 .ShoppingListItem--editing input {
@@ -148,4 +149,11 @@
 
 .addItemInputs input {
   font-family: var(--secondaryFonts);
+}
+
+.editItemButton {
+  background-color: transparent;
+  border: none;
+  padding: none;
+  margin: none;
 }
