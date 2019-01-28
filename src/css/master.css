@@ -220,11 +220,6 @@ a {
   width: 40px;
 }
 
-.listTitle {
-  text-align: center;
-  background-color: #ff6a00;
-}
-
 li {
   margin-top: 3%;
 }
@@ -238,28 +233,6 @@ li {
 .add-item-form button {
   display: block;
   margin: 0 auto;
-  text-align: center;
-}
-
-.Items .shoppingList {
-  display: grid;
-  grid-template: auto / 5fr 1fr 1fr;
-  padding: 1em;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.Items .list-heading {
-  font-weight: bold;
-  text-align: center;
-}
-
-.Items .item {
-  grid-column: 1;
-}
-
-.Items .aisle {
-  grid-column: 2;
   text-align: center;
 }
 

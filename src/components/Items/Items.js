@@ -18,7 +18,7 @@ import AddAisle from '../AddAisle';
 import { compareAisle, sortAisle, reverseSortAisle } from './utils';
 
 import ShoppingListItem from '../ShoppingListItem';
-
+import './Items.css';
 export class Items extends Component {
   onClickHandler(item) {
     const { dispatch, listId } = this.props;
