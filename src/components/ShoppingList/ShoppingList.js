@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { deleteList } from '../../actions/shoppingLists';
 
 import CoordinateDistance from '../CoordinateDistance';
-
+import '../Lists/Lists.css';
 export class ShoppingList extends Component {
   constructor(props) {
     super(props);

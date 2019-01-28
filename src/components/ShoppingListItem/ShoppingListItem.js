@@ -8,7 +8,7 @@ import {
   deleteItem,
   reorder,
 } from '../../actions/items';
-
+import '../Lists/Lists.css';
 export function ShoppingListItem({
   item,
   onClick,
