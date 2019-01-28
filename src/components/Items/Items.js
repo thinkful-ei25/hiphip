@@ -125,9 +125,7 @@ export class Items extends Component {
             this.editListName = editListName;
           }}
         />
-        <button>
-          <i className="fas fa-edit" type="submit" />
-        </button>
+        <i className="fas fa-edit" type="submit" />
       </form>
     );
     if (editingName) {
