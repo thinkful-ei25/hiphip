@@ -9,21 +9,18 @@
   color: white;
 }
 
-.CreateShoppingListForm-container {
-}
-
 .CreateShoppingListForm label {
   display: block;
 }
 
 .selected-store {
-  border: 1px solid #ff6a00;
+  border: 1px solid var(--ouorOrange);
   border-radius: 20px;
   text-align: center;
   max-width: 100%;
   padding: 5px;
   margin-top: 10px;
-  background-color: #ff6a00;
+  background-color: var(--ourOrange);
 }
 
 .search-question {
@@ -39,7 +36,7 @@
 }
 
 .store-result {
-  border: 1px solid #ff6a00;
+  border: 1px solid var(--ourOrange);
   border-radius: 20px;
   text-align: center;
   width: 95%;
@@ -47,7 +44,7 @@
   margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #ff6a00;
+  background-color: var(--ourOrange);
 }
 
 .store-search-results {
