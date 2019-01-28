@@ -1,0 +1,10 @@
+:root {
+  --ourOrange: #fb6107;
+  --ourGreen: #7cb518;
+  --ourYellow: #f3de2c;
+  --ourGold: #fbb02d;
+}
+
+.orange {
+  color: #ff6a00;
+}

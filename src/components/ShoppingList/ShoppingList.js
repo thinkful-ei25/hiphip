@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteList } from '../../actions/shoppingLists';
-import '../../css/master.css';
 
 import CoordinateDistance from '../CoordinateDistance';
-
+import '../Lists/Lists.css';
 export class ShoppingList extends Component {
   constructor(props) {
     super(props);
@@ -31,9 +30,7 @@ export class ShoppingList extends Component {
     const { id, groceryStore: store, name, userLocation } = this.props;
 
     let deleteButton = (
-      <button onClick={() => this.deleteClicked()}>
-        <img className="deleteIcon" src="/delete.png" />
-      </button>
+      <i class="fas fa-trash-alt fa-2x" onClick={() => this.deleteClicked()} />
     );
     if (this.state.deleteModal) {
       deleteButton = (

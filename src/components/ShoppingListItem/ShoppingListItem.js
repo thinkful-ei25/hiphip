@@ -2,14 +2,13 @@ import classNames from 'classnames';
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import '../../css/master.css';
 import {
   toggleEditMode,
   patchItem,
   deleteItem,
   reorder,
 } from '../../actions/items';
-
+import '../Lists/Lists.css';
 export function ShoppingListItem({
   item,
   onClick,
@@ -96,7 +95,7 @@ export function ShoppingListItem({
       </button>
       <div className="ShoppingListItem-buttons">
         <a href="#edit" onClick={() => toggleEditMode(item.id)}>
-          <img className="editIcon" src="/edit.png" alt="editList" />
+          <i className="fas fa-edit" type="submit" />
         </a>
       </div>
       <div>

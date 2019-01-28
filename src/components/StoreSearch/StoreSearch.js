@@ -5,10 +5,8 @@ import {
   setUserLocation,
   searchStoresWithLocation,
 } from '../../actions/yelpAPI';
-
+import '../Lists/Lists.css';
 import StoreResult from '../StoreResult';
-
-import '../../css/master.css';
 
 export class StoreSearch extends React.Component {
   componentDidMount() {

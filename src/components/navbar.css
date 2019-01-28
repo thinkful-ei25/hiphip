@@ -1,0 +1,47 @@
+.navUl {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--ourOrange);
+}
+.rightNav {
+  float: right;
+}
+.leftNav {
+  float: left;
+}
+
+.navUl li a {
+  display: block;
+  float: right;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  height: 25px;
+}
+
+.navUl li h2 {
+  display: block;
+  float: right;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  height: 25px;
+}
+
+.navUl li h2:hover {
+  background-color: #111;
+}
+
+.navUl li:first-child {
+  vertical-align: middle;
+  float: left;
+}
+
+/* Change the link color to #111 (black) on hover */
+.navUl li a:hover {
+  background-color: #111;
+}

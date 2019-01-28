@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import '../../css/master.css';
-
 export default class Input extends Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.meta.active && this.props.meta.active) {

@@ -17,7 +17,6 @@ import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
 import { compareAisle, sortAisle, reverseSortAisle } from './utils';
 
-import '../../css/master.css';
 import ShoppingListItem from '../ShoppingListItem';
 
 export class Items extends Component {
@@ -127,12 +126,7 @@ export class Items extends Component {
           }}
         />
         <button>
-          <img
-            className="editIcon"
-            src="/edit.png"
-            alt="editList"
-            type="submit"
-          />
+          <i className="fas fa-edit" type="submit" />
         </button>
       </form>
     );
@@ -141,12 +135,7 @@ export class Items extends Component {
         <header className="listTitle">
           <h1>
             {editForm}
-            <img
-              className="editIconTwo"
-              src="/edit2.png"
-              alt="editList"
-              onClick={() => this.editing()}
-            />
+            <i className="fas fa-edit" onClick={() => this.editing()} />
           </h1>
           {storeBlock}
         </header>
@@ -156,12 +145,7 @@ export class Items extends Component {
         <header className="listTitle">
           <h1>
             {name}
-            <img
-              className="editIconTwo"
-              src="/edit2.png"
-              alt="editList"
-              onClick={() => this.editing()}
-            />
+            <i className="fas fa-edit" onClick={() => this.editing()} />
           </h1>
           {storeBlock}
         </header>
