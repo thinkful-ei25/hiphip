@@ -14,7 +14,7 @@
 }
 .Items .shoppingList {
   display: grid;
-  grid-template: auto / 5fr 1fr 1.5fr;
+  grid-template: auto / 5fr 0.5fr 1.5fr 0.5fr 2fr;
   padding: 1em;
   max-width: 800px;
   margin: 0 auto;
@@ -23,12 +23,10 @@
 .Items .item {
   grid-column: 1;
   border: 1px solid black;
-  padding-left: 2%;
 }
 .Items .aisle {
-  grid-column: 2;
+  grid-column: 3;
   border: 1px solid black;
-  padding-left: 2%;
 }
 
 .Items .list-heading {
@@ -63,21 +61,30 @@
   cursor: pointer;
   text-align: left;
   padding: 0.5em 0;
+  background-color: white;
 }
 
 .ShoppingListItem-buttons {
   display: inline-flex;
   flex-flow: row nowrap;
   align-items: center;
+  grid-column: 5;
 }
 
 .ShoppingListItem-buttons .button {
   flex: 1 1;
 }
 
+.ShoppingListItem--editing {
+  border: none;
+  padding: 0 auto;
+}
+
 .ShoppingListItem--editing input {
   display: inline-block;
-  width: 80%;
+  width: 100%;
+  margin: auto;
+  padding: auto;
 }
 
 .listTitle {
@@ -102,29 +109,39 @@
 
 .addItemInputs {
   text-align: center;
-}
-
-.add-item-form {
-  width: 90%;
-  margin: auto;
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 3fr;
-}
-
-.add-item-field {
-  grid-row: 1;
-  grid-column: 1;
-  background-color: white;
-}
-
-.add-aisle-field {
-  grid-row: 2;
-  grid-column: 2;
-  background-color: white;
+  margin-top: 2px;
 }
 
 .add-item-button {
-  grid-row: 1;
-  grid-column: 3;
+  width: 20%;
+  margin-top: 2px;
+}
+
+.add-item-form {
+  text-align: center;
+}
+
+.form-input {
+  margin-top: 5px;
+}
+
+.editingItem {
+  height: 100%;
+  padding-left: 2px;
+  border: none;
+}
+
+.editingItem {
+  height: 100%;
+  padding-left: 2px;
+  border: none;
+}
+
+.editingAisle {
+  height: 100%;
+  padding-left: 2px;
+  border: none;
+}
+.fas {
+  margin-left: 5%;
 }

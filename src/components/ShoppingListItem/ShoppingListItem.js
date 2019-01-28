@@ -38,33 +38,38 @@ export function ShoppingListItem({
       <Fragment>
         <div className="ShoppingListItem--editing item">
           <form id={formId} onSubmit={handleSubmit} />
-          <input form={formId} name="name" defaultValue={item.name} />
+          <input
+            form={formId}
+            name="name"
+            defaultValue={item.name}
+            type="text"
+            className="editingItem"
+          />
         </div>
         <div className="ShoppingListItem--editing aisle">
           <input
             form={formId}
             name="aisle"
             defaultValue={item.aisleLocation && item.aisleLocation.aisleNo}
+            className="editingAisle"
           />
         </div>
         <div className="ShoppingListItem-buttons">
-          <button type="submit" form={formId} className="button">
-            Submit
-          </button>
-          <button
-            type="button"
-            className="button"
+          <i
+            className="fas fa-check-circle fa-1x"
+            type="submit"
+            form={formId}
+          />
+
+          <i
+            className="fas fa-trash-alt fa-1x"
             onClick={() => deleteItem(item.id, listId)}
-          >
-            Delete
-          </button>
-          <a
-            href="# "
+          />
+
+          <i
+            className="fas fa-ban fa-1x"
             onClick={() => toggleEditMode(item.id)}
-            className="button"
-          >
-            Cancel
-          </a>
+          />
         </div>
       </Fragment>
     );
