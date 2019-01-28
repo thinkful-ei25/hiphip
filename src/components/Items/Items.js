@@ -145,7 +145,10 @@ export class Items extends Component {
         <header className="listTitle">
           <h1>
             {name}
-            <i className="fas fa-edit" onClick={() => this.editing()} />
+            <i
+              className="fas fa-edit editIcon"
+              onClick={() => this.editing()}
+            />
           </h1>
           {storeBlock}
         </header>
@@ -154,17 +157,19 @@ export class Items extends Component {
     return (
       <Fragment>
         <NavBar />
-        <main className="Items">
-          {header}
-          <section className="shoppingList">
-            <div className="item list-heading">Item</div>
-            <div className="aisle list-heading" onClick={() => this.onSort()}>
-              Aisle
-            </div>
-            {itemElements}
-          </section>
-          <AddItem listId={listId} />
-          {aislePrompt ? <AddAisle listId={listId} /> : null}
+        <main className="mainForItems">
+          <div className="Items">
+            {header}
+            <section className="shoppingList">
+              <div className="item list-heading">Item:</div>
+              <div className="aisle list-heading" onClick={() => this.onSort()}>
+                Aisle:
+              </div>
+              {itemElements}
+            </section>
+            <AddItem listId={listId} />
+            {aislePrompt ? <AddAisle listId={listId} /> : null}
+          </div>
         </main>
       </Fragment>
     );

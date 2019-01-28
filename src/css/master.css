@@ -1,8 +1,3 @@
-This is a text file with sample css code that may
-be re-omplemented. WIll be deleted after styling
-
-
-
 /* index.css */
 /* #region */
 
@@ -233,6 +228,28 @@ li {
 .add-item-form button {
   display: block;
   margin: 0 auto;
+  text-align: center;
+}
+
+.Items .shoppingList {
+  display: grid;
+  grid-template: auto / 5fr 1fr 1fr;
+  padding: 1em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.Items .list-heading {
+  font-weight: bold;
+  text-align: center;
+}
+
+.Items .item {
+  grid-column: 1;
+}
+
+.Items .aisle {
+  grid-column: 2;
   text-align: center;
 }
 

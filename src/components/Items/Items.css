@@ -1,26 +1,130 @@
+.mainForItems {
+  display: inline-block;
+  min-width: 100%;
+  background: url('/bg.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+}
+.Items {
+  background-color: var(--fadedBack);
+  height: 100vh;
+}
 .Items .shoppingList {
   display: grid;
-  grid-template: auto / 5fr 1fr 1fr;
+  grid-template: auto / 5fr 1fr 1.5fr;
   padding: 1em;
   max-width: 800px;
   margin: 0 auto;
 }
 
-.Items .list-heading {
-  font-weight: bold;
-  text-align: center;
-}
-
 .Items .item {
   grid-column: 1;
+  border: 1px solid black;
+  padding-left: 2%;
 }
-
 .Items .aisle {
   grid-column: 2;
-  text-align: center;
+  border: 1px solid black;
+  padding-left: 2%;
+}
+
+.Items .list-heading {
+  font-family: var(--secondaryFonts);
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 1%;
+  border: none;
+}
+
+.ShoppingListItem--checked {
+  text-decoration: line-through;
+  position: relative;
+}
+
+.ShoppingListItem--checked::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.ShoppingListItem {
+  font-size: 1rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #eeeeee;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0.5em 0;
+}
+
+.ShoppingListItem-buttons {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.ShoppingListItem-buttons .button {
+  flex: 1 1;
+}
+
+.ShoppingListItem--editing input {
+  display: inline-block;
+  width: 80%;
 }
 
 .listTitle {
   text-align: center;
   background-color: var(--ourOrange);
+}
+
+.listTitle h1 {
+  font-family: var(--titleFonts);
+  font-size: 2em;
+  margin-bottom: 1vh;
+}
+
+.listTitle h3 {
+  font-family: var(--secondaryFonts);
+  padding-bottom: 0.5vh;
+}
+
+.editIcon {
+  margin-left: 3px;
+}
+
+.addItemInputs {
+  text-align: center;
+}
+
+.add-item-form {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 3fr;
+}
+
+.add-item-field {
+  grid-row: 1;
+  grid-column: 1;
+  background-color: white;
+}
+
+.add-aisle-field {
+  grid-row: 2;
+  grid-column: 2;
+  background-color: white;
+}
+
+.add-item-button {
+  grid-row: 1;
+  grid-column: 3;
 }

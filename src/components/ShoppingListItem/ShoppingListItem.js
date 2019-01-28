@@ -8,6 +8,7 @@ import {
   deleteItem,
   reorder,
 } from '../../actions/items';
+import '../Items/Items.css';
 import '../Lists/Lists.css';
 export function ShoppingListItem({
   item,
@@ -94,14 +95,18 @@ export function ShoppingListItem({
         {item.aisleLocation && item.aisleLocation.aisleNo}
       </button>
       <div className="ShoppingListItem-buttons">
-        <a href="#edit" onClick={() => toggleEditMode(item.id)}>
-          <i className="fas fa-edit" type="submit" />
-        </a>
-      </div>
-      <div>
-        <button onClick={() => reorder(index, listId, 'up')}>U</button>
+        <div>
+          <button onClick={() => reorder(index, listId, 'up')}>
+            <i class="fas fa-arrow-up" />
+          </button>
 
-        <button onClick={() => reorder(index, listId, 'down')}>D</button>
+          <button onClick={() => reorder(index, listId, 'down')}>
+            <i class="fas fa-arrow-down" />
+          </button>
+        </div>
+        <a href="#edit" onClick={() => toggleEditMode(item.id)}>
+          <i className="fas fa-edit editIcon" type="submit" />
+        </a>
       </div>
     </Fragment>
   );

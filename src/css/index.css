@@ -3,8 +3,11 @@
   --ourGreen: #7cb518;
   --ourYellow: #f3de2c;
   --ourGold: #fbb02d;
+  --titleFonts: 'Righteous', cursive;
+  --secondaryFonts: 'Lato', sans-serif;
+  --fadedBack: rgba(255, 255, 255, 0.6);
 }
 
 .orange {
-  color: #ff6a00;
+  color: var(--ourOrange);
 }
