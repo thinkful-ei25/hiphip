@@ -26,7 +26,7 @@ export default function LandingPage() {
           </section>
           <section className="hero">
             <img
-              src="/landing/aisles.png"
+              src="/landing/in-store.png"
               alt="Diagram of simplifying path through a store"
             />
             <div className="hero-titles">
@@ -39,14 +39,12 @@ export default function LandingPage() {
           </section>
           <section className="hero">
             <img
-              src="/landing/aisles.png"
+              src="/landing/crowdsourced.png"
               alt="Diagram of simplifying path through a store"
             />
             <div className="hero-titles">
               <h2>Leverage fellow shoppers</h2>
-              <p>
-                Other GoCery shopper's aisle information updates in your list
-              </p>
+              <p>Other user's aisle updates help you too</p>
               <a href="/login" className="button">
                 Get started
               </a>
