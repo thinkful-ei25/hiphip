@@ -23,7 +23,7 @@ import {
   CHANGE_LIST_NAME_REQUEST,
   CHANGE_LIST_NAME_SUCCESS,
   CHANGE_LIST_NAME_ERROR,
-
+  EDIT_LIST_NAME,
 } from '../actions/items';
 
 const initialState = {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOut from './auth-components/logout';
-import './component.css';
+import '../css/master.css';
 export class NavBar extends React.Component {
   render() {
     let logOutButton;

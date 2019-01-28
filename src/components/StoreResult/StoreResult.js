@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import DistanceDisplay from '../DistanceDisplay';
 import { setCurrentStore } from '../../actions/yelpAPI';
 
-import './StoreResult.css';
+import '../../css/master.css';
 
 export class StoreResult extends React.Component {
   handleClickedStore() {
