@@ -1,0 +1,44 @@
+.LandingPage h1 {
+  font-size: 40px;
+  text-align: center;
+  margin: 50px;
+}
+
+.hero {
+  display: grid;
+  grid-template: auto/1fr;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.hero .button {
+  margin: 0 auto;
+  padding: 0.5em 1em;
+}
+
+.hero img {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.hero-titles {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .hero {
+    grid-template: auto/1fr 1fr;
+    max-width: 1000px;
+  }
+
+  .hero img {
+    grid-column-start: 2;
+  }
+
+  .hero-titles {
+    grid-row-start: 1;
+  }
+}
