@@ -9,6 +9,11 @@ import '../Lists/Lists.css';
 import StoreResult from '../StoreResult';
 
 export class StoreSearch extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { usingUserLocation: true };
+  }
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(setUserLocation()).then(userCoordinates =>
@@ -21,10 +26,16 @@ export class StoreSearch extends React.Component {
       return;
     }
 
+    let { usingUserLocation } = this.state;
+
     let stores = [];
     if (this.props.stores) {
       stores = this.props.stores.map(store => (
-        <StoreResult key={store.id} grocer={store} />
+        <StoreResult
+          key={store.id}
+          grocer={store}
+          currentLocation={usingUserLocation}
+        />
       ));
     }
 
@@ -39,8 +50,10 @@ export class StoreSearch extends React.Component {
       searchTerm = 'grocery';
     }
     if (this.props.userLocation && location.trim() === '') {
+      this.setState({ usingUserLocation: true });
       this.props.dispatch(searchStores(searchTerm, this.props.userLocation));
     } else {
+      this.setState({ usingUserLocation: false });
       this.props.dispatch(searchStoresWithLocation(searchTerm, location));
     }
   }
