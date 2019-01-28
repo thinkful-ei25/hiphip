@@ -43,7 +43,7 @@ export function ShoppingListItem({
             name="name"
             defaultValue={item.name}
             type="text"
-            className="editingItem"
+            className="editingItem padded"
           />
         </div>
         <div className="ShoppingListItem--editing aisle">
@@ -51,7 +51,7 @@ export function ShoppingListItem({
             form={formId}
             name="aisle"
             defaultValue={item.aisleLocation && item.aisleLocation.aisleNo}
-            className="editingAisle"
+            className="editingAisle padded"
           />
         </div>
         <div className="ShoppingListItem-buttons">
@@ -103,13 +103,15 @@ export function ShoppingListItem({
       </button>
       <div className="ShoppingListItem-buttons">
         <div>
-          <button onClick={() => reorder(index, listId, 'up')}>
-            <i class="fas fa-arrow-up" />
-          </button>
+          <i
+            class="fas fa-arrow-up"
+            onClick={() => reorder(index, listId, 'up')}
+          />
 
-          <button onClick={() => reorder(index, listId, 'down')}>
-            <i class="fas fa-arrow-down" />
-          </button>
+          <i
+            class="fas fa-arrow-down"
+            onClick={() => reorder(index, listId, 'down')}
+          />
         </div>
         <a href="#edit" onClick={() => toggleEditMode(item.id)}>
           <i className="fas fa-edit editIcon" type="submit" />

@@ -1,6 +1,6 @@
 .Items .shoppingList {
   display: grid;
-  grid-template: auto / 5fr 0.5fr 1.5fr 0.5fr 2fr;
+  grid-template: auto / 5fr 0.5fr 1.5fr 0.5fr 1.6fr;
   padding: 1em;
   max-width: 800px;
   margin: 0 auto;
@@ -16,15 +16,14 @@
 }
 
 .Items .list-heading {
-  font-family: var(--secondaryFonts);
-  font-weight: bold;
+  font-family: var(--titleFonts);
   text-align: left;
   margin-bottom: 1%;
   border: none;
 }
 
 .ShoppingListItem--checked {
-  text-decoration: line-through;
+  /* text-decoration: line-through; */
   position: relative;
 }
 
@@ -39,15 +38,13 @@
 
 .ShoppingListItem {
   font-size: 1rem;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid #eeeeee;
+  border: none;
   outline: none;
   cursor: pointer;
   text-align: left;
   padding: 0.5em 0;
-  background-color: white;
+  background-color: var(--fadedBack);
+  font-family: var(--secondaryFonts);
 }
 
 .ShoppingListItem-buttons {
@@ -55,6 +52,10 @@
   flex-flow: row nowrap;
   align-items: center;
   grid-column: 5;
+}
+
+.ShoppingListItem-buttons a {
+  color: black;
 }
 
 .ShoppingListItem-buttons .button {
@@ -71,6 +72,7 @@
   width: 100%;
   margin: auto;
   padding: auto;
+  font-family: var(--secondaryFonts);
 }
 
 .listTitle {
@@ -91,6 +93,7 @@
 
 .editIcon {
   margin-left: 3px;
+  text-decoration: none;
 }
 
 .addItemInputs {
@@ -112,21 +115,24 @@
 }
 
 .editingItem {
-  height: 100%;
-  padding-left: 2px;
+  font-size: 1rem;
   border: none;
-}
-
-.editingItem {
-  height: 100%;
-  padding-left: 2px;
-  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0.5em 0;
+  background-color: var(--fadedBack);
 }
 
 .editingAisle {
-  height: 100%;
-  padding-left: 2px;
+  font-size: 1rem;
   border: none;
+
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0.5em 0;
+  background-color: var(--fadedBack);
 }
 .fas {
   margin-left: 5%;
@@ -134,4 +140,12 @@
 
 .padded {
   padding-left: 2%;
+}
+
+.addItemInputs label {
+  font-family: var(--titleFonts);
+}
+
+.addItemInputs input {
+  font-family: var(--secondaryFonts);
 }
