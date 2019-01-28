@@ -8,7 +8,7 @@ import {
 
 import StoreResult from '../StoreResult';
 
-import './StoreSearch.css';
+import '../../css/master.css';
 
 export class StoreSearch extends React.Component {
   componentDidMount() {

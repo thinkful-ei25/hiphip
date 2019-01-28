@@ -17,7 +17,7 @@ import NavBar from '../NavBar';
 import AddAisle from '../AddAisle';
 import { compareAisle, sortAisle, reverseSortAisle } from './utils';
 
-import '../component.css';
+import '../../css/master.css';
 import ShoppingListItem from '../ShoppingListItem';
 
 export class Items extends Component {
@@ -106,10 +106,11 @@ export class Items extends Component {
       sortedItems.sort(compareAisle);
       sortedItems.sort(reverseSortAisle);
     }
-    let itemElements = sortedItems.map(item => {
+    let itemElements = sortedItems.map((item, index) => {
       return (
         <ShoppingListItem
           key={item.id}
+          index={index}
           item={item}
           listId={listId}
           editable={online}

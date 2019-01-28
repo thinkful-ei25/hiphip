@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import RegistrationForm from './registration-form';
-import './registration.css';
+import '../../css/master.css';
 export function RegistrationPage(props) {
   const regForm = <RegistrationForm className="wrappedForm" />;
   // If we are logged in (which happens automatically when registration

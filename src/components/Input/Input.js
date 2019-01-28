@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './Input.css';
+import '../../css/master.css';
 
 export default class Input extends Component {
   componentDidUpdate(prevProps) {

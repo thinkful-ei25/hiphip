@@ -11,7 +11,7 @@ import {
   length,
   isTrimmed,
 } from '../../validators';
-import './registration.css';
+import '../../css/master.css';
 const passwordLength = length({ min: 8, max: 72 });
 const matchesPassword = matches('password');
 

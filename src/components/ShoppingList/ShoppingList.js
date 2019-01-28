@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteList } from '../../actions/shoppingLists';
-import '../component.css';
+import '../../css/master.css';
 
 import CoordinateDistance from '../CoordinateDistance';
 
