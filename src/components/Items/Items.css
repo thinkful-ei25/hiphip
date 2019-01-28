@@ -1,17 +1,3 @@
-.mainForItems {
-  display: inline-block;
-  min-width: 100%;
-  background: url('/bg.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 100vh;
-}
-.Items {
-  background-color: var(--fadedBack);
-  height: 100vh;
-}
 .Items .shoppingList {
   display: grid;
   grid-template: auto / 5fr 0.5fr 1.5fr 0.5fr 2fr;

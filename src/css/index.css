@@ -11,3 +11,14 @@
 .orange {
   color: var(--ourOrange);
 }
+
+#root {
+  display: inline-block;
+  min-width: 100%;
+  background: url('/bg.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+}
