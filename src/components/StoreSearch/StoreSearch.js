@@ -7,9 +7,9 @@ import {
 } from '../../actions/yelpAPI';
 
 import '../Lists/Lists.css';
-import './StoreSearch.css';
 
 import StoreResult from '../StoreResult';
+import LoadingSpinner from '../LoadingSpinner';
 
 export class StoreSearch extends React.Component {
   constructor(props) {
@@ -29,22 +29,7 @@ export class StoreSearch extends React.Component {
       return;
     }
     if (this.props.loading) {
-      return (
-        <div class="lds-spinner">
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-        </div>
-      );
+      return <LoadingSpinner />;
     }
 
     let { usingUserLocation } = this.state;
