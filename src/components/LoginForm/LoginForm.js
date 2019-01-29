@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from '../Input';
 import { login } from '../../actions/auth';
@@ -13,7 +13,6 @@ export class LoginForm extends Component {
   }
 
   render() {
-    // console.log(this.props);
     let error;
     if (this.props.error) {
       error = (
