@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteList } from '../../actions/shoppingLists';
 
@@ -26,6 +26,9 @@ export class ShoppingList extends Component {
     });
   }
 
+  linkToList(id) {
+    this.props.history.push(`/lists/${id}`);
+  }
   render() {
     const { id, groceryStore: store, name, userLocation } = this.props;
 
@@ -41,32 +44,32 @@ export class ShoppingList extends Component {
       );
     }
     return (
-      <li key={id} className="ShoppingList">
-        <Link to={`/lists/${id}`}>
-          <div>{name}</div>
-          <div>
-            {store !== null ? store.name + ' - ' : store}
-            {store !== null ? store.address.address1 : store}
+      <li key={id} className="ShoppingList" onClick={() => this.linkToList(id)}>
+        <div>{name}</div>
+        <div>
+          {store !== null ? store.name + ' - ' : store}
+          {store !== null ? store.address.address1 : store}
+        </div>
+        {store && store.coordinates && (
+          <div className="distanceFromStore">
+            <CoordinateDistance
+              userLocation={userLocation}
+              point={store.coordinates}
+            />{' '}
+            away
           </div>
-          {store && store.coordinates && (
-            <div className="distanceFromStore">
-              <CoordinateDistance
-                userLocation={userLocation}
-                point={store.coordinates}
-              />{' '}
-              away
-            </div>
-          )}
-        </Link>
+        )}
         {deleteButton}
       </li>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  userLocation: state.yelpAPI.userLocation,
-});
+const mapStateToProps = state => {
+  return {
+    userLocation: state.yelpAPI.userLocation,
+  };
+};
 
 const mapDispatchToProps = {
   deleteList,
