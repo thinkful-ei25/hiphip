@@ -27,7 +27,7 @@ export default function LandingPage() {
           <section className="hero">
             <img
               src="/landing/in-store.png"
-              alt="Diagram of simplifying path through a store"
+              alt="A shopping cart asking which aisle ice cream was in"
             />
             <div className="hero-titles">
               <h2>Take GoCery with you</h2>
@@ -40,7 +40,7 @@ export default function LandingPage() {
           <section className="hero">
             <img
               src="/landing/crowdsourced.png"
-              alt="Diagram of simplifying path through a store"
+              alt="A cluster of shopping carts sharing aisle information"
             />
             <div className="hero-titles">
               <h2>Leverage fellow shoppers</h2>
