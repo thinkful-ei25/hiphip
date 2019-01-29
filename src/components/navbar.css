@@ -18,18 +18,16 @@
 
 .navUl li a {
   display: block;
-  text-shadow: 2px 1px black;
   float: right;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   height: 45px;
-  color: var(--ourGreen);
+  color: black;
   font-size: 1.2em;
 }
 
 .navUl li h2 {
-  text-shadow: 2px 1px black;
   display: block;
   float: right;
   text-align: center;
@@ -37,7 +35,7 @@
   text-decoration: none;
   height: 45px;
   font-size: 1.2em;
-  color: var(--ourGreen);
+  color: black;
 }
 
 .navUl li h2:hover {
