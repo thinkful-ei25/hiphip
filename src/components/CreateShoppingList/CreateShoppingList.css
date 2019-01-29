@@ -21,7 +21,9 @@
   padding: 2%;
   border-radius: 15px;
   list-style-type: none;
+  margin-top: 5%;
   margin-bottom: 5%;
+
   background-color: var(--ourOrange);
   text-align: center;
   font-size: 20px;
@@ -56,34 +58,28 @@
   color: black;
 }
 .store-result strong {
-  font-family: var(--titleFonts);
-  font-size: 1em;
+  font-family: var(--secondaryFonts);
+  font-size: 1rem;
   margin-bottom: 1vh;
   color: black;
   font-weight: bold;
 }
 
-.selected-result address {
+.store-result address {
   font-family: var(--secondaryFonts);
-  margin-bottom: 1vh;
+  font-size: 1rem;
+  margin-bottom: 0.5vh;
 }
 
-.store-search-results {
-  list-style-type: none;
-  background: transparent;
-}
-
-.selected-store p {
+.store-result p {
   font-family: var(--secondaryFonts);
-  font-size: 1em;
-  margin-bottom: 1vh;
-  color: black;
-  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.5vh;
 }
 
 .storeTitle {
-  font-family: var(--titleFonts);
-  font-size: 1.5em;
+  font-family: var(--secondaryFonts);
+  font-size: 1rem;
   margin-bottom: 1vh;
   color: black;
   font-weight: bold;
@@ -91,7 +87,8 @@
 
 .selected-store address {
   font-family: var(--secondaryFonts);
-  margin-bottom: 1vh;
+  font-size: 1rem;
+  margin-bottom: 0.5vh;
 }
 
 button {
