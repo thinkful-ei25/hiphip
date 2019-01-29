@@ -36,22 +36,21 @@ export class StoreResult extends React.Component {
           </p>
         </li>
       );
-    } else {
-      return (
-        <li
-          key={id}
-          onClick={() => this.handleClickedStore()}
-          className="store-result"
-        >
-          <strong>{name}</strong>
-          <address>
-            {location.address1} {location.address2}
-            <br />
-            {location.city}, {location.state} {location.zip_code}
-          </address>
-        </li>
-      );
     }
+    return (
+      <li
+        key={id}
+        onClick={() => this.handleClickedStore()}
+        className="store-result"
+      >
+        <strong>{name}</strong>
+        <address>
+          {location.address1} {location.address2}
+          <br />
+          {location.city}, {location.state} {location.zip_code}
+        </address>
+      </li>
+    );
   }
 }
 
