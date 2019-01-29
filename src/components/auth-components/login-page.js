@@ -13,7 +13,7 @@ export function LoginPage(props) {
   }
   const logIn = <LoginForm className="wrappedForm" />;
   const register = (
-    <Link className="registerLink login-btn" to="/register">
+    <Link className="registerLink login-btn button" to="/register">
       Register
     </Link>
   );
