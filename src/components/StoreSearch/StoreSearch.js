@@ -19,9 +19,13 @@ export class StoreSearch extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(setUserLocation()).then(userCoordinates =>
-      dispatch(searchStores('grocery store', userCoordinates))
-    );
+    dispatch(setUserLocation())
+      .then(userCoordinates => {
+        if (userCoordinates) {
+          dispatch(searchStores('grocery store', userCoordinates));
+        }
+      })
+      .catch();
   }
 
   renderResults() {
