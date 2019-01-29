@@ -43,8 +43,8 @@ export class ShoppingList extends Component {
     return (
       <li key={id} className="ShoppingList">
         <Link to={`/lists/${id}`}>
-          <div>{name}</div>
-          <div>
+          <div className="listTitle">{name}</div>
+          <div className="storeDetails">
             {store !== null ? store.name + ' - ' : store}
             {store !== null ? store.address.address1 : store}
           </div>
