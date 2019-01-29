@@ -67,10 +67,6 @@
   margin-bottom: 1vh;
 }
 
-.fa-plus-circle {
-  text-shadow: 3px 2px black;
-}
-
 .close-button {
   color: var(--ourGreen);
   text-shadow: 2px 1px black;
