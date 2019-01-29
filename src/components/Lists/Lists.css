@@ -42,7 +42,6 @@
   text-align: center;
   font-size: 20px;
   color: black;
-  box-shadow: 3px 2px black;
 }
 
 .shoppingList {
@@ -52,21 +51,24 @@
 .listTitle {
   font-family: var(--titleFonts);
   font-size: 1.5em;
-  margin-bottom: 1vh;
+  margin-bottom: 0.25vh;
+  padding-top: 1vh;
   color: black;
   font-weight: bold;
 }
 
 .storeDetails {
   font-family: var(--secondaryFonts);
-  margin-bottom: 1vh;
+  font-size: 1em;
+  margin-bottom: 0.25vh;
 }
 
 .distanceFromStore {
   font-family: var(--secondaryFonts);
-  margin-bottom: 1vh;
+  font-size: 1em;
+  margin-bottom: 0.5vh;
 }
 
-.fa-plus-circle {
-  text-shadow: 3px 2px black;
+.fa-trash-alt {
+  font-size: 1em;
 }

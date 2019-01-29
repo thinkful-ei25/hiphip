@@ -67,7 +67,7 @@
 
 .selected-result address {
   font-family: var(--secondaryFonts);
-  margin-bottom: 2vh;
+  margin-bottom: 1vh;
 }
 
 .store-search-results {
