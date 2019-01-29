@@ -5,7 +5,10 @@ import {
   setUserLocation,
   searchStoresWithLocation,
 } from '../../actions/yelpAPI';
+
 import '../Lists/Lists.css';
+import './StoreSearch.css';
+
 import StoreResult from '../StoreResult';
 
 export class StoreSearch extends React.Component {
@@ -24,6 +27,24 @@ export class StoreSearch extends React.Component {
   renderResults() {
     if (this.props.error) {
       return;
+    }
+    if (this.props.loading) {
+      return (
+        <div class="lds-spinner">
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+        </div>
+      );
     }
 
     let { usingUserLocation } = this.state;
@@ -50,11 +71,11 @@ export class StoreSearch extends React.Component {
       searchTerm = 'grocery';
     }
     if (this.props.userLocation && location.trim() === '') {
-      this.setState({ usingUserLocation: true });
       this.props.dispatch(searchStores(searchTerm, this.props.userLocation));
+      this.setState({ usingUserLocation: true });
     } else {
-      this.setState({ usingUserLocation: false });
       this.props.dispatch(searchStoresWithLocation(searchTerm, location));
+      this.setState({ usingUserLocation: false });
     }
   }
 
