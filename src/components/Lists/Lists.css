@@ -48,3 +48,7 @@
 .shoppingList {
   width: 90%;
 }
+
+.list-delete-btn {
+  display: inline-block;
+}

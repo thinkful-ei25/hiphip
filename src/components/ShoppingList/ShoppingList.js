@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { Fragment, Component } from 'react';
+// import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteList } from '../../actions/shoppingLists';
 
@@ -26,7 +26,14 @@ export class ShoppingList extends Component {
     });
   }
 
-  linkToList(id) {
+  linkToList(event, id) {
+    const { id: btnId, className: btnClass } = event.target;
+    if (btnClass === 'fas fa-trash-alt fa-2x') {
+      return;
+    }
+    if (btnId === 'confirmDelete' || btnId === 'cancelDelete') {
+      return;
+    }
     this.props.history.push(`/lists/${id}`);
   }
   render() {
@@ -37,14 +44,22 @@ export class ShoppingList extends Component {
     );
     if (this.state.deleteModal) {
       deleteButton = (
-        <div>
-          <button onClick={() => this.confirmDelete()}>Confirm Delete</button>
-          <button onClick={() => this.deleteClicked()}>Cancel</button>
+        <div className="list-delete-btn">
+          <button id="confirmDelete" onClick={() => this.confirmDelete()}>
+            Confirm Delete
+          </button>
+          <button id="cancelDelete" onClick={() => this.deleteClicked()}>
+            Cancel
+          </button>
         </div>
       );
     }
     return (
-      <li key={id} className="ShoppingList" onClick={() => this.linkToList(id)}>
+      <li
+        key={id}
+        className="ShoppingList"
+        onClick={e => this.linkToList(e, id)}
+      >
         <div>{name}</div>
         <div>
           {store !== null ? store.name + ' - ' : store}
