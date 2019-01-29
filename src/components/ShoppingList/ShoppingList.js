@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteList } from '../../actions/shoppingLists';
-
 import CoordinateDistance from '../CoordinateDistance';
 import '../Lists/Lists.css';
 export class ShoppingList extends Component {
@@ -26,6 +24,16 @@ export class ShoppingList extends Component {
     });
   }
 
+  linkToList(event, id) {
+    const { id: btnId, className: btnClass } = event.target;
+    if (btnClass === 'fas fa-trash-alt fa-2x') {
+      return;
+    }
+    if (btnId === 'confirmDelete' || btnId === 'cancelDelete') {
+      return;
+    }
+    this.props.history.push(`/lists/${id}`);
+  }
   render() {
     const { id, groceryStore: store, name, userLocation } = this.props;
 
@@ -34,30 +42,36 @@ export class ShoppingList extends Component {
     );
     if (this.state.deleteModal) {
       deleteButton = (
-        <div>
-          <button onClick={() => this.confirmDelete()}>Confirm Delete</button>
-          <button onClick={() => this.deleteClicked()}>Cancel</button>
+        <div className="list-delete-btn">
+          <button id="confirmDelete" onClick={() => this.confirmDelete()}>
+            Confirm Delete
+          </button>
+          <button id="cancelDelete" onClick={() => this.deleteClicked()}>
+            Cancel
+          </button>
         </div>
       );
     }
     return (
-      <li key={id} className="ShoppingList">
-        <Link to={`/lists/${id}`}>
-          <div className="listTitle">{name}</div>
-          <div className="storeDetails">
-            {store !== null ? store.name + ' - ' : store}
-            {store !== null ? store.address.address1 : store}
+      <li
+        key={id}
+        className="ShoppingList"
+        onClick={e => this.linkToList(e, id)}
+      >
+        <div>{name}</div>
+        <div>
+          {store !== null ? store.name + ' - ' : store}
+          {store !== null ? store.address.address1 : store}
+        </div>
+        {store && store.coordinates && (
+          <div className="distanceFromStore">
+            <CoordinateDistance
+              userLocation={userLocation}
+              point={store.coordinates}
+            />{' '}
+            away
           </div>
-          {store && store.coordinates && (
-            <div className="distanceFromStore">
-              <CoordinateDistance
-                userLocation={userLocation}
-                point={store.coordinates}
-              />{' '}
-              away
-            </div>
-          )}
-        </Link>
+        )}
         {deleteButton}
       </li>
     );
