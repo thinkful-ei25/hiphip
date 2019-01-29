@@ -12,6 +12,10 @@ html * {
   box-sizing: border-box;
 }
 
+body {
+  font-family: var(--secondaryFonts);
+}
+
 .orange {
   color: var(--ourOrange);
 }
@@ -25,4 +29,18 @@ html * {
   -o-background-size: cover;
   background-size: cover;
   height: 100vh;
+}
+
+button,
+.button {
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.button:visited {
+  text-decoration: none;
+  color: inherit;
 }
