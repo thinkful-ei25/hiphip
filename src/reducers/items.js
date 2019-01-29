@@ -34,7 +34,7 @@ const initialState = {
   loading: false,
   error: false,
   aislePrompt: null,
-  sorted: false,
+  sorted: true,
   reverseSorted: false,
   editingName: false,
 };
@@ -223,7 +223,6 @@ export default function reducer(state = initialState, action) {
       return { ...state, error, loading: false };
 
     case REORDER_SUCCESS:
-      console.log(action);
       return { ...state, items: action.items, loading: false };
 
     default:

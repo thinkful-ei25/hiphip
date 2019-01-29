@@ -1,0 +1,159 @@
+.Items .shoppingList {
+  display: grid;
+  grid-template: auto / 5fr 0.5fr 1.5fr 0.5fr 1.6fr;
+  padding: 1em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.Items .item {
+  grid-column: 1;
+  border: 1px solid black;
+}
+.Items .aisle {
+  grid-column: 3;
+  border: 1px solid black;
+}
+
+.Items .list-heading {
+  font-family: var(--titleFonts);
+  text-align: left;
+  margin-bottom: 1%;
+  border: none;
+}
+
+.ShoppingListItem--checked {
+  /* text-decoration: line-through; */
+  position: relative;
+}
+
+.ShoppingListItem--checked::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.ShoppingListItem {
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0.5em 0;
+  background-color: var(--fadedBack);
+  font-family: var(--secondaryFonts);
+}
+
+.ShoppingListItem-buttons {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  grid-column: 5;
+}
+
+.ShoppingListItem-buttons a {
+  color: black;
+}
+
+.ShoppingListItem-buttons .button {
+  flex: 1 1;
+}
+
+.ShoppingListItem--editing {
+  border: none;
+  padding: 0 auto;
+  background-color: white;
+}
+
+.ShoppingListItem--editing input {
+  display: inline-block;
+  width: 100%;
+  margin: auto;
+  padding: auto;
+  font-family: var(--secondaryFonts);
+}
+
+.listTitle {
+  text-align: center;
+  background-color: var(--ourOrange);
+}
+
+.listTitle h1 {
+  font-family: var(--titleFonts);
+  font-size: 2em;
+  margin-bottom: 1vh;
+}
+
+.listTitle h3 {
+  font-family: var(--secondaryFonts);
+  padding-bottom: 0.5vh;
+}
+
+.editIcon {
+  margin-left: 3px;
+  text-decoration: none;
+}
+
+.addItemInputs {
+  text-align: center;
+  margin-top: 2px;
+}
+
+.add-item-button {
+  width: 20%;
+  margin-top: 2px;
+}
+
+.add-item-form {
+  text-align: center;
+}
+
+.form-input {
+  margin-top: 5px;
+}
+
+.editingItem {
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0.5em 0;
+  background-color: var(--fadedBack);
+}
+
+.editingAisle {
+  font-size: 1rem;
+  border: none;
+
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0.5em 0;
+  background-color: var(--fadedBack);
+}
+.fas {
+  margin-left: 5%;
+}
+
+.padded {
+  padding-left: 2%;
+}
+
+.addItemInputs label {
+  font-family: var(--titleFonts);
+}
+
+.addItemInputs input {
+  font-family: var(--secondaryFonts);
+}
+
+.editItemButton {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}

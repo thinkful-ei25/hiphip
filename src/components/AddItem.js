@@ -3,7 +3,7 @@ import { Field, reduxForm, focus } from 'redux-form';
 
 import Input from './Input';
 import { addItemToList } from '../actions/items';
-
+import './Items/Items.css';
 export class AddItem extends Component {
   onSubmit(values) {
     const { listId } = this.props;
@@ -30,20 +30,21 @@ export class AddItem extends Component {
           <Field
             name="name"
             className="add-item-field"
-            label="Item"
+            label="Item: "
             type="text"
             component={Input}
           />
 
           <Field
             name="aisleLocation"
-            label="Aisle"
+            className="add-aisle-field"
+            label="Aisle: "
             component={Input}
             type="text"
           />
         </div>
         <button
-          className="button input-form"
+          className="button input-form add-item-button"
           disabled={this.props.pristine || this.props.submitting}
         >
           Add Item

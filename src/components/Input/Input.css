@@ -1,0 +1,10 @@
+.Input {
+  display: flex;
+  flex: row nowrap;
+  align-items: center;
+}
+
+.Input .form-error,
+.Input .form-warning {
+  color: var(--ourWarningColor);
+}

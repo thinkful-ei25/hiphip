@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import '../../css/master.css';
 import ShoppingList from '../ShoppingList';
 import NavBar from '../nav-bar';
 import CreateShoppingList from '../CreateShoppingList';
 
 import { getLists } from '../../actions/shoppingLists';
 import { clearCurrentStore, setUserLocation } from '../../actions/yelpAPI';
-
+import './Lists.css';
 export class Lists extends Component {
   componentDidMount() {
     this.props.dispatch(getLists());
@@ -62,9 +61,10 @@ export class Lists extends Component {
       />
     ));
     let createList = (
-      <button className="add-list-button" onClick={() => this.toggleModal()}>
-        Add List
-      </button>
+      <i
+        class="orange fas fa-plus-circle fa-5x"
+        onClick={() => this.toggleModal()}
+      />
     );
     if (this.state.addingList) {
       createList = null;

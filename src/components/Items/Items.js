@@ -17,9 +17,8 @@ import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
 import { compareAisle, sortAisle, reverseSortAisle } from './utils';
 
-import '../../css/master.css';
 import ShoppingListItem from '../ShoppingListItem';
-
+import './Items.css';
 export class Items extends Component {
   onClickHandler(item) {
     const { dispatch, listId } = this.props;
@@ -126,13 +125,8 @@ export class Items extends Component {
             this.editListName = editListName;
           }}
         />
-        <button>
-          <img
-            className="editIcon"
-            src="/edit.png"
-            alt="editList"
-            type="submit"
-          />
+        <button type="submit">
+          <i className="fas fa-edit" />
         </button>
       </form>
     );
@@ -141,12 +135,7 @@ export class Items extends Component {
         <header className="listTitle">
           <h1>
             {editForm}
-            <img
-              className="editIconTwo"
-              src="/edit2.png"
-              alt="editList"
-              onClick={() => this.editing()}
-            />
+            <i className="fas fa-edit" onClick={() => this.editing()} />
           </h1>
           {storeBlock}
         </header>
@@ -156,10 +145,8 @@ export class Items extends Component {
         <header className="listTitle">
           <h1>
             {name}
-            <img
-              className="editIconTwo"
-              src="/edit2.png"
-              alt="editList"
+            <i
+              className="fas fa-edit editIcon"
               onClick={() => this.editing()}
             />
           </h1>
@@ -170,17 +157,19 @@ export class Items extends Component {
     return (
       <Fragment>
         <NavBar />
-        <main className="Items">
-          {header}
-          <section className="shoppingList">
-            <div className="item list-heading">Item</div>
-            <div className="aisle list-heading" onClick={() => this.onSort()}>
-              Aisle
-            </div>
-            {itemElements}
-          </section>
-          <AddItem listId={listId} />
-          {aislePrompt ? <AddAisle listId={listId} /> : null}
+        <main className="mainForItems">
+          <div className="Items">
+            {header}
+            <section className="shoppingList">
+              <div className="item list-heading">Item:</div>
+              <div className="aisle list-heading" onClick={() => this.onSort()}>
+                Aisle:
+              </div>
+              {itemElements}
+            </section>
+            <AddItem listId={listId} />
+            {aislePrompt ? <AddAisle listId={listId} /> : null}
+          </div>
         </main>
       </Fragment>
     );

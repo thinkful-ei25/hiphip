@@ -2,10 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import '../../css/master.css';
-
 import CreateShoppingListForm from '../CreateShoppingListForm';
-
+import './CreateShoppingList.css';
 function CreateShoppingList({ user, loggingIn, currentStore }) {
   if (loggingIn) {
     return <div>Logging in</div>;
