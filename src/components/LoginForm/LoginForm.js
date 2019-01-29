@@ -68,6 +68,5 @@ export class LoginForm extends Component {
 
 export default reduxForm({
   form: 'login',
-  touchOnBlur: false,
   onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'username')),
 })(LoginForm);
