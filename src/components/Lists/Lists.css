@@ -78,6 +78,6 @@
   color: var(--ourGreen);
   text-shadow: 2px 1px black;
   position: fixed;
-  left: 13rem;
-  top: 28rem;
+  left: 70%;
+  top: 80%;
 }
