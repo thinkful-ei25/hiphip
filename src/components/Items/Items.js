@@ -132,8 +132,8 @@ export class Items extends Component {
     );
     if (editingName) {
       header = (
-        <header className="listTitle">
-          <h1>
+        <header>
+          <h1 className="listTitle">
             {editForm}
             <i className="fas fa-edit" onClick={() => this.editing()} />
           </h1>
