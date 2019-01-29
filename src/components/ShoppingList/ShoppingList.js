@@ -1,8 +1,6 @@
-import React, { Fragment, Component } from 'react';
-// import { Link, Redirect } from 'react-router-dom';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteList } from '../../actions/shoppingLists';
-
 import CoordinateDistance from '../CoordinateDistance';
 import '../Lists/Lists.css';
 export class ShoppingList extends Component {
@@ -80,11 +78,9 @@ export class ShoppingList extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    userLocation: state.yelpAPI.userLocation,
-  };
-};
+const mapStateToProps = state => ({
+  userLocation: state.yelpAPI.userLocation,
+});
 
 const mapDispatchToProps = {
   deleteList,
