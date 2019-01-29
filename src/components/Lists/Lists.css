@@ -49,26 +49,27 @@
 }
 
 .listTitle {
-  font-family: var(--titleFonts);
-  font-size: 1em;
-  margin-bottom: 0.25vh;
+  font-family: var(--secondaryFonts);
+  font-size: 18px;
+  margin-bottom: 0.5vh;
   padding-top: 1vh;
   color: black;
   font-weight: bold;
+  text-transform: capitalize;
 }
 
 .storeDetails {
   font-family: var(--secondaryFonts);
-  font-size: 1em;
+  font-size: 1rem;
   margin-bottom: 0.25vh;
 }
 
 .distanceFromStore {
   font-family: var(--secondaryFonts);
-  font-size: 1em;
+  font-size: 1rem;
   margin-bottom: 0.5vh;
 }
 
 .fa-trash-alt {
-  font-size: 1em;
+  font-size: 1rem;
 }
