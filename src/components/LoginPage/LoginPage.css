@@ -20,5 +20,5 @@
   padding: 1em;
   max-width: 600px;
   border-radius: 4px;
-  background-color: #eeeeee;
+  background-color: var(--cardBgColor);
 }

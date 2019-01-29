@@ -7,6 +7,7 @@
   --titleFonts: 'Righteous', cursive;
   --secondaryFonts: 'Lato', sans-serif;
   --fadedBack: rgba(255, 255, 255, 0.1);
+  --cardBgColor: #eeeeee;
 }
 
 html * {
