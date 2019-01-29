@@ -83,6 +83,7 @@ export class StoreSearch extends React.Component {
             ref={term => (this.input = term)}
             placeholder="Store Name..."
           />
+          <br />
           <label for="location" className="store-location-label">
             Location
           </label>
