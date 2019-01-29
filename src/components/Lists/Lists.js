@@ -13,16 +13,23 @@ export class Lists extends Component {
   componentDidMount() {
     this.props.dispatch(getLists());
     this.props.dispatch(setUserLocation());
+    if (this.props.lists.length === 0) {
+      this.setState({ onboardingUser: true });
+    }
   }
 
   constructor(props) {
     super(props);
-    this.state = { addingList: false };
+    this.state = { addingList: false, onboardingUser: false };
   }
 
   toggleModal() {
     const addingList = !this.state.addingList;
-    this.setState({ addingList });
+    this.setState({ addingList, onboardingUser: false });
+  }
+
+  toggleOnboarding() {
+    this.setState({ onboardingUser: false });
   }
 
   closeOut() {
@@ -52,6 +59,17 @@ export class Lists extends Component {
     }
     const navBarJSX = <NavBar />;
     const { lists } = this.props;
+    const { onboardingUser } = this.state;
+    let onboardingBubble;
+    if (onboardingUser) {
+      onboardingBubble = (
+        <div className="">
+          <button onClick={() => this.toggleOnboarding()}>X</button>
+          <i className="fas fa-arrow-up" />
+          <span>Click here to add a new list.</span>
+        </div>
+      );
+    }
     const shoppingLists = lists.map(list => (
       <ShoppingList
         id={list.id}
@@ -62,7 +80,7 @@ export class Lists extends Component {
     ));
     let createList = (
       <i
-        class="orange fas fa-plus-circle fa-5x"
+        className="orange fas fa-plus-circle fa-5x"
         onClick={() => this.toggleModal()}
       />
     );
@@ -73,6 +91,7 @@ export class Lists extends Component {
       <div className="pageWrapped">
         <ul className="shoppingLists">{shoppingLists}</ul>
         {createList}
+        {onboardingBubble}
       </div>
     );
     const mainListPage = (
