@@ -8,6 +8,7 @@ import {
   deleteItem,
   reorder,
 } from '../../actions/items';
+import '../Items/Items.css';
 import '../Lists/Lists.css';
 export function ShoppingListItem({
   item,
@@ -37,33 +38,35 @@ export function ShoppingListItem({
       <Fragment>
         <div className="ShoppingListItem--editing item">
           <form id={formId} onSubmit={handleSubmit} />
-          <input form={formId} name="name" defaultValue={item.name} />
+          <input
+            form={formId}
+            name="name"
+            defaultValue={item.name}
+            type="text"
+            className="editingItem padded"
+          />
         </div>
         <div className="ShoppingListItem--editing aisle">
           <input
             form={formId}
             name="aisle"
             defaultValue={item.aisleLocation && item.aisleLocation.aisleNo}
+            className="editingAisle padded"
           />
         </div>
         <div className="ShoppingListItem-buttons">
-          <button type="submit" form={formId} className="button">
-            Submit
+          <button type="submit" form={formId} className="editItemButton">
+            <i className="fas fa-check-circle fa-1x" />
           </button>
-          <button
-            type="button"
-            className="button"
+          <i
+            className="fas fa-trash-alt fa-1x"
             onClick={() => deleteItem(item.id, listId)}
-          >
-            Delete
-          </button>
-          <a
-            href="# "
+          />
+
+          <i
+            className="fas fa-ban fa-1x"
             onClick={() => toggleEditMode(item.id)}
-            className="button"
-          >
-            Cancel
-          </a>
+          />
         </div>
       </Fragment>
     );
@@ -75,7 +78,8 @@ export function ShoppingListItem({
         className={classNames(
           'ShoppingListItem',
           { 'ShoppingListItem--checked': item.isChecked },
-          'item'
+          'item',
+          'padded'
         )}
         type="button"
         onClick={onClick}
@@ -86,7 +90,8 @@ export function ShoppingListItem({
         className={classNames(
           'ShoppingListItem',
           { 'ShoppingListItem--checked': item.isChecked },
-          'aisle'
+          'aisle',
+          'padded'
         )}
         onClick={onClick}
         type="button"
@@ -94,14 +99,20 @@ export function ShoppingListItem({
         {item.aisleLocation && item.aisleLocation.aisleNo}
       </button>
       <div className="ShoppingListItem-buttons">
-        <a href="#edit" onClick={() => toggleEditMode(item.id)}>
-          <i className="fas fa-edit" type="submit" />
-        </a>
-      </div>
-      <div>
-        <button onClick={() => reorder(index, listId, 'up')}>U</button>
+        <div>
+          <i
+            class="fas fa-arrow-up"
+            onClick={() => reorder(index, listId, 'up')}
+          />
 
-        <button onClick={() => reorder(index, listId, 'down')}>D</button>
+          <i
+            class="fas fa-arrow-down"
+            onClick={() => reorder(index, listId, 'down')}
+          />
+        </div>
+        <a href="#edit" onClick={() => toggleEditMode(item.id)}>
+          <i className="fas fa-edit editIcon" type="submit" />
+        </a>
       </div>
     </Fragment>
   );
