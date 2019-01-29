@@ -65,3 +65,7 @@ input {
   font-size: 1rem;
   font-family: var(--secondaryFonts);
 }
+
+.label {
+  margin-right: 1em;
+}
