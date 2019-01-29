@@ -2,15 +2,15 @@
   background-color: transparent;
   max-width: 80%;
   margin: auto;
-  text-align: center;
+  text-align: left;
 }
 
 .CreateShoppingList-pageTitle {
-  color: white;
+  color: black;
 }
 
-.CreateShoppingListForm label {
-  display: block;
+.CreateShoppingListForm {
+  text-align: center;
 }
 
 .selected-store {
@@ -24,22 +24,15 @@
 }
 
 .search-question {
-  color: white;
-}
-
-.name-label {
-  color: white;
-}
-
-.name-label > input {
-  margin-left: 10px;
+  color: black;
+  padding: 5px 0px;
 }
 
 .store-result {
   border: 1px solid var(--ourOrange);
   border-radius: 20px;
   text-align: center;
-  width: 95%;
+  width: 100%;
   padding: 5px;
   margin-top: 10px;
   margin-left: auto;
@@ -50,10 +43,7 @@
 .store-search-results {
   list-style-type: none;
   background: transparent;
-}
-
-.CreateShoppingListForm-container {
-  background-color: #aaaaaa25;
+  margin-bottom: 20px;
 }
 
 .CreateShoppingListForm label {
@@ -64,6 +54,39 @@
   color: red;
 }
 
-.name-label > input {
-  margin-left: 10px;
+.store-search-form {
+  text-align: center;
+}
+
+.store-name-label {
+  margin-right: 12px;
+}
+
+.store-location-label {
+  margin-right: 2px;
+}
+
+.store-search-form input {
+  margin: 5px 0px;
+}
+
+.search-button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.location-blue {
+  color: #3498d8;
+}
+
+.location-white {
+  color: grey;
+}
+
+.fa-location-arrow {
+  margin: 2px;
+}
+
+.loading-spinner {
+  text-align: center;
 }

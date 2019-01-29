@@ -57,7 +57,11 @@ export class CreateShoppingListForm extends React.Component {
           <StoreSearch />
         </div>
       );
-      submitButton = <button type="submit">Create List with no Store</button>;
+      submitButton = (
+        <button className="button--submit" type="submit">
+          Create List with no Store
+        </button>
+      );
     } else {
       const { name, location } = currentStore;
       storeDisplay = (
@@ -86,8 +90,8 @@ export class CreateShoppingListForm extends React.Component {
           {errorPrompt}
           <label htmlFor="name" className="name-label">
             List name
-            <input id="name" name="name" />
           </label>
+          <input id="name" name="name" />
           {storeDisplay}
           {clearButton}
           {submitButton}

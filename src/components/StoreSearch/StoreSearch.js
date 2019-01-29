@@ -29,7 +29,7 @@ export class StoreSearch extends React.Component {
       return;
     }
     if (this.props.loading) {
-      return <LoadingSpinner />;
+      return <LoadingSpinner className="loading-spinner" />;
     }
 
     let { usingUserLocation } = this.state;
@@ -65,30 +65,36 @@ export class StoreSearch extends React.Component {
   }
 
   render() {
-    let placeholderText = 'Address, City, State, Zip';
+    let placeholderText = '1600 Pennsylvania Ave';
+    let locationClass = 'location-white fas fa-location-arrow';
     if (this.props.userLocation) {
-      placeholderText = 'Using Current Location...';
+      locationClass = 'location-blue fas fa-location-arrow';
     }
-    let locationField = (
-      <input
-        type="text"
-        name="location"
-        ref={location => (this.input = location)}
-        placeholder={placeholderText}
-      />
-    );
 
     return (
       <div className="store-search">
         <form className="store-search-form" onSubmit={e => this.search(e)}>
+          <label for="name" className="store-name-label">
+            Store Name
+          </label>
           <input
             type="search"
             name="searchTerm"
             ref={term => (this.input = term)}
             placeholder="Store Name..."
           />
-          {locationField}
-          <button>Search</button>
+          <label for="location" className="store-location-label">
+            Location
+          </label>
+          <i className={locationClass} />
+          <input
+            type="text"
+            name="location"
+            ref={location => (this.input = location)}
+            placeholder={placeholderText}
+          />
+          <br />
+          <button className="button--submit search-button">Search</button>
         </form>
         <ul className="store-search-results">{this.renderResults()}</ul>
       </div>

@@ -70,3 +70,9 @@
 .fa-plus-circle {
   text-shadow: 3px 2px black;
 }
+
+.close-button {
+  color: var(--ourOrange);
+  text-shadow: 3px 2px black;
+  float: right;
+}
