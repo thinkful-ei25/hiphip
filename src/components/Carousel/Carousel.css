@@ -9,10 +9,10 @@
   width: 10px;
   border-radius: 50%;
   border: none;
-  background-color: #cccccc;
+  background-color: #666666;
   margin: 0 1px;
 }
 
 .Carousel .dot--active {
-  background-color: #999999;
+  background-color: #333333;
 }
