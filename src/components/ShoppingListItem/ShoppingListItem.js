@@ -74,6 +74,7 @@ export function ShoppingListItem({
 
   return (
     <Fragment>
+      <span className="far fa-square" />
       <button
         className={classNames(
           'ShoppingListItem',

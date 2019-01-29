@@ -161,6 +161,7 @@ export class Items extends Component {
           <div className="Items">
             {header}
             <section className="shoppingList">
+              <div />
               <div className="item list-heading">Item:</div>
               <div className="aisle list-heading" onClick={() => this.onSort()}>
                 Aisle:

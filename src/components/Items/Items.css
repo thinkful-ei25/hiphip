@@ -1,17 +1,22 @@
 .Items .shoppingList {
   display: grid;
-  grid-template: auto / 5fr 0.5fr 1.5fr 0.5fr 1.6fr;
+  grid-template: auto / 0.5fr 5fr 0.5fr 1.5fr 0.5fr 1.6fr;
   padding: 1em;
   max-width: 800px;
   margin: 0 auto;
 }
 
-.Items .item {
+.fa-square {
+  margin: auto;
+  font-weight: 100;
   grid-column: 1;
+}
+.Items .item {
+  grid-column: 2;
   border: 1px solid black;
 }
 .Items .aisle {
-  grid-column: 3;
+  grid-column: 4;
   border: 1px solid black;
 }
 
@@ -23,18 +28,18 @@
 }
 
 .ShoppingListItem--checked {
-  /* text-decoration: line-through; */
+  text-decoration: line-through;
   position: relative;
 }
 
-.ShoppingListItem--checked::before {
+/* .ShoppingListItem--checked::before {
   content: '';
   position: absolute;
   left: 0;
   top: 50%;
   width: 100%;
   border-bottom: 1px solid black;
-}
+} */
 
 .ShoppingListItem {
   font-size: 1rem;
