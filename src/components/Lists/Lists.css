@@ -70,14 +70,15 @@
   margin-bottom: 0.5vh;
 }
 
-.fa-trash-alt {
+.delete-icon {
   font-size: 1rem;
 }
 
-.fa-plus-circle {
+.add-list-clicker {
   color: var(--ourGreen);
   text-shadow: 2px 1px black;
   position: fixed;
   left: 77%;
   top: 90%;
+  background-color: transparent;
 }

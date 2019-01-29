@@ -61,7 +61,9 @@ export class Lists extends Component {
       />
     ));
     let createList = (
-      <i class="fas fa-plus-circle fa-3x" onClick={() => this.toggleModal()} />
+      <button className="add-list-clicker" onClick={() => this.toggleModal()}>
+        <i className="fas fa-plus-circle fa-3x" />
+      </button>
     );
     if (this.state.addingList) {
       createList = null;
