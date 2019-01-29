@@ -10,27 +10,30 @@ import '../Lists/Lists.css';
 
 import StoreResult from '../StoreResult';
 import LoadingSpinner from '../LoadingSpinner';
+import { nextTick } from 'q';
 
 export class StoreSearch extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { usingUserLocation: true };
+    this.state = { usingUserLocation: true, madeSearch: false };
   }
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(setUserLocation())
-      .then(userCoordinates => {
-        if (userCoordinates) {
-          dispatch(searchStores('grocery store', userCoordinates));
-        }
-      })
-      .catch();
+    dispatch(setUserLocation()).then(userCoordinates => {
+      if (userCoordinates) {
+        dispatch(searchStores('grocery store', userCoordinates));
+      }
+    });
+  }
+
+  toggleSearch() {
+    this.setState({ madeSearch: true });
   }
 
   renderResults() {
-    if (this.props.error) {
-      return;
+    if (this.props.error && this.state.madeSearch) {
+      return <div className="error-prompt">You must enter a location!</div>;
     }
     if (this.props.loading) {
       return <LoadingSpinner className="loading-spinner" />;
@@ -66,6 +69,7 @@ export class StoreSearch extends React.Component {
       this.props.dispatch(searchStoresWithLocation(searchTerm, location));
       this.setState({ usingUserLocation: false });
     }
+    this.toggleSearch();
   }
 
   render() {

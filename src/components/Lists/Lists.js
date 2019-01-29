@@ -38,7 +38,7 @@ export class Lists extends Component {
       createListModal = (
         <div className="CreateShoppingList-container">
           <i
-            className="fas fa-times-circle fa-3x close-button"
+            className="fas fa-times-circle fa-2x close-button"
             onClick={() => {
               this.toggleModal();
               this.closeOut();

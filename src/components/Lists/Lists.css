@@ -74,6 +74,7 @@
 .close-button {
   color: var(--ourGreen);
   text-shadow: 2px 1px black;
-  float: right;
+  position: absolute;
+  right: 0;
   margin: 5px;
 }

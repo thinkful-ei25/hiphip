@@ -58,7 +58,7 @@ export class CreateShoppingListForm extends React.Component {
         </div>
       );
       submitButton = (
-        <button className="button--submit" type="submit">
+        <button className="button--submit no-store-submit" type="submit">
           Create List with no Store
         </button>
       );
