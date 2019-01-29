@@ -1,0 +1,22 @@
+.Input {
+  display: flex;
+  flex: row nowrap;
+  align-items: center;
+}
+
+.Input .form-error,
+.Input .form-warning {
+  color: var(--ourWarningColor);
+}
+
+.Input .label {
+  flex-basis: 5em;
+  flex-shrink: 0;
+  flex-grow: 1;
+  max-width: 5.5em;
+  text-align: right;
+}
+
+.Input input {
+  flex: 0 0 200px;
+}

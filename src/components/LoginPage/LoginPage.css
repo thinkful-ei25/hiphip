@@ -1,0 +1,24 @@
+.LoginPage {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.LoginPage header {
+  margin: 1rem;
+  text-align: center;
+}
+
+.LoginPage h1 {
+  font-family: var(--titleFonts);
+  color: var(--ourOrange);
+  font-size: 40px;
+}
+
+.LoginPage main {
+  margin: 0 auto;
+  padding: 1em;
+  max-width: 600px;
+  border-radius: 4px;
+  background-color: var(--cardBgColor);
+}

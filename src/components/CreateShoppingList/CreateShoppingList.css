@@ -94,3 +94,19 @@
 button {
   font-family: var(--secondaryFonts);
 }
+
+.CreateShoppingListForm-container {
+  background-color: #aaaaaa25;
+}
+
+.CreateShoppingListForm label {
+  display: block;
+}
+
+.error-prompt {
+  color: red;
+}
+
+.name-label > input {
+  margin-left: 10px;
+}

@@ -31,11 +31,23 @@ export class CreateShoppingListForm extends React.Component {
   }
 
   render() {
-    const { currentStore } = this.props;
+    const { currentStore, error } = this.props;
     let storeDisplay;
     let search;
     let clearButton;
     let submitButton;
+    let errorPrompt;
+    if (
+      error &&
+      error.message === 'Missing field' &&
+      error.location === 'name'
+    ) {
+      errorPrompt = (
+        <div className="error-prompt">
+          <strong>Name is a required field</strong>
+        </div>
+      );
+    }
     if (!currentStore) {
       search = (
         <div className="search-container">
@@ -71,6 +83,7 @@ export class CreateShoppingListForm extends React.Component {
           className="CreateShoppingListForm"
           onSubmit={event => this.onSubmit(event)}
         >
+          {errorPrompt}
           <label htmlFor="name" className="name-label">
             List name
             <input id="name" name="name" />
@@ -89,6 +102,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     history: ownProps.history,
     currentStore: state.yelpAPI.currentStore,
+    error: state.lists.error,
   };
 };
 

@@ -73,3 +73,7 @@
 .fa-trash-alt {
   font-size: 1rem;
 }
+
+.list-delete-btn {
+  display: inline-block;
+}
