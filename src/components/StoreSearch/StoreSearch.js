@@ -89,7 +89,7 @@ export class StoreSearch extends React.Component {
             type="search"
             name="searchTerm"
             ref={term => (this.input = term)}
-            placeholder="Store Name..."
+            placeholder="Albertson's, Whole Foods, etc."
           />
           <br />
           <label for="location" className="store-location-label">
