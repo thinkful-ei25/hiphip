@@ -8,3 +8,8 @@
 .Input .form-warning {
   color: var(--ourWarningColor);
 }
+
+.Input .label {
+  flex-basis: 4.5em;
+  flex-shrink: 0;
+}
