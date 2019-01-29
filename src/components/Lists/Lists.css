@@ -77,7 +77,7 @@
 .fa-plus-circle {
   color: var(--ourGreen);
   text-shadow: 2px 1px black;
-  position: absolute;
+  position: fixed;
   left: 13rem;
   top: 28rem;
 }
