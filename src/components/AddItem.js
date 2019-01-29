@@ -23,6 +23,7 @@ export class AddItem extends Component {
       <form
         className="add-item-form"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
+        data-lpignore="true"
       >
         {error}
         <div className="addItemInputs">

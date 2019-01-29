@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, Component } from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from '../Input';
 import { login } from '../../actions/auth';
@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import './LoginForm.css';
 
-export class LoginForm extends React.Component {
+export class LoginForm extends Component {
   onSubmit(values) {
     return this.props.dispatch(login(values.username, values.password));
   }
@@ -16,7 +16,6 @@ export class LoginForm extends React.Component {
     // console.log(this.props);
     let error;
     if (this.props.error) {
-      //   console.log('error:',this.props.error);
       error = (
         <div className="form-error" aria-live="polite">
           {this.props.error}
@@ -24,7 +23,7 @@ export class LoginForm extends React.Component {
       );
     }
     const register = (
-      <Link className="registerLink" to="/register">
+      <Link className="button button--primary" to="/register">
         Register
       </Link>
     );
@@ -61,8 +60,7 @@ export class LoginForm extends React.Component {
         >
           Log In
         </button>
-        <br />
-        <button className="button--primary">{register}</button>
+        {register}
       </form>
     );
   }
