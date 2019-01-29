@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
 
-import RegistrationPage from './components/auth-components/registration-page';
+import RegistrationPage from './components/RegistrationPage';
 import LoginPage from './components/LoginPage';
 import Lists from './components/Lists/Lists.js';
 import Items from './components/Items';

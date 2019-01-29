@@ -51,13 +51,14 @@ export class Lists extends Component {
       );
     }
     const navBarJSX = <NavBar />;
-    const { lists } = this.props;
+    const { lists, history } = this.props;
     const shoppingLists = lists.map(list => (
       <ShoppingList
         id={list.id}
         name={list.name}
         groceryStore={list.store}
         editing={list.editing}
+        history={history}
       />
     ));
     let createList = (
@@ -85,10 +86,11 @@ export class Lists extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     lists: state.lists.lists,
+    history: ownProps.history,
   };
 };
 

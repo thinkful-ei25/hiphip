@@ -7,6 +7,7 @@
   --titleFonts: 'Righteous', cursive;
   --secondaryFonts: 'Lato', sans-serif;
   --fadedBack: rgba(255, 255, 255, 0.1);
+  --cardBgColor: #eeeeee;
 }
 
 html * {
@@ -58,9 +59,13 @@ a.button:visited {
 
 input {
   padding: 0.5em 1em;
-  border: none;
+  border: 1px solid #aaaaaa;
   border-radius: 4px;
   background-color: white;
   font-size: 1rem;
   font-family: var(--secondaryFonts);
+}
+
+.label {
+  margin-right: 1em;
 }
