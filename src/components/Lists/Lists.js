@@ -37,6 +37,7 @@ export class Lists extends Component {
     if (this.state.addingList) {
       createListModal = (
         <div className="CreateShoppingList-container">
+          <CreateShoppingList />
           <button
             className="close-button"
             onClick={() => {
@@ -46,7 +47,6 @@ export class Lists extends Component {
           >
             Close
           </button>
-          <CreateShoppingList />
         </div>
       );
     }

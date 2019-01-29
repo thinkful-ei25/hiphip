@@ -28,7 +28,7 @@ export class StoreResult extends React.Component {
           className="store-result"
         >
           <strong>{name}</strong>
-          <address>
+          <address className="address">
             {location.address1} {location.address2}
           </address>
           <p>

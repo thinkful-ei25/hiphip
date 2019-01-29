@@ -51,7 +51,7 @@ export class CreateShoppingListForm extends React.Component {
       storeDisplay = (
         <div className="selected-store">
           <p>Selected store:</p>
-          <strong>{name}</strong>
+          <strong className="storeTitle">{name}</strong>
           <address>
             {location.address1} {location.address2}
             <br />
