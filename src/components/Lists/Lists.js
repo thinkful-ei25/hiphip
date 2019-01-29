@@ -44,16 +44,14 @@ export class Lists extends Component {
     if (this.state.addingList) {
       createListModal = (
         <div className="CreateShoppingList-container">
-          <button
-            className="close-button"
+          <CreateShoppingList />
+          <i
+            className="fas fa-times-circle fa-5x"
             onClick={() => {
               this.toggleModal();
               this.closeOut();
             }}
-          >
-            Close
-          </button>
-          <CreateShoppingList />
+          />
         </div>
       );
     }
