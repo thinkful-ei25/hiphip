@@ -51,3 +51,19 @@
   list-style-type: none;
   background: transparent;
 }
+
+.CreateShoppingListForm-container {
+  background-color: #aaaaaa25;
+}
+
+.CreateShoppingListForm label {
+  display: block;
+}
+
+.error-prompt {
+  color: red;
+}
+
+.name-label > input {
+  margin-left: 10px;
+}
