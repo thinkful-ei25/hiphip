@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 
 import StoreSearch from '../StoreSearch';
 
-import '../../css/master.css';
 import { createList } from '../../actions/shoppingLists';
 import { clearCurrentStore } from '../../actions/yelpAPI';
 

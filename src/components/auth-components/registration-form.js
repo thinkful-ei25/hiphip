@@ -11,7 +11,6 @@ import {
   length,
   isTrimmed,
 } from '../../validators';
-import '../../css/master.css';
 const passwordLength = length({ min: 8, max: 72 });
 const matchesPassword = matches('password');
 
@@ -27,7 +26,7 @@ export class RegistrationForm extends Component {
   render() {
     const returnToLogin = (
       <Link to="/">
-        <button className="returnButton">Return to Log In</button>
+        <button className="login-btn">Return to Log In</button>
       </Link>
     );
     const form = (
@@ -75,7 +74,7 @@ export class RegistrationForm extends Component {
           validate={[required, nonEmpty, matchesPassword]}
         />
         <button
-          className="button register-btn"
+          className="login-btn"
           type="submit"
           disabled={this.props.pristine || this.props.submitting}
         >

@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import RegistrationForm from './registration-form';
-import '../../css/master.css';
 export function RegistrationPage(props) {
-  const regForm = <RegistrationForm className="wrappedForm" />;
+  const regForm = <RegistrationForm className="login-form" />;
   // If we are logged in (which happens automatically when registration
   // is successful) redirect to the user's lists
-  const regTitle = <h1 className="title">Register for Gocery!</h1>;
+  const regTitle = <h1 className="logo">Register for Gocery!</h1>;
   const wrapIt = (
     <div className="wrappedReg">
       {regTitle}
@@ -18,7 +17,7 @@ export function RegistrationPage(props) {
   if (props.loggedIn) {
     return <Redirect to="/lists" />;
   }
-  return <main className="registrationPage">{wrapIt}</main>;
+  return <main className="splash">{wrapIt}</main>;
 }
 
 const mapStateToProps = state => ({

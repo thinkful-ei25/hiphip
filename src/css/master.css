@@ -1,155 +1,6 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-/* #region */
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-/* #endregion */
-
 /* index.css */
 /* #region */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
 /* #endregion */
 
 /* login.css */
@@ -158,63 +9,12 @@ code {
   float: right;
 }
 
-.splash {
-  display: inline-block;
-  min-width: 100%;
-  background: url('/bg.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 100vh;
-}
-
-.login-form {
-  display: block;
-  width: 66%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 100px;
-  box-shadow: inset 0 0 0 200px rgba(28, 31, 37, 0.5);
-  text-align: center;
-}
-
-.logo {
-  color: #56e722;
-  text-align: center;
-  padding-top: 5%;
-}
-
-.form-itself div {
-  margin-bottom: 5%;
-}
-
-.login-btn {
-  width: 40%;
-  margin: auto;
-  margin-bottom: 5%;
-}
 .registerLink {
   text-decoration: none;
   color: black;
 }
 
-.login-field {
-  background-color: black;
-  color: white;
-  text-align: center;
-}
-
-.form-error {
-  color: red;
-}
-
 @media only screen and (min-width: 768px) {
-  .login-btn {
-    width: 15%;
-    margin: auto;
-  }
-
   .login-form {
     display: block;
     width: 66%;
@@ -281,49 +81,11 @@ a {
   background-color: transparent;
 }
 
-.CreateShoppingList-pageTitle {
-  color: white;
-  background-color: #aaaaaa25;
-}
-
 /* #endregion */
 
 /* create shopping list form */
 /* #region */
 
-.CreateShoppingListForm-container {
-  background-color: #aaaaaa25;
-}
-
-.CreateShoppingListForm label {
-  display: block;
-}
-
-.error-prompt {
-  color: red;
-}
-
-.selected-store {
-  border: 1px solid #ff6a00;
-  border-radius: 20px;
-  text-align: center;
-  max-width: 100%;
-  padding: 5px;
-  margin-top: 10px;
-  background-color: #ff6a00;
-}
-
-.search-question {
-  color: white;
-}
-
-.name-label {
-  color: white;
-}
-
-.name-label > input {
-  margin-left: 10px;
-}
 /* #endregion */
 
 /* input */
@@ -344,13 +106,6 @@ a {
 .empty-div {
   color: white;
   text-align: center;
-}
-
-.CreateShoppingList-container {
-  background-color: transparent;
-  max-width: 50%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .add-list-button {
@@ -415,18 +170,6 @@ a {
 /* store results */
 /* #region */
 
-.store-result {
-  border: 1px solid #ff6a00;
-  border-radius: 20px;
-  text-align: center;
-  width: 95%;
-  padding: 5px;
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #ff6a00;
-}
-
 .store-result:hover {
   background-color: #db5e04;
 }
@@ -434,12 +177,6 @@ a {
 
 /* store search results */
 /* #region */
-.store-search-results {
-  list-style-type: none;
-  overflow-y: scroll;
-  height: 500px;
-  background: transparent;
-}
 
 .store-search-form {
   margin-bottom: 10px;
@@ -448,51 +185,6 @@ a {
 
 /* component */
 /* #region */
-
-nav {
-  background-color: #ff6a00;
-  text-align: right;
-  min-height: 4vh;
-}
-
-nav a {
-  text-decoration: none;
-  color: black;
-}
-
-nav h2 {
-  float: left;
-  font-size: 15px;
-  display: inline;
-  margin-left: 3%;
-}
-
-nav h1 {
-  display: inline;
-  margin-top: 0;
-  font-size: 15px;
-  margin-right: 3%;
-}
-
-.wrappedListPage {
-  display: inline-block;
-  min-width: 100%;
-  background: url('/bg.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 100vh;
-}
-
-.pageWrapped {
-  display: block;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5%;
-  text-align: center;
-}
 
 .shoppingLists {
   text-align: center;
@@ -521,11 +213,6 @@ nav h1 {
 
 .pageWrapped img {
   width: 40px;
-}
-
-.listTitle {
-  text-align: center;
-  background-color: #ff6a00;
 }
 
 li {
