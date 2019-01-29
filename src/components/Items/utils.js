@@ -1,4 +1,7 @@
 export function compareAisle(a, b) {
+  if (!a.aisleLocation || !b.aisleLocation) {
+    return 0;
+  }
   let { aisleNo: aisleA } = a.aisleLocation;
   let { aisleNo: aisleB } = b.aisleLocation;
   if (aisleA > aisleB) {
@@ -11,6 +14,9 @@ export function compareAisle(a, b) {
 }
 
 export function sortAisle(a, b) {
+  if (!a.aisleLocation || !b.aisleLocation) {
+    return 0;
+  }
   let { aisleNo: aisleA } = a.aisleLocation;
   let { aisleNo: aisleB } = b.aisleLocation;
   if (!isNaN(aisleA)) {
@@ -29,6 +35,9 @@ export function sortAisle(a, b) {
 }
 
 export function reverseSortAisle(a, b) {
+  if (!a.aisleLocation || !b.aisleLocation) {
+    return 0;
+  }
   let { aisleNo: aisleA } = a.aisleLocation;
   let { aisleNo: aisleB } = b.aisleLocation;
   if (!isNaN(aisleA)) {

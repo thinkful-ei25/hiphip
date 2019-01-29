@@ -1,0 +1,22 @@
+.LoginForm {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.LoginForm legend {
+  font-size: 1.5rem;
+}
+
+.LoginForm label {
+  margin-right: 1em;
+}
+
+.LoginForm .Input {
+  margin-top: 1em;
+}
+
+.LoginForm button,
+.LoginForm .button {
+  margin-top: 1em;
+}

@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import LoginForm from './login-form';
-import './auth.css';
+import LoginForm from '../LoginForm';
+
+import './LoginPage.css';
 
 export function LoginPage(props) {
   // If we are logged in (which happens automatically when registration
@@ -10,16 +11,17 @@ export function LoginPage(props) {
   if (props.loggedIn) {
     return <Redirect to="/lists" />;
   }
-  const logIn = <LoginForm className="wrappedForm" />;
 
-  const logo = <h1 className="logo">GoCery</h1>;
-  const wrapped = (
-    <div className="login-form">
-      {logo}
-      {logIn}
+  return (
+    <div className="LoginPage">
+      <header>
+        <h1>GoCery</h1>
+      </header>
+      <main>
+        <LoginForm />
+      </main>
     </div>
   );
-  return <main className="splash">{wrapped}</main>;
 }
 
 const mapStateToProps = state => ({
