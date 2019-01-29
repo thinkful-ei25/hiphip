@@ -17,10 +17,26 @@ export class StoreResult extends React.Component {
   }
 
   render() {
-    const { grocer: store } = this.props;
+    const { grocer: store, currentLocation } = this.props;
 
     const { name, location, id } = store;
-
+    if (currentLocation) {
+      return (
+        <li
+          key={id}
+          onClick={() => this.handleClickedStore()}
+          className="store-result"
+        >
+          <strong>{name}</strong>
+          <address>
+            {location.address1} {location.address2}
+          </address>
+          <p>
+            <DistanceDisplay meters={store.distance} /> away
+          </p>
+        </li>
+      );
+    }
     return (
       <li
         key={id}
@@ -33,9 +49,6 @@ export class StoreResult extends React.Component {
           <br />
           {location.city}, {location.state} {location.zip_code}
         </address>
-        <p>
-          <DistanceDisplay meters={store.distance} /> away
-        </p>
       </li>
     );
   }
@@ -45,7 +58,11 @@ const mapDispatchToProps = {
   setCurrentStore,
 };
 
+const mapStateToProps = state => ({
+  userLocation: state.yelpAPI.userLocation,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(StoreResult);

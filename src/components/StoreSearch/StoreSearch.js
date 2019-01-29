@@ -5,10 +5,18 @@ import {
   setUserLocation,
   searchStoresWithLocation,
 } from '../../actions/yelpAPI';
+
 import '../Lists/Lists.css';
+
 import StoreResult from '../StoreResult';
+import LoadingSpinner from '../LoadingSpinner';
 
 export class StoreSearch extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { usingUserLocation: true };
+  }
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(setUserLocation()).then(userCoordinates =>
@@ -20,11 +28,20 @@ export class StoreSearch extends React.Component {
     if (this.props.error) {
       return;
     }
+    if (this.props.loading) {
+      return <LoadingSpinner />;
+    }
+
+    let { usingUserLocation } = this.state;
 
     let stores = [];
     if (this.props.stores) {
       stores = this.props.stores.map(store => (
-        <StoreResult key={store.id} grocer={store} />
+        <StoreResult
+          key={store.id}
+          grocer={store}
+          currentLocation={usingUserLocation}
+        />
       ));
     }
 
@@ -40,8 +57,10 @@ export class StoreSearch extends React.Component {
     }
     if (this.props.userLocation && location.trim() === '') {
       this.props.dispatch(searchStores(searchTerm, this.props.userLocation));
+      this.setState({ usingUserLocation: true });
     } else {
       this.props.dispatch(searchStoresWithLocation(searchTerm, location));
+      this.setState({ usingUserLocation: false });
     }
   }
 
