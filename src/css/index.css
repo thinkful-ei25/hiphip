@@ -43,11 +43,11 @@ button,
   font-family: var(--secondaryFonts);
 }
 
-.button--green {
+.button--submit {
   background-color: var(--ourGreen);
 }
 
-.button--orange {
+.button--primary {
   background-color: var(--ourOrange);
 }
 
