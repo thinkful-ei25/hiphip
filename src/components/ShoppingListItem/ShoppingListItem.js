@@ -101,12 +101,12 @@ export function ShoppingListItem({
       <div className="ShoppingListItem-buttons">
         <div>
           <i
-            class="fas fa-arrow-up"
+            className="fas fa-arrow-up"
             onClick={() => reorder(index, listId, 'up')}
           />
 
           <i
-            class="fas fa-arrow-down"
+            className="fas fa-arrow-down"
             onClick={() => reorder(index, listId, 'down')}
           />
         </div>
