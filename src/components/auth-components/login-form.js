@@ -21,11 +21,7 @@ export class LoginForm extends Component {
         </div>
       );
     }
-    const register = (
-      <Link className="registerLink" to="/register">
-        Register
-      </Link>
-    );
+
     return (
       <Fragment>
         <form
@@ -59,7 +55,6 @@ export class LoginForm extends Component {
           </button>
           <br />
         </form>
-        <button className="login-btn">{register}</button>
       </Fragment>
     );
   }

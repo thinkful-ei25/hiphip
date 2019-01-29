@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import LoginForm from './login-form';
 import '../../css/master.css';
@@ -12,12 +12,17 @@ export function LoginPage(props) {
     return <Redirect to="/lists" />;
   }
   const logIn = <LoginForm className="wrappedForm" />;
-
+  const register = (
+    <Link className="registerLink login-btn" to="/register">
+      Register
+    </Link>
+  );
   const logo = <h1 className="logo">GoCery</h1>;
   const wrapped = (
     <div className="login-form">
       {logo}
       {logIn}
+      {register}
     </div>
   );
   return <main className="splash">{wrapped}</main>;
