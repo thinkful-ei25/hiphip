@@ -44,3 +44,12 @@ a.button:visited {
   text-decoration: none;
   color: inherit;
 }
+
+input {
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 4px;
+  background-color: #eeeeee;
+  font-size: 1rem;
+  font-family: var(--secondaryFonts);
+}
