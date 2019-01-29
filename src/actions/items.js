@@ -221,7 +221,6 @@ export const toggleChecked = (itemId, listId) => (dispatch, getState) => {
 
 export const deleteItem = (itemId, listId) => (dispatch, getState) => {
   dispatch(deleteItemRequest(itemId));
-  console.log(itemId);
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/lists/${listId}/items/${itemId}`, {
     headers: {
