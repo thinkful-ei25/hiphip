@@ -11,6 +11,11 @@
   font-weight: 100;
   grid-column: 1;
 }
+.fa-check-square {
+  margin: auto;
+  font-weight: 100;
+  grid-column: 1;
+}
 .Items .item {
   grid-column: 2;
   border: 1px solid black;
@@ -31,15 +36,6 @@
   text-decoration: line-through;
   position: relative;
 }
-
-/* .ShoppingListItem--checked::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  border-bottom: 1px solid black;
-} */
 
 .ShoppingListItem {
   font-size: 1rem;

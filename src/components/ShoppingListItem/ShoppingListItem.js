@@ -74,7 +74,12 @@ export function ShoppingListItem({
 
   return (
     <Fragment>
-      <span className="far fa-square" />
+      <span
+        className={classNames(
+          { 'far fa-square': !item.isChecked },
+          { 'far fa-check-square': item.isChecked }
+        )}
+      />
       <button
         className={classNames(
           'ShoppingListItem',
