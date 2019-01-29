@@ -1,6 +1,6 @@
 .CreateShoppingList-container {
   background-color: transparent;
-  max-width: 80%;
+  max-width: 85%;
   margin: auto;
   text-align: center;
   clear: both;
@@ -8,8 +8,9 @@
 
 .CreateShoppingList-pageTitle {
   color: black;
-  margin: 20px;
+  padding: 20px;
   font-weight: 600;
+  font-size: 18px;
 }
 
 .CreateShoppingListForm {
