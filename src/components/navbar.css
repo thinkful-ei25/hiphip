@@ -1,9 +1,13 @@
+.navbar {
+  border-bottom: 1px solid black;
+}
 .navUl {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: var(--ourOrange);
+  font-family: var(--titleFonts);
 }
 .rightNav {
   float: right;
@@ -14,22 +18,26 @@
 
 .navUl li a {
   display: block;
+  text-shadow: 2px 1px black;
   float: right;
-  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   height: 45px;
+  color: var(--ourGreen);
+  font-size: 1.2em;
 }
 
 .navUl li h2 {
+  text-shadow: 2px 1px black;
   display: block;
   float: right;
-  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   height: 45px;
+  font-size: 1.2em;
+  color: var(--ourGreen);
 }
 
 .navUl li h2:hover {
@@ -42,6 +50,6 @@
 }
 
 /* Change the link color to #111 (black) on hover */
-.navUl li a:hover {
+/* .navUl li a:hover {
   background-color: #111;
-}
+} */
