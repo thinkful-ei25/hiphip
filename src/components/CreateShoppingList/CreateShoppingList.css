@@ -8,6 +8,9 @@
 
 .CreateShoppingList {
   clear: both;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 5%;
 }
 
 .CreateShoppingList-pageTitle {
