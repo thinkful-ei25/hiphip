@@ -27,13 +27,15 @@ export class StoreResult extends React.Component {
           onClick={() => this.handleClickedStore()}
           className="store-result"
         >
-          <strong>{name}</strong>
-          <address className="address">
-            {location.address1} {location.address2}
-          </address>
-          <p>
-            <DistanceDisplay meters={store.distance} /> away
-          </p>
+          <div className="store-result-details">
+            <strong>{name}</strong>
+            <address>
+              {location.address1} {location.address2}
+            </address>
+            <p>
+              <DistanceDisplay meters={store.distance} /> away
+            </p>
+          </div>
         </li>
       );
     }

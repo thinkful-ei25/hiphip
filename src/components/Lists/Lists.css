@@ -74,6 +74,14 @@
   font-size: 1rem;
 }
 
+.close-button {
+  color: var(--ourGreen);
+  text-shadow: 2px 1px black;
+  position: absolute;
+  right: 0;
+  margin: 5px;
+}
+
 .add-list-clicker {
   color: var(--ourGreen);
   text-shadow: 2px 1px black;
