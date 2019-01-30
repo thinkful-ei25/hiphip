@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
 import AddItem from '../AddItem';
+import ErrorBanner from '../ErrorBanner';
 
 import {
   getItems,
@@ -15,7 +18,7 @@ import {
 import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
 import authRequired from '../authRequired';
-import { compareAisle, sortAisle, reverseSortAisle } from './utils';
+import { compareAisle, sortAisle } from './utils';
 
 import ShoppingListItem from '../ShoppingListItem';
 import './Items.css';
@@ -69,16 +72,28 @@ export class Items extends Component {
       store,
       aislePrompt,
       editingName,
+      error,
     } = this.props;
 
     if (loading) {
       return <div>Loading...</div>;
     }
 
+    if (error) {
+      if (error.code === 404 || error.code === 422) {
+        return <Redirect to="/lists" />;
+      }
+      return (
+        <ErrorBanner>
+          <p>An unexpected error occured</p>
+        </ErrorBanner>
+      );
+    }
+
     let sortedItems = items.slice();
     sortedItems.sort(compareAisle);
     sortedItems.sort(sortAisle);
-    
+
     let itemElements = sortedItems.map((item, index) => {
       return (
         <ShoppingListItem
@@ -178,6 +193,7 @@ const mapStateToProps = (state, ownProps) => {
     reverseSorted,
     unsort,
     editingName,
+    error,
   } = state.items;
   return {
     items,
@@ -190,6 +206,7 @@ const mapStateToProps = (state, ownProps) => {
     reverseSorted,
     unsort,
     editingName,
+    error,
   };
 };
 

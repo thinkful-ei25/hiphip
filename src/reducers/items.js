@@ -45,7 +45,7 @@ export default function reducer(state = initialState, action) {
       return { ...state, loading: true };
 
     case GET_ITEMS_ERROR:
-      return { ...state, loading: false, error: true };
+      return { ...state, loading: false, error: action.error };
 
     case GET_ITEMS_SUCCESS:
       return {
@@ -54,7 +54,7 @@ export default function reducer(state = initialState, action) {
         name: action.shoppingList.name,
         store: action.shoppingList.store,
         items: action.shoppingList.items,
-        error: false,
+        error: null,
       };
 
     case ADD_ITEM_REQUEST:
