@@ -15,6 +15,10 @@
   border: 1px solid black;
 }
 
+.Items .itemInList {
+  background-color: var(--ourComplimentaryTransparent);
+}
+
 .Items .list-heading {
   font-family: var(--titleFonts);
   text-align: left;
@@ -74,11 +78,6 @@
   margin: auto;
   padding: auto;
   font-family: var(--secondaryFonts);
-}
-
-.listTitle {
-  text-align: center;
-  background-color: var(--ourOrange);
 }
 
 .listTitle h1 {

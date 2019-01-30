@@ -9,13 +9,14 @@
   --fadedBack: rgba(255, 255, 255, 0.1);
   --cardBgColor: #eeeeee;
   /* start new color palette */
-  --ourPrimary: #ec5d62;
+  /* --ourPrimary: #ec5d62; */
   --ourPrimaryTranslucent: #ec5d62bb;
   --ourPrimaryCompliment: #5dece8;
   --ourSecondary: #3c5334;
   --ourSecondaryComplimentary: #4b3453;
+  --ourPrimary: #fd9452;
+  --listBoxBG: #dee8eba6;
 }
-
 html * {
   box-sizing: border-box;
 }
@@ -31,7 +32,7 @@ body {
 #root {
   display: inline-block;
   min-width: 100%;
-  background: url('/newBG.png') no-repeat center center fixed;
+  background: url('/BlurredPreferred.png') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

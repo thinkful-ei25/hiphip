@@ -79,7 +79,8 @@ export function ShoppingListItem({
           'ShoppingListItem',
           { 'ShoppingListItem--checked': item.isChecked },
           'item',
-          'padded'
+          'padded',
+          'itemInList'
         )}
         type="button"
         onClick={onClick}
@@ -91,7 +92,8 @@ export function ShoppingListItem({
           'ShoppingListItem',
           { 'ShoppingListItem--checked': item.isChecked },
           'aisle',
-          'padded'
+          'padded',
+          'itemInList'
         )}
         onClick={onClick}
         type="button"
