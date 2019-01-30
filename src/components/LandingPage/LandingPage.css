@@ -21,7 +21,7 @@
 
 .hero .button {
   margin: 0 auto;
-  background-color: var(--ourGreen);
+  background-color: var(--ourPrimary);
   color: inherit;
 }
 
