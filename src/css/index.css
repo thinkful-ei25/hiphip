@@ -3,7 +3,7 @@
   --ourGreen: #13ca22;
   --ourYellow: #f3de2c;
   --ourGold: #fbb02d;
-  --ourWarningColor: #db504a;
+  --ourWarningColor: #d61a13;
   --logoFont: 'Baloo Thambi', cursive;
   --headerFont: 'Francois One', sans-serif;
   --secondaryFonts: 'Source Sans Pro', sans-serif;
@@ -11,6 +11,7 @@
   --cardBgColor: #eeeeee;
   --ourPrimary: #fd9452;
   --listBoxBG: #dee8eba6;
+  --ourButtonDefault: #90989b;
 }
 html * {
   box-sizing: border-box;
@@ -47,11 +48,11 @@ button,
 }
 
 .button--submit {
-  background-color: var(--ourGreen);
+  background-color: var(--ourPrimary);
 }
 
 .button--primary {
-  background-color: var(--ourPrimary);
+  background-color: var(--ourButtonDefault);
 }
 
 a.button:visited {

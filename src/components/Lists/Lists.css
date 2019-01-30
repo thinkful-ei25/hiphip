@@ -68,7 +68,7 @@
 }
 
 .add-list-clicker {
-  color: var(--ourGreen);
+  color: var(--ourPrimary);
   text-shadow: 2px 1px black;
   position: fixed;
   left: 77%;
@@ -77,9 +77,9 @@
 }
 
 .close-button {
-  color: var(--ourGreen);
+  color: var(--ourWarningColor);
   text-shadow: 2px 1px black;
   position: absolute;
-  right: 0;
+  right: 2%;
   margin: 5px;
 }

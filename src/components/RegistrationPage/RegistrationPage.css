@@ -11,7 +11,7 @@
 
 .RegistrationPage h1 {
   font-family: var(--logoFont);
-  color: var(--ourOrange);
+  color: var(--ourPrimary);
   font-size: 40px;
 }
 
