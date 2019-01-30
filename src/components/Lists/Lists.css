@@ -38,9 +38,10 @@
   border-radius: 15px;
   list-style-type: none;
   margin-bottom: 5%;
-  background-color: var(--ourOrange);
+  background-color: var(--listBoxBG);
   text-align: center;
   font-size: 20px;
+  box-shadow: 1px 1px #d1c9c9;
   color: black;
 }
 
@@ -51,11 +52,13 @@
 .listTitle {
   font-family: var(--secondaryFonts);
   font-size: 18px;
-  margin-bottom: 0.5vh;
-  padding-top: 1vh;
   color: black;
   font-weight: bold;
   text-transform: capitalize;
+  text-align: center;
+  background-color: #c2b5ac70;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .storeDetails {

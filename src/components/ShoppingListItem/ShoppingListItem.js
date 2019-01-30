@@ -90,7 +90,8 @@ export function ShoppingListItem({
           'ShoppingListItem',
           { 'ShoppingListItem--checked': item.isChecked },
           'item',
-          'padded'
+          'padded',
+          'itemInList'
         )}
         type="button"
         onClick={onClick}
@@ -98,8 +99,13 @@ export function ShoppingListItem({
         {item.name}
       </button>
       <button
-        className={classNames('ShoppingListItem', 'aisle')}
-        onClick={() => toggleEditMode(item.id)}
+        className={classNames(
+          'ShoppingListItem',
+          'aisle',
+          'padded',
+          'itemInList'
+        )}
+        onClick={onClick}
         type="button"
       >
         {item.aisleLocation && item.aisleLocation.aisleNo}

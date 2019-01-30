@@ -117,11 +117,6 @@
   font-family: var(--secondaryFonts);
 }
 
-.listTitle {
-  text-align: center;
-  background-color: var(--ourOrange);
-}
-
 .listTitle h1 {
   font-family: var(--titleFonts);
   font-size: 2em;
