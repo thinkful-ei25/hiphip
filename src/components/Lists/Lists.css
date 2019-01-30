@@ -83,3 +83,12 @@
   right: 2%;
   margin: 5px;
 }
+
+.list-page-wrapper .onboarding {
+  font-size: 2rem;
+  font-family: var(--titleFonts);
+  position: fixed;
+  bottom: 10%;
+  right: 30%;
+  color: #4e080d;
+}

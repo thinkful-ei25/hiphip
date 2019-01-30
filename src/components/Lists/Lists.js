@@ -65,6 +65,12 @@ export class Lists extends Component {
       </button>
     );
 
+    const onBoardingPrompt = (
+      <div className="onboarding">
+        <h2>Create a new shopping list</h2>
+      </div>
+    );
+
     if (this.state.addingList) {
       createListButton = null;
     }
@@ -72,6 +78,7 @@ export class Lists extends Component {
     const pageWrapped = (
       <div className="pageWrapped">
         <ul className="shoppingLists">{shoppingLists}</ul>
+        {onBoardingPrompt}
         {createListButton}
       </div>
     );
