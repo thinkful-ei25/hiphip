@@ -68,11 +68,12 @@
 }
 
 .add-list-clicker {
-  color: var(--ourPrimary);
-  text-shadow: 2px 1px black;
   position: fixed;
+  padding: 0;
   left: 77%;
   top: 90%;
+  border-radius: 50%;
+  color: var(--ourPrimary);
   background-color: transparent;
 }
 
@@ -92,9 +93,15 @@
 .list-page-wrapper .onboarding {
   font-size: 2rem;
   font-family: var(--headerFont);
-  position: fixed;
-  bottom: 10%;
+  position: absolute;
+  top: 30%;
   right: 30%;
   color: #4e080d;
   margin-left: 1rem;
+}
+
+.list-page-wrapper .onboarding img {
+  position: fixed;
+  left: 77%;
+  top: 30%;
 }

@@ -74,7 +74,8 @@ export class Lists extends Component {
 
     const onBoardingPrompt = (
       <div className="onboarding">
-        <h2>Create a new shopping list</h2>
+        <h2>Organize your shopping by creating a list</h2>
+        <img src="/arrow-down.svg" />
       </div>
     );
 
