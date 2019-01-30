@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteList } from '../../actions/shoppingLists';
 import CoordinateDistance from '../CoordinateDistance';
+
 import '../Lists/Lists.css';
+import './ShoppingList.css';
 export class ShoppingList extends Component {
   constructor(props) {
     super(props);
@@ -26,12 +28,6 @@ export class ShoppingList extends Component {
 
   linkToList(event, id) {
     const { id: btnId, className: btnClass } = event.target;
-    if (btnClass === 'fas fa-trash-alt fa-2x') {
-      return;
-    }
-    if (btnId === 'confirmDelete' || btnId === 'cancelDelete') {
-      return;
-    }
     this.props.history.push(`/lists/${id}`);
   }
   render() {
@@ -39,26 +35,45 @@ export class ShoppingList extends Component {
 
     let deleteButton = (
       <i
-        className="fas fa-trash-alt fa-2x delete-icon"
-        onClick={() => this.deleteClicked()}
+        className="fas fa-times fa-2x delete-icon"
+        onClick={e => {
+          e.stopPropagation();
+          this.deleteClicked();
+        }}
       />
     );
     if (this.state.deleteModal) {
       deleteButton = (
         <div className="list-delete-btn">
-          <button id="confirmDelete" onClick={() => this.confirmDelete()}>
+          <button
+            id="confirmDelete"
+            onClick={e => {
+              e.stopPropagation();
+              this.confirmDelete();
+            }}
+          >
             Confirm Delete
           </button>
-          <button id="cancelDelete" onClick={() => this.deleteClicked()}>
+          <button
+            id="cancelDelete"
+            onClick={e => {
+              e.stopPropagation();
+              this.deleteClicked();
+            }}
+          >
             Cancel
           </button>
         </div>
       );
     }
     return (
-      <li className="ShoppingList" onClick={e => this.linkToList(e, id)}>
-        <div>{name}</div>
-        <div>
+      <li
+        key={id}
+        className="ShoppingList"
+        onClick={e => this.linkToList(e, id)}
+      >
+        <div className="list-title">{name}</div>
+        <div className="list-store">
           {store !== null ? store.name + ' - ' : store}
           {store !== null ? store.address.address1 : store}
         </div>

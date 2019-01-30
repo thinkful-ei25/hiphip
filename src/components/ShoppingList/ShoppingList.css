@@ -1,0 +1,19 @@
+.list-title {
+  padding: 0.25em;
+}
+
+.distanceFromStore {
+  font-family: var(--secondaryFonts);
+  font-size: 1rem;
+  padding: 0.25em;
+}
+
+.list-delete-btn button {
+  font-size: 12px;
+  margin: 5px;
+}
+
+.delete-icon {
+  font-size: 1.25rem;
+  margin-top: 5px;
+}
