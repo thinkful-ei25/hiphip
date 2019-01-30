@@ -16,7 +16,9 @@ function CreateShoppingList({ user, loggingIn, currentStore }) {
   return (
     <div className="CreateShoppingList">
       <header>
-        <h2 className="CreateShoppingList-pageTitle">New shopping list</h2>
+        <h2 className="CreateShoppingList-pageTitle">
+          Create a new shopping list
+        </h2>
       </header>
       <CreateShoppingListForm />
     </div>

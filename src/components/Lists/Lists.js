@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
+import authRequired from '../authRequired';
 import ShoppingList from '../ShoppingList';
 import NavBar from '../nav-bar';
 import CreateShoppingList from '../CreateShoppingList';
@@ -30,23 +30,18 @@ export class Lists extends Component {
   }
 
   render() {
-    if (!this.props.username) {
-      return <Redirect to="/" />;
-    }
     let createListModal;
     if (this.state.addingList) {
       createListModal = (
         <div className="CreateShoppingList-container">
-          <CreateShoppingList />
-          <button
-            className="close-button"
+          <i
+            className="fas fa-times fa-2x close-button"
             onClick={() => {
               this.toggleModal();
               this.closeOut();
             }}
-          >
-            Close
-          </button>
+          />
+          <CreateShoppingList />
         </div>
       );
     }
@@ -55,6 +50,7 @@ export class Lists extends Component {
     const shoppingLists = lists.map(list => (
       <ShoppingList
         id={list.id}
+        key={list.id}
         name={list.name}
         groceryStore={list.store}
         editing={list.editing}
@@ -88,10 +84,9 @@ export class Lists extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    username: state.auth.currentUser ? state.auth.currentUser.username : null,
     lists: state.lists.lists,
     history: ownProps.history,
   };
 };
 
-export default connect(mapStateToProps)(Lists);
+export default authRequired()(connect(mapStateToProps)(Lists));

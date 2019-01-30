@@ -1,12 +1,9 @@
-.navbar {
-  border-bottom: 1px solid black;
-}
 .navUl {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: var(--ourOrange);
+  background-color: var(--ourPrimary);
   font-family: var(--titleFonts);
 }
 .rightNav {

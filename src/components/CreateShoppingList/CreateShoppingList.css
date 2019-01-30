@@ -1,20 +1,47 @@
 .CreateShoppingList-container {
   background-color: transparent;
-  max-width: 80%;
+  max-width: 85%;
   margin: auto;
   text-align: center;
 }
 
+.CreateShoppingList {
+  clear: both;
+}
+
 .CreateShoppingList-pageTitle {
-  color: white;
-  font-family: var(--titleFonts);
-  text-shadow: 2px 1px black;
+  color: black;
+  padding: 10px;
+  font-weight: 600;
+  text-align: center;
   margin-bottom: 1vh;
   font-size: 1.5em;
 }
 
-.CreateShoppingListForm label {
-  display: block;
+.CreateShoppingListForm {
+  text-align: center;
+  clear: both;
+  max-width: 275px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.CreateShoppingListForm button {
+  margin: 10px 0px 0px 0px;
+}
+
+input#name {
+  margin: 5px 0px;
+  width: 100%;
+}
+
+.error-prompt {
+  color: red;
+}
+
+.store-search {
+  text-align: center;
 }
 
 .selected-store {
@@ -30,27 +57,28 @@
   color: black;
 }
 
+.select-new-store {
+  margin: 5px 0px;
+}
+
+.create-list {
+  margin: 5px 0px;
+}
+
 .search-question {
-  color: white;
-}
-
-.name-label {
-  color: white;
-  font-family: var(--secondaryFonts);
-  text-shadow: 2px 1px black;
-  margin-bottom: 1vh;
-  font-size: 1em;
-}
-
-.name-label > input {
-  margin-left: 10px;
-  box-shadow: 2px 1px black;
+  color: black;
+  padding: 5px 0px;
+  margin-top: 5px;
+  font-weight: 600;
 }
 
 .store-result {
-  padding: 2%;
+  border: 1px solid var(--ourOrange);
   border-radius: 15px;
+  text-align: center;
   list-style-type: none;
+  width: 100%;
+  padding: 2%;
   margin-top: 5%;
   background-color: var(--ourOrange);
   text-align: center;
@@ -65,10 +93,18 @@
   font-weight: bold;
 }
 
+.store-search-results {
+  list-style-type: none;
+  background: transparent;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 .store-result address {
   font-family: var(--secondaryFonts);
   font-size: 1rem;
   margin-bottom: 0.5vh;
+  margin-top: 0.5vh;
 }
 
 .store-result p {
@@ -95,18 +131,36 @@ button {
   font-family: var(--secondaryFonts);
 }
 
-.CreateShoppingListForm-container {
-  background-color: #aaaaaa25;
+.store-search-form {
+  text-align: center;
+  max-width: 275px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.CreateShoppingListForm label {
-  display: block;
+.store-search-form input {
+  margin: 5px 0px;
+  width: 100%;
 }
 
-.error-prompt {
-  color: red;
+.search-button {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
 }
 
-.name-label > input {
-  margin-left: 10px;
+.location-blue {
+  color: #3498d8;
+}
+
+.location-white {
+  color: grey;
+}
+
+.fa-location-arrow {
+  margin: 2px;
+}
+
+.loading-spinner {
+  text-align: center;
 }
