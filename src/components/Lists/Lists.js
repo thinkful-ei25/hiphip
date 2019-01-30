@@ -55,6 +55,7 @@ export class Lists extends Component {
     const shoppingLists = lists.map(list => (
       <ShoppingList
         id={list.id}
+        key={list.id}
         name={list.name}
         groceryStore={list.store}
         editing={list.editing}
