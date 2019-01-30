@@ -45,6 +45,7 @@ export class Lists extends Component {
         </div>
       );
     }
+
     const navBarJSX = <NavBar />;
     const { lists, history } = this.props;
     const shoppingLists = lists.map(list => (
@@ -57,20 +58,24 @@ export class Lists extends Component {
         history={history}
       />
     ));
-    let createList = (
+
+    let createListButton = (
       <button className="add-list-clicker" onClick={() => this.toggleModal()}>
         <i className="fas fa-plus-circle fa-3x" />
       </button>
     );
+
     if (this.state.addingList) {
-      createList = null;
+      createListButton = null;
     }
+
     const pageWrapped = (
       <div className="pageWrapped">
         <ul className="shoppingLists">{shoppingLists}</ul>
-        {createList}
+        {createListButton}
       </div>
     );
+
     const mainListPage = (
       <div className="wrappedListPage">
         {navBarJSX}
@@ -78,6 +83,7 @@ export class Lists extends Component {
         {pageWrapped}
       </div>
     );
+
     return <main className="list-page-wrapper">{mainListPage}</main>;
   }
 }
