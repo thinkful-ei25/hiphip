@@ -15,7 +15,7 @@ import {
 import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
 import authRequired from '../authRequired';
-import { compareAisle, sortAisle, reverseSortAisle } from './utils';
+import { compareAisle, sortAisle } from './utils';
 
 import ShoppingListItem from '../ShoppingListItem';
 import './Items.css';
@@ -78,7 +78,7 @@ export class Items extends Component {
     let sortedItems = items.slice();
     sortedItems.sort(compareAisle);
     sortedItems.sort(sortAisle);
-    
+
     let itemElements = sortedItems.map((item, index) => {
       return (
         <ShoppingListItem
@@ -156,8 +156,8 @@ export class Items extends Component {
               <div className="item list-heading">Item</div>
               <div className="aisle aisle-heading list-heading">Aisle</div>
               {itemElements}
+              <AddItem listId={listId} />
             </section>
-            <AddItem listId={listId} />
             {aislePrompt ? <AddAisle listId={listId} /> : null}
           </div>
         </main>

@@ -56,9 +56,11 @@
   font-weight: bold;
   text-transform: capitalize;
   text-align: center;
-  background-color: #c2b5ac70;
+  background-color: #dee8eb88;
   padding-top: 15px;
   padding-bottom: 15px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .storeDetails {
@@ -92,4 +94,11 @@
   left: 77%;
   top: 90%;
   background-color: transparent;
+}
+
+@media only screen and (min-width: 768px) {
+  .listTitle {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }

@@ -1,12 +1,14 @@
 .Items .shoppingList {
+  margin-top: 10px;
   display: grid;
   /*                    1  2   3  4   5  6  7  8  9  10*/
-  grid-template: auto / 5% 5% 35% 5% 30% 5% 5% 5% 5%;
+  grid-template: auto / 5% 5% 45% 5% 20% 5% 5% 5% 5%;
   grid-auto-rows: 50px;
   align-items: center;
   padding: 1em;
   max-width: 800px;
   margin: 0 auto;
+  background-color: #dee8eb88;
 }
 .icon-btn {
   border: none;
