@@ -26,12 +26,6 @@ export class ShoppingList extends Component {
 
   linkToList(event, id) {
     const { id: btnId, className: btnClass } = event.target;
-    if (btnClass === 'fas fa-trash-alt fa-2x') {
-      return;
-    }
-    if (btnId === 'confirmDelete' || btnId === 'cancelDelete') {
-      return;
-    }
     this.props.history.push(`/lists/${id}`);
   }
   render() {
@@ -40,16 +34,31 @@ export class ShoppingList extends Component {
     let deleteButton = (
       <i
         class="fas fa-trash-alt fa-2x delete-icon"
-        onClick={() => this.deleteClicked()}
+        onClick={e => {
+          e.stopPropagation();
+          this.deleteClicked();
+        }}
       />
     );
     if (this.state.deleteModal) {
       deleteButton = (
         <div className="list-delete-btn">
-          <button id="confirmDelete" onClick={() => this.confirmDelete()}>
+          <button
+            id="confirmDelete"
+            onClick={e => {
+              e.stopPropagation();
+              this.confirmDelete();
+            }}
+          >
             Confirm Delete
           </button>
-          <button id="cancelDelete" onClick={() => this.deleteClicked()}>
+          <button
+            id="cancelDelete"
+            onClick={e => {
+              e.stopPropagation();
+              this.deleteClicked();
+            }}
+          >
             Cancel
           </button>
         </div>
