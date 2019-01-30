@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import AddItem from '../AddItem';
 
 import {
@@ -15,6 +14,7 @@ import {
 } from '../../actions/items';
 import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
+import authRequired from '../authRequired';
 import { compareAisle, sortAisle, reverseSortAisle } from './utils';
 
 import ShoppingListItem from '../ShoppingListItem';
@@ -27,6 +27,7 @@ export class Items extends Component {
     }
     dispatch(toggleChecked(item.id, listId));
   }
+
   onSort() {
     const { dispatch, sorted, reverseSorted } = this.props;
     if (sorted) {
@@ -38,13 +39,14 @@ export class Items extends Component {
     }
     this.forceUpdate();
   }
+
   componentDidMount() {
     const { dispatch, listId } = this.props;
     dispatch(getItems(listId));
   }
 
   editing() {
-    const { dispatch, editingName } = this.props;
+    const { dispatch } = this.props;
     dispatch(editListName());
   }
 
@@ -60,26 +62,21 @@ export class Items extends Component {
 
   render() {
     const {
-      authLoading,
       items,
       listId,
       loading,
       name,
       store,
-      username,
       aislePrompt,
       sorted,
       reverseSorted,
       editingName,
     } = this.props;
 
-    if (authLoading || loading) {
+    if (loading) {
       return <div>Loading...</div>;
     }
 
-    if (!username) {
-      return <Redirect to="/" />;
-    }
     let sortedItems = items.slice();
     if (sorted) {
       sortedItems.sort(compareAisle);
@@ -88,6 +85,7 @@ export class Items extends Component {
       sortedItems.sort(compareAisle);
       sortedItems.sort(reverseSortAisle);
     }
+
     let itemElements = sortedItems.map((item, index) => {
       return (
         <ShoppingListItem
@@ -116,6 +114,7 @@ export class Items extends Component {
         </h3>
       );
     }
+
     let header;
     let editForm = (
       <form onSubmit={e => this.newName(e)}>
@@ -130,6 +129,7 @@ export class Items extends Component {
         </button>
       </form>
     );
+
     if (editingName) {
       header = (
         <header className="listTitle">
@@ -151,6 +151,7 @@ export class Items extends Component {
         </header>
       );
     }
+
     return (
       <Fragment>
         <NavBar />
@@ -187,8 +188,6 @@ const mapStateToProps = (state, ownProps) => {
     editingName,
   } = state.items;
   return {
-    username: state.auth.currentUser ? state.auth.currentUser.username : null,
-    authLoading: state.auth.loading,
     items,
     loading,
     store,
@@ -202,4 +201,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(Items);
+export default authRequired()(connect(mapStateToProps)(Items));
