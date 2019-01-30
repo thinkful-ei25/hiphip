@@ -70,10 +70,6 @@
   margin-bottom: 0.5vh;
 }
 
-.delete-icon {
-  font-size: 1rem;
-}
-
 .add-list-clicker {
   color: var(--ourGreen);
   text-shadow: 2px 1px black;

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteList } from '../../actions/shoppingLists';
 import CoordinateDistance from '../CoordinateDistance';
+
 import '../Lists/Lists.css';
+import './ShoppingList.css';
 export class ShoppingList extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +35,7 @@ export class ShoppingList extends Component {
 
     let deleteButton = (
       <i
-        class="fas fa-trash-alt fa-2x delete-icon"
+        className="fas fa-times fa-2x delete-icon"
         onClick={e => {
           e.stopPropagation();
           this.deleteClicked();
