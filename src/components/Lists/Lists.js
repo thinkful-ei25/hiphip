@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -48,6 +49,8 @@ export class Lists extends Component {
 
     const navBarJSX = <NavBar />;
     const { lists, history } = this.props;
+    const shouldOnboard = !lists.length && !this.state.addingList;
+
     const shoppingLists = lists.map(list => (
       <ShoppingList
         id={list.id}
@@ -61,7 +64,11 @@ export class Lists extends Component {
 
     let createListButton = (
       <button className="add-list-clicker" onClick={() => this.toggleModal()}>
-        <i className="fas fa-plus-circle fa-3x" />
+        <i
+          className={classNames('fas', 'fa-plus-circle', 'fa-3x', {
+            'onboard-highlight': shouldOnboard,
+          })}
+        />
       </button>
     );
 
@@ -78,7 +85,7 @@ export class Lists extends Component {
     const pageWrapped = (
       <div className="pageWrapped">
         <ul className="shoppingLists">{shoppingLists}</ul>
-        {onBoardingPrompt}
+        {shouldOnboard && onBoardingPrompt}
         {createListButton}
       </div>
     );

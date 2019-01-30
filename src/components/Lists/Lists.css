@@ -76,6 +76,11 @@
   background-color: transparent;
 }
 
+.add-list-clicker .onboard-highlight {
+  border-radius: 50%;
+  box-shadow: 0 0 10px 10px #c31421;
+}
+
 .close-button {
   color: var(--ourWarningColor);
   text-shadow: 2px 1px black;
@@ -86,9 +91,10 @@
 
 .list-page-wrapper .onboarding {
   font-size: 2rem;
-  font-family: var(--titleFonts);
+  font-family: var(--headerFont);
   position: fixed;
   bottom: 10%;
   right: 30%;
   color: #4e080d;
+  margin-left: 1rem;
 }
