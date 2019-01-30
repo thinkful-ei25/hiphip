@@ -105,7 +105,7 @@ export function ShoppingListItem({
           'padded',
           'itemInList'
         )}
-        onClick={onClick}
+        onClick={() => toggleEditMode(item.id)}
         type="button"
       >
         {item.aisleLocation && item.aisleLocation.aisleNo}
