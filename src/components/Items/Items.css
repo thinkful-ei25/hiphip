@@ -46,10 +46,12 @@
 
 .Items .item {
   grid-column: 3;
+  font-family: var(--secondaryFonts);
 }
 .Items .aisle {
   grid-column: 5;
   text-align: center;
+  font-family: var(--secondaryFonts);
 }
 .aisle-heading {
   margin: auto;
@@ -126,7 +128,8 @@
 }
 
 .listTitle h1 {
-  font-family: var(--titleFonts);
+  font-family: var(--headerFont);
+  text-transform: capitalize;
   font-size: 2em;
   margin-bottom: 1vh;
 }
@@ -191,7 +194,7 @@
 }
 
 .addItemInputs label {
-  font-family: var(--titleFonts);
+  font-family: var(--secondaryFonts);
 }
 
 .addItemInputs input {

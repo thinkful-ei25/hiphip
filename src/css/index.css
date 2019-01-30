@@ -1,15 +1,17 @@
 :root {
   --ourOrange: #fb6107;
-  --ourGreen: #7cb518;
+  --ourGreen: #13ca22;
   --ourYellow: #f3de2c;
   --ourGold: #fbb02d;
-  --ourWarningColor: #db504a;
-  --titleFonts: 'Righteous', cursive;
-  --secondaryFonts: 'Lato', sans-serif;
+  --ourWarningColor: #d61a13;
+  --logoFont: 'Baloo Thambi', cursive;
+  --headerFont: 'Francois One', sans-serif;
+  --secondaryFonts: 'Source Sans Pro', sans-serif;
   --fadedBack: rgba(255, 255, 255, 0.1);
   --cardBgColor: #eeeeee;
   --ourPrimary: #fd9452;
   --listBoxBG: #dee8eba6;
+  --ourButtonDefault: #90989b;
 }
 html * {
   box-sizing: border-box;
@@ -46,11 +48,11 @@ button,
 }
 
 .button--submit {
-  background-color: var(--ourGreen);
+  background-color: var(--ourPrimary);
 }
 
 .button--primary {
-  background-color: var(--ourOrange);
+  background-color: var(--ourButtonDefault);
 }
 
 a.button:visited {

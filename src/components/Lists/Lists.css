@@ -69,31 +69,21 @@
   margin-bottom: 0.25vh;
 }
 
-.distanceFromStore {
-  font-family: var(--secondaryFonts);
-  font-size: 1rem;
-  margin-bottom: 0.5vh;
-}
-
-.delete-icon {
-  font-size: 1rem;
-}
-
-.close-button {
-  color: var(--ourGreen);
-  text-shadow: 2px 1px black;
-  position: absolute;
-  right: 0;
-  margin: 5px;
-}
-
 .add-list-clicker {
-  color: var(--ourGreen);
+  color: var(--ourPrimary);
   text-shadow: 2px 1px black;
   position: fixed;
   left: 77%;
   top: 90%;
   background-color: transparent;
+}
+
+.close-button {
+  color: var(--ourWarningColor);
+  text-shadow: 2px 1px black;
+  position: absolute;
+  right: 2%;
+  margin: 5px;
 }
 
 @media only screen and (min-width: 768px) {

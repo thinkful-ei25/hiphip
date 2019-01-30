@@ -6,8 +6,8 @@
   font-size: 40px;
   text-align: center;
   margin: 1rem;
-  color: var(--ourOrange);
-  font-family: var(--titleFonts);
+  color: var(--ourPrimary);
+  font-family: var(--logoFont);
 }
 
 .hero {
@@ -21,17 +21,17 @@
 
 .hero .button {
   margin: 0 auto;
-  background-color: var(--ourGreen);
+  background-color: var(--ourPrimary);
   color: inherit;
 }
 
 .hero h2 {
-  font-family: 'Righteous', 'serif';
+  font-family: var(--headerFont);
   font-size: 1.5rem;
 }
 
 .hero p {
-  font-family: 'Lato', 'sans-serif';
+  font-family: var(--secondaryFont);
   margin: 1em 0;
 }
 
