@@ -8,8 +8,9 @@
   --secondaryFonts: 'Lato', sans-serif;
   --fadedBack: rgba(255, 255, 255, 0.1);
   --cardBgColor: #eeeeee;
+  --ourPrimary: #fd9452;
+  --listBoxBG: #dee8eba6;
 }
-
 html * {
   box-sizing: border-box;
 }
@@ -25,7 +26,7 @@ body {
 #root {
   display: inline-block;
   min-width: 100%;
-  background: url('/bg.jpg') no-repeat center center fixed;
+  background: url('/BlurredPreferred.png') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

@@ -14,22 +14,28 @@ import LoadingSpinner from '../LoadingSpinner';
 export class StoreSearch extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { usingUserLocation: true };
+    this.state = { usingUserLocation: true, madeSearch: false };
   }
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(setUserLocation()).then(userCoordinates =>
-      dispatch(searchStores('grocery store', userCoordinates))
-    );
+    dispatch(setUserLocation()).then(userCoordinates => {
+      if (userCoordinates) {
+        dispatch(searchStores('grocery store', userCoordinates));
+      }
+    });
+  }
+
+  toggleSearch() {
+    this.setState({ madeSearch: true });
   }
 
   renderResults() {
-    if (this.props.error) {
-      return;
+    if (this.props.error && this.state.madeSearch) {
+      return <div className="error-prompt">You must enter a location!</div>;
     }
     if (this.props.loading) {
-      return <LoadingSpinner />;
+      return <LoadingSpinner className="loading-spinner" />;
     }
 
     let { usingUserLocation } = this.state;
@@ -62,33 +68,41 @@ export class StoreSearch extends React.Component {
       this.props.dispatch(searchStoresWithLocation(searchTerm, location));
       this.setState({ usingUserLocation: false });
     }
+    this.toggleSearch();
   }
 
   render() {
-    let placeholderText = 'Address, City, State, Zip';
+    let placeholderText = '1600 Pennsylvania Ave';
+    let locationClass = 'location-white fas fa-location-arrow';
     if (this.props.userLocation) {
-      placeholderText = 'Using Current Location...';
+      locationClass = 'location-blue fas fa-location-arrow';
     }
-    let locationField = (
-      <input
-        type="text"
-        name="location"
-        ref={location => (this.input = location)}
-        placeholder={placeholderText}
-      />
-    );
 
     return (
       <div className="store-search">
         <form className="store-search-form" onSubmit={e => this.search(e)}>
+          <label for="name" className="store-name-label">
+            Store Name
+          </label>
           <input
             type="search"
             name="searchTerm"
             ref={term => (this.input = term)}
-            placeholder="Store Name..."
+            placeholder="Albertson's, Whole Foods, etc."
           />
-          {locationField}
-          <button>Search</button>
+          <br />
+          <label for="location" className="store-location-label">
+            Location
+          </label>
+          <i className={locationClass} />
+          <input
+            type="text"
+            name="location"
+            ref={location => (this.input = location)}
+            placeholder={placeholderText}
+          />
+          <br />
+          <button className="button--submit search-button">Search</button>
         </form>
         <ul className="store-search-results">{this.renderResults()}</ul>
       </div>

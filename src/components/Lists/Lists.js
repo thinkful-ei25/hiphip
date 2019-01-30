@@ -34,16 +34,14 @@ export class Lists extends Component {
     if (this.state.addingList) {
       createListModal = (
         <div className="CreateShoppingList-container">
-          <CreateShoppingList />
-          <button
-            className="close-button"
+          <i
+            className="fas fa-times fa-2x close-button"
             onClick={() => {
               this.toggleModal();
               this.closeOut();
             }}
-          >
-            Close
-          </button>
+          />
+          <CreateShoppingList />
         </div>
       );
     }
@@ -52,6 +50,7 @@ export class Lists extends Component {
     const shoppingLists = lists.map(list => (
       <ShoppingList
         id={list.id}
+        key={list.id}
         name={list.name}
         groceryStore={list.store}
         editing={list.editing}
