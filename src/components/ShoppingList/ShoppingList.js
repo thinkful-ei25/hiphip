@@ -39,7 +39,7 @@ export class ShoppingList extends Component {
 
     let deleteButton = (
       <i
-        class="fas fa-trash-alt fa-2x delete-icon"
+        className="fas fa-trash-alt fa-2x delete-icon"
         onClick={() => this.deleteClicked()}
       />
     );
@@ -56,11 +56,7 @@ export class ShoppingList extends Component {
       );
     }
     return (
-      <li
-        key={id}
-        className="ShoppingList"
-        onClick={e => this.linkToList(e, id)}
-      >
+      <li className="ShoppingList" onClick={e => this.linkToList(e, id)}>
         <div>{name}</div>
         <div>
           {store !== null ? store.name + ' - ' : store}

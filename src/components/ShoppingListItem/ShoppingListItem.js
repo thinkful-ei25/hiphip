@@ -17,25 +17,34 @@ export function ShoppingListItem({
   patchItem,
   deleteItem,
   listId,
-  reorder,
-  index,
-  key,
 }) {
   function handleSubmit(e) {
-    console.log(e);
     e.preventDefault();
     const name = e.target.name.value;
     const aisleLocation = e.target.aisle.value;
     toggleEditMode(item.id);
     patchItem({ id: item.id, name, aisleLocation }, listId);
   }
-
+  const checkBox = (
+    <button
+      className={classNames(
+        { 'far fa-square': !item.isChecked },
+        { 'far fa-check-square': item.isChecked },
+        'padded',
+        'check-box',
+        'icon-btn'
+      )}
+      type="button"
+      onClick={onClick}
+    />
+  );
   const { isEditing } = item;
   if (isEditing) {
     const formId = `edit-item-form-${item.id}`;
 
     return (
       <Fragment>
+        {checkBox}
         <div className="ShoppingListItem--editing item">
           <form id={formId} onSubmit={handleSubmit} />
           <input
@@ -54,26 +63,28 @@ export function ShoppingListItem({
             className="editingAisle padded"
           />
         </div>
-        <div className="ShoppingListItem-buttons">
-          <button type="submit" form={formId} className="editItemButton">
-            <i className="fas fa-check-circle fa-1x" />
-          </button>
-          <i
-            className="fas fa-trash-alt fa-1x"
-            onClick={() => deleteItem(item.id, listId)}
-          />
 
-          <i
-            className="fas fa-ban fa-1x"
-            onClick={() => toggleEditMode(item.id)}
-          />
-        </div>
+        <button
+          type="submit"
+          form={formId}
+          className="save-edit editItemButton ShoppingListItem-buttons"
+        >
+          <i className="fas fa-check-circle fa-1x" />
+        </button>
+
+        <button
+          className="cancel-edit ShoppingListItem-buttons"
+          onClick={() => toggleEditMode(item.id)}
+        >
+          <i className="fas fa-ban fa-1x fa-1x" />
+        </button>
       </Fragment>
     );
   }
 
   return (
     <Fragment>
+      {checkBox}
       <button
         className={classNames(
           'ShoppingListItem',
@@ -90,7 +101,6 @@ export function ShoppingListItem({
       <button
         className={classNames(
           'ShoppingListItem',
-          { 'ShoppingListItem--checked': item.isChecked },
           'aisle',
           'padded',
           'itemInList'
@@ -100,22 +110,17 @@ export function ShoppingListItem({
       >
         {item.aisleLocation && item.aisleLocation.aisleNo}
       </button>
-      <div className="ShoppingListItem-buttons">
-        <div>
-          <i
-            className="fas fa-arrow-up"
-            onClick={() => reorder(index, listId, 'up')}
-          />
-
-          <i
-            className="fas fa-arrow-down"
-            onClick={() => reorder(index, listId, 'down')}
-          />
-        </div>
-        <a href="#edit" onClick={() => toggleEditMode(item.id)}>
-          <i className="fas fa-edit editIcon" type="submit" />
-        </a>
-      </div>
+      <a
+        href="#edit"
+        className="edit-btn"
+        onClick={() => toggleEditMode(item.id)}
+      >
+        <i className="fas fa-pencil-alt" />
+      </a>
+      <button
+        className="delete-btn fas fa-times"
+        onClick={() => deleteItem(item.id, listId)}
+      />
     </Fragment>
   );
 }
