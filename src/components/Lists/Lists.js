@@ -6,7 +6,7 @@ import ShoppingList from '../ShoppingList';
 import NavBar from '../nav-bar';
 import CreateShoppingList from '../CreateShoppingList';
 
-import { getLists } from '../../actions/shoppingLists';
+import { getLists, clearError } from '../../actions/shoppingLists';
 import { clearCurrentStore, setUserLocation } from '../../actions/yelpAPI';
 import './Lists.css';
 export class Lists extends Component {
@@ -26,6 +26,7 @@ export class Lists extends Component {
   }
 
   closeOut() {
+    this.props.dispatch(clearError());
     this.props.dispatch(clearCurrentStore());
   }
 
