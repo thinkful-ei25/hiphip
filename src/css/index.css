@@ -10,8 +10,10 @@
   --fadedBack: rgba(255, 255, 255, 0.1);
   --cardBgColor: #eeeeee;
   --ourPrimary: #fd9452;
+  --ourSecondary: #35a38a;
   --listBoxBG: #dee8eba6;
   --ourButtonDefault: #90989b;
+  --listBoxBG2: #bce9dfa6;
 }
 html * {
   box-sizing: border-box;
