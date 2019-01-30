@@ -68,8 +68,6 @@ export class Items extends Component {
       store,
       username,
       aislePrompt,
-      sorted,
-      reverseSorted,
       editingName,
     } = this.props;
 
@@ -81,13 +79,8 @@ export class Items extends Component {
       return <Redirect to="/" />;
     }
     let sortedItems = items.slice();
-    if (sorted) {
-      sortedItems.sort(compareAisle);
-      sortedItems.sort(sortAisle);
-    } else if (reverseSorted) {
-      sortedItems.sort(compareAisle);
-      sortedItems.sort(reverseSortAisle);
-    }
+    sortedItems.sort(compareAisle);
+    sortedItems.sort(sortAisle);
     let itemElements = sortedItems.map((item, index) => {
       return (
         <ShoppingListItem
@@ -162,10 +155,8 @@ export class Items extends Component {
             {header}
             <section className="shoppingList">
               <div />
-              <div className="item list-heading">Item:</div>
-              <div className="aisle list-heading" onClick={() => this.onSort()}>
-                Aisle:
-              </div>
+              <div className="item list-heading">Item</div>
+              <div className="aisle aisle-heading list-heading">Aisle</div>
               {itemElements}
             </section>
             <AddItem listId={listId} />
