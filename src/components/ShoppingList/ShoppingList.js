@@ -72,8 +72,8 @@ export class ShoppingList extends Component {
         className="ShoppingList"
         onClick={e => this.linkToList(e, id)}
       >
-        <div>{name}</div>
-        <div>
+        <div className="list-title">{name}</div>
+        <div className="list-store">
           {store !== null ? store.name + ' - ' : store}
           {store !== null ? store.address.address1 : store}
         </div>

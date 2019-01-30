@@ -64,12 +64,6 @@
   margin-bottom: 0.25vh;
 }
 
-.distanceFromStore {
-  font-family: var(--secondaryFonts);
-  font-size: 1rem;
-  margin-bottom: 0.5vh;
-}
-
 .add-list-clicker {
   color: var(--ourGreen);
   text-shadow: 2px 1px black;
