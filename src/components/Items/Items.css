@@ -93,7 +93,7 @@
   margin-bottom: 5px;
   background-color: var(--fadedBack);
   font-family: var(--secondaryFonts);
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .ShoppingListItem-buttons {
