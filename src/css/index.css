@@ -9,8 +9,8 @@
   --fadedBack: rgba(255, 255, 255, 0.1);
   --cardBgColor: #eeeeee;
   /* start new color palette */
-  --ourPrimary: #ec5d6273;
-  --ourPrimaryTranslucent: #ec5d62bb;
+  --ourPrimary: #ec5d62;
+  --ourOrange: #ec5d62bb;
   --ourPrimaryCompliment: #5dece8;
   --ourSecondary: #3c5334;
   --ourSecondaryComplimentary: #4b3453;
