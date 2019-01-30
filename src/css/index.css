@@ -1,6 +1,6 @@
 :root {
   --ourOrange: #fb6107;
-  --ourGreen: #7cb518;
+  --ourGreen: #13ca22;
   --ourYellow: #f3de2c;
   --ourGold: #fbb02d;
   --ourWarningColor: #db504a;
@@ -51,7 +51,7 @@ button,
 }
 
 .button--primary {
-  background-color: var(--ourOrange);
+  background-color: var(--ourPrimary);
 }
 
 a.button:visited {
