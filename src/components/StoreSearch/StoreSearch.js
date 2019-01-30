@@ -10,7 +10,6 @@ import '../Lists/Lists.css';
 
 import StoreResult from '../StoreResult';
 import LoadingSpinner from '../LoadingSpinner';
-import { nextTick } from 'q';
 
 export class StoreSearch extends React.Component {
   constructor(props) {
