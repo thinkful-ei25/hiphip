@@ -10,7 +10,7 @@
 }
 
 .LoginPage h1 {
-  font-family: var(--titleFonts);
+  font-family: var(--logoFont);
   color: var(--ourOrange);
   font-size: 40px;
 }

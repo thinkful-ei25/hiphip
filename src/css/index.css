@@ -4,8 +4,9 @@
   --ourYellow: #f3de2c;
   --ourGold: #fbb02d;
   --ourWarningColor: #db504a;
-  --titleFonts: 'Righteous', cursive;
-  --secondaryFonts: 'Lato', sans-serif;
+  --logoFont: 'Baloo Thambi', cursive;
+  --headerFont: 'Francois One', sans-serif;
+  --secondaryFonts: 'Source Sans Pro', sans-serif;
   --fadedBack: rgba(255, 255, 255, 0.1);
   --cardBgColor: #eeeeee;
   --ourPrimary: #fd9452;

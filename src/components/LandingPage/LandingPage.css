@@ -7,7 +7,7 @@
   text-align: center;
   margin: 1rem;
   color: var(--ourOrange);
-  font-family: var(--titleFonts);
+  font-family: var(--logoFont);
 }
 
 .hero {

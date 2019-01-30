@@ -119,7 +119,8 @@
 }
 
 .listTitle h1 {
-  font-family: var(--titleFonts);
+  font-family: var(--headerFont);
+  text-transform: capitalize;
   font-size: 2em;
   margin-bottom: 1vh;
 }
