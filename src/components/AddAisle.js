@@ -33,6 +33,7 @@ export class AddAisle extends Component {
       <form
         onSubmit={e => this.updateAisle(e)}
         ref={addAisleForm => (this.addAisleForm = addAisleForm)}
+        data-lpignore="true"
       >
         <span>You found the {item.name}. Which aisle are you in?</span>
         <input type="text" ref={input => (this.input = input)} />

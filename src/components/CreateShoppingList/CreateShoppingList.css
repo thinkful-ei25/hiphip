@@ -13,8 +13,11 @@
   color: black;
   padding: 10px;
   font-weight: 600;
-  font-size: 18px;
   text-align: center;
+  font-family: var(--titleFonts);
+  text-shadow: 2px 1px black;
+  margin-bottom: 1vh;
+  font-size: 1.5em;
 }
 
 .CreateShoppingListForm {
@@ -44,14 +47,16 @@ input#name {
 }
 
 .selected-store {
-  border: 1px solid var(--ouorOrange);
-  border-radius: 20px;
-  text-align: center;
-  max-width: 100%;
-  padding: 5px;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  padding: 2%;
+  border-radius: 15px;
+  list-style-type: none;
+  margin-top: 5%;
+  margin-bottom: 5%;
+
   background-color: var(--ourOrange);
+  text-align: center;
+  font-size: 20px;
+  color: black;
 }
 
 .select-new-store {
@@ -71,18 +76,23 @@ input#name {
 
 .store-result {
   border: 1px solid var(--ourOrange);
-  border-radius: 20px;
+  border-radius: 15px;
   text-align: center;
+  list-style-type: none;
   width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 2%;
+  margin-top: 5%;
   background-color: var(--ourOrange);
+  text-align: center;
+  font-size: 20px;
+  color: black;
 }
-
-.store-result-details {
-  padding: 0px;
+.store-result strong {
+  font-family: var(--secondaryFonts);
+  font-size: 1rem;
+  margin-bottom: 1vh;
+  color: black;
+  font-weight: bold;
 }
 
 .store-search-results {
@@ -90,6 +100,37 @@ input#name {
   background: transparent;
   margin-bottom: 20px;
   text-align: center;
+}
+
+.store-result address {
+  font-family: var(--secondaryFonts);
+  font-size: 1rem;
+  margin-bottom: 0.5vh;
+  margin-top: 0.5vh;
+}
+
+.store-result p {
+  font-family: var(--secondaryFonts);
+  font-size: 1rem;
+  margin-bottom: 0.5vh;
+}
+
+.storeTitle {
+  font-family: var(--secondaryFonts);
+  font-size: 1rem;
+  margin-bottom: 1vh;
+  color: black;
+  font-weight: bold;
+}
+
+.selected-store address {
+  font-family: var(--secondaryFonts);
+  font-size: 1rem;
+  margin-bottom: 0.5vh;
+}
+
+button {
+  font-family: var(--secondaryFonts);
 }
 
 .store-search-form {

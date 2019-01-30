@@ -49,20 +49,20 @@ export class Lists extends Component {
       );
     }
     const navBarJSX = <NavBar />;
-    const { lists } = this.props;
+    const { lists, history } = this.props;
     const shoppingLists = lists.map(list => (
       <ShoppingList
         id={list.id}
         name={list.name}
         groceryStore={list.store}
         editing={list.editing}
+        history={history}
       />
     ));
     let createList = (
-      <i
-        className="orange fas fa-plus-circle fa-5x"
-        onClick={() => this.toggleModal()}
-      />
+      <button className="add-list-clicker" onClick={() => this.toggleModal()}>
+        <i className="fas fa-plus-circle fa-3x" />
+      </button>
     );
     if (this.state.addingList) {
       createList = null;
@@ -84,10 +84,11 @@ export class Lists extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     username: state.auth.currentUser ? state.auth.currentUser.username : null,
     lists: state.lists.lists,
+    history: ownProps.history,
   };
 };
 
