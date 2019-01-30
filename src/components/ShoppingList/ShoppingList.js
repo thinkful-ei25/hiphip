@@ -39,7 +39,7 @@ export class ShoppingList extends Component {
 
     let deleteButton = (
       <i
-        class="fas fa-trash-alt fa-2x delete-icon"
+        className="fas fa-trash-alt fa-2x delete-icon"
         onClick={() => this.deleteClicked()}
       />
     );
