@@ -26,4 +26,5 @@
 
 #confirmDelete {
   background-color: var(--ourWarningColor);
+  font-weight: bold;
 }
