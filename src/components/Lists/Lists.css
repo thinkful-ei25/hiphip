@@ -3,13 +3,13 @@
   width: 85%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5%;
+  margin-top: 1rem;
   text-align: center;
 }
 
 .shoppingLists {
   text-align: center;
-  margin-top: 15%;
+  margin-top: 1rem;
 }
 
 .shoppingLists ul {
