@@ -7,7 +7,7 @@
   text-align: center;
   margin: 1rem;
   color: var(--ourOrange);
-  font-family: var(--titleFonts);
+  font-family: var(--logoFont);
 }
 
 .hero {
@@ -26,12 +26,12 @@
 }
 
 .hero h2 {
-  font-family: 'Righteous', 'serif';
+  font-family: var(--headerFont);
   font-size: 1.5rem;
 }
 
 .hero p {
-  font-family: 'Lato', 'sans-serif';
+  font-family: var(--secondaryFont);
   margin: 1em 0;
 }
 
