@@ -1,6 +1,6 @@
 :root {
-  /* --ourOrange: #fb6107; */
-  /* --ourGreen: #7cb518; */
+  --ourOrange: #fb6107;
+  --ourGreen: #7cb518;
   --ourYellow: #f3de2c;
   --ourGold: #fbb02d;
   --ourWarningColor: #db504a;
@@ -9,8 +9,8 @@
   --fadedBack: rgba(255, 255, 255, 0.1);
   --cardBgColor: #eeeeee;
   /* start new color palette */
-  --ourGreen: #ec5d61;
-  --ourOrange: #5dece8;
+  --ourPrimary: #ec5d61;
+  --ourPrimaryCompliment: #5dece8;
   --ourSecondary: #3c5334;
   --ourSecondaryComplimentary: #4b3453;
 }
@@ -30,7 +30,7 @@ body {
 #root {
   display: inline-block;
   min-width: 100%;
-  background: url('/bgLightFlip2.png') no-repeat center center fixed;
+  background: url('/newBG.png') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
