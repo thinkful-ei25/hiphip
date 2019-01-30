@@ -65,12 +65,16 @@ export class Lists extends Component {
     if (this.state.addingList) {
       createList = null;
     }
-    const pageWrapped = (
-      <div className="pageWrapped">
-        <ul className="shoppingLists">{shoppingLists}</ul>
-        {createList}
-      </div>
-    );
+    let pageWrapped;
+    if (!this.state.addingList) {
+      pageWrapped = (
+        <div className="pageWrapped">
+          <ul className="shoppingLists">{shoppingLists}</ul>
+          {createList}
+        </div>
+      );
+    }
+
     const mainListPage = (
       <div className="wrappedListPage">
         {navBarJSX}
