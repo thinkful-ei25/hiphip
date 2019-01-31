@@ -224,7 +224,7 @@ export const changeListName = (name, listId) => (dispatch, getState) => {
 export const toggleChecked = (itemId, listId) => (dispatch, getState) => {
   const item = getState().items.items.find(i => i.id === itemId);
   return dispatch(
-    patchItem({ id: itemId, isChecked: !item.isChecked }, listId)
+    patchItem(item, { ...item, isChecked: !item.isChecked }, listId)
   );
 };
 
