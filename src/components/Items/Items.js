@@ -9,9 +9,6 @@ import {
   getItems,
   toggleChecked,
   displayAislePrompt,
-  sortItems,
-  reverseSortItems,
-  unsortItems,
   editListName,
   changeListName,
 } from '../../actions/items';
