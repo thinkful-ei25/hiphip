@@ -26,6 +26,12 @@ export function ShoppingListItem({
     toggleEditMode(item.id);
     patchItem({ id: item.id, name, aisleLocation }, listId);
   }
+  const deleteItemOnClick = () => {
+    if (delItemReq) {
+      return;
+    }
+    deleteItem(item.id, listId);
+  };
   const checkBox = (
     <button
       className={classNames(
@@ -118,15 +124,7 @@ export function ShoppingListItem({
       >
         <i className="fas fa-pencil-alt" />
       </a>
-      <button
-        className="delete-btn fas fa-times"
-        onClick={() => {
-          if (delItemReq) {
-            return;
-          }
-          deleteItem(item.id, listId);
-        }}
-      />
+      <button className="delete-btn fas fa-times" onClick={deleteItemOnClick} />
     </Fragment>
   );
 }
