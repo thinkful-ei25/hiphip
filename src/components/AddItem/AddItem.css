@@ -1,0 +1,7 @@
+.add-item-btn {
+  grid-column-start: 7;
+  grid-column-end: 10;
+  padding: 9px 0;
+  align-self: center;
+  margin-bottom: 5px;
+}

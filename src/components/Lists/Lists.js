@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -46,8 +47,11 @@ export class Lists extends Component {
         </div>
       );
     }
+
     const navBarJSX = <NavBar />;
     const { lists, history } = this.props;
+    const shouldOnboard = !lists.length && !this.state.addingList;
+
     const shoppingLists = lists.map(list => (
       <ShoppingList
         id={list.id}
@@ -58,20 +62,33 @@ export class Lists extends Component {
         history={history}
       />
     ));
-    let createList = (
+
+    let createListButton = (
       <button className="add-list-clicker" onClick={() => this.toggleModal()}>
-        <i className="fas fa-plus-circle fa-3x" />
+        <i
+          className={classNames('fas', 'fa-plus-circle', 'fa-3x', {
+            'onboard-highlight': shouldOnboard,
+          })}
+        />
       </button>
     );
+
+    const onBoardingPrompt = (
+      <div className="onboarding">
+        <h2>Organize your shopping by creating a list</h2>
+        <img src="/arrow-down.svg" alt="arrow pointing to add list button" />
+      </div>
+    );
+
     if (this.state.addingList) {
-      createList = null;
+      createListButton = null;
     }
     let pageWrapped;
     if (!this.state.addingList) {
       pageWrapped = (
         <div className="pageWrapped">
           <ul className="shoppingLists">{shoppingLists}</ul>
-          {createList}
+          {createListButton}
         </div>
       );
     }
@@ -83,6 +100,7 @@ export class Lists extends Component {
         {pageWrapped}
       </div>
     );
+
     return <main className="list-page-wrapper">{mainListPage}</main>;
   }
 }

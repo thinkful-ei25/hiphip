@@ -67,13 +67,13 @@ export function ShoppingListItem({
         <button
           type="submit"
           form={formId}
-          className="save-edit editItemButton ShoppingListItem-buttons"
+          className="save-edit editItemButton ShoppingListItem-buttons icon-btn"
         >
           <i className="fas fa-check-circle fa-1x" />
         </button>
 
         <button
-          className="cancel-edit ShoppingListItem-buttons"
+          className="cancel-edit ShoppingListItem-buttons icon-btn"
           onClick={() => toggleEditMode(item.id)}
         >
           <i className="fas fa-ban fa-1x fa-1x" />
@@ -89,9 +89,7 @@ export function ShoppingListItem({
         className={classNames(
           'ShoppingListItem',
           { 'ShoppingListItem--checked': item.isChecked },
-          'item',
-          'padded',
-          'itemInList'
+          'item'
         )}
         type="button"
         onClick={onClick}
@@ -112,7 +110,7 @@ export function ShoppingListItem({
       </button>
       <a
         href="#edit"
-        className="edit-btn"
+        className="edit-btn icon-btn"
         onClick={() => toggleEditMode(item.id)}
       >
         <i className="fas fa-pencil-alt" />
