@@ -8,7 +8,11 @@ import NavBar from '../nav-bar';
 import CreateShoppingList from '../CreateShoppingList';
 
 import { getLists, clearError } from '../../actions/shoppingLists';
-import { clearCurrentStore, setUserLocation } from '../../actions/yelpAPI';
+import {
+  clearCurrentStore,
+  setUserLocation,
+  clearStores,
+} from '../../actions/yelpAPI';
 import './Lists.css';
 export class Lists extends Component {
   componentDidMount() {
@@ -29,6 +33,7 @@ export class Lists extends Component {
   closeOut() {
     this.props.dispatch(clearError());
     this.props.dispatch(clearCurrentStore());
+    this.props.dispatch(clearStores());
   }
 
   render() {
