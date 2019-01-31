@@ -74,7 +74,7 @@ export class Items extends Component {
     }
 
     if (error) {
-      if (error.code === 422 || error.code === 404) {
+      if (error.code === 404) {
         return <Redirect to="/404" />;
       }
       return (
