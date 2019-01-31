@@ -81,7 +81,7 @@ export class StoreSearch extends React.Component {
     return (
       <div className="store-search">
         <form className="store-search-form" onSubmit={e => this.search(e)}>
-          <label for="name" className="store-name-label">
+          <label htmlFor="name" className="store-name-label">
             Store Name
           </label>
           <input
@@ -91,7 +91,7 @@ export class StoreSearch extends React.Component {
             placeholder="Albertson's, Whole Foods, etc."
           />
           <br />
-          <label for="location" className="store-location-label">
+          <label htmlFor="location" className="store-location-label">
             Location
           </label>
           <i className={locationClass} />
