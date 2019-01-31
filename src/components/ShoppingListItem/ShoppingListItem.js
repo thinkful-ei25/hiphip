@@ -18,6 +18,7 @@ export function ShoppingListItem({
   deleteItem,
   listId,
   delItemReq,
+  allowAisleEdit,
   patchItemReq,
 }) {
   function handleSubmit(e) {
@@ -70,7 +71,11 @@ export function ShoppingListItem({
             aria-label="Item name"
           />
         </div>
-        <div className="ShoppingListItem--editing aisle">
+        <div
+          className={classNames('ShoppingListItem--editing', 'aisle', {
+            'ShoppingListItem--disabled': !allowAisleEdit,
+          })}
+        >
           <input
             form={formId}
             name="aisle"
@@ -78,6 +83,7 @@ export function ShoppingListItem({
             className="editingAisle padded"
             data-lpignore="true"
             aria-label="Aisle"
+            disabled={!allowAisleEdit}
           />
         </div>
 

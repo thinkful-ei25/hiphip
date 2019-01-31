@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { Fragment } from 'react';
 
 import { addItemToList } from '../../actions/items';
@@ -5,7 +6,7 @@ import '../Items/Items.css';
 import './AddItem.css';
 import { connect } from 'react-redux';
 
-export function AddItem({ listId, dispatch, tempItemId }) {
+export function AddItem({ listId, dispatch, tempItemId, allowAisleEdit }) {
   function onSubmit(e) {
     e.preventDefault();
     const name = e.target.name.value;
@@ -31,13 +32,18 @@ export function AddItem({ listId, dispatch, tempItemId }) {
           aria-label="Item name"
         />
       </div>
-      <div className="ShoppingListItem--editing aisle">
+      <div
+        className={classNames('ShoppingListItem--editing', 'aisle', {
+          'ShoppingListItem--disabled': !allowAisleEdit,
+        })}
+      >
         <input
           form="add-item-form"
           name="aisle"
           className="editingAisle padded"
           title="Aisle (optional)"
           aria-label="Aisle (optional)"
+          disabled={!allowAisleEdit}
         />
       </div>
 
