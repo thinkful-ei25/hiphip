@@ -62,6 +62,7 @@ export class Items extends Component {
       error,
       tempItemId,
       delItemReq,
+      patchItemReq,
     } = this.props;
 
     if (loading) {
@@ -95,6 +96,7 @@ export class Items extends Component {
           listId={listId}
           onClick={() => this.onClickHandler(item)}
           delItemReq={delItemReq}
+          patchItemReq={patchItemReq}
         />
       );
     });
@@ -195,6 +197,7 @@ const mapStateToProps = (state, ownProps) => {
     error,
     tempItemId,
     delItemReq,
+    patchItemReq,
   } = state.items;
   return {
     items,
@@ -210,6 +213,7 @@ const mapStateToProps = (state, ownProps) => {
     error,
     tempItemId,
     delItemReq,
+    patchItemReq,
   };
 };
 

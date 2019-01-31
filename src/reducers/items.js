@@ -39,6 +39,7 @@ const initialState = {
   editingName: false,
   tempItemId: null,
   delItemReq: null,
+  patchItemReq: null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -92,49 +93,41 @@ export default function reducer(state = initialState, action) {
     }
 
     case PATCH_ITEM_REQUEST: {
-      const { itemId } = action;
+      const { originalItem, updatedItem } = action;
       return {
         ...state,
         items: state.items.map(item => {
-          if (item.id !== itemId) {
+          if (item.id !== originalItem.id) {
             return item;
           }
-
-          return { ...item, loading: true };
+          state.patchItemReq = originalItem;
+          return updatedItem;
         }),
       };
     }
 
     case PATCH_ITEM_ERROR: {
-      const { itemId, error } = action;
+      const { error } = action;
       return {
         ...state,
         error,
         items: state.items.map(item => {
-          if (item.id !== itemId) {
+          if (item.id !== state.patchItemReq.id) {
             return item;
           }
-
-          // If there is a loading property, remove it
-          const { loading, ...newItem } = item;
-          return newItem;
+          return state.patchItemReq;
         }),
+        patchItemReq: null,
       };
     }
 
     case PATCH_ITEM_SUCCESS: {
-      const { item: newItem } = action;
       return {
         ...state,
-        items: state.items.map(item => {
-          if (item.id !== newItem.id) {
-            return item;
-          }
-
-          // Remove the loading property from the item, in case it exists
-          const { loading, ...itemWithoutLoading } = item;
-          return { ...itemWithoutLoading, ...newItem };
-        }),
+        items: state.items.map(item =>
+          item.id === state.patchItemReq.id ? action.item : item
+        ),
+        patchItemReq: null,
       };
     }
 
@@ -166,11 +159,11 @@ export default function reducer(state = initialState, action) {
       const { id } = action;
       let delItemReq;
       const removedItem = state.items.filter(item => {
-        if (item.id !== id) {
-          return true;
+        if (item.id === id) {
+          delItemReq = item;
+          return false;
         }
-        delItemReq = item;
-        return false;
+        return true;
       });
       return {
         ...state,
