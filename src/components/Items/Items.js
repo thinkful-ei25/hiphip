@@ -95,6 +95,7 @@ export class Items extends Component {
           listId={listId}
           onClick={() => this.onClickHandler(item)}
           delItemReq={delItemReq}
+          allowAisleEdit={store !== null}
         />
       );
     });
@@ -168,9 +169,9 @@ export class Items extends Component {
               <div className="item list-heading">Item</div>
               <div className="aisle aisle-heading list-heading">Aisle</div>
               {itemElements}
-              <AddItem listId={listId} />
+              <AddItem listId={listId} allowAisleEdit={store !== null} />
             </section>
-            {aislePrompt ? (
+            {aislePrompt && store ? (
               <AddAisle listId={listId} tempItemId={tempItemId} />
             ) : null}
           </div>
