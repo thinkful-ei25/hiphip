@@ -1,5 +1,14 @@
 .LandingPage {
   padding: 0 1em;
+
+  display: inline-block;
+  min-width: 100%;
+  background: url('/ourBgFlipped.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh;
 }
 
 .LandingPage h1 {
