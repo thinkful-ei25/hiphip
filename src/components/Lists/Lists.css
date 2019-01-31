@@ -81,6 +81,7 @@
   position: absolute;
   right: 2%;
   margin: 5px;
+  cursor: pointer;
 }
 
 .list-page-wrapper .onboarding {

@@ -191,7 +191,6 @@
   font-size: 1rem;
   border: none;
   outline: none;
-  cursor: pointer;
   padding: 0.5em 0;
   background-color: var(--fadedBack);
 }
@@ -200,7 +199,6 @@
   font-size: 1rem;
   border: none;
   outline: none;
-  cursor: pointer;
   text-align: center;
   padding: 0.5em 0;
   background-color: var(--fadedBack);

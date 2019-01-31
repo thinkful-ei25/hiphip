@@ -99,6 +99,7 @@ input#name {
   text-align: center;
   font-size: 20px;
   color: black;
+  cursor: pointer;
 }
 .store-result strong {
   font-family: var(--headerFont);

@@ -30,11 +30,14 @@
 .input-aisle {
   border-radius: 15px;
 }
+
 #close-aisle-prompt {
   position: absolute;
   top: 15px;
   right: 15px;
+  cursor: pointer;
 }
+
 @media only screen and (min-width: 768px) {
   .aisle-prompt {
     bottom: 0;
