@@ -58,7 +58,7 @@ export class CreateShoppingListForm extends React.Component {
         </div>
       );
       submitButton = (
-        <button className="button--submit no-store-submit" type="submit">
+        <button className="no-store-submit" type="submit">
           Create List with no Store
         </button>
       );
@@ -76,15 +76,12 @@ export class CreateShoppingListForm extends React.Component {
         </div>
       );
       clearButton = (
-        <button
-          className="button--submit select-new-store"
-          onClick={() => this.newStore()}
-        >
+        <button className="select-new-store" onClick={() => this.newStore()}>
           Select another store
         </button>
       );
       submitButton = (
-        <button type="submit" className="button--submit create-list">
+        <button type="submit" className="create-list">
           Create List
         </button>
       );
@@ -102,7 +99,7 @@ export class CreateShoppingListForm extends React.Component {
           {errorPrompt}
           <input id="name" name="name" />
           {storeDisplay}
-          {clearButton}
+          {clearButton} <br />
           {submitButton}
         </form>
         {search}

@@ -102,7 +102,7 @@ export class StoreSearch extends React.Component {
             placeholder={placeholderText}
           />
           <br />
-          <button className="button--submit search-button">Search</button>
+          <button className="search-button">Search</button>
         </form>
         <ul className="store-search-results">{this.renderResults()}</ul>
       </div>

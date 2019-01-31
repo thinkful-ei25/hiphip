@@ -8,6 +8,7 @@ import {
   DELETE_LIST_REQUEST,
   DELETE_LIST_SUCCESS,
   DELETE_LIST_ERROR,
+  CLEAR_ERROR,
 } from '../actions/shoppingLists';
 
 const initialState = {
@@ -53,6 +54,11 @@ export default function reducer(state = initialState, action) {
         loading: false,
         error: null,
         lists: state.lists.filter(list => list.id !== action.listId),
+      };
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
       };
     default:
       return state;

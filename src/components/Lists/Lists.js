@@ -7,7 +7,7 @@ import ShoppingList from '../ShoppingList';
 import NavBar from '../nav-bar';
 import CreateShoppingList from '../CreateShoppingList';
 
-import { getLists } from '../../actions/shoppingLists';
+import { getLists, clearError } from '../../actions/shoppingLists';
 import { clearCurrentStore, setUserLocation } from '../../actions/yelpAPI';
 import './Lists.css';
 export class Lists extends Component {
@@ -27,6 +27,7 @@ export class Lists extends Component {
   }
 
   closeOut() {
+    this.props.dispatch(clearError());
     this.props.dispatch(clearCurrentStore());
   }
 
@@ -75,21 +76,22 @@ export class Lists extends Component {
     const onBoardingPrompt = (
       <div className="onboarding">
         <h2>Organize your shopping by creating a list</h2>
-        <img src="/arrow-down.svg" />
+        <img src="/arrow-down.svg" alt="arrow pointing to add list button" />
       </div>
     );
 
     if (this.state.addingList) {
       createListButton = null;
     }
-
-    const pageWrapped = (
-      <div className="pageWrapped">
-        <ul className="shoppingLists">{shoppingLists}</ul>
-        {shouldOnboard && onBoardingPrompt}
-        {createListButton}
-      </div>
-    );
+    let pageWrapped;
+    if (!this.state.addingList) {
+      pageWrapped = (
+        <div className="pageWrapped">
+          <ul className="shoppingLists">{shoppingLists}</ul>
+          {createListButton}
+        </div>
+      );
+    }
 
     const mainListPage = (
       <div className="wrappedListPage">
