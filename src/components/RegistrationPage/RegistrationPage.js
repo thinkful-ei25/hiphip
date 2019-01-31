@@ -1,15 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 import './RegistrationPage.css';
 import RegistrationForm from '../RegistrationForm';
+import redirectWhenLoggedIn from '../redirectWhenLoggedIn';
 
 export function RegistrationPage(props) {
-  if (props.loggedIn) {
-    return <Redirect to="/lists" />;
-  }
-
   return (
     <div className="RegistrationPage">
       <header>
@@ -22,8 +17,4 @@ export function RegistrationPage(props) {
   );
 }
 
-const mapStateToProps = state => ({
-  loggedIn: state.auth.currentUser !== null,
-});
-
-export default connect(mapStateToProps)(RegistrationPage);
+export default redirectWhenLoggedIn('/lists')(RegistrationPage);
