@@ -5,14 +5,16 @@ import '../Items/Items.css';
 import './AddItem.css';
 import { connect } from 'react-redux';
 
-export function AddItem({ listId, dispatch }) {
+export function AddItem({ listId, dispatch, tempItemId }) {
   function onSubmit(e) {
     e.preventDefault();
     const name = e.target.name.value;
-    if (!name) {
+    if (!name || tempItemId) {
       return;
     }
     const aisleLocation = e.target.aisle.value;
+    e.target.aisle.value = '';
+    e.target.name.value = '';
     dispatch(addItemToList({ name, aisleLocation }, listId));
   }
   return (

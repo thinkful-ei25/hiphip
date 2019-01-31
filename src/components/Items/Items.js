@@ -63,6 +63,7 @@ export class Items extends Component {
       aislePrompt,
       editingName,
       error,
+      tempItemId,
     } = this.props;
 
     if (loading) {
@@ -166,7 +167,9 @@ export class Items extends Component {
               {itemElements}
               <AddItem listId={listId} />
             </section>
-            {aislePrompt ? <AddAisle listId={listId} /> : null}
+            {aislePrompt ? (
+              <AddAisle listId={listId} tempItemId={tempItemId} />
+            ) : null}
           </div>
         </main>
       </Fragment>
@@ -187,6 +190,7 @@ const mapStateToProps = (state, ownProps) => {
     unsort,
     editingName,
     error,
+    tempItemId,
   } = state.items;
   return {
     items,
@@ -200,6 +204,7 @@ const mapStateToProps = (state, ownProps) => {
     unsort,
     editingName,
     error,
+    tempItemId,
   };
 };
 
