@@ -20,6 +20,7 @@ export function AddItem({ listId, dispatch }) {
       <div className="ShoppingListItem--editing item">
         <form id="add-item-form" onSubmit={onSubmit} />
         <input
+          data-lpignore="true"
           form="add-item-form"
           name="name"
           type="text"
