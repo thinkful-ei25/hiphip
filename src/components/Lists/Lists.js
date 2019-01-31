@@ -69,11 +69,16 @@ export class Lists extends Component {
     ));
 
     let createListButton = (
-      <button className="add-list-clicker" onClick={() => this.toggleModal()}>
+      <button
+        className="add-list-clicker"
+        onClick={() => this.toggleModal()}
+        title="Add new list"
+      >
         <i
           className={classNames('fas', 'fa-plus-circle', 'fa-3x', {
             'onboard-highlight': shouldOnboard,
           })}
+          aria-hidden
         />
       </button>
     );
