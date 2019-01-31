@@ -27,7 +27,6 @@ export class ShoppingList extends Component {
   }
 
   linkToList(event, id) {
-    const { id: btnId, className: btnClass } = event.target;
     this.props.history.push(`/lists/${id}`);
   }
   render() {
