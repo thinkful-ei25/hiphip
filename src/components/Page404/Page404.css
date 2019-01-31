@@ -33,6 +33,10 @@
   position: relative;
 }
 
+.page404-container {
+  text-align: center;
+}
+
 .text-container {
   margin-top: 30px;
   display: inline-block;
@@ -42,6 +46,8 @@
   background-color: var(--listBoxBG);
   font-family: var(--headerFont);
   padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .text-container h2 {
