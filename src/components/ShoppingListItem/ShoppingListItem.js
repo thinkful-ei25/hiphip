@@ -17,6 +17,7 @@ export function ShoppingListItem({
   patchItem,
   deleteItem,
   listId,
+  delItemReq,
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -119,7 +120,12 @@ export function ShoppingListItem({
       </a>
       <button
         className="delete-btn fas fa-times"
-        onClick={() => deleteItem(item.id, listId)}
+        onClick={() => {
+          if (delItemReq) {
+            return;
+          }
+          deleteItem(item.id, listId);
+        }}
       />
     </Fragment>
   );

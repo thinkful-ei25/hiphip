@@ -167,11 +167,10 @@ export default function reducer(state = initialState, action) {
       let delItemReq;
       const removedItem = state.items.filter(item => {
         if (item.id !== id) {
-          return item;
-        } else {
-          delItemReq = item;
-          return null;
+          return true;
         }
+        delItemReq = item;
+        return false;
       });
       return {
         ...state,

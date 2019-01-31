@@ -9,9 +9,6 @@ import {
   getItems,
   toggleChecked,
   displayAislePrompt,
-  sortItems,
-  reverseSortItems,
-  unsortItems,
   editListName,
   changeListName,
 } from '../../actions/items';
@@ -64,6 +61,7 @@ export class Items extends Component {
       editingName,
       error,
       tempItemId,
+      delItemReq,
     } = this.props;
 
     if (loading) {
@@ -96,6 +94,7 @@ export class Items extends Component {
           item={item}
           listId={listId}
           onClick={() => this.onClickHandler(item)}
+          delItemReq={delItemReq}
         />
       );
     });
@@ -191,6 +190,7 @@ const mapStateToProps = (state, ownProps) => {
     editingName,
     error,
     tempItemId,
+    delItemReq,
   } = state.items;
   return {
     items,
@@ -205,6 +205,7 @@ const mapStateToProps = (state, ownProps) => {
     editingName,
     error,
     tempItemId,
+    delItemReq,
   };
 };
 
