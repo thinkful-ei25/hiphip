@@ -3,13 +3,13 @@
   width: 85%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5%;
+  margin-top: 1rem;
   text-align: center;
 }
 
 .shoppingLists {
   text-align: center;
-  margin-top: 15%;
+  margin-top: 1rem;
 }
 
 .shoppingLists ul {
@@ -70,12 +70,18 @@
 }
 
 .add-list-clicker {
-  color: var(--ourPrimary);
-  text-shadow: 2px 1px black;
   position: fixed;
+  padding: 0;
   left: 77%;
   top: 90%;
+  border-radius: 50%;
+  color: var(--ourPrimary);
   background-color: transparent;
+}
+
+.add-list-clicker .onboard-highlight {
+  border-radius: 50%;
+  box-shadow: 0 0 10px 10px #c31421;
 }
 
 .close-button {
@@ -84,6 +90,22 @@
   position: absolute;
   right: 2%;
   margin: 5px;
+}
+
+.list-page-wrapper .onboarding {
+  font-size: 2rem;
+  font-family: var(--headerFont);
+  position: absolute;
+  top: 30%;
+  right: 30%;
+  color: #4e080d;
+  margin-left: 1rem;
+}
+
+.list-page-wrapper .onboarding img {
+  position: fixed;
+  left: 77%;
+  top: 30%;
 }
 
 @media only screen and (min-width: 768px) {
