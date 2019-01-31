@@ -127,33 +127,23 @@
   font-family: var(--secondaryFonts);
 }
 
-.listTitle .listNameForm,
-.listTitle h1 {
-  position: relative;
-  display: inline-block;
-}
-
 .listTitle h1 {
   font-family: var(--headerFont);
   text-transform: capitalize;
-  font-size: 1.8rem;
+  font-size: 2em;
+  margin-bottom: 1vh;
 }
 
-.listTitle .editButton {
-  display: inline-block;
-  position: absolute;
-  bottom: 0;
-  left: 100%;
-  padding: 0 1ex;
-  background: inherit;
-  font-size: 1rem;
-}
-
-.listTitle .storeAddress {
+.listTitle h3 {
   font-family: var(--secondaryFonts);
-  margin-top: 0.5em;
+  padding-bottom: 0.5vh;
 }
 
+.editIcon {
+  font-weight: 100;
+  margin-left: 3px;
+  text-decoration: none;
+}
 .edit-item {
   margin: 0 0 8px 10px;
   font-size: 1.2em;
