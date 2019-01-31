@@ -2,9 +2,9 @@ import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
 
 export const PATCH_ITEM_REQUEST = 'PATCH_ITEM_REQUEST';
-export const patchItemRequest = itemId => ({
+export const patchItemRequest = item => ({
   type: PATCH_ITEM_REQUEST,
-  itemId,
+  item,
 });
 
 export const PATCH_ITEM_SUCCESS = 'PATCH_ITEM_SUCCESS';
@@ -177,7 +177,7 @@ export const getItems = listId => (dispatch, getState) => {
 
 export const patchItem = (item, listId) => (dispatch, getState) => {
   const { id: itemId } = item;
-  dispatch(patchItemRequest(itemId));
+  dispatch(patchItemRequest(item));
 
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/lists/${listId}/items/${itemId}`, {

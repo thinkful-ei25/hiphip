@@ -37,6 +37,9 @@ const initialState = {
   sorted: true,
   reverseSorted: false,
   editingName: false,
+  tempItemId: null,
+  delItemReq: null,
+  patchItemReq: null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -58,60 +61,69 @@ export default function reducer(state = initialState, action) {
       };
 
     case ADD_ITEM_REQUEST:
-      return { ...state, loading: true, error: null };
+      const { item } = action;
+      const newItemRequest = [...state.items, item];
+      return {
+        ...state,
+        items: newItemRequest,
+        tempItemId: item.id,
+        error: null,
+      };
 
     case ADD_ITEM_ERROR:
-      return { ...state, error: action.error, loading: false };
+      const removedNewItem = state.items.filter(
+        item => item.id !== state.tempItemId
+      );
+      return {
+        ...state,
+        error: action.error,
+        loading: false,
+        tempItemId: null,
+        items: removedNewItem,
+      };
 
     case ADD_ITEM_SUCCESS: {
-      const newItems = [...state.items, action.item];
-      return { ...state, loading: false, items: newItems };
+      const newItems = state.items.map(item => {
+        if (item.id === state.tempItemId) {
+          item = action.item;
+        }
+        return item;
+      });
+      return { ...state, loading: false, tempItemId: null, items: newItems };
     }
 
     case PATCH_ITEM_REQUEST: {
-      const { itemId } = action;
       return {
         ...state,
         items: state.items.map(item => {
-          if (item.id !== itemId) {
+          if (item.id !== action.item.id) {
             return item;
           }
-
-          return { ...item, loading: true };
+          state.patchItemReq = item;
+          return action.item;
         }),
       };
     }
 
     case PATCH_ITEM_ERROR: {
-      const { itemId, error } = action;
+      const { error } = action;
       return {
         ...state,
         error,
         items: state.items.map(item => {
-          if (item.id !== itemId) {
+          if (item.id !== state.patchItemReq.id) {
             return item;
           }
-
-          // If there is a loading property, remove it
-          const { loading, ...newItem } = item;
-          return newItem;
+          return state.patchItemReq;
         }),
+        patchItemReq: null,
       };
     }
 
     case PATCH_ITEM_SUCCESS: {
-      const { item: newItem } = action;
       return {
         ...state,
-        items: state.items.map(item => {
-          if (item.id !== newItem.id) {
-            return item;
-          }
-
-          // Remove the loading property from the item, in case it exists
-          const { loading, ...itemWithoutLoading } = item;
-          return { ...itemWithoutLoading, ...newItem };
-        }),
+        patchItemReq: null,
       };
     }
 
@@ -141,39 +153,35 @@ export default function reducer(state = initialState, action) {
 
     case DELETE_ITEM_REQUEST: {
       const { id } = action;
+      let delItemReq;
+      const removedItem = state.items.filter(item => {
+        if (item.id === id) {
+          delItemReq = item;
+          return false;
+        }
+        return true;
+      });
       return {
         ...state,
-        items: state.items.map(item => {
-          if (item.id !== id) {
-            return item;
-          }
-
-          return { ...item, loading: true };
-        }),
+        items: removedItem,
+        delItemReq,
       };
     }
 
-    case DELETE_ITEM_ERROR: {
-      const { id, error } = action;
+    case DELETE_ITEM_ERROR:
+      const { error } = action;
       return {
         ...state,
         error,
-        items: state.items.map(item => {
-          if (item.id !== id) {
-            return item;
-          }
-
-          const { loading, ...withoutLoading } = item;
-          return withoutLoading;
-        }),
+        items: [...state.items, state.delItemReq],
+        delItemReq: null,
       };
-    }
 
     case DELETE_ITEM_SUCCESS: {
-      console.log(action);
       return {
         ...state,
         items: action.items,
+        delItemReq: null,
       };
     }
     case CHANGE_LIST_NAME_REQUEST: {
@@ -219,8 +227,8 @@ export default function reducer(state = initialState, action) {
         ...state,
       };
     case REORDER_ERROR:
-      const { error } = action;
-      return { ...state, error, loading: false };
+      const { error: err } = action;
+      return { ...state, err, loading: false };
 
     case REORDER_SUCCESS:
       return { ...state, items: action.items, loading: false };
