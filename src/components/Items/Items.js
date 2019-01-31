@@ -62,6 +62,7 @@ export class Items extends Component {
       error,
       tempItemId,
       delItemReq,
+      patchItemReq,
     } = this.props;
 
     if (loading) {
@@ -96,6 +97,7 @@ export class Items extends Component {
           onClick={() => this.onClickHandler(item)}
           delItemReq={delItemReq}
           allowAisleEdit={store !== null}
+          patchItemReq={patchItemReq}
         />
       );
     });
@@ -196,6 +198,7 @@ const mapStateToProps = (state, ownProps) => {
     error,
     tempItemId,
     delItemReq,
+    patchItemReq,
   } = state.items;
   return {
     items,
@@ -211,6 +214,7 @@ const mapStateToProps = (state, ownProps) => {
     error,
     tempItemId,
     delItemReq,
+    patchItemReq,
   };
 };
 

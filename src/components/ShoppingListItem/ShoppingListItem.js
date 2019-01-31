@@ -19,13 +19,18 @@ export function ShoppingListItem({
   listId,
   delItemReq,
   allowAisleEdit,
+  patchItemReq,
 }) {
   function handleSubmit(e) {
     e.preventDefault();
+    if (patchItemReq) {
+      return;
+    }
     const name = e.target.name.value;
-    const aisleLocation = e.target.aisle.value;
+    const aisleLocation = item.aisleLocation;
+    aisleLocation.aisleNo = e.target.aisle.value;
     toggleEditMode(item.id);
-    patchItem({ id: item.id, name, aisleLocation }, listId);
+    patchItem(item, { id: item.id, name, aisleLocation }, listId);
   }
   const deleteItemOnClick = () => {
     if (delItemReq) {
