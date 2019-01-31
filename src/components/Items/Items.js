@@ -25,7 +25,7 @@ import './Items.css';
 export class Items extends Component {
   onClickHandler(item) {
     const { dispatch, listId } = this.props;
-    if (!item.isChecked && item.aisleLocation && !item.aisleLocation.aisleNo) {
+    if (!item.isChecked) {
       dispatch(displayAislePrompt(item));
     }
     dispatch(toggleChecked(item.id, listId));
