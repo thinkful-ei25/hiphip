@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from '../Input';
-import { login } from '../../actions/auth';
+import { login, authError } from '../../actions/auth';
 import { required, nonEmpty } from '../../validators';
 import { Link } from 'react-router-dom';
 
@@ -10,6 +10,12 @@ import './LoginForm.css';
 export class LoginForm extends Component {
   onSubmit(values) {
     return this.props.dispatch(login(values.username, values.password));
+  }
+
+  demoLogin() {
+    return this.props
+      .dispatch(login('demo', 'password'))
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -25,6 +31,12 @@ export class LoginForm extends Component {
       <Link className="button button--primary" to="/register">
         Register
       </Link>
+    );
+
+    const demo = (
+      <div className="button button--secondary" onClick={e => this.demoLogin()}>
+        Demo
+      </div>
     );
     return (
       <form
@@ -60,6 +72,7 @@ export class LoginForm extends Component {
           Log In
         </button>
         {register}
+        {demo}
       </form>
     );
   }

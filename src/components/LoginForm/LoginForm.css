@@ -18,3 +18,7 @@
 .LoginForm .button {
   margin-top: 1em;
 }
+
+.button--secondary {
+  background-color: var(--ourSecondary);
+}
