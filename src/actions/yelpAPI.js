@@ -18,38 +18,44 @@ export const searchStoresError = error => ({
   error,
 });
 
-export const searchStores = (searchterm, coords) => (dispatch, getState) => {
+export const searchStores = (term, coords) => (dispatch, getState) => {
   dispatch(searchStoresRequest());
   const authToken = getState().auth.authToken;
   const { latitude, longitude } = coords;
-  return fetch(
-    `${API_BASE_URL}/api/yelp/coords?term=${searchterm}&category=grocery&latitude=${latitude}&longitude=${longitude}`,
-    {
-      method: 'GET',
-      headers: { Authorization: `Bearer ${authToken}` },
-    }
-  )
+  const category = 'grocery';
+  return fetch(`${API_BASE_URL}/api/yelp/coords`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ term, latitude, longitude, category }),
+  })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(({ businesses }) => {
       dispatch(searchStoresSuccess(businesses));
     })
-    .catch(err => dispatch(searchStoresError(err)));
+    .catch(err => {
+      dispatch(searchStoresError(err));
+    });
 };
 
-export const searchStoresWithLocation = (searchterm, location) => (
+export const searchStoresWithLocation = (term, location) => (
   dispatch,
   getState
 ) => {
   dispatch(searchStoresRequest());
+  const category = 'grocery';
   const authToken = getState().auth.authToken;
-  return fetch(
-    `${API_BASE_URL}/api/yelp/location?term=${searchterm}&category=grocery&location=${location}`,
-    {
-      method: 'GET',
-      headers: { Authorization: `Bearer ${authToken}` },
-    }
-  )
+  return fetch(`${API_BASE_URL}/api/yelp/location`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ term, location, category }),
+  })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(({ businesses }) => {
