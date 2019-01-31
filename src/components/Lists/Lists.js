@@ -55,8 +55,8 @@ export class Lists extends Component {
     }
 
     const navBarJSX = <NavBar />;
-    const { lists, history } = this.props;
-    const shouldOnboard = !lists.length && !this.state.addingList;
+    const { lists, loading, history } = this.props;
+    const shouldOnboard = !lists.length && !this.state.addingList && !loading;
 
     const shoppingLists = lists.map(list => (
       <ShoppingList
@@ -119,6 +119,7 @@ export class Lists extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    loading: state.lists.loading,
     lists: state.lists.lists,
     history: ownProps.history,
   };
