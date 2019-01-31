@@ -43,6 +43,7 @@ export function ShoppingListItem({
       )}
       type="button"
       onClick={onClick}
+      aria-label="Check off item"
     />
   );
   const { isEditing } = item;
@@ -61,6 +62,7 @@ export function ShoppingListItem({
             type="text"
             className="editingItem padded"
             data-lpignore="true"
+            aria-label="Item name"
           />
         </div>
         <div className="ShoppingListItem--editing aisle">
@@ -70,6 +72,7 @@ export function ShoppingListItem({
             defaultValue={item.aisleLocation && item.aisleLocation.aisleNo}
             className="editingAisle padded"
             data-lpignore="true"
+            aria-label="Aisle"
           />
         </div>
 
@@ -77,15 +80,17 @@ export function ShoppingListItem({
           type="submit"
           form={formId}
           className="save-edit editItemButton ShoppingListItem-buttons icon-btn"
+          aria-label="Save changes"
         >
-          <i className="fas fa-check-circle fa-1x" />
+          <i className="fas fa-check-circle fa-1x" aria-hidden />
         </button>
 
         <button
           className="cancel-edit ShoppingListItem-buttons icon-btn"
           onClick={() => toggleEditMode(item.id)}
+          aria-label="Cancel"
         >
-          <i className="fas fa-ban fa-1x fa-1x" />
+          <i className="fas fa-ban fa-1x fa-1x" aria-hidden />
         </button>
       </Fragment>
     );
@@ -114,6 +119,7 @@ export function ShoppingListItem({
         )}
         onClick={() => toggleEditMode(item.id)}
         type="button"
+        aria-label="Edit aisle information"
       >
         {item.aisleLocation && item.aisleLocation.aisleNo}
       </button>
@@ -121,10 +127,15 @@ export function ShoppingListItem({
         href="#edit"
         className="edit-btn icon-btn"
         onClick={() => toggleEditMode(item.id)}
+        title="Edit item"
       >
-        <i className="fas fa-pencil-alt" />
+        <i className="fas fa-pencil-alt" aria-hidden />
       </a>
-      <button className="delete-btn fas fa-times" onClick={deleteItemOnClick} />
+      <button
+        className="delete-btn fas fa-times"
+        onClick={deleteItemOnClick}
+        title="Delete item"
+      />
     </Fragment>
   );
 }

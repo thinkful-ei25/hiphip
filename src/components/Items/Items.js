@@ -108,11 +108,11 @@ export class Items extends Component {
       }
       address = <address>{addressStr}</address>;
       storeBlock = (
-        <h3 className="storeAddress">
+        <div className="storeAddress">
           {store.name}
 
           {address}
-        </h3>
+        </div>
       );
     }
 
@@ -126,8 +126,8 @@ export class Items extends Component {
             this.editListName = editListName;
           }}
         />
-        <button className="editButton" type="submit">
-          <i className="fas fa-check-circle" />
+        <button className="editButton" type="submit" title="Submit name change">
+          <i className="fas fa-check-circle" aria-hidden />
         </button>
       </form>
     );
@@ -144,8 +144,12 @@ export class Items extends Component {
         <header className="listTitle">
           <h1>
             {name}
-            <button className="editButton" onClick={() => this.editing()}>
-              <i className="fas fa-pencil-alt" />
+            <button
+              className="editButton"
+              onClick={() => this.editing()}
+              title="Edit list name"
+            >
+              <i className="fas fa-pencil-alt" aria-hidden />
             </button>
           </h1>
           {storeBlock}

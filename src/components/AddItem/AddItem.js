@@ -27,6 +27,8 @@ export function AddItem({ listId, dispatch, tempItemId }) {
           name="name"
           type="text"
           className="editingItem padded"
+          title="Item name"
+          aria-label="Item name"
         />
       </div>
       <div className="ShoppingListItem--editing aisle">
@@ -34,6 +36,8 @@ export function AddItem({ listId, dispatch, tempItemId }) {
           form="add-item-form"
           name="aisle"
           className="editingAisle padded"
+          title="Aisle (optional)"
+          aria-label="Aisle (optional)"
         />
       </div>
 

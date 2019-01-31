@@ -39,6 +39,7 @@ export class ShoppingList extends Component {
           e.stopPropagation();
           this.deleteClicked();
         }}
+        title="Delete list"
       />
     );
     if (this.state.deleteModal) {

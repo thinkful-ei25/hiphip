@@ -81,21 +81,23 @@ export class StoreSearch extends React.Component {
     return (
       <div className="store-search">
         <form className="store-search-form" onSubmit={e => this.search(e)}>
-          <label htmlFor="name" className="store-name-label">
+          <label htmlFor="store-name" className="store-name-label">
             Store Name
           </label>
           <input
+            id="store-name"
             type="search"
             name="searchTerm"
             ref={term => (this.input = term)}
             placeholder="Albertson's, Whole Foods, etc."
           />
           <br />
-          <label htmlFor="location" className="store-location-label">
+          <label htmlFor="store-location" className="store-location-label">
             Location
           </label>
           <i className={locationClass} />
           <input
+            id="store-location"
             type="text"
             name="location"
             ref={location => (this.input = location)}

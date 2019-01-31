@@ -46,10 +46,11 @@ export class AddAisle extends Component {
         >
           <span id="close-aisle-prompt" className="fas fa-times" />
           <div className="aisle-prompt-form">
-            <span>Which aisle are you in?</span>
+            <label htmlFor="aisle-prompt">Which aisle are you in?</label>
           </div>
           <div className="aisle-prompt-form input-aisle">
             <input
+              id="aisle-prompt"
               onFocus={this.removeDefaultVal}
               type="text"
               defaultValue={aisleLocation && aisleLocation.aisleNo}
