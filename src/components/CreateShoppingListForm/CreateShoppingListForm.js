@@ -98,7 +98,7 @@ export class CreateShoppingListForm extends React.Component {
             List name
           </label>
           {errorPrompt}
-          <input id="name" name="name" />
+          <input id="name" name="name" data-lpignore="true" />
           {storeDisplay}
           {clearButton} <br />
           {submitButton}

@@ -53,6 +53,7 @@ export function ShoppingListItem({
             defaultValue={item.name}
             type="text"
             className="editingItem padded"
+            data-lpignore="true"
           />
         </div>
         <div className="ShoppingListItem--editing aisle">
@@ -61,6 +62,7 @@ export function ShoppingListItem({
             name="aisle"
             defaultValue={item.aisleLocation && item.aisleLocation.aisleNo}
             className="editingAisle padded"
+            data-lpignore="true"
           />
         </div>
 
