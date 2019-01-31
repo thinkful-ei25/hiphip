@@ -108,11 +108,11 @@ export class Items extends Component {
       }
       address = <address>{addressStr}</address>;
       storeBlock = (
-        <h3 className="storeAddress">
+        <div className="storeAddress">
           {store.name}
 
           {address}
-        </h3>
+        </div>
       );
     }
 
