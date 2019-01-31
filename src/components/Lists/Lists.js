@@ -47,6 +47,7 @@ export class Lists extends Component {
               this.toggleModal();
               this.closeOut();
             }}
+            title="Close"
           />
           <CreateShoppingList />
         </div>
