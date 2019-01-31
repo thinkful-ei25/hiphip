@@ -100,7 +100,7 @@ export class Items extends Component {
       }
       address = <address>{addressStr}</address>;
       storeBlock = (
-        <h3>
+        <h3 className="storeAddress">
           {store.name}
 
           {address}
@@ -110,15 +110,16 @@ export class Items extends Component {
 
     let header;
     let editForm = (
-      <form onSubmit={e => this.newName(e)}>
+      <form className="listNameForm" onSubmit={e => this.newName(e)}>
         <input
           type="text"
+          defaultValue={name}
           ref={editListName => {
             this.editListName = editListName;
           }}
         />
-        <button type="submit">
-          <i className="fas fa-edit" />
+        <button className="editButton" type="submit">
+          <i className="fas fa-check-circle" />
         </button>
       </form>
     );
@@ -126,7 +127,7 @@ export class Items extends Component {
     if (editingName) {
       header = (
         <header className="listTitle">
-          <h1 className="title">{editForm}</h1>
+          {editForm}
           {storeBlock}
         </header>
       );
@@ -135,10 +136,9 @@ export class Items extends Component {
         <header className="listTitle">
           <h1>
             {name}
-            <i
-              className="fas fa-edit editIcon"
-              onClick={() => this.editing()}
-            />
+            <button className="editButton" onClick={() => this.editing()}>
+              <i className="fas fa-pencil-alt" />
+            </button>
           </h1>
           {storeBlock}
         </header>
