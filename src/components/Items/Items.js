@@ -33,18 +33,6 @@ export class Items extends Component {
     dispatch(toggleChecked(item.id, listId));
   }
 
-  onSort() {
-    const { dispatch, sorted, reverseSorted } = this.props;
-    if (sorted) {
-      dispatch(reverseSortItems());
-    } else if (reverseSorted) {
-      dispatch(unsortItems());
-    } else {
-      dispatch(sortItems());
-    }
-    this.forceUpdate();
-  }
-
   componentDidMount() {
     const { dispatch, listId } = this.props;
     dispatch(getItems(listId));
@@ -99,7 +87,6 @@ export class Items extends Component {
     let sortedItems = items.slice();
     sortedItems.sort(compareAisle);
     sortedItems.sort(sortAisle);
-
     let itemElements = sortedItems.map((item, index) => {
       return (
         <ShoppingListItem
