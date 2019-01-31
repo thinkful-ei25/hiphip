@@ -3,9 +3,10 @@ import { normalizeResponseErrors } from './utils';
 import uuid from 'uuid';
 
 export const PATCH_ITEM_REQUEST = 'PATCH_ITEM_REQUEST';
-export const patchItemRequest = item => ({
+export const patchItemRequest = (originalItem, updatedItem) => ({
   type: PATCH_ITEM_REQUEST,
-  item,
+  originalItem,
+  updatedItem,
 });
 
 export const PATCH_ITEM_SUCCESS = 'PATCH_ITEM_SUCCESS';
@@ -180,9 +181,12 @@ export const getItems = listId => (dispatch, getState) => {
     .catch(err => dispatch(getItemsError(err)));
 };
 
-export const patchItem = (item, listId) => (dispatch, getState) => {
-  const { id: itemId } = item;
-  dispatch(patchItemRequest(item));
+export const patchItem = (originalItem, updatedItem, listId) => (
+  dispatch,
+  getState
+) => {
+  const { id: itemId } = updatedItem;
+  dispatch(patchItemRequest(originalItem, updatedItem));
 
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/lists/${listId}/items/${itemId}`, {
@@ -191,7 +195,7 @@ export const patchItem = (item, listId) => (dispatch, getState) => {
       'Content-Type': 'application/json',
     },
     method: 'PATCH',
-    body: JSON.stringify(item),
+    body: JSON.stringify(updatedItem),
   })
     .then(normalizeResponseErrors)
     .then(res => res.json())

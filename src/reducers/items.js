@@ -93,14 +93,15 @@ export default function reducer(state = initialState, action) {
     }
 
     case PATCH_ITEM_REQUEST: {
+      const { originalItem, updatedItem } = action;
       return {
         ...state,
         items: state.items.map(item => {
-          if (item.id !== action.item.id) {
+          if (item.id !== originalItem.id) {
             return item;
           }
-          state.patchItemReq = item;
-          return action.item;
+          state.patchItemReq = originalItem;
+          return updatedItem;
         }),
       };
     }
@@ -123,6 +124,9 @@ export default function reducer(state = initialState, action) {
     case PATCH_ITEM_SUCCESS: {
       return {
         ...state,
+        items: state.items.map(item =>
+          item.id === state.patchItemReq.id ? action.item : item
+        ),
         patchItemReq: null,
       };
     }
