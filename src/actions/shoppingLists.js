@@ -95,7 +95,12 @@ export const createList = (name, store, history) => (dispatch, getState) => {
     .then(res => res.json())
     .then(res => {
       dispatch(createListSuccess(res.list));
-      history.push('/lists');
+      history.push(`/lists/${res.list.id}`);
     })
     .catch(error => dispatch(createListError(error)));
 };
+
+export const CLEAR_ERROR = 'CLEAR_ERROR';
+export const clearError = () => ({
+  type: CLEAR_ERROR,
+});

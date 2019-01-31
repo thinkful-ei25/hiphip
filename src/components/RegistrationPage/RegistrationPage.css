@@ -1,0 +1,32 @@
+.RegistrationPage {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: inline-block;
+  min-width: 100%;
+  background: url('/ourBgFlipped.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.RegistrationPage header {
+  margin: 1rem;
+  text-align: center;
+}
+
+.RegistrationPage h1 {
+  font-family: var(--logoFont);
+  color: var(--ourPrimary);
+  font-size: 40px;
+}
+
+.RegistrationPage main {
+  margin: 0 auto;
+  padding: 1em;
+  max-width: 600px;
+  border-radius: 4px;
+  background-color: var(--cardBgColor);
+}

@@ -1,0 +1,51 @@
+.navUl {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--ourPrimary);
+  font-family: var(--headerFont);
+}
+.rightNav {
+  float: right;
+}
+.leftNav {
+  float: left;
+}
+
+.navUl li a {
+  display: block;
+  float: right;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  height: 45px;
+  color: black;
+  font-size: 1.2em;
+}
+
+.navUl li h2 {
+  display: block;
+  float: right;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  height: 45px;
+  font-family: var(--headerFont);
+  font-size: 1.2em;
+  color: black;
+}
+
+.navUl li h2:hover {
+  background-color: #111;
+}
+
+.navUl li:first-child {
+  vertical-align: middle;
+  float: left;
+}
+
+/* Change the link color to #111 (black) on hover */
+/* .navUl li a:hover {
+  background-color: #111;
+} */

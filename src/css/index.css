@@ -1,0 +1,78 @@
+:root {
+  --ourOrange: #fb6107;
+  --ourGreen: #13ca22;
+  --ourYellow: #f3de2c;
+  --ourGold: #fbb02d;
+  --ourWarningColor: #d61a13;
+  --logoFont: 'Baloo Thambi', cursive;
+  --headerFont: 'Francois One', sans-serif;
+  --secondaryFonts: 'Source Sans Pro', sans-serif;
+  --fadedBack: rgba(255, 255, 255, 0.1);
+  --cardBgColor: #eeeeee;
+  --ourPrimary: #fd9452;
+  --ourCompliment: #35a38a;
+  --ourSecondary: #85dad5;
+  --listBoxBG: #dee8eba6;
+  --ourButtonDefault: #90989b;
+  /* --listBoxBG2: #d3f2f0a6; */
+  --listBoxBG2: #dee8eba6;
+}
+html * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--secondaryFonts);
+}
+
+.orange {
+  color: var(--ourOrange);
+}
+
+#root {
+  display: inline-block;
+  min-width: 100%;
+  background: url('/BlurredPreferred.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+button,
+.button {
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1em;
+  font-family: var(--secondaryFonts);
+}
+
+.button--submit {
+  background-color: var(--ourPrimary);
+}
+
+.button--primary {
+  background-color: var(--ourButtonDefault);
+}
+
+a.button:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+input {
+  padding: 0.5em 1em;
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 1rem;
+  font-family: var(--secondaryFonts);
+}
+
+.label {
+  margin-right: 1em;
+}

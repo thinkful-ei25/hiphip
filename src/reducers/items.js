@@ -17,10 +17,13 @@ import {
   SORT_ITEMS,
   REVERSE_SORT_ITEMS,
   UNSORT_ITEMS,
-  EDIT_LIST_NAME,
+  REORDER_REQUEST,
+  REORDER_ERROR,
+  REORDER_SUCCESS,
   CHANGE_LIST_NAME_REQUEST,
   CHANGE_LIST_NAME_SUCCESS,
   CHANGE_LIST_NAME_ERROR,
+  EDIT_LIST_NAME,
 } from '../actions/items';
 
 const initialState = {
@@ -31,7 +34,7 @@ const initialState = {
   loading: false,
   error: false,
   aislePrompt: null,
-  sorted: false,
+  sorted: true,
   reverseSorted: false,
   editingName: false,
 };
@@ -42,7 +45,7 @@ export default function reducer(state = initialState, action) {
       return { ...state, loading: true };
 
     case GET_ITEMS_ERROR:
-      return { ...state, loading: false, error: true };
+      return { ...state, loading: false, error: action.error };
 
     case GET_ITEMS_SUCCESS:
       return {
@@ -51,7 +54,7 @@ export default function reducer(state = initialState, action) {
         name: action.shoppingList.name,
         store: action.shoppingList.store,
         items: action.shoppingList.items,
-        error: false,
+        error: null,
       };
 
     case ADD_ITEM_REQUEST:
@@ -167,10 +170,10 @@ export default function reducer(state = initialState, action) {
     }
 
     case DELETE_ITEM_SUCCESS: {
-      const { id } = action;
+      console.log(action);
       return {
         ...state,
-        items: state.items.filter(item => item.id !== id),
+        items: action.items,
       };
     }
     case CHANGE_LIST_NAME_REQUEST: {
@@ -210,6 +213,18 @@ export default function reducer(state = initialState, action) {
         sorted: false,
         reverseSorted: false,
       };
+
+    case REORDER_REQUEST:
+      return {
+        ...state,
+      };
+    case REORDER_ERROR:
+      const { error } = action;
+      return { ...state, error, loading: false };
+
+    case REORDER_SUCCESS:
+      return { ...state, items: action.items, loading: false };
+
     default:
       return state;
   }

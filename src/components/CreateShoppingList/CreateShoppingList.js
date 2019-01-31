@@ -2,10 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import './CreateShoppingList.css';
-
 import CreateShoppingListForm from '../CreateShoppingListForm';
-
+import './CreateShoppingList.css';
 function CreateShoppingList({ user, loggingIn, currentStore }) {
   if (loggingIn) {
     return <div>Logging in</div>;
@@ -18,7 +16,9 @@ function CreateShoppingList({ user, loggingIn, currentStore }) {
   return (
     <div className="CreateShoppingList">
       <header>
-        <h2 className="CreateShoppingList-pageTitle">New shopping list</h2>
+        <h2 className="CreateShoppingList-pageTitle">
+          Create a new shopping list
+        </h2>
       </header>
       <CreateShoppingListForm />
     </div>

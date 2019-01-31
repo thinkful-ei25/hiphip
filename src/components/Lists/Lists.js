@@ -1,17 +1,19 @@
+import classNames from 'classnames';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
-import '../component.css';
-import './Lists.css';
-
+import authRequired from '../authRequired';
 import ShoppingList from '../ShoppingList';
 import NavBar from '../nav-bar';
 import CreateShoppingList from '../CreateShoppingList';
 
-import { getLists } from '../../actions/shoppingLists';
-import { clearCurrentStore, setUserLocation } from '../../actions/yelpAPI';
-
+import { getLists, clearError } from '../../actions/shoppingLists';
+import {
+  clearCurrentStore,
+  setUserLocation,
+  clearStores,
+} from '../../actions/yelpAPI';
+import './Lists.css';
 export class Lists extends Component {
   componentDidMount() {
     this.props.dispatch(getLists());
@@ -29,54 +31,74 @@ export class Lists extends Component {
   }
 
   closeOut() {
+    this.props.dispatch(clearError());
     this.props.dispatch(clearCurrentStore());
+    this.props.dispatch(clearStores());
   }
 
   render() {
-    if (!this.props.username) {
-      return <Redirect to="/" />;
-    }
     let createListModal;
     if (this.state.addingList) {
       createListModal = (
         <div className="CreateShoppingList-container">
-          <button
-            className="close-button"
+          <i
+            className="fas fa-times fa-2x close-button"
             onClick={() => {
               this.toggleModal();
               this.closeOut();
             }}
-          >
-            Close
-          </button>
+          />
           <CreateShoppingList />
         </div>
       );
     }
+
     const navBarJSX = <NavBar />;
-    const { lists } = this.props;
+    const { lists, history } = this.props;
+    const shouldOnboard = !lists.length && !this.state.addingList;
+
     const shoppingLists = lists.map(list => (
       <ShoppingList
         id={list.id}
+        key={list.id}
         name={list.name}
         groceryStore={list.store}
         editing={list.editing}
+        history={history}
       />
     ));
-    let createList = (
-      <button className="add-list-button" onClick={() => this.toggleModal()}>
-        Add List
+
+    let createListButton = (
+      <button className="add-list-clicker" onClick={() => this.toggleModal()}>
+        <i
+          className={classNames('fas', 'fa-plus-circle', 'fa-3x', {
+            'onboard-highlight': shouldOnboard,
+          })}
+        />
       </button>
     );
-    if (this.state.addingList) {
-      createList = null;
-    }
-    const pageWrapped = (
-      <div className="pageWrapped">
-        <ul className="shoppingLists">{shoppingLists}</ul>
-        {createList}
+
+    const onBoardingPrompt = (
+      <div className="onboarding">
+        <h2>Organize your shopping by creating a list</h2>
+        <img src="/arrow-down.svg" alt="arrow pointing to add list button" />
       </div>
     );
+
+    if (this.state.addingList) {
+      createListButton = null;
+    }
+    let pageWrapped;
+    if (!this.state.addingList) {
+      pageWrapped = (
+        <div className="pageWrapped">
+          <ul className="shoppingLists">{shoppingLists}</ul>
+          {shouldOnboard && onBoardingPrompt}
+          {createListButton}
+        </div>
+      );
+    }
+
     const mainListPage = (
       <div className="wrappedListPage">
         {navBarJSX}
@@ -84,15 +106,16 @@ export class Lists extends Component {
         {pageWrapped}
       </div>
     );
+
     return <main className="list-page-wrapper">{mainListPage}</main>;
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    username: state.auth.currentUser ? state.auth.currentUser.username : null,
     lists: state.lists.lists,
+    history: ownProps.history,
   };
 };
 
-export default connect(mapStateToProps)(Lists);
+export default authRequired()(connect(mapStateToProps)(Lists));

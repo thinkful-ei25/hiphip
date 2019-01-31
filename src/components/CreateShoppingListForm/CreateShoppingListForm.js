@@ -4,9 +4,8 @@ import { withRouter } from 'react-router-dom';
 
 import StoreSearch from '../StoreSearch';
 
-import './CreateShoppingListForm.css';
 import { createList } from '../../actions/shoppingLists';
-import { clearCurrentStore } from '../../actions/yelpAPI';
+import { clearCurrentStore, clearStores } from '../../actions/yelpAPI';
 
 export class CreateShoppingListForm extends React.Component {
   onSubmit(event) {
@@ -29,30 +28,47 @@ export class CreateShoppingListForm extends React.Component {
   newStore() {
     const { dispatch } = this.props;
     dispatch(clearCurrentStore());
+    dispatch(clearStores());
   }
 
   render() {
-    const { currentStore } = this.props;
+    const { currentStore, error } = this.props;
     let storeDisplay;
     let search;
     let clearButton;
     let submitButton;
+    let errorPrompt;
+    if (
+      error &&
+      error.message === 'Missing field' &&
+      error.location === 'name'
+    ) {
+      errorPrompt = (
+        <div className="error-prompt">
+          <strong>Name is a required field</strong>
+        </div>
+      );
+    }
     if (!currentStore) {
       search = (
         <div className="search-container">
           <p className="search-question">
-            Would you like a store for your list?
+            Select a store for your list (optional):
           </p>
           <StoreSearch />
         </div>
       );
-      submitButton = <button type="submit">Create List with no Store</button>;
+      submitButton = (
+        <button className="no-store-submit" type="submit">
+          Create List with no Store
+        </button>
+      );
     } else {
       const { name, location } = currentStore;
       storeDisplay = (
         <div className="selected-store">
           <p>Selected store:</p>
-          <strong>{name}</strong>
+          <strong className="storeTitle">{name}</strong>
           <address>
             {location.address1} {location.address2}
             <br />
@@ -61,9 +77,15 @@ export class CreateShoppingListForm extends React.Component {
         </div>
       );
       clearButton = (
-        <button onClick={() => this.newStore()}>Select another store</button>
+        <button className="select-new-store" onClick={() => this.newStore()}>
+          Select another store
+        </button>
       );
-      submitButton = <button type="submit">Create List</button>;
+      submitButton = (
+        <button type="submit" className="create-list">
+          Create List
+        </button>
+      );
     }
 
     return (
@@ -74,10 +96,11 @@ export class CreateShoppingListForm extends React.Component {
         >
           <label htmlFor="name" className="name-label">
             List name
-            <input id="name" name="name" />
           </label>
+          {errorPrompt}
+          <input id="name" name="name" />
           {storeDisplay}
-          {clearButton}
+          {clearButton} <br />
           {submitButton}
         </form>
         {search}
@@ -90,6 +113,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     history: ownProps.history,
     currentStore: state.yelpAPI.currentStore,
+    error: state.lists.error,
   };
 };
 

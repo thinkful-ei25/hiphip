@@ -21,12 +21,12 @@ export default class Input extends Component {
     }
 
     return (
-      <div>
-        <label htmlFor={this.props.input.name}>
-          {this.props.label}
+      <div className="Input">
+        <div className="label">
+          <label htmlFor={this.props.input.name}>{this.props.label}</label>
           {error}
           {warning}
-        </label>
+        </div>
         <input
           className={`${this.props.className} form-input`}
           aria-label={this.props.input.name}

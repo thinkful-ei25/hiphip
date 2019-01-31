@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+
 import AddItem from '../AddItem';
+import ErrorBanner from '../ErrorBanner';
 
 import {
   getItems,
@@ -13,21 +15,24 @@ import {
   editListName,
   changeListName,
 } from '../../actions/items';
+
 import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
-import { compareAisle, sortAisle, reverseSortAisle } from './utils';
+import LoadingSpinner from '../LoadingSpinner';
+import authRequired from '../authRequired';
+import { compareAisle, sortAisle } from './utils';
 
-import '../component.css';
 import ShoppingListItem from '../ShoppingListItem';
-
+import './Items.css';
 export class Items extends Component {
   onClickHandler(item) {
     const { dispatch, listId } = this.props;
-    if (!item.isChecked && item.aisleLocation && !item.aisleLocation.aisleNo) {
+    if (!item.isChecked) {
       dispatch(displayAislePrompt(item));
     }
     dispatch(toggleChecked(item.id, listId));
   }
+
   onSort() {
     const { dispatch, sorted, reverseSorted } = this.props;
     if (sorted) {
@@ -39,13 +44,14 @@ export class Items extends Component {
     }
     this.forceUpdate();
   }
+
   componentDidMount() {
     const { dispatch, listId } = this.props;
     dispatch(getItems(listId));
   }
 
   editing() {
-    const { dispatch, editingName } = this.props;
+    const { dispatch } = this.props;
     dispatch(editListName());
   }
 
@@ -61,38 +67,44 @@ export class Items extends Component {
 
   render() {
     const {
-      authLoading,
       items,
       listId,
       loading,
       name,
       store,
-      username,
       aislePrompt,
-      sorted,
-      reverseSorted,
       editingName,
+      error,
     } = this.props;
 
-    if (authLoading || loading) {
-      return <div>Loading...</div>;
+    if (loading) {
+      return (
+        <div className="loading-container">
+          <LoadingSpinner />
+        </div>
+      );
     }
 
-    if (!username) {
-      return <Redirect to="/" />;
+    if (error) {
+      if (error.code === 404 || error.code === 422) {
+        return <Redirect to="/lists" />;
+      }
+      return (
+        <ErrorBanner>
+          <p>An unexpected error occured</p>
+        </ErrorBanner>
+      );
     }
+
     let sortedItems = items.slice();
-    if (sorted) {
-      sortedItems.sort(compareAisle);
-      sortedItems.sort(sortAisle);
-    } else if (reverseSorted) {
-      sortedItems.sort(compareAisle);
-      sortedItems.sort(reverseSortAisle);
-    }
-    let itemElements = sortedItems.map(item => {
+    sortedItems.sort(compareAisle);
+    sortedItems.sort(sortAisle);
+
+    let itemElements = sortedItems.map((item, index) => {
       return (
         <ShoppingListItem
           key={item.id}
+          index={index}
           item={item}
           listId={listId}
           onClick={() => this.onClickHandler(item)}
@@ -109,44 +121,34 @@ export class Items extends Component {
       }
       address = <address>{addressStr}</address>;
       storeBlock = (
-        <h3>
+        <h3 className="storeAddress">
           {store.name}
 
           {address}
         </h3>
       );
     }
+
     let header;
     let editForm = (
-      <form onSubmit={e => this.newName(e)}>
+      <form className="listNameForm" onSubmit={e => this.newName(e)}>
         <input
           type="text"
+          defaultValue={name}
           ref={editListName => {
             this.editListName = editListName;
           }}
         />
-        <button>
-          <img
-            className="editIcon"
-            src="/edit.png"
-            alt="editList"
-            type="submit"
-          />
+        <button className="editButton" type="submit">
+          <i className="fas fa-check-circle" />
         </button>
       </form>
     );
+
     if (editingName) {
       header = (
         <header className="listTitle">
-          <h1>
-            {editForm}
-            <img
-              className="editIconTwo"
-              src="/edit2.png"
-              alt="editList"
-              onClick={() => this.editing()}
-            />
-          </h1>
+          {editForm}
           {storeBlock}
         </header>
       );
@@ -155,31 +157,30 @@ export class Items extends Component {
         <header className="listTitle">
           <h1>
             {name}
-            <img
-              className="editIconTwo"
-              src="/edit2.png"
-              alt="editList"
-              onClick={() => this.editing()}
-            />
+            <button className="editButton" onClick={() => this.editing()}>
+              <i className="fas fa-pencil-alt" />
+            </button>
           </h1>
           {storeBlock}
         </header>
       );
     }
+
     return (
       <Fragment>
         <NavBar />
-        <main className="Items">
-          {header}
-          <section className="shoppingList">
-            <div className="item list-heading">Item</div>
-            <div className="aisle list-heading" onClick={() => this.onSort()}>
-              Aisle
-            </div>
-            {itemElements}
-          </section>
-          <AddItem listId={listId} />
-          {aislePrompt ? <AddAisle listId={listId} /> : null}
+        <main className="mainForItems">
+          <div className="Items">
+            {header}
+            <section className="shoppingList">
+              <div />
+              <div className="item list-heading">Item</div>
+              <div className="aisle aisle-heading list-heading">Aisle</div>
+              {itemElements}
+              <AddItem listId={listId} />
+            </section>
+            {aislePrompt ? <AddAisle listId={listId} /> : null}
+          </div>
         </main>
       </Fragment>
     );
@@ -198,10 +199,9 @@ const mapStateToProps = (state, ownProps) => {
     reverseSorted,
     unsort,
     editingName,
+    error,
   } = state.items;
   return {
-    username: state.auth.currentUser ? state.auth.currentUser.username : null,
-    authLoading: state.auth.loading,
     items,
     loading,
     store,
@@ -212,7 +212,8 @@ const mapStateToProps = (state, ownProps) => {
     reverseSorted,
     unsort,
     editingName,
+    error,
   };
 };
 
-export default connect(mapStateToProps)(Items);
+export default authRequired()(connect(mapStateToProps)(Items));
