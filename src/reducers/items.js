@@ -38,7 +38,7 @@ const initialState = {
   reverseSorted: false,
   editingName: false,
   tempItemId: null,
-  deletingItem: false,
+  delItemReq: null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -164,39 +164,36 @@ export default function reducer(state = initialState, action) {
 
     case DELETE_ITEM_REQUEST: {
       const { id } = action;
+      let delItemReq;
+      const removedItem = state.items.filter(item => {
+        if (item.id !== id) {
+          return item;
+        } else {
+          delItemReq = item;
+          return null;
+        }
+      });
       return {
         ...state,
-        items: state.items.map(item => {
-          if (item.id !== id) {
-            return item;
-          }
-
-          return { ...item, loading: true };
-        }),
+        items: removedItem,
+        delItemReq,
       };
     }
 
-    case DELETE_ITEM_ERROR: {
-      const { id, error } = action;
+    case DELETE_ITEM_ERROR:
+      const { error } = action;
       return {
         ...state,
         error,
-        items: state.items.map(item => {
-          if (item.id !== id) {
-            return item;
-          }
-
-          const { loading, ...withoutLoading } = item;
-          return withoutLoading;
-        }),
+        items: [...state.items, state.delItemReq],
+        delItemReq: null,
       };
-    }
 
     case DELETE_ITEM_SUCCESS: {
-      console.log(action);
       return {
         ...state,
         items: action.items,
+        delItemReq: null,
       };
     }
     case CHANGE_LIST_NAME_REQUEST: {
@@ -242,8 +239,8 @@ export default function reducer(state = initialState, action) {
         ...state,
       };
     case REORDER_ERROR:
-      const { error } = action;
-      return { ...state, error, loading: false };
+      const { error: err } = action;
+      return { ...state, err, loading: false };
 
     case REORDER_SUCCESS:
       return { ...state, items: action.items, loading: false };
