@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from '../Input';
-import { login } from '../../actions/auth';
+import { login, authError } from '../../actions/auth';
 import { required, nonEmpty } from '../../validators';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +13,9 @@ export class LoginForm extends Component {
   }
 
   demoLogin() {
-    return this.props.dispatch(login('demo', 'password'));
+    return this.props
+      .dispatch(login('demo', 'password'))
+      .catch(err => console.log(err));
   }
 
   render() {
