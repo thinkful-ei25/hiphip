@@ -73,8 +73,8 @@ export class Items extends Component {
     }
 
     if (error) {
-      if (error.code === 404 || error.code === 422) {
-        return <Redirect to="/lists" />;
+      if (error.code === 404) {
+        return <Redirect to="/404" />;
       }
       return (
         <ErrorBanner>
