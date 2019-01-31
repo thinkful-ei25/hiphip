@@ -35,7 +35,6 @@ export default class Input extends Component {
           id={this.props.input.name}
           type={this.props.type}
           ref={input => (this.input = input)}
-          // onChange={input => (this.input = input)}
         />
       </div>
     );
