@@ -1,6 +1,6 @@
 .Input {
   display: flex;
-  flex: row nowrap;
+  flex-flow: row nowrap;
   align-items: center;
 }
 
@@ -10,13 +10,20 @@
 }
 
 .Input .label {
-  flex-basis: 5em;
-  flex-shrink: 0;
-  flex-grow: 1;
-  max-width: 5.5em;
   text-align: right;
+  width: 6em;
 }
 
 .Input input {
-  flex: 0 0 200px;
+  width: 10em;
+}
+
+@media only screen and (min-width: 400px) {
+  .Input input {
+    width: 14em;
+  }
+
+  .Input .label {
+    width: 8em;
+  }
 }
