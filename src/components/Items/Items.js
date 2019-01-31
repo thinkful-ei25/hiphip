@@ -12,8 +12,10 @@ import {
   editListName,
   changeListName,
 } from '../../actions/items';
+
 import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
+import LoadingSpinner from '../LoadingSpinner';
 import authRequired from '../authRequired';
 import { compareAisle, sortAisle } from './utils';
 
@@ -72,7 +74,11 @@ export class Items extends Component {
     } = this.props;
 
     if (loading) {
-      return <div>Loading...</div>;
+      return (
+        <div className="loading-container">
+          <LoadingSpinner />
+        </div>
+      );
     }
 
     let sortedItems = items.slice();
