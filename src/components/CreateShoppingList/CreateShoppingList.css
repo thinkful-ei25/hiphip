@@ -180,3 +180,7 @@ button {
 .loading-spinner {
   text-align: center;
 }
+
+.google-maps-link {
+  color: #0645ad;
+}
