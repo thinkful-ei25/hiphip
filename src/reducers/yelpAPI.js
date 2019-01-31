@@ -37,18 +37,15 @@ export default function storeReducer(state = initialState, action) {
         ...state,
         userLocation: null,
         error: action.error,
-        // loading: false,
       };
     case USER_LOCATION_REQUEST:
       return {
         ...state,
-        // loading: true,
         error: null,
       };
     case USER_LOCATION_SUCCESS:
       return {
         ...state,
-        // loading: false,
         userLocation: action.location,
       };
     default:

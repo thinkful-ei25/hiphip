@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import StoreSearch from '../StoreSearch';
 
 import { createList } from '../../actions/shoppingLists';
-import { clearCurrentStore } from '../../actions/yelpAPI';
+import { clearCurrentStore, clearStores } from '../../actions/yelpAPI';
 
 export class CreateShoppingListForm extends React.Component {
   onSubmit(event) {
@@ -28,6 +28,7 @@ export class CreateShoppingListForm extends React.Component {
   newStore() {
     const { dispatch } = this.props;
     dispatch(clearCurrentStore());
+    dispatch(clearStores());
   }
 
   render() {
