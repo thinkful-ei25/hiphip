@@ -60,6 +60,8 @@ export class Items extends Component {
       aislePrompt,
       editingName,
       error,
+      tempItemId,
+      delItemReq,
     } = this.props;
 
     if (loading) {
@@ -92,6 +94,7 @@ export class Items extends Component {
           item={item}
           listId={listId}
           onClick={() => this.onClickHandler(item)}
+          delItemReq={delItemReq}
         />
       );
     });
@@ -163,7 +166,9 @@ export class Items extends Component {
               {itemElements}
               <AddItem listId={listId} />
             </section>
-            {aislePrompt ? <AddAisle listId={listId} /> : null}
+            {aislePrompt ? (
+              <AddAisle listId={listId} tempItemId={tempItemId} />
+            ) : null}
           </div>
         </main>
       </Fragment>
@@ -184,6 +189,8 @@ const mapStateToProps = (state, ownProps) => {
     unsort,
     editingName,
     error,
+    tempItemId,
+    delItemReq,
   } = state.items;
   return {
     items,
@@ -197,6 +204,8 @@ const mapStateToProps = (state, ownProps) => {
     unsort,
     editingName,
     error,
+    tempItemId,
+    delItemReq,
   };
 };
 
