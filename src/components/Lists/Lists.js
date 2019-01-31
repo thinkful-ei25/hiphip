@@ -88,6 +88,7 @@ export class Lists extends Component {
       pageWrapped = (
         <div className="pageWrapped">
           <ul className="shoppingLists">{shoppingLists}</ul>
+          {shouldOnboard && onBoardingPrompt}
           {createListButton}
         </div>
       );

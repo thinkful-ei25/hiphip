@@ -12,6 +12,10 @@ export class LoginForm extends Component {
     return this.props.dispatch(login(values.username, values.password));
   }
 
+  demoLogin() {
+    return this.props.dispatch(login('demo', 'password'));
+  }
+
   render() {
     let error;
     if (this.props.error) {
@@ -25,6 +29,12 @@ export class LoginForm extends Component {
       <Link className="button button--primary" to="/register">
         Register
       </Link>
+    );
+
+    const demo = (
+      <div className="button button--secondary" onClick={e => this.demoLogin()}>
+        Demo
+      </div>
     );
     return (
       <form
@@ -60,6 +70,7 @@ export class LoginForm extends Component {
           Log In
         </button>
         {register}
+        {demo}
       </form>
     );
   }
