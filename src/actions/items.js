@@ -1,5 +1,6 @@
 import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
+import uuid from 'uuid';
 
 export const PATCH_ITEM_REQUEST = 'PATCH_ITEM_REQUEST';
 export const patchItemRequest = item => ({
@@ -38,9 +39,13 @@ export const getItemsError = error => ({
 });
 
 export const ADD_ITEM_REQUEST = 'ADD_ITEM_REQUEST';
-export const addItemRequest = () => ({
-  type: ADD_ITEM_REQUEST,
-});
+export const addItemRequest = item => {
+  item.id = uuid.v4();
+  return {
+    type: ADD_ITEM_REQUEST,
+    item,
+  };
+};
 
 export const ADD_ITEM_ERROR = 'ADD_ITEM_ERROR';
 export const addItemError = error => ({
@@ -141,7 +146,7 @@ export const editListName = () => ({
 });
 
 export const addItemToList = (item, listId) => (dispatch, getState) => {
-  dispatch(addItemRequest());
+  dispatch(addItemRequest(item));
 
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/lists/${listId}/items/`, {
