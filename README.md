@@ -11,7 +11,7 @@ so users can map their shopping by aisles leveraged on user input and feedback.
 
 ![Login](public/readmeImages/login.png?raw=true 'Login')
 
-![newUser](public/readmeImages/newuserprompt.png.jpg?raw=true 'new user prompt')
+![newUser](public/readmeImages/newuserprompt.png?raw=true 'new user prompt')
 
 ![newList](public/readmeImages/newlist.png?raw=true 'Landing')
 
