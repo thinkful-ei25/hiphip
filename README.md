@@ -52,6 +52,6 @@ Team [hip-hip]!
 
 ![newUser](public/readmeImages/newuserprompt.png?raw=true 'new user prompt')
 
-![newList](public/readmeImages/newlist.png?raw=true 'Landing')
+![newList](public/readmeImages/newlist.png?raw=true 'new list')
 
 ![listoflists](public/readmeImages/listoflists.png?raw=true 'Landing')
