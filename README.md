@@ -42,9 +42,7 @@ Team [hip-hip]!
 
 ## Screenshots
 
-![landing](public/readmeImages/landing1.jpg?raw=true 'Landing')
-
-![lregister](public/readmeImages/register.png?raw=true 'Landing')
+![lregister](public/readmeImages/register.png?raw=true 'register')
 
 ![Login](public/readmeImages/login.png?raw=true 'Login')
 
