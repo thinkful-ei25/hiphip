@@ -1,9 +1,9 @@
 # GoCery
 
-![landing](public/readmeImages/landing1.jpg?raw=true 'Landing')
+![GoCery home page](./public/readmeImages/landing1.jpg)
 
-GoCery is a revolutionary shopping list app that crowd sources information
-so users can map their shopping by aisles leveraged on user input and feedback.
+GoCery helps shoppers spend less time in supermarkets by sorting shoppings lists based
+on crowd-sourced aisle information.
 
 ## Live App
 
@@ -11,20 +11,17 @@ so users can map their shopping by aisles leveraged on user input and feedback.
 
 ## Features
 
-- Create shopping lists to map out your shopping by aisle.
-- Get aisle information based on past users information.
-- Find stores near you!
-- Give feedback to other shoppers when items are moved.
+- Create shopping lists associated with a particular store
+- Add aisle information while you shop
+- Sort your shopping list by aisle
+- Aisle information from other users fills in the blanks in your list
+- Use geolocation to find stores near you
 
-![shoppingList](public/readmeImages/shoppinglist.png#center?raw=true 'Landing')
-
-## Live App
-
-[GoCery](https://gocery-app.netlify.com/)
+![A shopping list](./public/readmeImages/shoppinglist.png)
 
 ## Tech Stack
 
-- React
+- React (Create React App)
 - Redux
 
 ## Outside API
@@ -43,12 +40,12 @@ Team [hip-hip]!
 
 ## Screenshots
 
-![lregister](public/readmeImages/register.png?raw=true 'register')
+![Registration](./public/readmeImages/register.png)
 
-![Login](public/readmeImages/login.png?raw=true 'Login')
+![Login](./public/readmeImages/login.png)
 
-![newUser](public/readmeImages/newuserprompt.png?raw=true 'new user prompt')
+![New user prompt](./public/readmeImages/newuserprompt.png)
 
-![newList2](public/readmeImages/newlist2.png?raw=true 'new list')
+![New user prompt 2](./public/readmeImages/newlist2.png)
 
-![listoflists](public/readmeImages/listoflists.png?raw=true 'Landing')
+![My shopping lists](./public/readmeImages/listoflists.png)
