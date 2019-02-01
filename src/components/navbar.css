@@ -11,6 +11,7 @@
 }
 .leftNav {
   float: left;
+  font-family: var(--logoFont);
 }
 
 .navUl li a {

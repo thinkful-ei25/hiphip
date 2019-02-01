@@ -11,7 +11,7 @@ export class NavBar extends React.Component {
     }
     const listLink = (
       <Link to="/lists" className="leftNav">
-        <h1>My Lists</h1>
+        <h1>GoCery</h1>
       </Link>
     );
     const NavBar = (
