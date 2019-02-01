@@ -19,7 +19,7 @@
 }
 
 .list-delete-btn button {
-  font-size: 12px;
+  font-size: 0.85rem;
   margin: 5px;
 }
 
@@ -31,4 +31,8 @@
 #confirmDelete {
   background-color: var(--ourWarningColor);
   font-weight: bold;
+}
+
+#cancelDelete {
+  background: white;
 }
