@@ -41,7 +41,7 @@ Team [hip-hip]!
 
 - Project Owner: [Arun Seehra](https://github.com/aseehra)
 - Project Manager: [Mischa Berlin](https://github.com/mischb)
-- QA Lead: [Sam Dalton Jr](https://github.com/SamDaltonJr)
+- QA Lead: [Sam Dalton](https://github.com/SamDaltonJr)
 - Design Lead: [Josh Adams](https://github.com/ender554)
 
 ## Screenshots
