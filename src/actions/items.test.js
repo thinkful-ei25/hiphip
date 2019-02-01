@@ -14,6 +14,7 @@ import { API_BASE_URL } from '../config';
 describe('patchItem', () => {
   let fetch;
   const fixture = { id: '001', name: 'Test Name', isChecked: true };
+  const originalItem = { ...fixture, isChecked: false };
   const getState = jest.fn(() => ({
     auth: { authToken: 'haha' },
     items: {
@@ -37,8 +38,8 @@ describe('patchItem', () => {
   });
 
   it('should dispatch a patchItemSuccess action', () => {
-    return patchItem(fixture)(dispatch, getState).then(() => {
-      expect(dispatch).toBeCalledWith(patchItemRequest('001'));
+    return patchItem(originalItem, fixture)(dispatch, getState).then(() => {
+      expect(dispatch).toBeCalledWith(patchItemRequest(originalItem, fixture));
       expect(fetch).toHaveBeenCalled();
       expect(dispatch).toBeCalledWith(patchItemSuccess(fixture));
       fetch.mockRestore();
@@ -46,7 +47,7 @@ describe('patchItem', () => {
   });
 
   it('should send the itemId and isChecked status', () => {
-    return patchItem(fixture)(dispatch, getState).then(() => {
+    return patchItem(originalItem, fixture)(dispatch, getState).then(() => {
       const fetchOptions = fetch.mock.calls[0][1];
       const payload = JSON.parse(fetchOptions.body);
       expect(payload).toHaveProperty('id');
@@ -68,7 +69,7 @@ describe('patchItem', () => {
       })
     );
 
-    return patchItem(fixture)(dispatch, getState).then(() => {
+    return patchItem(originalItem, fixture)(dispatch, getState).then(() => {
       expect(dispatch).toBeCalledWith(patchItemError('001', error));
       fetch.mockRestore();
     });
@@ -94,7 +95,9 @@ describe('deleteItem', () => {
     fetch.mockImplementation(() =>
       Promise.resolve({
         ok: true,
-        json: () => undefined,
+        json: () => ({
+          items: [],
+        }),
       })
     );
   });
@@ -112,7 +115,7 @@ describe('deleteItem', () => {
 
   it('should dispatch a deleteItemSuccess on success', () => {
     return deleteItem('1', 'listid')(dispatch, getState).then(() => {
-      expect(dispatch).toBeCalledWith(deleteItemSuccess('1'));
+      expect(dispatch).toBeCalledWith(deleteItemSuccess([]));
     });
   });
 
