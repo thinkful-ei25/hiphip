@@ -1,14 +1,12 @@
 import itemReducer from './items';
 import {
-  PATCH_ITEM_SUCCESS,
   PATCH_ITEM_REQUEST,
   PATCH_ITEM_ERROR,
   DELETE_ITEM_REQUEST,
   DELETE_ITEM_ERROR,
-  DELETE_ITEM_SUCCESS,
 } from '../actions/items';
 
-describe('PATCH_ITEM_SUCCESS', () => {
+describe('PATCH_ITEM', () => {
   let initialState;
   beforeEach(() => {
     initialState = {
@@ -21,79 +19,27 @@ describe('PATCH_ITEM_SUCCESS', () => {
     };
   });
 
-  it('should update the item using the object in the action', () => {
-    const fixture = {
-      type: PATCH_ITEM_SUCCESS,
-      item: {
-        id: 2,
-        name: 'fixture',
-      },
-    };
-
-    const state = itemReducer(initialState, fixture);
-
-    expect(state.items[2].name).toEqual(fixture.item.name);
-    expect(state.items[2].checked).toEqual(initialState.items[2].checked);
-  });
-
-  it('should create a new object', () => {
-    const fixture = {
-      type: PATCH_ITEM_SUCCESS,
-      item: {
-        id: 2,
-        name: 'fixture',
-      },
-    };
-
-    const state = itemReducer(initialState, fixture);
-    expect(state.items[2]).not.toBe(fixture.item);
-  });
-
-  it('should clear the loading flag', () => {
-    initialState.items[2].loading = true;
-    const fixture = {
-      type: PATCH_ITEM_SUCCESS,
-      item: {
-        id: 2,
-        name: 'fixture',
-      },
-    };
-
-    const state = itemReducer(initialState, fixture);
-    expect(state.items[2].loading).toBeUndefined();
-  });
-});
-
-describe('PATCH_ITEM_REQUEST', () => {
-  it("should set an item's loading flag", () => {
-    const initialState = {
-      items: [{ id: '0', name: 'item0' }],
-    };
-
+  it('should set original and updated on request', () => {
     const fixture = {
       type: PATCH_ITEM_REQUEST,
-      itemId: '0',
+      originalItem: initialState.items[2],
+      updatedItem: { id: 2, name: 'item2', checked: true },
     };
 
     const state = itemReducer(initialState, fixture);
-    expect(state.items[0].loading).toBeTruthy();
+    expect(state.items[2]).toEqual(fixture.updatedItem);
+    expect(state.patchItemReq).toEqual(fixture.originalItem);
   });
-});
 
-describe('PATCH_ITEM_ERROR', () => {
-  const initialState = {
-    items: [{ id: '0', name: 'item0', loading: true }],
-  };
+  it('should reset the original on failure', () => {
+    initialState.patchItemReq = { id: 2, name: 'item2', checked: true };
+    const fixture = {
+      type: PATCH_ITEM_ERROR,
+    };
 
-  const fixture = {
-    type: PATCH_ITEM_ERROR,
-    itemId: '0',
-    error: { code: 404, message: 'Not found' },
-  };
-
-  const state = itemReducer(initialState, fixture);
-  expect(state.error).toEqual(fixture.error);
-  expect(state.items[0].loading).toBeUndefined();
+    const state = itemReducer(initialState, fixture);
+    expect(state.items[2].checked).toBeTruthy();
+  });
 });
 
 describe('DELETE_ITEM', () => {
@@ -106,14 +52,15 @@ describe('DELETE_ITEM', () => {
   });
 
   describe('REQUEST', () => {
-    it('should add a loading flag to the appropiate action', () => {
+    it('should remove the item', () => {
       const action = {
         type: DELETE_ITEM_REQUEST,
         id: '1',
       };
 
       const state = itemReducer(initialState, action);
-      expect(state.items[1].loading).toBeTruthy();
+      expect(state.items.length).toEqual(2);
+      expect(state.items).not.toContainEqual({ id: '1' });
     });
   });
 
@@ -128,18 +75,12 @@ describe('DELETE_ITEM', () => {
       const state = itemReducer(initialState, action);
       expect(state.error).toEqual(action.error);
     });
-
-    it('should clear the loading flag', () => {
-      initialState.items[1].loading = true;
-      const state = itemReducer(initialState, action);
-      expect(state.items[1].loading).toBeUndefined();
-    });
   });
 
-  describe('SUCCESS', () => {
+  describe('REQUEST', () => {
     it('should remove the item from the items list', () => {
       const action = {
-        type: DELETE_ITEM_SUCCESS,
+        type: DELETE_ITEM_REQUEST,
         id: '1',
       };
 
