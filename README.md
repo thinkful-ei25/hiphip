@@ -11,7 +11,8 @@ so users can map their shopping by aisles leveraged on user input and feedback.
 - Get aisle information based on past users information.
 - Find stores near you!
 - Give feedback to other shoppers when items are moved.
-  ![shoppingList](public/readmeImages/shoppinglist.png#center?raw=true 'Landing')
+
+![shoppingList](public/readmeImages/shoppinglist.png#center?raw=true 'Landing')
 
 ## Screenshots
 
