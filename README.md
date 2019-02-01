@@ -18,3 +18,7 @@ so users can map their shopping by aisles leveraged on user input and feedback.
 ![listoflists](public/readmeImages/listoflists.png?raw=true 'Landing')
 
 ![lashoppingList](public/readmeImages/shoppinglist.png?raw=true 'Landing')
+
+## Live App
+
+[GoCery](https://gocery-app.netlify.com/)
