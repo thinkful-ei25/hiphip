@@ -14,6 +14,15 @@ so users can map their shopping by aisles leveraged on user input and feedback.
 
 ![shoppingList](public/readmeImages/shoppinglist.png#center?raw=true 'Landing')
 
+## DevTeam
+
+Team [hip-hip]!
+
+- Project Owner: [Arun Seehra](https://github.com/aseehra)
+- Project Manager: [Mischa Berlin](https://github.com/mischb)
+- QA Lead: [Sam Dalton Jr](https://github.com/SamDaltonJr)
+- Design Lead: [Josh Adams](https://github.com/ender554)
+
 ## Screenshots
 
 ![landing](public/readmeImages/landing1.jpg?raw=true 'Landing')
