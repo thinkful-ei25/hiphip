@@ -14,6 +14,23 @@ so users can map their shopping by aisles leveraged on user input and feedback.
 
 ![shoppingList](public/readmeImages/shoppinglist.png#center?raw=true 'Landing')
 
+## Live App
+
+[GoCery](https://gocery-app.netlify.com/)
+
+## Tech Stack
+
+- Mongo
+- Express
+- React
+- Node
+- JWT auth strategy
+
+## Outside API
+
+- Yelp
+- google maps
+
 ## DevTeam
 
 Team [hip-hip]!
@@ -36,7 +53,3 @@ Team [hip-hip]!
 ![newList](public/readmeImages/newlist.png?raw=true 'Landing')
 
 ![listoflists](public/readmeImages/listoflists.png?raw=true 'Landing')
-
-## Live App
-
-[GoCery](https://gocery-app.netlify.com/)
