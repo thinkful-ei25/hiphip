@@ -77,7 +77,11 @@ export class CreateShoppingListForm extends React.Component {
         </div>
       );
       clearButton = (
-        <button className="select-new-store" onClick={() => this.newStore()}>
+        <button
+          type="button"
+          className="select-new-store"
+          onClick={() => this.newStore()}
+        >
           Select another store
         </button>
       );
