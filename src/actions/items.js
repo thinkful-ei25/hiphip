@@ -1,10 +1,14 @@
 import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
+import uuid from 'uuid';
+
+import { logout } from './auth';
 
 export const PATCH_ITEM_REQUEST = 'PATCH_ITEM_REQUEST';
-export const patchItemRequest = itemId => ({
+export const patchItemRequest = (originalItem, updatedItem) => ({
   type: PATCH_ITEM_REQUEST,
-  itemId,
+  originalItem,
+  updatedItem,
 });
 
 export const PATCH_ITEM_SUCCESS = 'PATCH_ITEM_SUCCESS';
@@ -38,9 +42,13 @@ export const getItemsError = error => ({
 });
 
 export const ADD_ITEM_REQUEST = 'ADD_ITEM_REQUEST';
-export const addItemRequest = () => ({
-  type: ADD_ITEM_REQUEST,
-});
+export const addItemRequest = item => {
+  item.id = uuid.v4();
+  return {
+    type: ADD_ITEM_REQUEST,
+    item,
+  };
+};
 
 export const ADD_ITEM_ERROR = 'ADD_ITEM_ERROR';
 export const addItemError = error => ({
@@ -141,7 +149,7 @@ export const editListName = () => ({
 });
 
 export const addItemToList = (item, listId) => (dispatch, getState) => {
-  dispatch(addItemRequest());
+  dispatch(addItemRequest(item));
 
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/lists/${listId}/items/`, {
@@ -157,7 +165,12 @@ export const addItemToList = (item, listId) => (dispatch, getState) => {
     .then(({ item }) => {
       dispatch(addItemSuccess(item));
     })
-    .catch(error => dispatch(addItemError(error)));
+    .catch(error => {
+      dispatch(addItemError(error));
+      if (error.code === 401) {
+        dispatch(logout());
+      }
+    });
 };
 
 export const getItems = listId => (dispatch, getState) => {
@@ -172,12 +185,20 @@ export const getItems = listId => (dispatch, getState) => {
     .then(({ list }) => {
       dispatch(getItemsSuccess(list));
     })
-    .catch(err => dispatch(getItemsError(err)));
+    .catch(err => {
+      dispatch(getItemsError(err));
+      if (err.code === 401) {
+        dispatch(logout());
+      }
+    });
 };
 
-export const patchItem = (item, listId) => (dispatch, getState) => {
-  const { id: itemId } = item;
-  dispatch(patchItemRequest(itemId));
+export const patchItem = (originalItem, updatedItem, listId) => (
+  dispatch,
+  getState
+) => {
+  const { id: itemId } = updatedItem;
+  dispatch(patchItemRequest(originalItem, updatedItem));
 
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/lists/${listId}/items/${itemId}`, {
@@ -186,14 +207,19 @@ export const patchItem = (item, listId) => (dispatch, getState) => {
       'Content-Type': 'application/json',
     },
     method: 'PATCH',
-    body: JSON.stringify(item),
+    body: JSON.stringify(updatedItem),
   })
     .then(normalizeResponseErrors)
     .then(res => res.json())
     .then(({ item: newItem }) => {
       dispatch(patchItemSuccess(newItem));
     })
-    .catch(err => dispatch(patchItemError(itemId, err)));
+    .catch(err => {
+      dispatch(patchItemError(itemId, err));
+      if (err.code === 401) {
+        dispatch(logout());
+      }
+    });
 };
 
 export const changeListName = (name, listId) => (dispatch, getState) => {
@@ -209,13 +235,18 @@ export const changeListName = (name, listId) => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(() => dispatch(changeListNameSuccess(name)))
-    .catch(err => dispatch(changeListNameError(listId, err)));
+    .catch(err => {
+      dispatch(changeListNameError(listId, err));
+      if (err.code === 401) {
+        dispatch(logout());
+      }
+    });
 };
 
 export const toggleChecked = (itemId, listId) => (dispatch, getState) => {
   const item = getState().items.items.find(i => i.id === itemId);
   return dispatch(
-    patchItem({ id: itemId, isChecked: !item.isChecked }, listId)
+    patchItem(item, { ...item, isChecked: !item.isChecked }, listId)
   );
 };
 
@@ -231,7 +262,12 @@ export const deleteItem = (itemId, listId) => (dispatch, getState) => {
     .then(normalizeResponseErrors)
     .then(res => res.json())
     .then(({ items }) => dispatch(deleteItemSuccess(items)))
-    .catch(error => dispatch(deleteItemError(itemId, error)));
+    .catch(error => {
+      dispatch(deleteItemError(itemId, error));
+      if (error.code === 401) {
+        dispatch(logout());
+      }
+    });
 };
 
 export const reorder = (index, listId, direction) => (dispatch, getState) => {

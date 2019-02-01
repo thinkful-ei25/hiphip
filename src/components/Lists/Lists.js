@@ -47,6 +47,7 @@ export class Lists extends Component {
               this.toggleModal();
               this.closeOut();
             }}
+            title="Close"
           />
           <CreateShoppingList />
         </div>
@@ -54,8 +55,8 @@ export class Lists extends Component {
     }
 
     const navBarJSX = <NavBar />;
-    const { lists, history } = this.props;
-    const shouldOnboard = !lists.length && !this.state.addingList;
+    const { lists, loading, history } = this.props;
+    const shouldOnboard = !lists.length && !this.state.addingList && !loading;
 
     const shoppingLists = lists.map(list => (
       <ShoppingList
@@ -69,11 +70,16 @@ export class Lists extends Component {
     ));
 
     let createListButton = (
-      <button className="add-list-clicker" onClick={() => this.toggleModal()}>
+      <button
+        className="add-list-clicker"
+        onClick={() => this.toggleModal()}
+        title="Add new list"
+      >
         <i
           className={classNames('fas', 'fa-plus-circle', 'fa-3x', {
             'onboard-highlight': shouldOnboard,
           })}
+          aria-hidden
         />
       </button>
     );
@@ -113,6 +119,7 @@ export class Lists extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    loading: state.lists.loading,
     lists: state.lists.lists,
     history: ownProps.history,
   };

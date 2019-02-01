@@ -17,14 +17,27 @@ export function ShoppingListItem({
   patchItem,
   deleteItem,
   listId,
+  delItemReq,
+  allowAisleEdit,
+  patchItemReq,
 }) {
   function handleSubmit(e) {
     e.preventDefault();
+    if (patchItemReq) {
+      return;
+    }
     const name = e.target.name.value;
-    const aisleLocation = e.target.aisle.value;
+    const aisleLocation = item.aisleLocation;
+    aisleLocation.aisleNo = e.target.aisle.value;
     toggleEditMode(item.id);
-    patchItem({ id: item.id, name, aisleLocation }, listId);
+    patchItem(item, { id: item.id, name, aisleLocation }, listId);
   }
+  const deleteItemOnClick = () => {
+    if (delItemReq) {
+      return;
+    }
+    deleteItem(item.id, listId);
+  };
   const checkBox = (
     <button
       className={classNames(
@@ -36,6 +49,7 @@ export function ShoppingListItem({
       )}
       type="button"
       onClick={onClick}
+      aria-label="Check off item"
     />
   );
   const { isEditing } = item;
@@ -53,14 +67,23 @@ export function ShoppingListItem({
             defaultValue={item.name}
             type="text"
             className="editingItem padded"
+            data-lpignore="true"
+            aria-label="Item name"
           />
         </div>
-        <div className="ShoppingListItem--editing aisle">
+        <div
+          className={classNames('ShoppingListItem--editing', 'aisle', {
+            'ShoppingListItem--disabled': !allowAisleEdit,
+          })}
+        >
           <input
             form={formId}
             name="aisle"
             defaultValue={item.aisleLocation && item.aisleLocation.aisleNo}
             className="editingAisle padded"
+            data-lpignore="true"
+            aria-label="Aisle"
+            disabled={!allowAisleEdit}
           />
         </div>
 
@@ -68,15 +91,17 @@ export function ShoppingListItem({
           type="submit"
           form={formId}
           className="save-edit editItemButton ShoppingListItem-buttons icon-btn"
+          aria-label="Save changes"
         >
-          <i className="fas fa-check-circle fa-1x" />
+          <i className="fas fa-check-circle fa-1x" aria-hidden />
         </button>
 
         <button
           className="cancel-edit ShoppingListItem-buttons icon-btn"
           onClick={() => toggleEditMode(item.id)}
+          aria-label="Cancel"
         >
-          <i className="fas fa-ban fa-1x fa-1x" />
+          <i className="fas fa-ban fa-1x fa-1x" aria-hidden />
         </button>
       </Fragment>
     );
@@ -105,6 +130,7 @@ export function ShoppingListItem({
         )}
         onClick={() => toggleEditMode(item.id)}
         type="button"
+        aria-label="Edit aisle information"
       >
         {item.aisleLocation && item.aisleLocation.aisleNo}
       </button>
@@ -112,12 +138,14 @@ export function ShoppingListItem({
         href="#edit"
         className="edit-btn icon-btn"
         onClick={() => toggleEditMode(item.id)}
+        title="Edit item"
       >
-        <i className="fas fa-pencil-alt" />
+        <i className="fas fa-pencil-alt" aria-hidden />
       </a>
       <button
         className="delete-btn fas fa-times"
-        onClick={() => deleteItem(item.id, listId)}
+        onClick={deleteItemOnClick}
+        title="Delete item"
       />
     </Fragment>
   );

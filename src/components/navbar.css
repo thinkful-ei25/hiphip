@@ -36,16 +36,7 @@
   color: black;
 }
 
-.navUl li h2:hover {
-  background-color: #111;
-}
-
 .navUl li:first-child {
   vertical-align: middle;
   float: left;
 }
-
-/* Change the link color to #111 (black) on hover */
-/* .navUl li a:hover {
-  background-color: #111;
-} */

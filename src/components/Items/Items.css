@@ -123,12 +123,20 @@
   margin-bottom: 5px;
 }
 
+.ShoppingListItem--editing.ShoppingListItem--disabled {
+  background-color: var(--fadedBack);
+}
+
 .ShoppingListItem--editing input {
   display: inline-block;
   width: 100%;
   margin: auto;
   padding: auto;
   font-family: var(--secondaryFonts);
+}
+
+.ShoppingListItem--editing .editingItem {
+  padding-left: 10px;
 }
 
 .listTitle .listNameForm,
@@ -187,8 +195,6 @@
   font-size: 1rem;
   border: none;
   outline: none;
-  cursor: pointer;
-  /* text-align: left; */
   padding: 0.5em 0;
   background-color: var(--fadedBack);
 }
@@ -197,7 +203,6 @@
   font-size: 1rem;
   border: none;
   outline: none;
-  cursor: pointer;
   text-align: center;
   padding: 0.5em 0;
   background-color: var(--fadedBack);

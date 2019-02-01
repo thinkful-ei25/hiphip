@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 import './LandingPage.css';
 import Carousel from '../Carousel';
+import redirectWhenLoggedIn from '../redirectWhenLoggedIn';
 
-export default function LandingPage() {
+export function LandingPage() {
   const getStartedButton = (
     <Link to="/login" className="button">
       Get started
@@ -56,3 +57,5 @@ export default function LandingPage() {
     </div>
   );
 }
+
+export default redirectWhenLoggedIn('/lists')(LandingPage);

@@ -9,9 +9,6 @@ import {
   getItems,
   toggleChecked,
   displayAislePrompt,
-  sortItems,
-  reverseSortItems,
-  unsortItems,
   editListName,
   changeListName,
 } from '../../actions/items';
@@ -31,18 +28,6 @@ export class Items extends Component {
       dispatch(displayAislePrompt(item));
     }
     dispatch(toggleChecked(item.id, listId));
-  }
-
-  onSort() {
-    const { dispatch, sorted, reverseSorted } = this.props;
-    if (sorted) {
-      dispatch(reverseSortItems());
-    } else if (reverseSorted) {
-      dispatch(unsortItems());
-    } else {
-      dispatch(sortItems());
-    }
-    this.forceUpdate();
   }
 
   componentDidMount() {
@@ -75,6 +60,9 @@ export class Items extends Component {
       aislePrompt,
       editingName,
       error,
+      tempItemId,
+      delItemReq,
+      patchItemReq,
     } = this.props;
 
     if (loading) {
@@ -86,8 +74,8 @@ export class Items extends Component {
     }
 
     if (error) {
-      if (error.code === 404 || error.code === 422) {
-        return <Redirect to="/lists" />;
+      if (error.code === 404) {
+        return <Redirect to="/404" />;
       }
       return (
         <ErrorBanner>
@@ -99,7 +87,6 @@ export class Items extends Component {
     let sortedItems = items.slice();
     sortedItems.sort(compareAisle);
     sortedItems.sort(sortAisle);
-
     let itemElements = sortedItems.map((item, index) => {
       return (
         <ShoppingListItem
@@ -108,6 +95,9 @@ export class Items extends Component {
           item={item}
           listId={listId}
           onClick={() => this.onClickHandler(item)}
+          delItemReq={delItemReq}
+          allowAisleEdit={store !== null}
+          patchItemReq={patchItemReq}
         />
       );
     });
@@ -121,11 +111,11 @@ export class Items extends Component {
       }
       address = <address>{addressStr}</address>;
       storeBlock = (
-        <h3 className="storeAddress">
+        <div className="storeAddress">
           {store.name}
 
           {address}
-        </h3>
+        </div>
       );
     }
 
@@ -139,8 +129,8 @@ export class Items extends Component {
             this.editListName = editListName;
           }}
         />
-        <button className="editButton" type="submit">
-          <i className="fas fa-check-circle" />
+        <button className="editButton" type="submit" title="Submit name change">
+          <i className="fas fa-check-circle" aria-hidden />
         </button>
       </form>
     );
@@ -157,8 +147,12 @@ export class Items extends Component {
         <header className="listTitle">
           <h1>
             {name}
-            <button className="editButton" onClick={() => this.editing()}>
-              <i className="fas fa-pencil-alt" />
+            <button
+              className="editButton"
+              onClick={() => this.editing()}
+              title="Edit list name"
+            >
+              <i className="fas fa-pencil-alt" aria-hidden />
             </button>
           </h1>
           {storeBlock}
@@ -177,9 +171,11 @@ export class Items extends Component {
               <div className="item list-heading">Item</div>
               <div className="aisle aisle-heading list-heading">Aisle</div>
               {itemElements}
-              <AddItem listId={listId} />
+              <AddItem listId={listId} allowAisleEdit={store !== null} />
             </section>
-            {aislePrompt ? <AddAisle listId={listId} /> : null}
+            {aislePrompt && store ? (
+              <AddAisle listId={listId} tempItemId={tempItemId} />
+            ) : null}
           </div>
         </main>
       </Fragment>
@@ -200,6 +196,9 @@ const mapStateToProps = (state, ownProps) => {
     unsort,
     editingName,
     error,
+    tempItemId,
+    delItemReq,
+    patchItemReq,
   } = state.items;
   return {
     items,
@@ -213,6 +212,9 @@ const mapStateToProps = (state, ownProps) => {
     unsort,
     editingName,
     error,
+    tempItemId,
+    delItemReq,
+    patchItemReq,
   };
 };
 

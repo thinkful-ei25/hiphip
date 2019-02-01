@@ -1,3 +1,7 @@
+.ShoppingList {
+  cursor: pointer;
+}
+
 .list-title {
   padding: 0.25em;
   font-size: 1.5rem;
@@ -15,7 +19,7 @@
 }
 
 .list-delete-btn button {
-  font-size: 12px;
+  font-size: 0.85rem;
   margin: 5px;
 }
 
@@ -27,4 +31,8 @@
 #confirmDelete {
   background-color: var(--ourWarningColor);
   font-weight: bold;
+}
+
+#cancelDelete {
+  background: white;
 }

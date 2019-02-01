@@ -62,6 +62,11 @@ input#name {
   color: black;
 }
 
+.google-maps-link {
+  color: black;
+  text-decoration: underline;
+}
+
 .selected-store p {
   font-family: var(--headerFont);
 }
@@ -99,6 +104,7 @@ input#name {
   text-align: center;
   font-size: 20px;
   color: black;
+  cursor: pointer;
 }
 .store-result strong {
   font-family: var(--headerFont);
