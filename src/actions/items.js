@@ -2,6 +2,8 @@ import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
 import uuid from 'uuid';
 
+import { logout } from './auth';
+
 export const PATCH_ITEM_REQUEST = 'PATCH_ITEM_REQUEST';
 export const patchItemRequest = (originalItem, updatedItem) => ({
   type: PATCH_ITEM_REQUEST,
@@ -163,7 +165,12 @@ export const addItemToList = (item, listId) => (dispatch, getState) => {
     .then(({ item }) => {
       dispatch(addItemSuccess(item));
     })
-    .catch(error => dispatch(addItemError(error)));
+    .catch(error => {
+      dispatch(addItemError(error));
+      if (error.code === 401) {
+        dispatch(logout());
+      }
+    });
 };
 
 export const getItems = listId => (dispatch, getState) => {
@@ -178,7 +185,12 @@ export const getItems = listId => (dispatch, getState) => {
     .then(({ list }) => {
       dispatch(getItemsSuccess(list));
     })
-    .catch(err => dispatch(getItemsError(err)));
+    .catch(err => {
+      dispatch(getItemsError(err));
+      if (err.code === 401) {
+        dispatch(logout());
+      }
+    });
 };
 
 export const patchItem = (originalItem, updatedItem, listId) => (
@@ -202,7 +214,12 @@ export const patchItem = (originalItem, updatedItem, listId) => (
     .then(({ item: newItem }) => {
       dispatch(patchItemSuccess(newItem));
     })
-    .catch(err => dispatch(patchItemError(itemId, err)));
+    .catch(err => {
+      dispatch(patchItemError(itemId, err));
+      if (err.code === 401) {
+        dispatch(logout());
+      }
+    });
 };
 
 export const changeListName = (name, listId) => (dispatch, getState) => {
@@ -218,7 +235,12 @@ export const changeListName = (name, listId) => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(() => dispatch(changeListNameSuccess(name)))
-    .catch(err => dispatch(changeListNameError(listId, err)));
+    .catch(err => {
+      dispatch(changeListNameError(listId, err));
+      if (err.code === 401) {
+        dispatch(logout());
+      }
+    });
 };
 
 export const toggleChecked = (itemId, listId) => (dispatch, getState) => {
@@ -240,7 +262,12 @@ export const deleteItem = (itemId, listId) => (dispatch, getState) => {
     .then(normalizeResponseErrors)
     .then(res => res.json())
     .then(({ items }) => dispatch(deleteItemSuccess(items)))
-    .catch(error => dispatch(deleteItemError(itemId, error)));
+    .catch(error => {
+      dispatch(deleteItemError(itemId, error));
+      if (error.code === 401) {
+        dispatch(logout());
+      }
+    });
 };
 
 export const reorder = (index, listId, direction) => (dispatch, getState) => {
