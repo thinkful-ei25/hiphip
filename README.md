@@ -1,5 +1,7 @@
 # GoCery
 
+![shoppingList](public/readmeImages/shoppinglist.png#center?raw=true 'Landing')
+
 GoCery is a revolutionary shopping list app that crowd sources information
 so users can map their shopping by aisles leveraged on user input and feedback.
 
@@ -16,8 +18,6 @@ so users can map their shopping by aisles leveraged on user input and feedback.
 ![newList](public/readmeImages/newlist.png?raw=true 'Landing')
 
 ![listoflists](public/readmeImages/listoflists.png?raw=true 'Landing')
-
-![lashoppingList](public/readmeImages/shoppinglist.png?raw=true 'Landing')
 
 ## Live App
 
