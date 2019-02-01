@@ -5,7 +5,13 @@ import { Redirect } from 'react-router-dom';
 import LoadingSpinner from '../LoadingSpinner';
 
 export default () => Component => {
-  function authRequired({ authenticated, error, loading, ...passThrough }) {
+  function authRequired({
+    authenticated,
+    error,
+    loading,
+    dispatch,
+    ...passThrough
+  }) {
     if (loading) {
       return <LoadingSpinner />;
     }

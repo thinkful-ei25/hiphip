@@ -1,5 +1,8 @@
 import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
+
+import { logout } from './auth';
+
 export const LISTS_REQUEST = 'LISTS_REQUEST';
 export const listsRequests = () => ({
   type: LISTS_REQUEST,
@@ -39,7 +42,12 @@ export const deleteList = listId => (dispatch, getState) => {
   })
     .then(res => normalizeResponseErrors(res))
     .then(() => dispatch(deleteListSuccess(listId)))
-    .catch(error => dispatch(deleteListError(error)));
+    .catch(error => {
+      dispatch(deleteListError(error));
+      if (error.code === 401) {
+        dispatch(logout());
+      }
+    });
 };
 
 export const DELETE_LIST_ERROR = 'DELETE_LIST_ERROR';
@@ -60,7 +68,12 @@ export const getLists = () => (dispatch, getState) => {
     .then(res => {
       dispatch(listsSuccess(res));
     })
-    .catch(err => dispatch(listsError(err)));
+    .catch(err => {
+      dispatch(listsError(err));
+      if (err.code === 401) {
+        dispatch(logout());
+      }
+    });
 };
 
 export const CREATE_LIST_REQUEST = 'CREATE_LIST_REQUEST';
@@ -97,7 +110,12 @@ export const createList = (name, store, history) => (dispatch, getState) => {
       dispatch(createListSuccess(res.list));
       history.push(`/lists/${res.list.id}`);
     })
-    .catch(error => dispatch(createListError(error)));
+    .catch(error => {
+      dispatch(createListError(error));
+      if (error.code === 401) {
+        dispatch(logout());
+      }
+    });
 };
 
 export const CLEAR_ERROR = 'CLEAR_ERROR';
