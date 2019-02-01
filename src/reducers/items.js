@@ -101,7 +101,7 @@ export default function reducer(state = initialState, action) {
             return item;
           }
           state.patchItemReq = originalItem;
-          return updatedItem;
+          return { ...item, ...updatedItem };
         }),
       };
     }
