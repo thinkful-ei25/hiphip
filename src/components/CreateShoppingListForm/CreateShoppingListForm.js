@@ -6,7 +6,7 @@ import StoreSearch from '../StoreSearch';
 
 import { createList } from '../../actions/shoppingLists';
 import { clearCurrentStore, clearStores } from '../../actions/yelpAPI';
-import { queryCreator, queryCombiner, googleMapsSearch } from './utils';
+import { queryCreator, googleMapsSearch } from './utils';
 
 export class CreateShoppingListForm extends React.Component {
   onSubmit(event) {
@@ -71,7 +71,7 @@ export class CreateShoppingListForm extends React.Component {
         queryCreator(location.address1),
         location.zip_code,
       ];
-      const query = queryCombiner(toBeQuery);
+      const query = toBeQuery.join('%2C+');
 
       storeDisplay = (
         <div className="selected-store">
