@@ -33,7 +33,7 @@ so users can map their shopping by aisles leveraged on user input and feedback.
 ## Outside API
 
 - Yelp
-- google maps
+- Google Maps
 
 ## DevTeam
 
