@@ -22,3 +22,7 @@
 .button--secondary {
   background-color: var(--ourSecondary);
 }
+
+.form-error {
+  color: var(--ourWarningColor);
+}

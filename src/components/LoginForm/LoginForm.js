@@ -8,22 +8,37 @@ import { Link } from 'react-router-dom';
 import './LoginForm.css';
 
 export class LoginForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null };
+  }
+
   onSubmit(values) {
+    this.setState({ error: null });
     return this.props.dispatch(login(values.username, values.password));
   }
 
   demoLogin() {
-    return this.props
-      .dispatch(login('demo', 'password'))
-      .catch(err => console.log(err));
+    return this.props.dispatch(login('demo', 'password')).catch(err => {
+      if (err.message === 'Submit Validation Failed') {
+        this.setState({ error: 'Demo account does not exist' });
+      }
+    });
   }
 
   render() {
-    let error;
+    let error, demoError;
     if (this.props.error) {
       error = (
         <div className="form-error" aria-live="polite">
           {this.props.error}
+        </div>
+      );
+    }
+    if (this.state.error) {
+      demoError = (
+        <div className="form-error" aria-live="polite">
+          {this.state.error}
         </div>
       );
     }
@@ -34,9 +49,13 @@ export class LoginForm extends Component {
     );
 
     const demo = (
-      <div className="button button--secondary" onClick={e => this.demoLogin()}>
+      <button
+        type="button"
+        className="button button--secondary"
+        onClick={e => this.demoLogin()}
+      >
         Demo
-      </div>
+      </button>
     );
     return (
       <form
@@ -47,6 +66,7 @@ export class LoginForm extends Component {
           <h2>Login</h2>
         </legend>
         {error}
+        {demoError}
         <Field
           className="login-field"
           label="Username"
