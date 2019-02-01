@@ -24,11 +24,8 @@ so users can map their shopping by aisles leveraged on user input and feedback.
 
 ## Tech Stack
 
-- Mongo
-- Express
 - React
-- Node
-- JWT auth strategy
+- Redux
 
 ## Outside API
 
