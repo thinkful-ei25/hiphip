@@ -3,12 +3,6 @@ import { connect } from 'react-redux';
 import { patchItem, removeAislePrompt } from '../../actions/items';
 import './AddAisle.css';
 export class AddAisle extends Component {
-  // componentDidMount() {
-  //   document.addEventListener('mousedown', this.onClick, false);
-  // }
-  // componentWillUnmount() {
-  //   document.removeEventListener('mousedown', this.onClick, false);
-  // }
   removeDefaultVal = e => {
     e.target.value = '';
   };
@@ -26,11 +20,10 @@ export class AddAisle extends Component {
   updateAisle(e) {
     e.preventDefault();
     const { dispatch, listId, item } = this.props;
-    item.aisleLocation = this.input.value;
-    if (item.aisleLocation) {
-      dispatch(
-        patchItem({ id: item.id, aisleLocation: item.aisleLocation }, listId)
-      );
+    const aisleLocation = item.aisleLocation;
+    aisleLocation.aisleNo = this.input.value;
+    if (item.aisleLocation.aisleNo) {
+      dispatch(patchItem(item, { id: item.id, aisleLocation }, listId));
     }
     dispatch(removeAislePrompt());
   }
