@@ -6,6 +6,7 @@ import StoreSearch from '../StoreSearch';
 
 import { createList } from '../../actions/shoppingLists';
 import { clearCurrentStore, clearStores } from '../../actions/yelpAPI';
+import { queryCreator, googleMapsSearch } from './utils';
 
 export class CreateShoppingListForm extends React.Component {
   onSubmit(event) {
@@ -65,15 +66,29 @@ export class CreateShoppingListForm extends React.Component {
       );
     } else {
       const { name, location } = currentStore;
+      const toBeQuery = [
+        queryCreator(name),
+        queryCreator(location.address1),
+        location.zip_code,
+      ];
+      const query = toBeQuery.join('%2C+');
+
       storeDisplay = (
         <div className="selected-store">
           <p>Selected store:</p>
           <strong className="storeTitle">{name}</strong>
-          <address>
-            {location.address1} {location.address2}
-            <br />
-            {location.city}, {location.state} {location.zip_code}
-          </address>
+          <a
+            className="google-maps-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href={googleMapsSearch + query}
+          >
+            <address>
+              {location.address1} {location.address2}
+              <br />
+              {location.city}, {location.state} {location.zip_code}
+            </address>
+          </a>
         </div>
       );
       clearButton = (

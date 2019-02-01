@@ -62,6 +62,11 @@ input#name {
   color: black;
 }
 
+.google-maps-link {
+  color: black;
+  text-decoration: underline;
+}
+
 .selected-store p {
   font-family: var(--headerFont);
 }
