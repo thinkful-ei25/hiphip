@@ -30,7 +30,7 @@ function sortByName(item1, item2) {
     } else {
       return 1;
     }
-    return -1;
+    return 1;
   }
 }
 
