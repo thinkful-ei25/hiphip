@@ -13,7 +13,8 @@ export function AddItem({ listId, dispatch, tempItemId, allowAisleEdit }) {
     if (!name || tempItemId) {
       return;
     }
-    const aisleLocation = e.target.aisle.value;
+    const aisleLocation = {};
+    aisleLocation.aisleNo = e.target.aisle.value;
     e.target.aisle.value = '';
     e.target.name.value = '';
     dispatch(addItemToList({ name, aisleLocation }, listId));
