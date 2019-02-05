@@ -17,7 +17,7 @@ import NavBar from '../nav-bar';
 import AddAisle from '../AddAisle';
 import LoadingSpinner from '../LoadingSpinner';
 import authRequired from '../authRequired';
-import { compareAisle, sortAisle } from './utils';
+import { splitByType, compareAisle, sortAisle } from './utils';
 
 import ShoppingListItem from '../ShoppingListItem';
 import './Items.css';
@@ -84,9 +84,12 @@ export class Items extends Component {
       );
     }
 
-    let sortedItems = items.slice();
-    sortedItems.sort(compareAisle);
-    sortedItems.sort(sortAisle);
+    let sortedItems = [];
+    let { noAisle, stringAisle, intAisle } = splitByType(items);
+    noAisle = noAisle.sort(sortAisle);
+    stringAisle = stringAisle.sort(sortAisle);
+    intAisle = intAisle.sort(sortAisle);
+    sortedItems = [...intAisle, ...stringAisle, ...noAisle];
     let itemElements = sortedItems.map((item, index) => {
       return (
         <ShoppingListItem
