@@ -21,8 +21,16 @@ on crowd-sourced aisle information.
 
 ## Tech Stack
 
+### FrontEnd
+
 - React (Create React App)
 - Redux
+
+### [Backend](https://github.com/thinkful-ei25/hiphip-server)
+
+- Node.js
+- Express
+- mongoDB
 
 ## Outside API
 
